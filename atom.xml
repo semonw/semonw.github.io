@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>探索数据之美</title>
+  <icon>http://www.typedefine.cn/icon.png</icon>
+  <subtitle>不忘初心，砥砺前行！</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.typedefine.cn/"/>
+  <updated>2020-02-09T08:40:41.000Z</updated>
+  <id>http://www.typedefine.cn/</id>
+  
+  <author>
+    <name>山野@成都</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>不同linux发行版软件安装工具</title>
+    <link href="http://www.typedefine.cn/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/"/>
+    <id>http://www.typedefine.cn/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/</id>
+    <published>2020-02-09T08:40:41.000Z</published>
+    <updated>2020-02-09T08:40:41.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;RPM  是Red-Hat Package Manager（RPM软件包管理器）的缩写，这一文件格式名称虽然打上了RedHat的标志，但是其原始设计理念是开放式的，现在包括OpenLinux、S.u.S.E.以及Turbo
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Linux" scheme="http://www.typedefine.cn/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://www.typedefine.cn/tags/Linux/"/>
+    
+  </entry>
+  
+</feed>
