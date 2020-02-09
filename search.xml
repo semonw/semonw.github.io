@@ -27,13 +27,13 @@
 ]]></content>
   </entry>
   <entry>
-    <title>文章分类</title>
-    <url>/categories/index.html</url>
+    <title>about/me</title>
+    <url>/about-me/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>about/me</title>
-    <url>/about-me/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -42,8 +42,8 @@
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>文章分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>
