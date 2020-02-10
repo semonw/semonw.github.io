@@ -34,7 +34,13 @@
       <category term="Building tools - maven" scheme="http://www.typedefine.cn/categories/Building-tools-maven/"/>
     
     
-      <category term="maven,profiles,settings.xml,mirrorOf" scheme="http://www.typedefine.cn/tags/maven-profiles-settings-xml-mirrorOf/"/>
+      <category term="maven" scheme="http://www.typedefine.cn/tags/maven/"/>
+    
+      <category term="profiles" scheme="http://www.typedefine.cn/tags/profiles/"/>
+    
+      <category term="settings.xml" scheme="http://www.typedefine.cn/tags/settings-xml/"/>
+    
+      <category term="mirrorOf" scheme="http://www.typedefine.cn/tags/mirrorOf/"/>
     
   </entry>
   
@@ -57,7 +63,11 @@
       <category term="protocol buffer" scheme="http://www.typedefine.cn/categories/Building-tools-maven/protocol-buffer/"/>
     
     
-      <category term="maven,protocol buffer" scheme="http://www.typedefine.cn/tags/maven-protocol-buffer/"/>
+      <category term="maven" scheme="http://www.typedefine.cn/tags/maven/"/>
+    
+      <category term="protocol" scheme="http://www.typedefine.cn/tags/protocol/"/>
+    
+      <category term="buffer" scheme="http://www.typedefine.cn/tags/buffer/"/>
     
   </entry>
   

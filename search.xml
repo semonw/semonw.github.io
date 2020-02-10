@@ -31,7 +31,10 @@
         <category>Building tools - maven</category>
       </categories>
       <tags>
-        <tag>maven,profiles,settings.xml,mirrorOf</tag>
+        <tag>maven</tag>
+        <tag>profiles</tag>
+        <tag>settings.xml</tag>
+        <tag>mirrorOf</tag>
       </tags>
   </entry>
   <entry>
@@ -86,7 +89,9 @@
         <category>protocol buffer</category>
       </categories>
       <tags>
-        <tag>maven,protocol buffer</tag>
+        <tag>maven</tag>
+        <tag>protocol</tag>
+        <tag>buffer</tag>
       </tags>
   </entry>
   <entry>

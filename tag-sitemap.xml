@@ -3,14 +3,42 @@
 
 
     <url>
-        <loc>http://www.typedefine.cn/tags/maven-profiles-settings-xml-mirrorOf/</loc>
+        <loc>http://www.typedefine.cn/tags/mirrorOf/</loc>
         <lastmod>2020-02-10T08:02:55.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/tags/maven-protocol-buffer/</loc>
+        <loc>http://www.typedefine.cn/tags/settings-xml/</loc>
+        <lastmod>2020-02-10T08:02:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/profiles/</loc>
+        <lastmod>2020-02-10T08:02:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/maven/</loc>
+        <lastmod>2020-02-10T08:02:55.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/buffer/</loc>
+        <lastmod>2020-02-10T05:30:03.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/protocol/</loc>
         <lastmod>2020-02-10T05:30:03.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
