@@ -3,18 +3,16 @@
   <entry>
     <title>不同linux发行版软件安装工具</title>
     <url>/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/</url>
-    <content><![CDATA[<h3 id="RPM"><a href="#RPM" class="headerlink" title="RPM"></a>RPM</h3><p>RPM是Red-Hat Package Manager（RPM软件包管理器）的缩写，这一文件格式名称虽然打上了<a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/ch-rpm" title="[external] [redhat]" target="">RedHat的标志</a>，但是其原始设计理念是开放式的，现在包括OpenLinux、S.u.S.E.以及Turbo Linux等Linux的分发版本都有采用，可以算是公认的行业标准了。</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a><a href="https://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/08/2203153.html" title="[external] [apt-get]" target="">apt-get</a></h3><p>apt-get，是一条linux命令，适用于deb包管理式的操作系统，主要用于自动从互联网的软件仓库中搜索、安装、升级、卸载软件或操作系统。主要适用于Debian、Ubuntu的系统。 </p>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="RPM"><a href="#RPM" class="headerlink" title="RPM"></a>RPM</h3><p>RPM是Red-Hat Package Manager（RPM软件包管理器）的缩写，这一文件格式名称虽然打上了RedHat的标志<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Redhat guide: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/
+">[1]</span></a></sup>，但是其原始设计理念是开放式的，现在包括OpenLinux、S.u.S.E.以及Turbo Linux等Linux的分发版本都有采用，可以算是公认的行业标准了。</p>
+<h3 id="apt-get"><a href="#apt-get" class="headerlink" title="apt-get"></a>apt-get</h3><p>apt-get<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="RPM使用参考：https://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/08/2203153.html
+">[2]</span></a></sup>，是一条linux命令，适用于deb包管理式的操作系统，主要用于自动从互联网的软件仓库中搜索、安装、升级、卸载软件或操作系统。主要适用于Debian、Ubuntu的系统。 </p>
 <p>Ubuntu 16.04 发布时，一个引人注目的新特性便是 apt 命令的引入。其实早在 2014 年，apt 命令就已经发布了第一个稳定版，只是直到 2016 年的 Ubuntu 16.04 系统发布时才开始引人关注。</p>
 <h3 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h3><p>yum（全称为 Yellow dog Updater, Modified）是一个在Fedora和RedHat以及SUSE中的Shell前端软件包管理器。基於RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软体包，无须繁琐地一次次下载、安装。yum提供了查找、安装、删除某一个、一组甚至全部软件包的命令，而且命令简洁而又好记。</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title=""></a><a href="https://www.cnblogs.com/littleatp/p/9313563.html" title="[external] [zypper]" target="">zypper</a></h3><p>zypper， opensuse中使用的包软件软件，类似CentOS中Yum.</p>
+<h3 id="zyppe"><a href="#zyppe" class="headerlink" title="zyppe"></a>zyppe</h3><p>zypper<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="opensuse使用zypper安装软件：https://www.cnblogs.com/littleatp/p/9313563.html
+">[3]</span></a></sup>， opensuse中使用的包软件软件，类似CentOS中Yum.</p>
 <h3 id="yast"><a href="#yast" class="headerlink" title="yast"></a>yast</h3><p>OpenSUSE中可以使用YAST图形界面中来安装。</p>
-<h3 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h3><ol>
-<li>红帽子RPM使用参考：<a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/ch-rpm" target="_blank" rel="noopener">https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/ch-rpm</a> </li>
-<li>RPM使用参考：<a href="https://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/08/2203153.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/08/2203153.html</a></li>
-<li>博客：<a href="https://www.cnblogs.com/littleatp/p/9313563.html" target="_blank" rel="noopener">https://www.cnblogs.com/littleatp/p/9313563.html</a></li>
-</ol>
-]]></content>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">Redhat guide: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">RPM使用参考：https://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/08/2203153.html<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">opensuse使用zypper安装软件：https://www.cnblogs.com/littleatp/p/9313563.html<a href="#fnref:3" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
       <categories>
         <category>Linux</category>
       </categories>
@@ -25,7 +23,7 @@
   <entry>
     <title>404</title>
     <url>/404/index.html</url>
-    <content><![CDATA[<script src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js"
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><script src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js"
         charset="utf-8" homePageUrl="/" homePageName="Back to home">
 </script>
 ]]></content>
@@ -33,21 +31,21 @@
   <entry>
     <title>about</title>
     <url>/about/index.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
     <title>schedule</title>
     <url>/schedule/index.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
     <title>文章分类</title>
     <url>/categories/index.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
     <title>标签</title>
     <url>/tags/index.html</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
 </search>
