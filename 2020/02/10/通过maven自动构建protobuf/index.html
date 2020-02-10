@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -46,15 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="通过maven自动化构建当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代码，并打包成相应的jar包，集">
-<meta name="keywords" content="protobuf,maven,maven plugins">
+  <meta name="description" content="通过maven自动化构建protocal buffer当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过maven自动化构建protobuf class代码">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.typedefine.cn&#x2F;2020&#x2F;02&#x2F;10&#x2F;%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf&#x2F;index.html">
+<meta property="og:url" content="http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/index.html">
 <meta property="og:site_name" content="探索数据之美">
-<meta property="og:description" content="通过maven自动化构建当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代码，并打包成相应的jar包，集">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-10T05:30:03.000Z">
+<meta property="og:description" content="通过maven自动化构建protocal buffer当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-10T05:30:03.000Z">
+<meta property="article:modified_time" content="2020-02-10T05:30:03.000Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="protobuf">
+<meta property="article:tag" content="maven">
+<meta property="article:tag" content="maven plugins">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/">
@@ -269,6 +273,41 @@
             </span>
 
           
+            <span id="/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/" class="post-meta-item leancloud_visitors" data-flag-title="通过maven自动化构建protobuf class代码" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -279,7 +318,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="通过maven自动化构建"><a href="#通过maven自动化构建" class="headerlink" title="通过maven自动化构建"></a>通过maven自动化构建</h2><p>当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。<br>从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代码，并打包成相应的jar包，集成到工程发布包中。<br>这里有2种方式，如下。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="通过maven自动化构建protocal-buffer"><a href="#通过maven自动化构建protocal-buffer" class="headerlink" title="通过maven自动化构建protocal buffer"></a>通过maven自动化构建protocal buffer</h2><p>当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。<br>从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代码，并打包成相应的jar包，集成到工程发布包中。<br>这里有2种方式，如下。</p>
+<a id="more"></a>
+
 <h2 id="第1种方式：使用protobuf-maven-plugin"><a href="#第1种方式：使用protobuf-maven-plugin" class="headerlink" title="第1种方式：使用protobuf-maven-plugin"></a>第1种方式：使用protobuf-maven-plugin</h2><h3 id="配置插件protobuf-maven-plugin"><a href="#配置插件protobuf-maven-plugin" class="headerlink" title="配置插件protobuf-maven-plugin"></a>配置插件protobuf-maven-plugin</h3><p>先从官网<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="下载protoc: https://developers.google.com/protocol-buffers/docs/downloads
 ">[2]</span></a></sup>上将protobuf的工具包下载下来，然后拷贝到工程目录下，配置POM文件如下, 通过相对路径引用protoc.exe文件。<br>.protow文件默认的路径在src/main/proto文件中。下面所有的子目录都会被当成包结构。</p>
 <p>protobuf-maven-plugin<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="插件使用：https://www.xolstice.org/protobuf-maven-plugin/plugin-info.html
@@ -326,6 +367,25 @@
     
     
     
+      
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>山野@成都
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/" title="通过maven自动化构建protobuf class代码">http://www.typedefine.cn/2020/02/10/通过maven自动构建protobuf/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
         
 
   <div class="followme">
@@ -388,6 +448,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -434,7 +495,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过maven自动化构建"><span class="nav-number">1.</span> <span class="nav-text">通过maven自动化构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第1种方式：使用protobuf-maven-plugin"><span class="nav-number">2.</span> <span class="nav-text">第1种方式：使用protobuf-maven-plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置插件protobuf-maven-plugin"><span class="nav-number">2.1.</span> <span class="nav-text">配置插件protobuf-maven-plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进一步改进maven配置"><span class="nav-number">2.2.</span> <span class="nav-text">进一步改进maven配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2种方式通过antrun插件来完成"><span class="nav-number">3.</span> <span class="nav-text">第2种方式通过antrun插件来完成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置条件："><span class="nav-number">3.1.</span> <span class="nav-text">前置条件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置依赖的Protocol-Buffer-API"><span class="nav-number">3.2.</span> <span class="nav-text">配置依赖的Protocol Buffer API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查操作系统类型，并生成相应的工程属性Properties"><span class="nav-number">3.3.</span> <span class="nav-text">检查操作系统类型，并生成相应的工程属性Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动下载平台相关的编译器"><span class="nav-number">3.4.</span> <span class="nav-text">自动下载平台相关的编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用protoc生成相关的Java代码。"><span class="nav-number">3.5.</span> <span class="nav-text">调用protoc生成相关的Java代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将Java代码添加到包中"><span class="nav-number">3.6.</span> <span class="nav-text">将Java代码添加到包中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对Protocol-Buffer包进行shading"><span class="nav-number">3.7.</span> <span class="nav-text">对Protocol Buffer包进行shading</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过maven自动化构建protocal-buffer"><span class="nav-number">1.</span> <span class="nav-text">通过maven自动化构建protocal buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第1种方式：使用protobuf-maven-plugin"><span class="nav-number">2.</span> <span class="nav-text">第1种方式：使用protobuf-maven-plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置插件protobuf-maven-plugin"><span class="nav-number">2.1.</span> <span class="nav-text">配置插件protobuf-maven-plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进一步改进maven配置"><span class="nav-number">2.2.</span> <span class="nav-text">进一步改进maven配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2种方式通过antrun插件来完成"><span class="nav-number">3.</span> <span class="nav-text">第2种方式通过antrun插件来完成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置条件："><span class="nav-number">3.1.</span> <span class="nav-text">前置条件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置依赖的Protocol-Buffer-API"><span class="nav-number">3.2.</span> <span class="nav-text">配置依赖的Protocol Buffer API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查操作系统类型，并生成相应的工程属性Properties"><span class="nav-number">3.3.</span> <span class="nav-text">检查操作系统类型，并生成相应的工程属性Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动下载平台相关的编译器"><span class="nav-number">3.4.</span> <span class="nav-text">自动下载平台相关的编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用protoc生成相关的Java代码。"><span class="nav-number">3.5.</span> <span class="nav-text">调用protoc生成相关的Java代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将Java代码添加到包中"><span class="nav-number">3.6.</span> <span class="nav-text">将Java代码添加到包中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对Protocol-Buffer包进行shading"><span class="nav-number">3.7.</span> <span class="nav-text">对Protocol Buffer包进行shading</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -468,8 +529,11 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="/mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
@@ -496,8 +560,18 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">山野@成都</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">11k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10 分钟</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
@@ -506,6 +580,9 @@
         
 
 
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278608574&web_id=1278608574"></script>
+  </div>
 
 
 
@@ -520,33 +597,72 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
+
   
-
-
-
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
 
 
 
 
   
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
 
   
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'VtruaLIR7e29Macn1qKXUBak-gzGzoHsz',
+      appKey: 'MgvHFeFDgGdlwkLjyfY1zNdC',
+      placeholder: "Comment here",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

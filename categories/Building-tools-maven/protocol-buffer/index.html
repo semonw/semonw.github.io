@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -47,13 +47,17 @@
 </script>
 
   <meta name="description" content="做大数据故事挖掘的最好的博客">
-<meta name="keywords" content="大数据,spark,data mining,gis">
 <meta property="og:type" content="website">
 <meta property="og:title" content="探索数据之美">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.typedefine.cn&#x2F;categories&#x2F;Building-tools-maven&#x2F;protocol-buffer&#x2F;index.html">
+<meta property="og:url" content="http://www.typedefine.cn/categories/Building-tools-maven/protocol-buffer/index.html">
 <meta property="og:site_name" content="探索数据之美">
 <meta property="og:description" content="做大数据故事挖掘的最好的博客">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="大数据">
+<meta property="article:tag" content="spark">
+<meta property="article:tag" content="data mining">
+<meta property="article:tag" content="gis">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.typedefine.cn/categories/Building-tools-maven/protocol-buffer/">
@@ -346,8 +350,11 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="/mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
@@ -374,8 +381,18 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">山野@成都</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">11k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10 分钟</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
@@ -384,6 +401,9 @@
         
 
 
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278608574&web_id=1278608574"></script>
+  </div>
 
 
 
@@ -398,33 +418,72 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
+
   
-
-
-
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
 
 
 
 
   
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
 
   
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'VtruaLIR7e29Macn1qKXUBak-gzGzoHsz',
+      appKey: 'MgvHFeFDgGdlwkLjyfY1zNdC',
+      placeholder: "Comment here",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>

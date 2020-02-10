@@ -25,13 +25,8 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h3 id=&quot;maven是如何判断操作系统的？&quot;&gt;&lt;a
-        
-      
+      &lt;p&gt;maven从设计上来说非常的简单，但是却是一个非常强大的工具。很多人将maven只是当做一个构建工具（从源代码生成可运行软件），但是实际上可以将maven当做一个项目管理工具，比如工程管理、插件管理、Jar包依赖管理、软件发布仓库管理等。&lt;/p&gt;
+&lt;p&gt;下面讲解一些在使用maven当中所遇到的一些小的技巧。&lt;/p&gt;
     
     </summary>
     
@@ -52,13 +47,7 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h2 id=&quot;通过maven自动化构建&quot;&gt;&lt;a
-        
-      
+      &lt;h2 id=&quot;通过maven自动化构建protocal-buffer&quot;&gt;&lt;a href=&quot;#通过maven自动化构建protocal-buffer&quot; class=&quot;headerlink&quot; title=&quot;通过maven自动化构建protocal buffer&quot;&gt;&lt;/a&gt;通过maven自动化构建protocal buffer&lt;/h2&gt;&lt;p&gt;当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。&lt;br&gt;从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代码，并打包成相应的jar包，集成到工程发布包中。&lt;br&gt;这里有2种方式，如下。&lt;/p&gt;
     
     </summary>
     
@@ -81,13 +70,10 @@
     
     <summary type="html">
     
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h3 id=&quot;RPM&quot;&gt;&lt;a href=&quot;#RPM&quot;
-        
-      
+      &lt;h3 id=&quot;RPM&quot;&gt;&lt;a href=&quot;#RPM&quot; class=&quot;headerlink&quot; title=&quot;RPM&quot;&gt;&lt;/a&gt;RPM&lt;/h3&gt;&lt;p&gt;RPM是Red-Hat Package Manager（RPM软件包管理器）的缩写，这一文件格式名称虽然打上了RedHat的标志&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;Redhat guide: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/
+&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，但是其原始设计理念是开放式的，现在包括OpenLinux、S.u.S.E.以及Turbo Linux等Linux的分发版本都有采用，可以算是公认的行业标准了。&lt;/p&gt;
+&lt;h3 id=&quot;apt-get&quot;&gt;&lt;a href=&quot;#apt-get&quot; class=&quot;headerlink&quot; title=&quot;apt-get&quot;&gt;&lt;/a&gt;apt-get&lt;/h3&gt;&lt;p&gt;apt-get&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;RPM使用参考：https://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/08/2203153.html
+&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，是一条linux命令，适用于deb包管理式的操作系统，主要用于自动从互联网的软件仓库中搜索、安装、升级、卸载软件或操作系统。主要适用于Debian、Ubuntu的系统。 &lt;/p&gt;
     
     </summary>
     

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.0.0">
+<meta name="generator" content="Hexo 4.2.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -46,15 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="maven是如何判断操作系统的？操作系统家族是通过Maven Enforcer Plugin来实现的，具体来说，和如下代码的效果是完全一致的： Family is calculated based on testing against the name string retreived from the JDK. The name, arch and version values are retr">
-<meta name="keywords" content="maven,maven configuration">
+  <meta name="description" content="maven从设计上来说非常的简单，但是却是一个非常强大的工具。很多人将maven只是当做一个构建工具（从源代码生成可运行软件），但是实际上可以将maven当做一个项目管理工具，比如工程管理、插件管理、Jar包依赖管理、软件发布仓库管理等。 下面讲解一些在使用maven当中所遇到的一些小的技巧。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="maven构建的一些小技巧">
-<meta property="og:url" content="http:&#x2F;&#x2F;www.typedefine.cn&#x2F;2020&#x2F;02&#x2F;10&#x2F;maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7&#x2F;index.html">
+<meta property="og:url" content="http://www.typedefine.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/index.html">
 <meta property="og:site_name" content="探索数据之美">
-<meta property="og:description" content="maven是如何判断操作系统的？操作系统家族是通过Maven Enforcer Plugin来实现的，具体来说，和如下代码的效果是完全一致的： Family is calculated based on testing against the name string retreived from the JDK. The name, arch and version values are retr">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-10T08:02:55.000Z">
+<meta property="og:description" content="maven从设计上来说非常的简单，但是却是一个非常强大的工具。很多人将maven只是当做一个构建工具（从源代码生成可运行软件），但是实际上可以将maven当做一个项目管理工具，比如工程管理、插件管理、Jar包依赖管理、软件发布仓库管理等。 下面讲解一些在使用maven当中所遇到的一些小的技巧。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-10T08:02:55.000Z">
+<meta property="article:modified_time" content="2020-02-10T08:02:55.000Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="maven">
+<meta property="article:tag" content="maven configuration">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://www.typedefine.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/">
@@ -263,6 +266,41 @@
             </span>
 
           
+            <span id="/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="post-meta-item leancloud_visitors" data-flag-title="maven构建的一些小技巧" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -273,7 +311,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="maven是如何判断操作系统的？"><a href="#maven是如何判断操作系统的？" class="headerlink" title="maven是如何判断操作系统的？"></a>maven是如何判断操作系统的？</h3><p>操作系统家族是通过Maven Enforcer Plugin来实现的，具体来说，和如下代码的效果是完全一致的：</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>maven从设计上来说非常的简单，但是却是一个非常强大的工具。很多人将maven只是当做一个构建工具（从源代码生成可运行软件），但是实际上可以将maven当做一个项目管理工具，比如工程管理、插件管理、Jar包依赖管理、软件发布仓库管理等。</p>
+<p>下面讲解一些在使用maven当中所遇到的一些小的技巧。</p>
+<a id="more"></a>
+
+<h3 id="maven是如何判断操作系统的？"><a href="#maven是如何判断操作系统的？" class="headerlink" title="maven是如何判断操作系统的？"></a>maven是如何判断操作系统的？</h3><p>操作系统家族是通过Maven Enforcer Plugin来实现的，具体来说，和如下代码的效果是完全一致的：</p>
 <blockquote><p>Family is calculated based on testing against the name string retreived from the JDK. The name, arch and version values are retreived from the JDK using the following code：</p>
 <footer><strong>引用自</strong><cite><a href="http://maven.apache.org/enforcer/enforcer-rules/requireOS.html" target="_blank" rel="noopener">官方文档</a></cite></footer></blockquote>
 
@@ -287,7 +329,7 @@
 <h3 id="如何配置仓库镜像（MirrorOf）？"><a href="#如何配置仓库镜像（MirrorOf）？" class="headerlink" title="如何配置仓库镜像（MirrorOf）？"></a>如何配置仓库镜像（MirrorOf）？</h3><p>在POM文件中使用Repositories标签就可以从你希望的地址上去下载构件，比如依赖库或者插件。这样对于工程的迁移性比较好。在任何地方都可以构建起来。</p>
 <p>但是有的时候，你希望在不修改工程POM文件的情况下使用另外不同的仓库，这个时候就可以使用mirror。关于mirrorOf的规则可以参考官方文档<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Apache maven 配置仓库镜像：http://maven.apache.org/guides/mini/guide-mirror-settings.html">[1]</span></a></sup>。</p>
 <p>几个需要注意的地方：<br>1、最快的镜像应该放在最前面<br>2、如果第一个镜像的规则是*，那么后面的仓库可能不会使用。<br>3、<id>的默认值是central</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirrors&gt;</span><br><span class="line">	&lt;mirror&gt;  </span><br><span class="line">        &lt;id&gt;aliyun&lt;/id&gt;  </span><br><span class="line">        &lt;mirrorOf&gt;central&lt;/mirrorOf&gt;  </span><br><span class="line">        &lt;name&gt;阿里云公共仓库&lt;/name&gt;  </span><br><span class="line">        &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;  </span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">	</span><br><span class="line">    &lt;mirror&gt;    </span><br><span class="line">        &lt;id&gt;repo2&lt;/id&gt;    </span><br><span class="line">        &lt;mirrorOf&gt;!central,*&lt;/mirrorOf&gt;    </span><br><span class="line">        &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;    </span><br><span class="line">        &lt;url&gt;http://repo2.maven.org/maven2/&lt;/url&gt;    </span><br><span class="line">    &lt;/mirror&gt;</span><br><span class="line">&lt;/mirrors&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;mirrors&gt;</span><br><span class="line">	&lt;mirror&gt;  </span><br><span class="line">        &lt;id&gt;aliyun&lt;&#x2F;id&gt;  </span><br><span class="line">        &lt;mirrorOf&gt;central&lt;&#x2F;mirrorOf&gt;  </span><br><span class="line">        &lt;name&gt;阿里云公共仓库&lt;&#x2F;name&gt;  </span><br><span class="line">        &lt;url&gt;http:&#x2F;&#x2F;maven.aliyun.com&#x2F;nexus&#x2F;content&#x2F;groups&#x2F;public&#x2F;&lt;&#x2F;url&gt;  </span><br><span class="line">    &lt;&#x2F;mirror&gt;</span><br><span class="line">	</span><br><span class="line">    &lt;mirror&gt;    </span><br><span class="line">        &lt;id&gt;repo2&lt;&#x2F;id&gt;    </span><br><span class="line">        &lt;mirrorOf&gt;!central,*&lt;&#x2F;mirrorOf&gt;    </span><br><span class="line">        &lt;name&gt;Human Readable Name for this Mirror.&lt;&#x2F;name&gt;    </span><br><span class="line">        &lt;url&gt;http:&#x2F;&#x2F;repo2.maven.org&#x2F;maven2&#x2F;&lt;&#x2F;url&gt;    </span><br><span class="line">    &lt;&#x2F;mirror&gt;</span><br><span class="line">&lt;&#x2F;mirrors&gt;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -298,6 +340,25 @@
     
     
     
+      
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>山野@成都
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.typedefine.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/" title="maven构建的一些小技巧">http://www.typedefine.cn/2020/02/10/maven构建的一些小技巧/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
         
 
   <div class="followme">
@@ -357,6 +418,7 @@
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -437,8 +499,11 @@
 </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="/mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 
@@ -465,8 +530,18 @@
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">山野@成都</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">11k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">10 分钟</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
   <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
@@ -475,6 +550,9 @@
         
 
 
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278608574&web_id=1278608574"></script>
+  </div>
 
 
 
@@ -489,33 +567,72 @@
   <script src="/lib/anime.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
+
   
-
-
-
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
 
 
 
 
   
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
 
   
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'VtruaLIR7e29Macn1qKXUBak-gzGzoHsz',
+      appKey: 'MgvHFeFDgGdlwkLjyfY1zNdC',
+      placeholder: "Comment here",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
 
 </body>
 </html>
