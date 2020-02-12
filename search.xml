@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>为什么会害怕人工智能</title>
+    <url>/2020/02/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AE%B3%E6%80%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>原作者： 保罗▪福特 2015年2月11日<br>译者： 山野@成都 2017</p>
+<h1 id="在阅读之前"><a href="#在阅读之前" class="headerlink" title="在阅读之前"></a>在阅读之前</h1><p>这篇文章<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.technologyreview.com/s/534871/our-fear-of-artificial-intelligence/
+">[1]</span></a></sup>是我在2017年在麻省理工评论（MIT Technology Review）上看到的翻译的。 作者是保罗▪福特<sup id="fnref:2"><a href="#fn:2" rel="footnote">&lt;span class=”hint–top hint–error hint–medium hint–rounded hint–bounce” aria-label=”保罗 福特， 自由记者，居于纽约。2014年3月、4月报道过<a href="http://www.technologyreview.com/review/524691/marginally-useful/" target="_blank" rel="noopener" title="比特币">比特币</a>。<br>“&gt;[2]</span></a></sup>。距离当初的翻译已经过去了2年。现在人工智能的概念已经深入到各行各业，从大家经常接触的SNS社交数据挖掘、智能客服、B2C商品推荐系统、新闻推荐系统、智能汽车，以及到更广泛的更偏向于传统的领域，比如医疗、城市规划、交通领域、建筑领域、社区管理、行政服务等等的一切都在提到一个词，那就是“智慧”，“智能”。</p>
+<p>这一切的背后都和机器学习技术（深度学习、加强学习）等等的兴起，以及更加容易使用的框架和API，比如谷歌的tensorflow；更加容易处理大规模数据的框架，比如Apache Spark、Apache Hadoop套件等，这些都助力于并提高了各种业务对于基于大量数据的建模和预测能力。而这些能力就是大家所说的人工智能。</p>
+<p>下面这篇文章并没有讲解具体的某种应用于人工智能的技术，而是从更高更抽象的层面，从社会和伦理的层面探讨了人工智能所带来的一些问题。</p>
+<p>下面是正文：</p>
+<a id="more"></a>
+
+<hr>
+<p><strong>* 真正的人工智能可能毁灭这个世界——但前提是人工智能可以被实现。*</strong></p>
+<p>信任计算机去控制复杂的系统。</p>
+<p>几年前我和一个创业的朋友喝咖啡。他刚满40，生病的父亲和背部疼痛让他感觉自己快要被生活压垮。 “别笑话我”, 他说， “我可是指望着奇点呐。”</p>
+<p>我朋友在科技领域工作；他看到了更快的芯片处理器和网络带来的巨大变化。他相信，在他中年时，机器的智能会超过人类——一个被未来学家称之为奇点的时刻。一个友善的超级智能以更快的速度分析人类的基因，解开青春不老的秘密。至少，它可能知道怎么治好背部的疼痛。</p>
+<p>可是，如果它不这么友善呢？领导牛津大学人类未来研究所的哲学家Nick Bostrom，在《Superintelligence》描述了这样一种场景，引发了对人工智能的未来的大量讨论。假设有有一个名字叫做“回形针最大化”的机器，它的目的就是尽可能的制造更多的回形针。现在，让我们再想象一下，这个机器变得无比的智能。为了达到目的，他可能制造出一种新的，更有效率的回形针生产设备——直到，它将所有的东西都变成回形针，如同米达斯把一切都变成黄金。</p>
+<p>你也许会说，不用担心，只需要编程让它只制造一百万个回形针就停止了啊。但是，假如它完成之后决定检查一下工作呢？计数是否准确？无疑它需要变得更加聪明。这个超级智能的机器制造某种还未发明的、原始计算材料（姑且叫它“计算单元”），然后用它来检查每一个疑问。每一个疑问引发另外的疑问，直到整个地球都被转化成这种“计算单元”，而不是那一百万个回形针。</p>
+<p>其实，Bostrom并不认为回形针制造器会真的出现。这是一个思想实验：用来表明无论多么精心设计的系统都无法约束极端的机器智能。不过他确信，超级智能肯定会产生，有可能会很棒，Bostrom认为也有另外一种可能：它不再需要人类。或者做了一些事情，毁灭了整个地球。第八章的标题是：默认的结局是毁灭吗？</p>
+<p>如果你觉得很可笑，这很正常。批评者诸如机器人先锋Rodney Brooks评论道，当我们说计算机思考或者正在变得聪明时，这些担心AI会偏离正常轨道的人对计算机在做什么有所误解。从这个角度来看，Bostrom所描述的超级智能会在遥远的未来，也许永远都不会出现。</p>
+<p>但依然有很多聪明而有见地的人通知Bostrom的观点，并表示忧虑，这又是为何呢？</p>
+<h1 id="自由意志"><a href="#自由意志" class="headerlink" title="自由意志"></a>自由意志</h1><p>机器可以思考吗？ 这个问题从一开始就给计算机科学蒙上了一层阴影。阿兰图灵在1950年提出了一个观点：可以像教小孩一样教机器。1955年，LISP语言的发明者，约翰 · 麦卡锡，发明了”人工智能“这个词。60年代和70年代，AI研究人员用计算机来识别图像、在不同语言之间进行翻译，识别自然语言中的指令，而不仅仅是代码，与此同时，计算机最终发展出可以交谈和思考的能力——进而变得邪恶——的看法开始进入主流文化中。不提老生常谈的《2001，空间奥德赛》的Hal电脑，在1970年的电影《巨人：福宾计划》，展示了一个巨大的闪闪微光的主机计算机将整个世界带入核战的边缘。13年以后，星际大战游戏也探索了同样的主题。1973年的电影《西部世界》中，机器人发疯了，随后开始了屠杀。</p>
+<p>当AI的研究和高远的目标遥不可及的时候，AI领域的投资大幅缩水，开始了“漫长的冬天”。即便如此，智能机器的火炬在80年代和90年代被诸如科幻作者Vernor Vinge，研究学者诸如机器人专家、计算机视觉专家Hans Moravec，以及企业家兼工程师Ray Kurzweil等接力而向前发展。Vinge让奇点这个观点变得流行。Kurzweil1999年出版了《精神机器的时代》。图灵提出类人智能的假设，而Vinge、Moravec、Kurzweil想的更加深远：当一个计算机能够独立找到方法达到目标，很有可能它具备了内省的能力——修改自己的软件让自己变得更加智能。说白了，这样的计算机能够自己设计硬件。</p>
+<p>像Kurzweil所描绘的那样，这将是一个美好新时代。这样的计算有足够的insight和耐心（用皮秒来计量）来解决纳米科技和空间飞行的难题；他们可以提高人类的生活水平，可以让我们把意识上传成为一种永生的电子形式。智能可以在整个宇宙中扩散。</p>
+<p>对于这种阳光乐观派，亦存在完全相反的观点。霍金警告说，由于人类无法和高级AI竞争，这 “会是人类种族终结的魔咒<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://www.bbc.com/news/technology-30290540
+">[3]</span></a></sup>”。在阅读了《Superintelligence》之后，埃隆马斯克发推文说，“希望我们不是数字超级智能的生物启动加载器。不幸的是，越来越有这种可能性。” 马斯克接着给未来生活研究所捐助了一百万美金。和Bostrom的研究中心不同的是，这是一个“致力于降低全人类生存风险”，其中包括来自于 “开发人类水平的人工智能”。</p>
+<p>现在还没有任何证据表明超级智能的存在。事实上，对如何达到通用目的的人工智能，几乎没有什么进展，甚至连如何达到目标，也没有清晰的路径。近期AI方面的发展，包括Apple的Siri助手和谷歌的无人驾驶汽车， 都揭示出当前技术存在严重的局限。在遇到之前从来没有遇到过的问题的时候，两者都束手无策。人工神经网络通过学习可以识别照片中的猫<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://www.technologyreview.com/news/523181/an-ai-chip-to-help-computers-understand-images/
+">[4]</span></a></sup>，但是在此之前，需要经过上万个例子的学习，并且和小孩相比，依然不够准确。</p>
+<p>这也是为什么有许多人，比如Brooks（iRobot和Rethink Robotics的创始人)<sup id="fnref:5"><a href="#fn:5" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://www.rethinkrobotics.com/artificial-intelligence-tool-threat/)
+">[5]</span></a></sup>，表示出怀疑。和早期计算机的能力相比，现在的计算机可谓非常令人感到惊讶，即便如此，计算机可以识别出图片中的猫，但是因为机器没有意志，它不知道猫到底是什么，也不知道图片中正在发生着什么，也不具备许多其他人类所独有的洞察力。按照这个观点来看，也许可以达到机器具有智能的地步，但是还需要做的工作远超Bostrom的想象了。假设即便发生了，也不意味着这就是末日审判。从当前的AI发展推导出未来的超级AI，“如同看到热效率提升的内燃机就推出曲速引擎唾手可得的结论一样荒谬”, Brooks在近期在Edge.org<sup id="fnref:6"><a href="#fn:6" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://edge.org/response-detail/26057
+">[6]</span></a></sup>上写到。 至少数百年之内，没有必要担心“存在恶意的超级智能”。</p>
+<h1 id="保险策略"><a href="#保险策略" class="headerlink" title="保险策略"></a>保险策略</h1><p>超级智能的崛起可能在遥远的未来，但因此冒风险就有点不负责任了。加州大学伯克利计算机科学教授，斯图尔特 罗素(Stuart J.Russell)表达了和Bostrom同样的担心。罗素和Peter Novig(Kurzweil在谷歌的同事)一起合著了20年来的AI领域的标准教科书《人工智能：一种现代方法》。</p>
+<p>“有很多本应非常聪明的公众学者对此毫无头绪”，罗素告诉我，并指出，在过去的十年中, AI的发展极为巨大。公众也许会从摩尔定律的角度来理解AI的发展（更快的计算机可以做更多的事情），实际上，近期AI的工作更多的是更底层的基础研究，使用类似深度学习这样的技术给计算机增加对周遭世界的自动感知。</p>
+<p>鉴于谷歌，Facebook和其他公司正在积极创造一种聪明的，“会学习的”的机器，他说，“我想说的是，我们不应该做的事情之一就是全力以赴研发超级智能，而没有去考虑其潜在的风险。这显得有点狂热了。” 罗素做了一个比喻：“这就是像是核聚变试验。如果你问一个核聚变研究员他们在做什么，他们会说他们的工作就是控制。如果你需要无限制的能量，那么你需要控制核聚变反应。” 同样的，如果你需要无限制的智能，那你最好把计算机和人类的需求利益保持一致。</p>
+<p>Bostrom的书中建议现在开始研究超级智能和人类利益关系。一个超级智能如同上帝一样，可是他是充满愤怒的还是充满爱意？ 这取决于我们（也就是，工程师们）。如同父母一样，我们必须给孩子设定价值观。并且不是任意价值观，而是哪些符合人类利益的价值观。基本上，我们是在告诉一个神我们应当怎样被对待。那么，如何做到呢？</p>
+<p>Bostrom的设想主要建立在一个叫Eliezer Yudkowsky的思想家提出的“统一推理意志”之上——也即是我们所有人心中更好的自己。我们希望，AI会带给我们富有、欢乐、充实的人生：解决背部的疼痛，告诉我们如何去火星旅行。并且，由于我们无法真正就某一件事情达成一致，有时候我们需要AI帮我们做出决定——对人类全体利益最有利的决定。 那么，我们应该怎样把这些价值观编程到超级智能中呢？用什么样的数学公式来定义它？这些都是研究者们应该着手去解决的问题，并且是我们这个时代最核心的任务。</p>
+<p>对普罗大众来说，没有必要因为机器人的可怕而辗转失眠。我们当前还没有任何技术能够达到人工智能。也即是为什么一些超级大公司深度投资研发智能计算机；一个真正的AI可以使得其中任何一家公司获得难以想象的优势。不过，他们也应当了解其中的劣势并且找到规避的办法。</p>
+<p>这点闹人的建议是基于一封在未来生活研究所的官方网站的公开信<sup id="fnref:7"><a href="#fn:7" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://futureoflife.org/misc/open_letter
+">[7]</span></a></sup>（没有宣称AI战争的来临）。信中号召在如何收割AI的收益并避免潜在瑕疵方面投入更多的研究，而不是警告人类的生存灾难。这封信的签名有不仅来自AI外行如霍金、马斯克和Bostrom等人的签名，还有知名计算机科学家（包括顶级AI研究员Demis Hassabis<sup id="fnref:8"><a href="#fn:8" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://www.technologyreview.com/news/532876/googles-intelligence-designer/">[8]</span></a></sup>）。你可以清楚看到他们从哪里来。毕竟，如何他们创造了一个不认同人类价值观的AI，那就是说，他们还不够聪明，无法控制他们自己的创造物。</p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.technologyreview.com/s/534871/our-fear-of-artificial-intelligence/<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">保罗 福特， 自由记者，居于纽约。2014年3月、4月报道过<a href="http://www.technologyreview.com/review/524691/marginally-useful/" target="_blank" rel="noopener" title="比特币">比特币</a>。<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://www.bbc.com/news/technology-30290540<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://www.technologyreview.com/news/523181/an-ai-chip-to-help-computers-understand-images/<a href="#fnref:4" rev="footnote"> ↩</a></span></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">5.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://www.rethinkrobotics.com/artificial-intelligence-tool-threat/)<a href="#fnref:5" rev="footnote"> ↩</a></span></li><li id="fn:6"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">6.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://edge.org/response-detail/26057<a href="#fnref:6" rev="footnote"> ↩</a></span></li><li id="fn:7"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">7.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://futureoflife.org/misc/open_letter<a href="#fnref:7" rev="footnote"> ↩</a></span></li><li id="fn:8"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">8.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://www.technologyreview.com/news/532876/googles-intelligence-designer/<a href="#fnref:8" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
+      <categories>
+        <category>科技 - 人工智能</category>
+        <category>翻译</category>
+      </categories>
+      <tags>
+        <tag>人工智能</tag>
+        <tag>未来科技</tag>
+        <tag>麻省理工评论</tag>
+        <tag>自由意志</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>maven构建的一些小技巧</title>
     <url>/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>maven从设计上来说非常的简单，但是却是一个非常强大的工具。很多人将maven只是当做一个构建工具（从源代码生成可运行软件），但是实际上可以将maven当做一个项目管理工具，比如工程管理、插件管理、Jar包依赖管理、软件发布仓库管理等。</p>
@@ -125,11 +176,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>我是谁</title>
-    <url>/about/index.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
-  </entry>
-  <entry>
     <title>文章分类</title>
     <url>/categories/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
@@ -142,6 +188,11 @@
   <entry>
     <title>谷歌日程</title>
     <url>/schedule/index.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
+  </entry>
+  <entry>
+    <title>我是谁</title>
+    <url>/about/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
 </search>
