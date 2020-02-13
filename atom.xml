@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.typedefine.cn/"/>
-  <updated>2020-02-12T03:08:30.000Z</updated>
+  <updated>2020-02-13T13:07:49.000Z</updated>
   <id>http://www.typedefine.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>thrift编译工具支持参数</title>
+    <link href="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/"/>
+    <id>http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/</id>
+    <published>2020-02-13T13:07:49.000Z</published>
+    <updated>2020-02-13T13:07:49.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;什么是Thrift&quot;&gt;&lt;a href=&quot;#什么是Thrift&quot; class=&quot;headerlink&quot; title=&quot;什么是Thrift?&quot;&gt;&lt;/a&gt;什么是Thrift?&lt;/h1&gt;&lt;p&gt;Thrift是一种接口描述语言和二进制通讯协议，它被用来定义和创建跨语言的服务。它被当作一个远程过程调用（RPC）框架来使用，是由Facebook为“大规模跨语言服务开发”而开发的。它通过一个代码生成引擎联合了一个软件栈，来创建不同程度的、无缝的跨平台高效服务，可以使用C#、C++（基于POSIX兼容系统）、Cappuccino、Cocoa、Delphi、Erlang、Go、Haskell、Java、Node.js、OCaml、Perl、PHP、Python、Ruby和Smalltalk。虽然它以前是由Facebook开发的，但它现在是Apache软件基金会的开源项目了。该实现被描述在2007年4月的一篇由Facebook发表的技术论文中，该论文现由Apache掌管。&lt;/p&gt;
+&lt;p&gt;目前流行的服务调用方式有很多种，例如基于 SOAP 消息格式的 Web Service，基于 JSON 消息格式的 RESTful 服务等。其中所用到的数据传输方式包括 XML，JSON 等，然而 XML 相对体积太大，传输效率低，JSON 体积较小，新颖，但还不够完善。本文将介绍由 Facebook 开发的远程服务调用框架 Apache Thrift，它采用接口描述语言定义并创建服务，支持可扩展的跨语言服务开发，所包含的代码生成引擎可以在多种语言中，如 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, Smalltalk 等创建高效的、无缝的服务，其传输数据采用二进制格式，相对 XML 和 JSON 体积更小，对于高并发、大数据量和多语言的环境更有优势。本文将详细介绍 Thrift 的使用，并且提供丰富的实例代码加以解释说明，帮助使用者快速构建服务。Thrift的下载地址是：&lt;a href=&quot;http://thrift.apache.org/download&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://thrift.apache.org/download&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;thrift-exe支持的参数有哪些？&quot;&gt;&lt;a href=&quot;#thrift-exe支持的参数有哪些？&quot; class=&quot;headerlink&quot; title=&quot;thrift.exe支持的参数有哪些？&quot;&gt;&lt;/a&gt;thrift.exe支持的参数有哪些？&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="thrift" scheme="http://www.typedefine.cn/categories/thrift/"/>
+    
+    
+      <category term="thrift" scheme="http://www.typedefine.cn/tags/thrift/"/>
+    
+      <category term="compiler" scheme="http://www.typedefine.cn/tags/compiler/"/>
+    
+      <category term="command line options" scheme="http://www.typedefine.cn/tags/command-line-options/"/>
+    
+  </entry>
   
   <entry>
     <title>为什么会害怕人工智能</title>

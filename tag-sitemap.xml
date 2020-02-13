@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>http://www.typedefine.cn/tags/command-line-options/</loc>
+        <lastmod>2020-02-13T13:07:49.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/compiler/</loc>
+        <lastmod>2020-02-13T13:07:49.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/thrift/</loc>
+        <lastmod>2020-02-13T13:07:49.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.typedefine.cn/tags/%25E8%2587%25AA%25E7%2594%25B1%25E6%2584%258F%25E5%25BF%2597/</loc>
         <lastmod>2020-02-12T03:08:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
