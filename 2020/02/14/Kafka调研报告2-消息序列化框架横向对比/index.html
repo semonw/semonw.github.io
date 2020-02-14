@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.typedefine.cn').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"manual","top_n_per_article":-1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="调研结果和建议综合来看，Avro或者Protocol Buffer二选一即可， 但是出于灵活性和标准JSON的支持力度上来看，更推荐Protocol Buffers。同时部分数据依然可以通过JSON方式传输。 主流序列化框架对比Kafka的序列化Kafka并不限定的消息格式。Kafka自身提供了一系列的序列化器，比如ByteArraySerializer，ByteBufferSerializer，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kafka调研报告2-消息序列化框架建议与对比">
+<meta property="og:url" content="http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/index.html">
+<meta property="og:site_name" content="探索数据之美">
+<meta property="og:description" content="调研结果和建议综合来看，Avro或者Protocol Buffer二选一即可， 但是出于灵活性和标准JSON的支持力度上来看，更推荐Protocol Buffers。同时部分数据依然可以通过JSON方式传输。 主流序列化框架对比Kafka的序列化Kafka并不限定的消息格式。Kafka自身提供了一系列的序列化器，比如ByteArraySerializer，ByteBufferSerializer，">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-14T03:57:26.000Z">
+<meta property="article:modified_time" content="2020-02-14T03:57:26.000Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="Message Queue">
+<meta property="article:tag" content="Kafka">
+<meta property="article:tag" content="Serialization">
+<meta property="article:tag" content="JSON">
+<meta property="article:tag" content="Apahce Avro">
+<meta property="article:tag" content="Apahce Thrift">
+<meta property="article:tag" content="Protocol Buffers">
+<meta property="article:tag" content="消息队列">
+<meta property="article:tag" content="序列化">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Kafka调研报告2-消息序列化框架建议与对比 | 探索数据之美</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158079573-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-158079573-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="探索数据之美" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">探索数据之美</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+      <meta itemprop="description" content="做大数据故事挖掘的最好的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="探索数据之美">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kafka调研报告2-消息序列化框架建议与对比
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-14 11:57:26" itemprop="dateCreated datePublished" datetime="2020-02-14T11:57:26+08:00">2020-02-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Message-Queue-Kafka/" itemprop="url" rel="index">
+                    <span itemprop="name">Message Queue - Kafka</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/" class="post-meta-item leancloud_visitors" data-flag-title="Kafka调研报告2-消息序列化框架建议与对比" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="调研结果和建议"><a href="#调研结果和建议" class="headerlink" title="调研结果和建议"></a>调研结果和建议</h2><p>综合来看，Avro或者Protocol Buffer二选一即可， 但是出于灵活性和标准JSON的支持力度上来看，更推荐Protocol Buffers。同时部分数据依然可以通过JSON方式传输。</p>
+<h2 id="主流序列化框架对比"><a href="#主流序列化框架对比" class="headerlink" title="主流序列化框架对比"></a>主流序列化框架对比</h2><h3 id="Kafka的序列化"><a href="#Kafka的序列化" class="headerlink" title="Kafka的序列化"></a>Kafka的序列化</h3><p>Kafka并不限定的消息格式。Kafka自身提供了一系列的序列化器，比如ByteArraySerializer，ByteBufferSerializer，DoubleSerializer，FloatSerializer，StringSerializer，UUIDSerializer， IntegerDeserializer, LongSerializer, ShortSerializer, 总结起来就是基本类型、字符串类型、二进制消息。</p>
+<p>但是在通常情况下不会使用比如Float这种来做序列化，原因在于系统间交互或者放到Kafka的数据一般来说都比较复杂，无法用一个字段来表示。于是，这种情况下，就需要在Kafka之上建立一个消息格式的契约，以便于Kafka的生产者和消费者之间都能理解消息中的语义。最好地方就是在Kafka基础之上增加一层应用层的消息协议，比如JSON格式、比如二进制编解码协议（序列化），出于性能考虑，一般也不直接使用Java POJO对象的原生序列化（虽然可行）。在Apache Spark中使用的Kryo Register，由于场景限制（不提供IDL定义），不适用Kafka。</p>
+<p>下面对常见的几个序列化框架做一个横向对比：</p>
+<a id="more"></a>
+
+<h3 id="几种主流序列化对比"><a href="#几种主流序列化对比" class="headerlink" title="几种主流序列化对比"></a>几种主流序列化对比</h3><p>当前比较流行的有JSON<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf
+">[1]</span></a></sup>, Apache Avro<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://avro.apache.org/
+">[2]</span></a></sup>, Google开源的Protocol Buffer<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://developers.google.com/protocol-buffers
+">[3]</span></a></sup>，Apache Thrift<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://thrift.apache.org/">[4]</span></a></sup>。</p>
+<table>
+<thead>
+<tr>
+<th>消息格式</th>
+<th>JSON</th>
+<th>Apache Avro</th>
+<th>Protocol Buffer</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>License</td>
+<td>ECMA-404标准</td>
+<td>Apache License 2.0</td>
+<td>BSD License</td>
+</tr>
+<tr>
+<td>IDL</td>
+<td>无IDL定义，也就意味着系统间无契约</td>
+<td>通过JSON定义，灵活度不够。语言无关。</td>
+<td>类似Thrift格式，灵活定义，支持Any类型</td>
+</tr>
+<tr>
+<td>Code Generator</td>
+<td>无，但是应该可以找到对应的开源工具</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>低</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>兼容性</td>
+<td>高</td>
+<td>前向兼容</td>
+<td>前向兼容</td>
+</tr>
+<tr>
+<td>JSON&lt;-&gt;二进制</td>
+<td>支持</td>
+<td>支持，但是非标准JSON</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>支持语言</td>
+<td>几乎所有</td>
+<td>Java/C++/C/C#</td>
+<td>Java/Python/C++。 其他语言有对应开源库，比如Nodejs可以使用暴雪开源库。</td>
+</tr>
+</tbody></table>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://avro.apache.org/<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://developers.google.com/protocol-buffers<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://thrift.apache.org/<a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>
+    </div>
+
+    
+    
+    
+      
+  <div class="popular-posts-header">相关文章</div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\02\14\Kafka初步调研报告-跨数据中心集群\" rel="bookmark">Kafka调研报告1-跨数据中心的多集群镜像</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\02\14\什么是MQ\" rel="bookmark">什么是MQ</a></div>
+    </li>
+    <li class="popular-posts-item">
+      <div class="popular-posts-title"><a href="\2020\02\14\什么是Kafka\" rel="bookmark">什么是Kafka</a></div>
+    </li>
+  </ul>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>山野@成都
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/" title="Kafka调研报告2-消息序列化框架建议与对比">http://www.typedefine.cn/2020/02/14/Kafka调研报告2-消息序列化框架横向对比/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/images/qrcode_for_gh_e7834ce9fdca_344.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">Wechat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Message-Queue/" rel="tag"><i class="fa fa-tag"></i> Message Queue</a>
+              <a href="/tags/Kafka/" rel="tag"><i class="fa fa-tag"></i> Kafka</a>
+              <a href="/tags/Serialization/" rel="tag"><i class="fa fa-tag"></i> Serialization</a>
+              <a href="/tags/JSON/" rel="tag"><i class="fa fa-tag"></i> JSON</a>
+              <a href="/tags/Apahce-Avro/" rel="tag"><i class="fa fa-tag"></i> Apahce Avro</a>
+              <a href="/tags/Apahce-Thrift/" rel="tag"><i class="fa fa-tag"></i> Apahce Thrift</a>
+              <a href="/tags/Protocol-Buffers/" rel="tag"><i class="fa fa-tag"></i> Protocol Buffers</a>
+              <a href="/tags/Architecture/" rel="tag"><i class="fa fa-tag"></i> Architecture</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/" rel="prev" title="Kafka调研报告1-跨数据中心的多集群镜像">
+      <i class="fa fa-chevron-left"></i> Kafka调研报告1-跨数据中心的多集群镜像
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#调研结果和建议"><span class="nav-number">1.</span> <span class="nav-text">调研结果和建议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主流序列化框架对比"><span class="nav-number">2.</span> <span class="nav-text">主流序列化框架对比</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka的序列化"><span class="nav-number">2.1.</span> <span class="nav-text">Kafka的序列化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种主流序列化对比"><span class="nav-number">2.2.</span> <span class="nav-text">几种主流序列化对比</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">做大数据故事挖掘的最好的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">山野@成都</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">35k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">32 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278608574&web_id=1278608574"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'VtruaLIR7e29Macn1qKXUBak-gzGzoHsz',
+      appKey: 'MgvHFeFDgGdlwkLjyfY1zNdC',
+      placeholder: "Comment here",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

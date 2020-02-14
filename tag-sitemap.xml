@@ -3,6 +3,111 @@
 
 
     <url>
+        <loc>http://www.typedefine.cn/tags/Architecture/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Protocol-Buffers/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Apahce-Thrift/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Apahce-Avro/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/JSON/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Serialization/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Kafka/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Message-Queue/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Mirror-Maker/</loc>
+        <lastmod>2020-02-14T03:12:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Cluster/</loc>
+        <lastmod>2020-02-14T03:12:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Data-center/</loc>
+        <lastmod>2020-02-14T03:12:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Message-Queue-Kafka/</loc>
+        <lastmod>2020-02-14T02:30:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/JMS/</loc>
+        <lastmod>2020-02-14T02:30:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/MQTT/</loc>
+        <lastmod>2020-02-14T02:10:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/AMQP/</loc>
+        <lastmod>2020-02-14T02:10:23.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.typedefine.cn/tags/command-line-options/</loc>
         <lastmod>2020-02-13T13:07:49.000Z</lastmod>
         <changefreq>weekly</changefreq>

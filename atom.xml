@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.typedefine.cn/"/>
-  <updated>2020-02-13T13:07:49.000Z</updated>
+  <updated>2020-02-14T03:57:26.000Z</updated>
   <id>http://www.typedefine.cn/</id>
   
   <author>
@@ -15,6 +15,149 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kafka调研报告2-消息序列化框架建议与对比</title>
+    <link href="http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/"/>
+    <id>http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/</id>
+    <published>2020-02-14T03:57:26.000Z</published>
+    <updated>2020-02-14T03:57:26.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;调研结果和建议&quot;&gt;&lt;a href=&quot;#调研结果和建议&quot; class=&quot;headerlink&quot; title=&quot;调研结果和建议&quot;&gt;&lt;/a&gt;调研结果和建议&lt;/h2&gt;&lt;p&gt;综合来看，Avro或者Protocol Buffer二选一即可， 但是出于灵活性和标准JSON的支持力度上来看，更推荐Protocol Buffers。同时部分数据依然可以通过JSON方式传输。&lt;/p&gt;
+&lt;h2 id=&quot;主流序列化框架对比&quot;&gt;&lt;a href=&quot;#主流序列化框架对比&quot; class=&quot;headerlink&quot; title=&quot;主流序列化框架对比&quot;&gt;&lt;/a&gt;主流序列化框架对比&lt;/h2&gt;&lt;h3 id=&quot;Kafka的序列化&quot;&gt;&lt;a href=&quot;#Kafka的序列化&quot; class=&quot;headerlink&quot; title=&quot;Kafka的序列化&quot;&gt;&lt;/a&gt;Kafka的序列化&lt;/h3&gt;&lt;p&gt;Kafka并不限定的消息格式。Kafka自身提供了一系列的序列化器，比如ByteArraySerializer，ByteBufferSerializer，DoubleSerializer，FloatSerializer，StringSerializer，UUIDSerializer， IntegerDeserializer, LongSerializer, ShortSerializer, 总结起来就是基本类型、字符串类型、二进制消息。&lt;/p&gt;
+&lt;p&gt;但是在通常情况下不会使用比如Float这种来做序列化，原因在于系统间交互或者放到Kafka的数据一般来说都比较复杂，无法用一个字段来表示。于是，这种情况下，就需要在Kafka之上建立一个消息格式的契约，以便于Kafka的生产者和消费者之间都能理解消息中的语义。最好地方就是在Kafka基础之上增加一层应用层的消息协议，比如JSON格式、比如二进制编解码协议（序列化），出于性能考虑，一般也不直接使用Java POJO对象的原生序列化（虽然可行）。在Apache Spark中使用的Kryo Register，由于场景限制（不提供IDL定义），不适用Kafka。&lt;/p&gt;
+&lt;p&gt;下面对常见的几个序列化框架做一个横向对比：&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
+    
+    
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
+      <category term="Serialization" scheme="http://www.typedefine.cn/tags/Serialization/"/>
+    
+      <category term="JSON" scheme="http://www.typedefine.cn/tags/JSON/"/>
+    
+      <category term="Apahce Avro" scheme="http://www.typedefine.cn/tags/Apahce-Avro/"/>
+    
+      <category term="Apahce Thrift" scheme="http://www.typedefine.cn/tags/Apahce-Thrift/"/>
+    
+      <category term="Protocol Buffers" scheme="http://www.typedefine.cn/tags/Protocol-Buffers/"/>
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Kafka调研报告1-跨数据中心的多集群镜像</title>
+    <link href="http://www.typedefine.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/"/>
+    <id>http://www.typedefine.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/</id>
+    <published>2020-02-14T03:12:23.000Z</published>
+    <updated>2020-02-14T03:12:23.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;调研结果和建议&quot;&gt;&lt;a href=&quot;#调研结果和建议&quot; class=&quot;headerlink&quot; title=&quot;调研结果和建议&quot;&gt;&lt;/a&gt;调研结果和建议&lt;/h2&gt;&lt;p&gt;针对是否可以跨数据中心部署Kafka集群的问题，答案是可行，但是不建议。建议先支持单集群部署，以简化运维成本，支持多地多应用业务上线。&lt;/p&gt;
+&lt;h3 id=&quot;可行性与跨网络部署产生的问题&quot;&gt;&lt;a href=&quot;#可行性与跨网络部署产生的问题&quot; class=&quot;headerlink&quot; title=&quot;可行性与跨网络部署产生的问题&quot;&gt;&lt;/a&gt;可行性与跨网络部署产生的问题&lt;/h3&gt;&lt;p&gt;Kafka实际上并不禁止将Broker部署到不同的网络地域。但是，Kafka的设计是按照单个数据中心进行设计、开发、测试和调优的。从Kafka的官方文档&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;Kafka Documentation#Datacenter。http://kafka.apache.org/documentation/#datacenters
+&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;来看，并不推荐将集群跨网络部署。 由于Broker分布在不同的跨地域的网络（WAN）, 除了数据同步会极大地增加延迟之外， 并且如果由于网络中断无法保证zk始终可用，带来其他问题，比如：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Partition Leader无法选举。或者由于网络问题，某个Broker频繁掉线导致集群不稳定。&lt;/li&gt;
+&lt;li&gt;在Producer推送数据时候，产生延迟（推送到remote Broker）。或者由于网络问题，无法获取ACK。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
+    
+    
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+    
+      <category term="Data center" scheme="http://www.typedefine.cn/tags/Data-center/"/>
+    
+      <category term="Cluster" scheme="http://www.typedefine.cn/tags/Cluster/"/>
+    
+      <category term="Mirror Maker" scheme="http://www.typedefine.cn/tags/Mirror-Maker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么是Kafka</title>
+    <link href="http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/"/>
+    <id>http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/</id>
+    <published>2020-02-14T02:30:23.000Z</published>
+    <updated>2020-02-14T02:30:23.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;&lt;em&gt;占坑，后面有时间对Kafka进行详细的更新&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;A-bit-of-History&quot;&gt;&lt;a href=&quot;#A-bit-of-History&quot; class=&quot;headerlink&quot; title=&quot;A bit of History&quot;&gt;&lt;/a&gt;A bit of History&lt;/h1&gt;&lt;p&gt;Kafka是高性能的、分布式的、数据可持久化的消息丢列。最初由LinkedIn开发，用来跟踪Web上的用户的一系列事件，譬如页面浏览(Page view)，搜索框的输入，展示的广告等等。这些事件对于监控和调查用于对于网站交互的参与度非常的重要。每天都有大量的数据产生，因为，需要一个可以轻松扩展，同时又不会增加额外负担的一个解决方案。&lt;/p&gt;
+&lt;p&gt;总体来说，Kafka从设计之初有3个目标：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;简单的生产者/消费者API设计&lt;/li&gt;
+&lt;li&gt;尽可能减少网络传输和磁盘存储的额外成本&lt;/li&gt;
+&lt;li&gt;从一开始就为可扩展性而设计&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/Architecture/"/>
+    
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+    
+      <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
+    
+      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/tags/Message-Queue-Kafka/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>什么是MQ</title>
+    <link href="http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/"/>
+    <id>http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/</id>
+    <published>2020-02-14T02:10:23.000Z</published>
+    <updated>2020-02-14T02:10:23.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;&lt;em&gt;这篇文章是一篇未完成稿，有时间再写&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;什么是消息队列（Message-Queue）&quot;&gt;&lt;a href=&quot;#什么是消息队列（Message-Queue）&quot; class=&quot;headerlink&quot; title=&quot;什么是消息队列（Message Queue）?&quot;&gt;&lt;/a&gt;什么是消息队列（Message Queue）?&lt;/h1&gt;&lt;p&gt;消息队列使得应用之间可以通过互发消息的方式来通信，这和传统的RPC方式有很大的区别。通过消息队列提供的服务，解除了点对点，星形拓扑通信耦合的问题。同时，当目标服务不可用的时候，消息队列充当了临时的消息缓存。&lt;/p&gt;
+&lt;p&gt;下面先解释一下什么是消息队列&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://www.cloudamqp.com/blog/2014-12-03-what-is-message-queuing.html
+&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，怎么使用，在架构层面又会带来什么样的好处&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;扩展阅读：https://www.ibm.com/cloud/learn/message-queues
+&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;队列&lt;/em&gt;&lt;/strong&gt;就是将事物排成一列，依次处理，并且依照先进先出(First In, First Out)的顺序。那么消息队列（MQ），就是用于不同系统或者应用之间通信的的列表， 将需要通信的消息保存在队列中，等待应用依次处理。&lt;a href=&quot;http://queues.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;queues.io&lt;/a&gt;是一个比较好的网站可以查找各种不同功能的队列。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
+    
+    
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+    
+      <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
+    
+      <category term="AMQP" scheme="http://www.typedefine.cn/tags/AMQP/"/>
+    
+      <category term="MQTT" scheme="http://www.typedefine.cn/tags/MQTT/"/>
+    
+  </entry>
   
   <entry>
     <title>Thrift介绍、编译参数以及如何和maven集成</title>
