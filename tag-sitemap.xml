@@ -3,8 +3,22 @@
 
 
     <url>
-        <loc>http://www.typedefine.cn/tags/Architecture/</loc>
-        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <loc>http://www.typedefine.cn/tags/nodejs/</loc>
+        <lastmod>2020-02-17T01:46:21.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/nginx/</loc>
+        <lastmod>2020-02-17T01:46:21.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/websocket/</loc>
+        <lastmod>2020-02-17T01:46:21.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -39,6 +53,13 @@
 
     <url>
         <loc>http://www.typedefine.cn/tags/Serialization/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Architecture/</loc>
         <lastmod>2020-02-14T03:57:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -80,14 +101,14 @@
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/tags/Message-Queue-Kafka/</loc>
+        <loc>http://www.typedefine.cn/tags/JMS/</loc>
         <lastmod>2020-02-14T02:30:23.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/tags/JMS/</loc>
+        <loc>http://www.typedefine.cn/tags/Message-Queue-Kafka/</loc>
         <lastmod>2020-02-14T02:30:23.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
