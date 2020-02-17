@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.typedefine.cn/"/>
-  <updated>2020-02-17T01:46:21.000Z</updated>
+  <updated>2020-02-17T03:30:38.000Z</updated>
   <id>http://www.typedefine.cn/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Kafka调研报告3：基于Kafka多点通信方案</title>
+    <link href="http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
+    <id>http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
+    <published>2020-02-17T03:30:38.000Z</published>
+    <updated>2020-02-17T03:30:38.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;在华为核心网和无线领域有几个重量级的产品比如U2000/M2000等网管系统&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
+&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。里面的底层通信就是一套基于MDP(Message Dispatching Process)的星形拓扑通信系统。不同的业务进程之间通过消息(REQ/RSP)来通信，而不是通信RPC或者库的依赖。&lt;/p&gt;
+&lt;p&gt;由于年代久远，和现在主流的MQ技术相比有一些不同的地方，随便说几点:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;消息序列化只支持ASN.1&lt;/em&gt;&lt;/strong&gt;. 当然好处在于提供一套抽象的语义定义，并且大家只需要传递ASN.1文件即可。或者由一个公共方将ASN.1文件编程对应的模型和支撑库提供给各个端对进行开发。但是同时呢，不好的地方也很明显，一方面是技术过时，再一个就是需要一个专门的团队来维护ASN.1定义和相应的工具；另一方面在于管理上没有形成一个好的ASN.1的分发机制。导致版本之间定义很混乱。对于前后向兼容性问题很难做到。当然，在网上也可以找到一些开源的ASN.1 Compiler&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://github.com/vlm/asn1c
+&quot;&gt;[3]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。能不能用不清楚。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;MDP并不支持消息的缓存和队列机制，本身也不提供可靠性保证。&lt;/em&gt;&lt;/strong&gt; 那么如何来提供不丢失的消息呢？ 在华为，答案是提供一个框架层，业务团队并不直接使用MDP提供的库和接口，而是使用封装之后的一套框架，这套框架中提供了可靠性事件的发送的。实现的机制就是在发送之前存库。在接收业务处理完成之后，再从数据库中移除。当然这套机制也出现过不少问题，比如消息积压，数据库的内容不断上涨，甚至在局点可能出现过数据库表过大，导致其他业务访问很慢，甚至于极端情况下，整个数据库崩掉的情况都有。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;MDP无法水平扩展，当消息出现峰值的时候，MDP有可能出现丢包的问题。&lt;/em&gt;&lt;/strong&gt; 这个问题也比较头疼。这是从一开始设计的时候就没有考虑的问题。考虑到U2000/M2000对应的数据量实际上是很大的。假如MDP的处理峰值在于2000/s，每秒钟2W条消息尽力保证不丢包。 这个阈值总会在未来的某一天会被打破，那么这个时候问题就出来了，系统会出现频繁丢包，系统业务频繁故障，但是由于底层数据通道，在应用层面几乎无法做到一个比较好的解决方案。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;MDP采用ACE&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;http://www.dre.vanderbilt.edu/~schmidt/TAO-overview.html
+&quot;&gt;[4]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，这一套框架比较复杂。&lt;/em&gt;&lt;/strong&gt;当然整体的U2000/M2000都是基于这个来开发，导致比较重型。&lt;br&gt;另外就是在U2000/M2000北向领域，采用了大量的ACE/TAO/Event Channel机制。灵活性不够。&lt;br&gt;&lt;strong&gt;&lt;em&gt;为什么说CORBA是一个很不好的技术，最终会被时代所抛弃? 可以看这篇论文&lt;/em&gt;&lt;/strong&gt;。&lt;a href=&quot;/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/1142031.1142044.pdf&quot; title=&quot;下载链接&quot;&gt;下载链接&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;当前通信架构转异构通信架构的难度。&lt;/em&gt;&lt;/strong&gt;对于U2000/M2000来说，所有的开发支撑库都需要自己来完成。当然，对于华为来说，这个不是问题。问题这是人力预算的问题。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;上面说的一些问题在华为内部看来，有一些并不是问题，有一些问题可以绕过。有几个点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;客户的OSS/BSS系统都是基于CORBA调用。&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;ITU的标准定义就是基于ASN.1模型发布。&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;整个产品技术切换的成本太高, 所以要保护既有投资，CORBA技术带来的复杂度也可以成为一种护城河。&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;em&gt;整个业务开发团队转型所面临的学习成本、人才招聘、人力缺口等等。&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;那么，从这几点来考虑，保持当前技术稳定，保持客户服务的稳定变是重点。所以，对于大企业来说，真的不是某个技术好就要上的。上面这个并非是吐槽，而是纯粹从技术上来分析我所经历过的产品在架构上的一些问题。&lt;/p&gt;
+&lt;p&gt;那么回过头来，那么如何通过messge queue来解耦不同系统（同构的还是异构的)来交换和通信来实现多异构同构系统之间的 星形通信呢？ 我们来做一个简单的设计。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/categories/Kafka/"/>
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
+    
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
+    
+  </entry>
   
   <entry>
     <title>用Nodejs和Nginx搭建Websocket服务</title>
@@ -68,9 +120,9 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
-    
       <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
       <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
@@ -109,9 +161,9 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
-    
       <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
       <category term="Data center" scheme="http://www.typedefine.cn/tags/Data-center/"/>
     

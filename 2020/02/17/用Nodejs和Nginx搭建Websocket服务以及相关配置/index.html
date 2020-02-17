@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://www.typedefine.cn').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"manual","top_n_per_article":-1,"unescape":true,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Nodejs、Express、Socket.io、Nginx使用Express框架和Socket.io库将websocket搭建起来，并监听同一个端口，参考官方例子[1]就可以，非常简单。 1234567891011121314151617var app &#x3D; require(&#39;express&#39;)();var server &#x3D; require(&#39;http&#39;).Server(app);var io &#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Nodejs和Nginx搭建Websocket服务">
+<meta property="og:url" content="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="探索数据之美">
+<meta property="og:description" content="Nodejs、Express、Socket.io、Nginx使用Express框架和Socket.io库将websocket搭建起来，并监听同一个端口，参考官方例子[1]就可以，非常简单。 1234567891011121314151617var app &#x3D; require(&#39;express&#39;)();var server &#x3D; require(&#39;http&#39;).Server(app);var io &#x3D;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/20200217100716.png">
+<meta property="article:published_time" content="2020-02-17T01:46:21.000Z">
+<meta property="article:modified_time" content="2020-02-17T01:46:21.000Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="websocket">
+<meta property="article:tag" content="nginx">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/20200217100716.png">
+
+<link rel="canonical" href="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>用Nodejs和Nginx搭建Websocket服务 | 探索数据之美</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158079573-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-158079573-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="探索数据之美" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">探索数据之美</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+      <meta itemprop="description" content="做大数据故事挖掘的最好的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="探索数据之美">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用Nodejs和Nginx搭建Websocket服务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 09:46:21" itemprop="dateCreated datePublished" datetime="2020-02-17T09:46:21+08:00">2020-02-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/websokcet/" itemprop="url" rel="index">
+                    <span itemprop="name">websokcet</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/websokcet/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" class="post-meta-item leancloud_visitors" data-flag-title="用Nodejs和Nginx搭建Websocket服务" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Nodejs、Express、Socket-io、Nginx"><a href="#Nodejs、Express、Socket-io、Nginx" class="headerlink" title="Nodejs、Express、Socket.io、Nginx"></a>Nodejs、Express、Socket.io、Nginx</h1><p>使用Express框架和Socket.io库将websocket搭建起来，并监听同一个端口，参考官方例子<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://socket.io/docs/#Using-with-Express
+">[1]</span></a></sup>就可以，非常简单。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'express'</span>)();</span><br><span class="line"><span class="keyword">var</span> server = <span class="built_in">require</span>(<span class="string">'http'</span>).Server(app);</span><br><span class="line"><span class="keyword">var</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(server);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">80</span>);</span><br><span class="line"><span class="comment">// WARNING: app.listen(80) will NOT work here!</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">res.sendFile(__dirname + <span class="string">'/index.html'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">socket</span>) </span>&#123;</span><br><span class="line">socket.emit(<span class="string">'news'</span>, &#123; <span class="attr">hello</span>: <span class="string">'world'</span> &#125;);</span><br><span class="line">socket.on(<span class="string">'my other event'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="Nginx作为Web-Server和WebSocket-Proxy"><a href="#Nginx作为Web-Server和WebSocket-Proxy" class="headerlink" title="Nginx作为Web Server和WebSocket Proxy"></a>Nginx作为Web Server和WebSocket Proxy</h1><p>在配置Nginx的时候，遇到了很多的问题，并且在网上现在找不到一篇对这个问题讲解的非常清楚的文档。<br>比如：</p>
+<a id="more"></a>
+
+<ol>
+<li>Nginx是否支持http/websocket在同一个端口。答案是可以的。</li>
+<li>Nginx支持支持代理socket.io。 结论：支持。</li>
+<li>var socket = io(); 初始化的时候，io()要不要传入地址参数。 结论：不需要传入参数。</li>
+<li>Nginx配置的URL匹配规则是什么。</li>
+</ol>
+<p>全部代码请跳转<a href="https://github.com/semonw/ws-proxy" target="_blank" rel="noopener">Github</a>.</p>
+<p>经过试验和参考Nginx的文档<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.nginx.com/blog/nginx-nodejs-websockets-socketio/">[2]</span></a></sup>，Nginx配置如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line">        <span class="attribute">server_name</span> localhost;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">root</span>  D:\\Projects\\ws-proxy\\docroot;</span><br><span class="line">            <span class="attribute">index</span>  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">location</span><span class="regexp"> ^~/socket.io</span> &#123;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> Connection <span class="string">"upgrade"</span>;</span><br><span class="line">                        <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">                        <span class="attribute">proxy_pass</span> http://127.0.0.1:8885;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="attribute">error_page</span>   <span class="number">500</span> <span class="number">502</span> <span class="number">503</span> <span class="number">504</span>  /50x.html;</span><br><span class="line">        <span class="attribute">location</span> = /50x.html &#123;</span><br><span class="line">            <span class="attribute">root</span>   html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>为什么nginx上配置的Location必须是固定的，通过调试socket.io的机制就清楚了，见下。如果将nginx location中的规则修改成其他的，前端将无法连接socket.io服务。</p>
+<img src="/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/20200217100716.png" class="" title="snapshot_socket.io">
+
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://socket.io/docs/#Using-with-Express<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.nginx.com/blog/nginx-nodejs-websockets-socketio/<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
+    </div>
+
+    
+    
+    
+      
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>山野@成都
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/" title="用Nodejs和Nginx搭建Websocket服务">http://www.typedefine.cn/2020/02/17/用Nodejs和Nginx搭建Websocket服务以及相关配置/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/images/qrcode_for_gh_e7834ce9fdca_344.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">Wechat</span>
+              </a>
+            </div>
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/atom.xml">
+                <span class="icon">
+                  <i class="fa fa-rss"></i>
+                </span>
+
+                <span class="label">RSS</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/websocket/" rel="tag"><i class="fa fa-tag"></i> websocket</a>
+              <a href="/tags/nginx/" rel="tag"><i class="fa fa-tag"></i> nginx</a>
+              <a href="/tags/nodejs/" rel="tag"><i class="fa fa-tag"></i> nodejs</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/" rel="prev" title="Kafka调研报告2-消息序列化框架建议与对比">
+      <i class="fa fa-chevron-left"></i> Kafka调研报告2-消息序列化框架建议与对比
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/" rel="next" title="Kafka调研报告3：基于Kafka多点通信方案">
+      Kafka调研报告3：基于Kafka多点通信方案 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Nodejs、Express、Socket-io、Nginx"><span class="nav-number">1.</span> <span class="nav-text">Nodejs、Express、Socket.io、Nginx</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nginx作为Web-Server和WebSocket-Proxy"><span class="nav-number">2.</span> <span class="nav-text">Nginx作为Web Server和WebSocket Proxy</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">做大数据故事挖掘的最好的博客</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">山野@成都</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">40k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">36 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.1
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278608574&web_id=1278608574"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el: '#valine-comments',
+      verify: false,
+      notify: false,
+      appId: 'VtruaLIR7e29Macn1qKXUBak-gzGzoHsz',
+      appKey: 'MgvHFeFDgGdlwkLjyfY1zNdC',
+      placeholder: "Comment here",
+      avatar: 'mm',
+      meta: guest,
+      pageSize: '10' || 10,
+      visitor: true,
+      lang: 'zh-cn' || 'zh-cn',
+      path: location.pathname,
+      recordIP: true,
+      serverURLs: ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>

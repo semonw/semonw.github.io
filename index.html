@@ -233,6 +233,148 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+      <meta itemprop="description" content="做大数据故事挖掘的最好的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="探索数据之美">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">Kafka调研报告3：基于Kafka多点通信方案</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 11:30:38" itemprop="dateCreated datePublished" datetime="2020-02-17T11:30:38+08:00">2020-02-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kafka/" itemprop="url" rel="index">
+                    <span itemprop="name">Kafka</span>
+                  </a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Kafka/Architecture/" itemprop="url" rel="index">
+                    <span itemprop="name">Architecture</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/" class="post-meta-item leancloud_visitors" data-flag-title="Kafka调研报告3：基于Kafka多点通信方案" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在华为核心网和无线领域有几个重量级的产品比如U2000/M2000等网管系统<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
+">[1]</span></a></sup>。里面的底层通信就是一套基于MDP(Message Dispatching Process)的星形拓扑通信系统。不同的业务进程之间通过消息(REQ/RSP)来通信，而不是通信RPC或者库的依赖。</p>
+<p>由于年代久远，和现在主流的MQ技术相比有一些不同的地方，随便说几点:</p>
+<ol>
+<li><p><strong><em>消息序列化只支持ASN.1</em></strong>. 当然好处在于提供一套抽象的语义定义，并且大家只需要传递ASN.1文件即可。或者由一个公共方将ASN.1文件编程对应的模型和支撑库提供给各个端对进行开发。但是同时呢，不好的地方也很明显，一方面是技术过时，再一个就是需要一个专门的团队来维护ASN.1定义和相应的工具；另一方面在于管理上没有形成一个好的ASN.1的分发机制。导致版本之间定义很混乱。对于前后向兼容性问题很难做到。当然，在网上也可以找到一些开源的ASN.1 Compiler<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://github.com/vlm/asn1c
+">[3]</span></a></sup>。能不能用不清楚。</p>
+</li>
+<li><p><strong><em>MDP并不支持消息的缓存和队列机制，本身也不提供可靠性保证。</em></strong> 那么如何来提供不丢失的消息呢？ 在华为，答案是提供一个框架层，业务团队并不直接使用MDP提供的库和接口，而是使用封装之后的一套框架，这套框架中提供了可靠性事件的发送的。实现的机制就是在发送之前存库。在接收业务处理完成之后，再从数据库中移除。当然这套机制也出现过不少问题，比如消息积压，数据库的内容不断上涨，甚至在局点可能出现过数据库表过大，导致其他业务访问很慢，甚至于极端情况下，整个数据库崩掉的情况都有。</p>
+</li>
+<li><p><strong><em>MDP无法水平扩展，当消息出现峰值的时候，MDP有可能出现丢包的问题。</em></strong> 这个问题也比较头疼。这是从一开始设计的时候就没有考虑的问题。考虑到U2000/M2000对应的数据量实际上是很大的。假如MDP的处理峰值在于2000/s，每秒钟2W条消息尽力保证不丢包。 这个阈值总会在未来的某一天会被打破，那么这个时候问题就出来了，系统会出现频繁丢包，系统业务频繁故障，但是由于底层数据通道，在应用层面几乎无法做到一个比较好的解决方案。</p>
+</li>
+<li><p><strong><em>MDP采用ACE<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://www.dre.vanderbilt.edu/~schmidt/TAO-overview.html
+">[4]</span></a></sup>，这一套框架比较复杂。</em></strong>当然整体的U2000/M2000都是基于这个来开发，导致比较重型。<br>另外就是在U2000/M2000北向领域，采用了大量的ACE/TAO/Event Channel机制。灵活性不够。<br><strong><em>为什么说CORBA是一个很不好的技术，最终会被时代所抛弃? 可以看这篇论文</em></strong>。<a href="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/1142031.1142044.pdf" title="下载链接">下载链接</a></p>
+</li>
+<li><p><strong><em>当前通信架构转异构通信架构的难度。</em></strong>对于U2000/M2000来说，所有的开发支撑库都需要自己来完成。当然，对于华为来说，这个不是问题。问题这是人力预算的问题。</p>
+</li>
+</ol>
+<p>上面说的一些问题在华为内部看来，有一些并不是问题，有一些问题可以绕过。有几个点：</p>
+<ol>
+<li><strong><em>客户的OSS/BSS系统都是基于CORBA调用。</em></strong></li>
+<li><strong><em>ITU的标准定义就是基于ASN.1模型发布。</em></strong></li>
+<li><strong><em>整个产品技术切换的成本太高, 所以要保护既有投资，CORBA技术带来的复杂度也可以成为一种护城河。</em></strong></li>
+<li><strong><em>整个业务开发团队转型所面临的学习成本、人才招聘、人力缺口等等。</em></strong></li>
+</ol>
+<p>那么，从这几点来考虑，保持当前技术稳定，保持客户服务的稳定变是重点。所以，对于大企业来说，真的不是某个技术好就要上的。上面这个并非是吐槽，而是纯粹从技术上来分析我所经历过的产品在架构上的一些问题。</p>
+<p>那么回过头来，那么如何通过messge queue来解耦不同系统（同构的还是异构的)来交换和通信来实现多异构同构系统之间的 星形通信呢？ 我们来做一个简单的设计。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1287,123 +1429,12 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="做大数据故事挖掘的最好的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">不同linux发行版软件安装工具</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-09 16:40:41" itemprop="dateCreated datePublished" datetime="2020-02-09T16:40:41+08:00">2020-02-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/" class="post-meta-item leancloud_visitors" data-flag-title="不同linux发行版软件安装工具" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>879</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="RPM"><a href="#RPM" class="headerlink" title="RPM"></a>RPM</h3><p>RPM是Red-Hat Package Manager（RPM软件包管理器）的缩写，这一文件格式名称虽然打上了RedHat的标志<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Redhat guide: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/
-">[1]</span></a></sup>，但是其原始设计理念是开放式的，现在包括OpenLinux、S.u.S.E.以及Turbo Linux等Linux的分发版本都有采用，可以算是公认的行业标准了。</p>
-<h3 id="apt-get"><a href="#apt-get" class="headerlink" title="apt-get"></a>apt-get</h3><p>apt-get<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="RPM使用参考：https://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/08/2203153.html
-">[2]</span></a></sup>，是一条linux命令，适用于deb包管理式的操作系统，主要用于自动从互联网的软件仓库中搜索、安装、升级、卸载软件或操作系统。主要适用于Debian、Ubuntu的系统。 </p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1468,20 +1499,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1523,12 +1554,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-area-chart"></i>
     </span>
-    <span title="站点总字数">36k</span>
+    <span title="站点总字数">40k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">33 分钟</span>
+    <span title="站点阅读时长">36 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
