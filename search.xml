@@ -180,12 +180,12 @@
       <tags>
         <tag>Kafka</tag>
         <tag>Message Queue</tag>
-        <tag>Architecture</tag>
         <tag>Serialization</tag>
         <tag>JSON</tag>
         <tag>Apahce Avro</tag>
         <tag>Apahce Thrift</tag>
         <tag>Protocol Buffers</tag>
+        <tag>Architecture</tag>
       </tags>
   </entry>
   <entry>
@@ -238,10 +238,10 @@
       <tags>
         <tag>Kafka</tag>
         <tag>Message Queue</tag>
+        <tag>Architecture</tag>
         <tag>Data center</tag>
         <tag>Cluster</tag>
         <tag>Mirror Maker</tag>
-        <tag>Architecture</tag>
       </tags>
   </entry>
   <entry>
@@ -546,6 +546,11 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
       </tags>
   </entry>
   <entry>
+    <title>我是谁</title>
+    <url>/about/index.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
+  </entry>
+  <entry>
     <title>404</title>
     <url>/404/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><script src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js"
@@ -554,23 +559,18 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
 ]]></content>
   </entry>
   <entry>
-    <title>我是谁</title>
-    <url>/about/index.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
-  </entry>
-  <entry>
     <title>文章分类</title>
     <url>/categories/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>谷歌日程</title>
+    <url>/schedule/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>谷歌日程</title>
-    <url>/schedule/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
 </search>
