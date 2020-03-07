@@ -45,13 +45,6 @@
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/tags/Architecture/</loc>
-        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>http://www.typedefine.cn/tags/Protocol-Buffers/</loc>
         <lastmod>2020-02-14T03:57:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -81,6 +74,13 @@
 
     <url>
         <loc>http://www.typedefine.cn/tags/Serialization/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Architecture/</loc>
         <lastmod>2020-02-14T03:57:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

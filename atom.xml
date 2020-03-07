@@ -124,6 +124,8 @@
     
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+    
       <category term="Serialization" scheme="http://www.typedefine.cn/tags/Serialization/"/>
     
       <category term="JSON" scheme="http://www.typedefine.cn/tags/JSON/"/>
@@ -133,8 +135,6 @@
       <category term="Apahce Thrift" scheme="http://www.typedefine.cn/tags/Apahce-Thrift/"/>
     
       <category term="Protocol Buffers" scheme="http://www.typedefine.cn/tags/Protocol-Buffers/"/>
-    
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
   </entry>
   
@@ -165,13 +165,13 @@
     
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
-    
       <category term="Data center" scheme="http://www.typedefine.cn/tags/Data-center/"/>
     
       <category term="Cluster" scheme="http://www.typedefine.cn/tags/Cluster/"/>
     
       <category term="Mirror Maker" scheme="http://www.typedefine.cn/tags/Mirror-Maker/"/>
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
   </entry>
   
