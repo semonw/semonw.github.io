@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>用Nodejs和Nginx搭建Websocket服务</title>
+    <title>使用Socket.io搭建WS服务并通过Nginx反向代理</title>
     <url>/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Nodejs、Express、Socket-io、Nginx"><a href="#Nodejs、Express、Socket-io、Nginx" class="headerlink" title="Nodejs、Express、Socket.io、Nginx"></a>Nodejs、Express、Socket.io、Nginx</h1><p>使用Express框架和Socket.io库将websocket搭建起来，并监听同一个端口，参考官方例子<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://socket.io/docs/#Using-with-Express
 ">[1]</span></a></sup>就可以，非常简单。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="built_in">require</span>(<span class="string">'express'</span>)();</span><br><span class="line"><span class="keyword">var</span> server = <span class="built_in">require</span>(<span class="string">'http'</span>).Server(app);</span><br><span class="line"><span class="keyword">var</span> io = <span class="built_in">require</span>(<span class="string">'socket.io'</span>)(server);</span><br><span class="line"></span><br><span class="line">server.listen(<span class="number">80</span>);</span><br><span class="line"><span class="comment">// WARNING: app.listen(80) will NOT work here!</span></span><br><span class="line"></span><br><span class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</span><br><span class="line">res.sendFile(__dirname + <span class="string">'/index.html'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">io.on(<span class="string">'connection'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">socket</span>) </span>&#123;</span><br><span class="line">socket.emit(<span class="string">'news'</span>, &#123; <span class="attr">hello</span>: <span class="string">'world'</span> &#125;);</span><br><span class="line">socket.on(<span class="string">'my other event'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 
-<h1 id="Nginx作为Web-Server和WebSocket-Proxy"><a href="#Nginx作为Web-Server和WebSocket-Proxy" class="headerlink" title="Nginx作为Web Server和WebSocket Proxy"></a>Nginx作为Web Server和WebSocket Proxy</h1><p>在配置Nginx的时候，遇到了很多的问题，并且在网上现在找不到一篇对这个问题讲解的非常清楚的文档。<br>比如：</p>
+<h1 id="Nginx同时作为Web-Server和WebSocket-Reverse-Proxy"><a href="#Nginx同时作为Web-Server和WebSocket-Reverse-Proxy" class="headerlink" title="Nginx同时作为Web Server和WebSocket Reverse Proxy"></a>Nginx同时作为Web Server和WebSocket Reverse Proxy</h1><p>在配置Nginx的时候，遇到了很多的问题，并且在网上现在找不到一篇对这个问题讲解的非常清楚的文档。<br>比如：</p>
 <a id="more"></a>
 
 <ol>
@@ -25,12 +25,33 @@
 <p>为什么nginx上配置的Location必须是固定的，通过调试socket.io的机制就清楚了，见下。如果将nginx location中的规则修改成其他的，前端将无法连接socket.io服务。</p>
 <img src="/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/20200217100716.png" class="" title="snapshot_socket.io">
 
-<h1 id="配置Nginx为websocket的反向代理"><a href="#配置Nginx为websocket的反向代理" class="headerlink" title="配置Nginx为websocket的反向代理"></a>配置Nginx为websocket的反向代理</h1><p>按照如下配置即可<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://nginx.org/en/docs/http/websocket.html">[4]</span></a></sup>：</p>
+
+<h1 id="除了Socket-io之外，是否还要其他选择？"><a href="#除了Socket-io之外，是否还要其他选择？" class="headerlink" title="除了Socket.io之外，是否还要其他选择？"></a>除了Socket.io之外，是否还要其他选择？</h1><p>可以使用ws库来搭建一个websocket服务。这个和socket.io的区别在于socket.io做了额外的很多工作，比如某些浏览器上不支持websocket，那么socket.io会通过轮询的方式来模拟websocket.</p>
+<p>如果使用nodejs, 可以参考Nginx官方的文档<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.nginx.com/blog/websocket-nginx/
+">[3]</span></a></sup></p>
+<h1 id="配置Nginx"><a href="#配置Nginx" class="headerlink" title="配置Nginx"></a>配置Nginx</h1><h2 id="申请SSL证书"><a href="#申请SSL证书" class="headerlink" title="申请SSL证书"></a>申请SSL证书</h2><p>先申请SSL证书，有付费的，有免费的，一般来说，如果购买了腾讯云/阿里云的域名都可以申请到免费证书。也可以到<a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let’s Encrypt</a>网站上申请。这个网站的服务是由互联网安全研究工作组<a href="https://www.abetterinternet.org/" target="_blank" rel="noopener">ISRG</a>提供的。</p>
+<p>不过我使用Caddy软件一键自动部署（代理）和自动申请证书。不过从使用体验上来看，似乎Caddy要稍微性能要慢一些。</p>
+<p>Caddy自动申请的证书存放的位置<sup id="fnref:5"><a href="#fn:5" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.cmsky.com/caddy-proxy-shell/
+">[5]</span></a></sup>在：<br>~/.caddy/acme/acme-v01.api.letsencrypt.org/sites/xxx.xxx(域名)/</p>
+<p>所以，如果有Caddy已经自动申请了证书，那么nginx可以直接使用该证书。</p>
+<h2 id="配置nginx-开启HTTPS"><a href="#配置nginx-开启HTTPS" class="headerlink" title="配置nginx, 开启HTTPS"></a>配置nginx, 开启HTTPS</h2><p>默认nginx的配置目录在/etc/nginx下面。</p>
+<p>可以通过DigitalOcean提供的免费Nginx的配置工具<sup id="fnref:6"><a href="#fn:6" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.digitalocean.com/community/tools/nginx">[6]</span></a></sup>来生成配置文件，这个网站非常棒，提供了很丰富的配置。生成出来的配置按照Site进行了分组。比如我的域名node-nj.typedefine.cn, 我只需要打开sites-available下面的node-nj.typedefine.cn.conf配置进行查看就行了。</p>
+<p>nginx依然通过nginx.conf来加载配置，但是nginx.conf-&gt;sites-enabled-&gt;sites-available。基本上只需要关注sites-available中每个站点的独立的配置就可以了。</p>
+<p>如果需要将SSL证书共用，也可以配置到Global Config中。具体使用参考说明。</p>
+<img src="/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/20200313111923.png" class="" title="config_nginx">
+
+
+<h2 id="配置nginx到Systemd中"><a href="#配置nginx到Systemd中" class="headerlink" title="配置nginx到Systemd中"></a>配置nginx到Systemd中</h2><p>新增nginx.service到/etc/systemd/system目录下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description&#x3D;The NGINX HTTP and reverse proxy server</span><br><span class="line">After&#x3D;syslog.target network.target remote-fs.target nss-lookup.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type&#x3D;forking</span><br><span class="line">PIDFile&#x3D;&#x2F;run&#x2F;nginx.pid</span><br><span class="line">ExecStartPre&#x3D;&#x2F;usr&#x2F;sbin&#x2F;nginx -t -c &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">ExecStart&#x3D;&#x2F;usr&#x2F;sbin&#x2F;nginx -c &#x2F;etc&#x2F;nginx&#x2F;nginx.conf</span><br><span class="line">ExecReload&#x3D;&#x2F;usr&#x2F;sbin&#x2F;nginx -s reload</span><br><span class="line">ExecStop&#x3D;&#x2F;bin&#x2F;kill -s QUIT $MAINPID</span><br><span class="line">PrivateTmp&#x3D;true</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy&#x3D;multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>重新加载systemd<br>systemctl daemon-reload<br>启动服务<br>systemctl start nginx<br>查看服务状态<br>systemctl status nginx<br>查看日志：<br>sudo journalctl -u nginx</p>
+<h2 id="配置反向代理："><a href="#配置反向代理：" class="headerlink" title="配置反向代理："></a>配置反向代理：</h2><p>按照如下配置即可<sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://nginx.org/en/docs/http/websocket.html
+">[4]</span></a></sup>：</p>
 <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="attribute">location</span> /wsapp/ &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://wsbackend;</span><br><span class="line">    <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Connection <span class="string">"Upgrade"</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>如果要使用Nodejs搭建一个标准的ws服务，可以使用ws库，参考官方的文档<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.nginx.com/blog/websocket-nginx/
-">[3]</span></a></sup></p>
-<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://socket.io/docs/#Using-with-Express<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.nginx.com/blog/nginx-nodejs-websockets-socketio/<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.nginx.com/blog/websocket-nginx/<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://nginx.org/en/docs/http/websocket.html<a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
+<h2 id="完整的站点配置"><a href="#完整的站点配置" class="headerlink" title="完整的站点配置:"></a>完整的站点配置:</h2><figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">	<span class="attribute">listen</span> <span class="number">443</span> ssl http2;</span><br><span class="line">	<span class="attribute">listen</span> [::]:<span class="number">443</span> ssl http2;</span><br><span class="line"></span><br><span class="line">	<span class="attribute">server_name</span> node-nj.typedefine.cn;</span><br><span class="line">	</span><br><span class="line">	<span class="comment"># SSL</span></span><br><span class="line">	<span class="attribute">ssl_certificate</span> /root/.caddy/acme/acme-v02.api.letsencrypt.org/sites/node-nj.typedefine.cn/node-nj.typedefine.cn.crt;</span><br><span class="line">	<span class="attribute">ssl_certificate_key</span> /root/.caddy/acme/acme-v02.api.letsencrypt.org/sites/node-nj.typedefine.cn/node-nj.typedefine.cn.key;</span><br><span class="line"></span><br><span class="line">	<span class="comment"># security</span></span><br><span class="line">	<span class="attribute">include</span> nginxconfig.io/security.conf;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span> / &#123;</span><br><span class="line">		<span class="attribute">root</span> /root/docroot; </span><br><span class="line">		<span class="attribute">index</span> index.html index.htm index.php;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="attribute">location</span><span class="regexp"> ^~/ray</span> &#123;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> Upgrade <span class="variable">$http_upgrade</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> Connection <span class="string">"upgrade"</span>;</span><br><span class="line">                        <span class="attribute">proxy_http_version</span> <span class="number">1</span>.<span class="number">1</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">                        <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">                        <span class="attribute">proxy_pass</span> http://127.0.0.1:8442;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment"># handle .php</span></span><br><span class="line">	<span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">		<span class="attribute">include</span> nginxconfig.io/php_fastcgi.conf;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment"># additional config</span></span><br><span class="line">	<span class="attribute">include</span> nginxconfig.io/general.conf;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://socket.io/docs/#Using-with-Express<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.nginx.com/blog/nginx-nodejs-websockets-socketio/<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.nginx.com/blog/websocket-nginx/<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://nginx.org/en/docs/http/websocket.html<a href="#fnref:4" rev="footnote"> ↩</a></span></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">5.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.cmsky.com/caddy-proxy-shell/<a href="#fnref:5" rev="footnote"> ↩</a></span></li><li id="fn:6"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">6.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.digitalocean.com/community/tools/nginx<a href="#fnref:6" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
       <categories>
         <category>websokcet</category>
         <category>nodejs</category>
@@ -38,11 +59,13 @@
       <tags>
         <tag>websocket</tag>
         <tag>nginx</tag>
-        <tag>nodejs</tag>
+        <tag>Socket.io</tag>
+        <tag>Nodejs</tag>
+        <tag>express</tag>
       </tags>
   </entry>
   <entry>
-    <title>Kafka调研报告3：基于Kafka多点通信方案</title>
+    <title>Kafka调研（3）：多点通信方案的设计</title>
     <url>/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在华为核心网和无线领域有几个重量级的产品比如U2000/M2000等网管系统<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
 ">[1]</span></a></sup>。里面的底层通信就是一套基于MDP(Message Dispatching Process)的星形拓扑通信系统。不同的业务进程之间通过消息(REQ/RSP)来通信，而不是通信RPC或者库的依赖。</p>
@@ -97,19 +120,20 @@
 <img src="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/20200217114417.png" class="" title="multi-point-dispatch">
 
 
+<p>TBD.</p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.itu.int/en/ITU-T/asn1/Pages/introduction.aspx<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://github.com/vlm/asn1c<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://www.dre.vanderbilt.edu/~schmidt/TAO-overview.html<a href="#fnref:4" rev="footnote"> ↩</a></span></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">5.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://dl.acm.org/doi/pdf/10.1145/1142031.1142044?download=true<a href="#fnref:5" rev="footnote"> ↩</a></span></li><li id="fn:6"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">6.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://developers.google.com/protocol-buffers<a href="#fnref:6" rev="footnote"> ↩</a></span></li><li id="fn:7"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">7.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/<a href="#fnref:7" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
       <categories>
         <category>Kafka</category>
         <category>Architecture</category>
       </categories>
       <tags>
-        <tag>Kafka</tag>
         <tag>Message Queue</tag>
+        <tag>Kafka</tag>
         <tag>Topo Comm model</tag>
       </tags>
   </entry>
   <entry>
-    <title>Kafka调研报告2-消息序列化框架建议与对比</title>
+    <title>Kafka调研（2）：消息序列化框架建议与对比</title>
     <url>/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="调研结果和建议"><a href="#调研结果和建议" class="headerlink" title="调研结果和建议"></a>调研结果和建议</h2><p>综合来看，Avro或者Protocol Buffer二选一即可， 但是出于灵活性和标准JSON的支持力度上来看，更推荐Protocol Buffers。同时部分数据依然可以通过JSON方式传输。</p>
 <h2 id="主流序列化框架对比"><a href="#主流序列化框架对比" class="headerlink" title="主流序列化框架对比"></a>主流序列化框架对比</h2><h3 id="Kafka的序列化"><a href="#Kafka的序列化" class="headerlink" title="Kafka的序列化"></a>Kafka的序列化</h3><p>Kafka并不限定的消息格式。Kafka自身提供了一系列的序列化器，比如ByteArraySerializer，ByteBufferSerializer，DoubleSerializer，FloatSerializer，StringSerializer，UUIDSerializer， IntegerDeserializer, LongSerializer, ShortSerializer, 总结起来就是基本类型、字符串类型、二进制消息。</p>
@@ -178,8 +202,8 @@
         <category>Message Queue - Kafka</category>
       </categories>
       <tags>
-        <tag>Kafka</tag>
         <tag>Message Queue</tag>
+        <tag>Kafka</tag>
         <tag>Architecture</tag>
         <tag>Serialization</tag>
         <tag>JSON</tag>
@@ -189,7 +213,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Kafka调研报告1-跨数据中心的多集群镜像</title>
+    <title>Kafka调研（1）：跨数据中心的多集群镜像</title>
     <url>/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="调研结果和建议"><a href="#调研结果和建议" class="headerlink" title="调研结果和建议"></a>调研结果和建议</h2><p>针对是否可以跨数据中心部署Kafka集群的问题，答案是可行，但是不建议。建议先支持单集群部署，以简化运维成本，支持多地多应用业务上线。</p>
 <h3 id="可行性与跨网络部署产生的问题"><a href="#可行性与跨网络部署产生的问题" class="headerlink" title="可行性与跨网络部署产生的问题"></a>可行性与跨网络部署产生的问题</h3><p>Kafka实际上并不禁止将Broker部署到不同的网络地域。但是，Kafka的设计是按照单个数据中心进行设计、开发、测试和调优的。从Kafka的官方文档<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Kafka Documentation#Datacenter。http://kafka.apache.org/documentation/#datacenters
@@ -236,8 +260,8 @@
         <category>Message Queue - Kafka</category>
       </categories>
       <tags>
-        <tag>Kafka</tag>
         <tag>Message Queue</tag>
+        <tag>Kafka</tag>
         <tag>Data center</tag>
         <tag>Cluster</tag>
         <tag>Mirror Maker</tag>
@@ -564,13 +588,13 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>谷歌日程</title>
-    <url>/schedule/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>谷歌日程</title>
+    <url>/schedule/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
 </search>

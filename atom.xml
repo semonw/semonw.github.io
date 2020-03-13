@@ -17,7 +17,7 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Kafka调研报告3：基于Kafka多点通信方案</title>
+    <title>Kafka调研（3）：多点通信方案的设计</title>
     <link href="http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
     <id>http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
     <published>2020-02-17T03:30:38.000Z</published>
@@ -60,16 +60,16 @@
       <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
     
   </entry>
   
   <entry>
-    <title>用Nodejs和Nginx搭建Websocket服务</title>
+    <title>使用Socket.io搭建WS服务并通过Nginx反向代理</title>
     <link href="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/"/>
     <id>http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</id>
     <published>2020-02-17T01:46:21.000Z</published>
@@ -82,7 +82,7 @@
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; app = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;express&#39;&lt;/span&gt;)();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; server = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;http&#39;&lt;/span&gt;).Server(app);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; io = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;socket.io&#39;&lt;/span&gt;)(server);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;server.listen(&lt;span class=&quot;number&quot;&gt;80&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// WARNING: app.listen(80) will NOT work here!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;app.get(&lt;span class=&quot;string&quot;&gt;&#39;/&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;req, res&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;res.sendFile(__dirname + &lt;span class=&quot;string&quot;&gt;&#39;/index.html&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;io.on(&lt;span class=&quot;string&quot;&gt;&#39;connection&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;socket&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;socket.emit(&lt;span class=&quot;string&quot;&gt;&#39;news&#39;&lt;/span&gt;, &amp;#123; &lt;span class=&quot;attr&quot;&gt;hello&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;world&#39;&lt;/span&gt; &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;socket.on(&lt;span class=&quot;string&quot;&gt;&#39;my other event&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;data&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 
-&lt;h1 id=&quot;Nginx作为Web-Server和WebSocket-Proxy&quot;&gt;&lt;a href=&quot;#Nginx作为Web-Server和WebSocket-Proxy&quot; class=&quot;headerlink&quot; title=&quot;Nginx作为Web Server和WebSocket Proxy&quot;&gt;&lt;/a&gt;Nginx作为Web Server和WebSocket Proxy&lt;/h1&gt;&lt;p&gt;在配置Nginx的时候，遇到了很多的问题，并且在网上现在找不到一篇对这个问题讲解的非常清楚的文档。&lt;br&gt;比如：&lt;/p&gt;
+&lt;h1 id=&quot;Nginx同时作为Web-Server和WebSocket-Reverse-Proxy&quot;&gt;&lt;a href=&quot;#Nginx同时作为Web-Server和WebSocket-Reverse-Proxy&quot; class=&quot;headerlink&quot; title=&quot;Nginx同时作为Web Server和WebSocket Reverse Proxy&quot;&gt;&lt;/a&gt;Nginx同时作为Web Server和WebSocket Reverse Proxy&lt;/h1&gt;&lt;p&gt;在配置Nginx的时候，遇到了很多的问题，并且在网上现在找不到一篇对这个问题讲解的非常清楚的文档。&lt;br&gt;比如：&lt;/p&gt;
     
     </summary>
     
@@ -96,12 +96,16 @@
     
       <category term="nginx" scheme="http://www.typedefine.cn/tags/nginx/"/>
     
-      <category term="nodejs" scheme="http://www.typedefine.cn/tags/nodejs/"/>
+      <category term="Socket.io" scheme="http://www.typedefine.cn/tags/Socket-io/"/>
+    
+      <category term="Nodejs" scheme="http://www.typedefine.cn/tags/Nodejs/"/>
+    
+      <category term="express" scheme="http://www.typedefine.cn/tags/express/"/>
     
   </entry>
   
   <entry>
-    <title>Kafka调研报告2-消息序列化框架建议与对比</title>
+    <title>Kafka调研（2）：消息序列化框架建议与对比</title>
     <link href="http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/"/>
     <id>http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/</id>
     <published>2020-02-14T03:57:26.000Z</published>
@@ -120,9 +124,9 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
@@ -139,7 +143,7 @@
   </entry>
   
   <entry>
-    <title>Kafka调研报告1-跨数据中心的多集群镜像</title>
+    <title>Kafka调研（1）：跨数据中心的多集群镜像</title>
     <link href="http://www.typedefine.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/"/>
     <id>http://www.typedefine.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/</id>
     <published>2020-02-14T03:12:23.000Z</published>
@@ -161,9 +165,9 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Data center" scheme="http://www.typedefine.cn/tags/Data-center/"/>
     
