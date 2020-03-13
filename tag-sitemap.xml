@@ -3,6 +3,34 @@
 
 
     <url>
+        <loc>http://www.typedefine.cn/tags/%25E5%25BA%2594%25E7%2594%25A8%25E5%25B1%2582%25E8%25AE%25BE%25E8%25AE%25A1/</loc>
+        <lastmod>2020-03-13T06:46:04.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/%25E6%2598%259F%25E5%25BD%25A2%25E6%258B%2593%25E6%2589%2591%25E9%2580%259A%25E4%25BF%25A1/</loc>
+        <lastmod>2020-03-13T06:46:04.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Frameword/</loc>
+        <lastmod>2020-03-13T06:46:04.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Kafka/</loc>
+        <lastmod>2020-03-13T06:46:04.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.typedefine.cn/tags/express/</loc>
         <lastmod>2020-03-07T04:40:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -45,15 +73,15 @@
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/tags/Kafka/</loc>
+        <loc>http://www.typedefine.cn/tags/Message-Queue/</loc>
         <lastmod>2020-02-17T03:30:38.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/tags/Message-Queue/</loc>
-        <lastmod>2020-02-17T03:30:38.000Z</lastmod>
+        <loc>http://www.typedefine.cn/tags/Architecture/</loc>
+        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -88,13 +116,6 @@
 
     <url>
         <loc>http://www.typedefine.cn/tags/Serialization/</loc>
-        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/tags/Architecture/</loc>
         <lastmod>2020-02-14T03:57:26.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

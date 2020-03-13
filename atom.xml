@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.typedefine.cn/"/>
-  <updated>2020-02-17T03:30:38.000Z</updated>
+  <updated>2020-03-13T06:46:04.000Z</updated>
   <id>http://www.typedefine.cn/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>利用Kafka设计应用层多点通信方案</title>
+    <link href="http://www.typedefine.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
+    <id>http://www.typedefine.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
+    <published>2020-03-13T06:46:04.000Z</published>
+    <updated>2020-03-13T06:46:04.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-星形拓扑的通信模型&quot;&gt;&lt;a href=&quot;#1-星形拓扑的通信模型&quot; class=&quot;headerlink&quot; title=&quot;1. 星形拓扑的通信模型&quot;&gt;&lt;/a&gt;1. 星形拓扑的通信模型&lt;/h1&gt;&lt;p&gt;星形的意思是说，有一个消息接收和转发中心，应用两两之间并不直接通信。所有的应用层消息都通过Kafka集群进行中转。但是对Kafka来说，消息的机制是推拉机制。如果需要接收消息，需要应用层连接到集群，订阅感兴趣的topic，然后poll消息。&lt;/p&gt;
+&lt;p&gt;为了实现这种模型，&lt;br&gt;&lt;strong&gt;1. 我们利用Kafka本身的ACL控制机制来对topic权限进行控制&lt;/strong&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对每一个应用分配唯一的Consumer Group。&lt;/li&gt;
+&lt;li&gt;对每一个接入的应用分配唯一的账户和密码。&lt;/li&gt;
+&lt;li&gt;对每一个接入的应用分配SSL证书&lt;/li&gt;
+&lt;li&gt;对每一个topic按照应用进行配置读写权限。&lt;/li&gt;
+&lt;li&gt;对每一个接入的应用分配一个唯一的秘钥（该秘钥通过安全方式传递）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;2. 同时我们在应用包装一层API进行消息分派机制&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层的消息需要进行加密。&lt;/li&gt;
+&lt;li&gt;应用层需要校验消息的来源和完整性。&lt;/li&gt;
+&lt;li&gt;判断该消息是否应该被处理，比如消息的接收方是否包含了自己。&lt;/li&gt;
+&lt;li&gt;应用层需要按照消息的业务ID（或者其他机制）分派合适的处理函数。&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/categories/Kafka/"/>
+    
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
+      <category term="Frameword" scheme="http://www.typedefine.cn/tags/Frameword/"/>
+    
+      <category term="星形拓扑通信" scheme="http://www.typedefine.cn/tags/%E6%98%9F%E5%BD%A2%E6%8B%93%E6%89%91%E9%80%9A%E4%BF%A1/"/>
+    
+      <category term="应用层设计" scheme="http://www.typedefine.cn/tags/%E5%BA%94%E7%94%A8%E5%B1%82%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>Kafka调研（3）：多点通信方案的设计</title>
@@ -60,9 +102,9 @@
       <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
-    
       <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
       <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
     
@@ -124,11 +166,9 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
-    
       <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
       <category term="Serialization" scheme="http://www.typedefine.cn/tags/Serialization/"/>
     
@@ -139,6 +179,8 @@
       <category term="Apahce Thrift" scheme="http://www.typedefine.cn/tags/Apahce-Thrift/"/>
     
       <category term="Protocol Buffers" scheme="http://www.typedefine.cn/tags/Protocol-Buffers/"/>
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
   </entry>
   
@@ -165,17 +207,17 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
       <category term="Data center" scheme="http://www.typedefine.cn/tags/Data-center/"/>
     
       <category term="Cluster" scheme="http://www.typedefine.cn/tags/Cluster/"/>
     
       <category term="Mirror Maker" scheme="http://www.typedefine.cn/tags/Mirror-Maker/"/>
-    
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
   </entry>
   
