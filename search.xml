@@ -67,8 +67,8 @@
         <category>Architecture</category>
       </categories>
       <tags>
-        <tag>Message Queue</tag>
         <tag>Kafka</tag>
+        <tag>Message Queue</tag>
         <tag>Topo Comm model</tag>
         <tag>Frameword</tag>
         <tag>星形拓扑通信</tag>
@@ -198,8 +198,8 @@
         <category>Architecture</category>
       </categories>
       <tags>
-        <tag>Message Queue</tag>
         <tag>Kafka</tag>
+        <tag>Message Queue</tag>
         <tag>Topo Comm model</tag>
       </tags>
   </entry>
@@ -273,14 +273,14 @@
         <category>Message Queue - Kafka</category>
       </categories>
       <tags>
-        <tag>Message Queue</tag>
         <tag>Kafka</tag>
-        <tag>Architecture</tag>
+        <tag>Message Queue</tag>
         <tag>Serialization</tag>
         <tag>JSON</tag>
         <tag>Apahce Avro</tag>
         <tag>Apahce Thrift</tag>
         <tag>Protocol Buffers</tag>
+        <tag>Architecture</tag>
       </tags>
   </entry>
   <entry>
@@ -331,12 +331,12 @@
         <category>Message Queue - Kafka</category>
       </categories>
       <tags>
-        <tag>Message Queue</tag>
         <tag>Kafka</tag>
+        <tag>Message Queue</tag>
+        <tag>Architecture</tag>
         <tag>Data center</tag>
         <tag>Cluster</tag>
         <tag>Mirror Maker</tag>
-        <tag>Architecture</tag>
       </tags>
   </entry>
   <entry>
@@ -390,8 +390,8 @@
       </categories>
       <tags>
         <tag>Architecture</tag>
-        <tag>Message Queue - Kafka</tag>
         <tag>JMS</tag>
+        <tag>Message Queue - Kafka</tag>
       </tags>
   </entry>
   <entry>
@@ -649,13 +649,13 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
 ]]></content>
   </entry>
   <entry>
-    <title>文章分类</title>
-    <url>/categories/index.html</url>
+    <title>我是谁</title>
+    <url>/about/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>我是谁</title>
-    <url>/about/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
@@ -664,8 +664,8 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>文章分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
 </search>
