@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>利用Kafka设计应用层多点通信方案</title>
+    <title>Kafka调研（3）：多点通信方案的设计-2</title>
     <url>/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="1-星形拓扑的通信模型"><a href="#1-星形拓扑的通信模型" class="headerlink" title="1. 星形拓扑的通信模型"></a>1. 星形拓扑的通信模型</h1><p>星形的意思是说，有一个消息接收和转发中心，应用两两之间并不直接通信。所有的应用层消息都通过Kafka集群进行中转。但是对Kafka来说，消息的机制是推拉机制。如果需要接收消息，需要应用层连接到集群，订阅感兴趣的topic，然后poll消息。</p>
 <p>为了实现这种模型，<br><strong>1. 我们利用Kafka本身的ACL控制机制来对topic权限进行控制</strong>。</p>
@@ -64,9 +64,12 @@
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://kafka.apache.org/10/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html<a href="#fnref:1" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
       <categories>
         <category>Kafka</category>
+        <category>Architecture</category>
       </categories>
       <tags>
+        <tag>Message Queue</tag>
         <tag>Kafka</tag>
+        <tag>Topo Comm model</tag>
         <tag>Frameword</tag>
         <tag>星形拓扑通信</tag>
         <tag>应用层设计</tag>
@@ -137,9 +140,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Kafka调研（3）：多点通信方案的设计</title>
+    <title>Kafka调研（3）：多点通信方案的设计-1</title>
     <url>/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>在华为核心网和无线领域有几个重量级的产品比如U2000/M2000等网管系统<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="1-引言"><a href="#1-引言" class="headerlink" title="1. 引言"></a>1. 引言</h1><p>在华为核心网和无线领域有几个重量级的产品比如U2000/M2000等网管系统<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
 ">[1]</span></a></sup>。里面的底层通信就是一套基于MDP(Message Dispatching Process)的星形拓扑通信系统。不同的业务进程之间通过消息(REQ/RSP)来通信，而不是通信RPC或者库的依赖。</p>
 <p>由于年代久远，和现在主流的MQ技术相比有一些不同的地方，随便说几点:</p>
 <ol>
@@ -167,7 +170,8 @@
 <p>那么回过头来，那么如何通过messge queue来解耦不同系统（同构的还是异构的)来交换和通信来实现多异构同构系统之间的 星形通信呢？ 我们来做一个简单的设计。</p>
 <a id="more"></a>
 
-<h1 id="多应用同一个通道的通信模型"><a href="#多应用同一个通道的通信模型" class="headerlink" title="多应用同一个通道的通信模型"></a>多应用同一个通道的通信模型</h1><p><strong><em>关键点</em></strong>：</p>
+<h1 id="2-使用Kafka作为消息存储和转发中心"><a href="#2-使用Kafka作为消息存储和转发中心" class="headerlink" title="2. 使用Kafka作为消息存储和转发中心"></a>2. 使用Kafka作为消息存储和转发中心</h1><p>Kafka的设计思想相对来说比较简单，Broker本身也不存储客户端关于如何读取数据以及读取位置的信息。这些信息都是保存在ZooKeeper集群当中。</p>
+<p><strong><em>几个关键点</em></strong>：</p>
 <ol>
 <li>每个应用都至少有一个Producer和Consumer连接到Kafka集群</li>
 <li>每个应用都有唯一的独立的ID（SystemId），此ID通过公共的协议来约定（Protocol Buffer）。</li>
@@ -176,15 +180,10 @@
 <li>处理完成之后commit消息<img src="/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/20200217114045.png" class="" title="multi-point-comm">
 
 
-
 </li>
 </ol>
-<h1 id="消息格式定义"><a href="#消息格式定义" class="headerlink" title="消息格式定义"></a>消息格式定义</h1><p>采用Protocol Buffer<sup id="fnref:6"><a href="#fn:6" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://developers.google.com/protocol-buffers
-">[6]</span></a></sup>来定义， 选择protobuf原因参考我的博文<sup id="fnref:7"><a href="#fn:7" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/">[7]</span></a></sup>。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">enum MessageType &#123;</span><br><span class="line">    REQ &#x3D; 0;</span><br><span class="line">    RSP &#x3D; 1;</span><br><span class="line">    NOTIFICATION &#x3D; 2;</span><br><span class="line">    COMMAND &#x3D; 3;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">enum MessageId &#123;</span><br><span class="line">    SYSTEM_RESERVER &#x3D; 0;</span><br><span class="line">    reserve 1-100;</span><br><span class="line">    APPLICATION_BIZ_1 &#x3D; 101;  &#x2F;&#x2F;业务消息定义1</span><br><span class="line">    APPLICATION_BIZ_2 &#x3D; 102;  &#x2F;&#x2F;业务消息定义2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">message MessageEnvelope &#123;</span><br><span class="line">    string message_sn &#x3D; 1;</span><br><span class="line">    string src_message_sn &#x3D; 2;</span><br><span class="line">    MessageId message_id &#x3D; 3;</span><br><span class="line">    MessageType message_type &#x3D; 4;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;用来做消息路由</span><br><span class="line">    SystemId receiver_system_id &#x3D; 16;</span><br><span class="line">    int32 receiver_app_id &#x3D; 17;</span><br><span class="line">    int32 receiver_domain_id &#x3D; 18;</span><br><span class="line">    int32 receiver_module_id &#x3D; 19;</span><br><span class="line">    int32 receiver_function_id &#x3D; 20;</span><br><span class="line"></span><br><span class="line">    SystemId sender_system_id &#x3D; 21;</span><br><span class="line">    int32 sender_app_id &#x3D; 22;</span><br><span class="line">    int32 sender_domain_id &#x3D; 23;</span><br><span class="line">    int32 sender_module_id &#x3D; 24;</span><br><span class="line">    int32 sender_function_id &#x3D; 25;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;消息体，可以携带任意消息格式，并且自己携带消息类型信息</span><br><span class="line">    MessageBody body &#x3D; 30;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">* 业务层请求消息1</span><br><span class="line">*&#x2F;</span><br><span class="line">message Applcation_Biz_Req &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line">* 业务层响应消息1</span><br><span class="line">*&#x2F;</span><br><span class="line">message Applcation_Biz_Rsp &#123;</span><br><span class="line">    int32 status;</span><br><span class="line">    string errorMsg;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h1 id="应用层动态Dispatch消息"><a href="#应用层动态Dispatch消息" class="headerlink" title="应用层动态Dispatch消息"></a>应用层动态Dispatch消息</h1><ol>
+<h1 id="3-接入的应用在业务层自己分派消息"><a href="#3-接入的应用在业务层自己分派消息" class="headerlink" title="3. 接入的应用在业务层自己分派消息"></a>3. 接入的应用在业务层自己分派消息</h1><p>每个接入的应用之后接收到消息之后：</p>
+<ol>
 <li>二进制消息解包成Message</li>
 <li>根据消息类型（或者业务ID）并分派任务</li>
 <li>可以支持更复杂的应用层消息路由<br> 通过<br> （system_id, app_id, domain_id, module_id, function_id）<br> 可以支持超级复杂的消息路由，用来找到对应的消息处理函数。</li>
@@ -199,8 +198,8 @@
         <category>Architecture</category>
       </categories>
       <tags>
-        <tag>Kafka</tag>
         <tag>Message Queue</tag>
+        <tag>Kafka</tag>
         <tag>Topo Comm model</tag>
       </tags>
   </entry>
@@ -274,14 +273,14 @@
         <category>Message Queue - Kafka</category>
       </categories>
       <tags>
-        <tag>Kafka</tag>
         <tag>Message Queue</tag>
+        <tag>Kafka</tag>
+        <tag>Architecture</tag>
         <tag>Serialization</tag>
         <tag>JSON</tag>
         <tag>Apahce Avro</tag>
         <tag>Apahce Thrift</tag>
         <tag>Protocol Buffers</tag>
-        <tag>Architecture</tag>
       </tags>
   </entry>
   <entry>
@@ -332,12 +331,12 @@
         <category>Message Queue - Kafka</category>
       </categories>
       <tags>
-        <tag>Kafka</tag>
         <tag>Message Queue</tag>
-        <tag>Architecture</tag>
+        <tag>Kafka</tag>
         <tag>Data center</tag>
         <tag>Cluster</tag>
         <tag>Mirror Maker</tag>
+        <tag>Architecture</tag>
       </tags>
   </entry>
   <entry>
@@ -650,23 +649,23 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
 ]]></content>
   </entry>
   <entry>
-    <title>我是谁</title>
-    <url>/about/index.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
-  </entry>
-  <entry>
     <title>文章分类</title>
     <url>/categories/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>我是谁</title>
+    <url>/about/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
     <title>谷歌日程</title>
     <url>/schedule/index.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
+  </entry>
+  <entry>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
 </search>

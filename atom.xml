@@ -17,7 +17,7 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>利用Kafka设计应用层多点通信方案</title>
+    <title>Kafka调研（3）：多点通信方案的设计-2</title>
     <link href="http://www.typedefine.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
     <id>http://www.typedefine.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
     <published>2020-03-13T06:46:04.000Z</published>
@@ -47,8 +47,14 @@
     
       <category term="Kafka" scheme="http://www.typedefine.cn/categories/Kafka/"/>
     
+      <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
+    
+    
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
       <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+    
+      <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
     
       <category term="Frameword" scheme="http://www.typedefine.cn/tags/Frameword/"/>
     
@@ -59,7 +65,7 @@
   </entry>
   
   <entry>
-    <title>Kafka调研（3）：多点通信方案的设计</title>
+    <title>Kafka调研（3）：多点通信方案的设计-1</title>
     <link href="http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
     <id>http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
     <published>2020-02-17T03:30:38.000Z</published>
@@ -67,7 +73,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h1&gt;&lt;p&gt;在华为核心网和无线领域有几个重量级的产品比如U2000/M2000等网管系统&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
+      &lt;h1 id=&quot;1-引言&quot;&gt;&lt;a href=&quot;#1-引言&quot; class=&quot;headerlink&quot; title=&quot;1. 引言&quot;&gt;&lt;/a&gt;1. 引言&lt;/h1&gt;&lt;p&gt;在华为核心网和无线领域有几个重量级的产品比如U2000/M2000等网管系统&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
 &quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。里面的底层通信就是一套基于MDP(Message Dispatching Process)的星形拓扑通信系统。不同的业务进程之间通过消息(REQ/RSP)来通信，而不是通信RPC或者库的依赖。&lt;/p&gt;
 &lt;p&gt;由于年代久远，和现在主流的MQ技术相比有一些不同的地方，随便说几点:&lt;/p&gt;
 &lt;ol&gt;
@@ -102,9 +108,9 @@
       <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
     
@@ -166,9 +172,11 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
+      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
       <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
       <category term="Serialization" scheme="http://www.typedefine.cn/tags/Serialization/"/>
     
@@ -179,8 +187,6 @@
       <category term="Apahce Thrift" scheme="http://www.typedefine.cn/tags/Apahce-Thrift/"/>
     
       <category term="Protocol Buffers" scheme="http://www.typedefine.cn/tags/Protocol-Buffers/"/>
-    
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
   </entry>
   
@@ -207,17 +213,17 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Data center" scheme="http://www.typedefine.cn/tags/Data-center/"/>
     
       <category term="Cluster" scheme="http://www.typedefine.cn/tags/Cluster/"/>
     
       <category term="Mirror Maker" scheme="http://www.typedefine.cn/tags/Mirror-Maker/"/>
+    
+      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
   </entry>
   
