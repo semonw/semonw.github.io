@@ -255,9 +255,9 @@
     
       <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
-      <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
-    
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/tags/Message-Queue-Kafka/"/>
+    
+      <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
     
   </entry>
   

@@ -390,8 +390,8 @@
       </categories>
       <tags>
         <tag>Architecture</tag>
-        <tag>JMS</tag>
         <tag>Message Queue - Kafka</tag>
+        <tag>JMS</tag>
       </tags>
   </entry>
   <entry>
@@ -654,8 +654,8 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>标签</title>
-    <url>/tags/index.html</url>
+    <title>文章分类</title>
+    <url>/categories/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
@@ -664,8 +664,8 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
-    <title>文章分类</title>
-    <url>/categories/index.html</url>
+    <title>标签</title>
+    <url>/tags/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
 </search>
