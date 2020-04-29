@@ -3,6 +3,27 @@
 
 
     <url>
+        <loc>http://www.typedefine.cn/tags/MySQL/</loc>
+        <lastmod>2020-04-29T14:22:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Nacos/</loc>
+        <lastmod>2020-04-29T14:22:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/%25E5%25BE%25AE%25E6%259C%258D%25E5%258A%25A1/</loc>
+        <lastmod>2020-04-29T14:22:14.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.typedefine.cn/tags/%25E5%25BF%25AB%25E8%25BD%25A6%25E9%2581%2593/</loc>
         <lastmod>2020-03-30T13:53:13.000Z</lastmod>
         <changefreq>weekly</changefreq>

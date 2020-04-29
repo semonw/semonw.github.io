@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Nacos不支持MYSQL 8的问题</title>
+    <url>/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Nacos遇到MySQL 8版本连接会报错，并且MySQL多次连接报错之后会拒绝连接。遇到这种情况之后登陆到mysql，然后flush hosts;。</p>
+<p>在Nacos 1.2.0版本中解决了连接MySQL 8报错的问题<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://github.com/alibaba/nacos/issues/2042
+">[1]</span></a></sup>.</p>
+<h2 id="1-下载对应版本的connector"><a href="#1-下载对应版本的connector" class="headerlink" title="1. 下载对应版本的connector"></a>1. 下载对应版本的connector</h2><p>比如mysql-connector-java-8.0.17.jar<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://downloads.mysql.com/archives/c-j/">[2]</span></a></sup>。注意这里加载的jar包对应的版本必须要和MySQL版本完全一致。否则可能出现报错。</p>
+<img src="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/image2020-4-29_22-12-27.png" class="" title="download_mysql_connector">
+
+<h2 id="2-配置nacos的mysql插件"><a href="#2-配置nacos的mysql插件" class="headerlink" title="2. 配置nacos的mysql插件"></a>2. 配置nacos的mysql插件</h2><p>在nacos目录下新建 plugins/mysql/mysql-connector-java-8.0.17.jar</p>
+<img src="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/image2020-4-29_19-34-11.png" class="" title="console_nacos">
+
+<h2 id="3-配置连接数据库，然后启动nacos"><a href="#3-配置连接数据库，然后启动nacos" class="headerlink" title="3. 配置连接数据库，然后启动nacos"></a>3. 配置连接数据库，然后启动nacos</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://github.com/alibaba/nacos/issues/2042<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://downloads.mysql.com/archives/c-j/<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
+      <categories>
+        <category>框架</category>
+        <category>微服务</category>
+      </categories>
+      <tags>
+        <tag>微服务</tag>
+        <tag>Nacos</tag>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>快车道系列：理解文档对象模型DOM</title>
     <url>/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="DOM是什么？"><a href="#DOM是什么？" class="headerlink" title="DOM是什么？"></a>DOM是什么？</h3><p>Document Object Model<sup id="fnref:0"><a href="#fn:0" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.w3.org/TR/DOM-Level-2-Core/introduction.html
@@ -720,11 +743,6 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
 ]]></content>
   </entry>
   <entry>
-    <title>谷歌日程</title>
-    <url>/schedule/index.html</url>
-    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
-  </entry>
-  <entry>
     <title>文章分类</title>
     <url>/categories/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
@@ -732,6 +750,11 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
   <entry>
     <title>我是谁</title>
     <url>/about/index.html</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
+  </entry>
+  <entry>
+    <title>谷歌日程</title>
+    <url>/schedule/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css">]]></content>
   </entry>
   <entry>
