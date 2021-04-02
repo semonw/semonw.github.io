@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.typedefine.cn/"/>
-  <updated>2020-04-29T14:22:14.000Z</updated>
+  <updated>2021-03-29T08:50:12.000Z</updated>
   <id>http://www.typedefine.cn/</id>
   
   <author>
@@ -15,6 +15,145 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Maven配置部署指北</title>
+    <link href="http://www.typedefine.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/"/>
+    <id>http://www.typedefine.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/</id>
+    <published>2021-03-29T08:50:12.000Z</published>
+    <updated>2021-03-29T08:50:12.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Snapshots和release仓库&quot;&gt;&lt;a href=&quot;#Snapshots和release仓库&quot; class=&quot;headerlink&quot; title=&quot;Snapshots和release仓库&quot;&gt;&lt;/a&gt;Snapshots和release仓库&lt;/h1&gt;&lt;h2 id=&quot;二者区别是什么&quot;&gt;&lt;a href=&quot;#二者区别是什么&quot; class=&quot;headerlink&quot; title=&quot;二者区别是什么&quot;&gt;&lt;/a&gt;二者区别是什么&lt;/h2&gt;&lt;p&gt;Snapshot&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;[Maven快照](https://www.runoob.com/maven/maven-snapshots.html)
+&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，快照，是一种特殊的版本，指定了某个当前的开发进度的副本。不同于常规的版本，Maven 每次构建都会在远程仓库中检查新的快照。比如发布了一个app-1.0-SNAPSHOT版本，那么maven构件的时候，每次都会去仓库检查是否有最新的版本已经被发布。如果有，则替换。如果是release仓库，那么除非版本升级，否则maven构件的时候不会去检查最新的jar包，即便是在nexus仓库中已经更新了。&lt;/p&gt;
+&lt;p&gt;maven中的仓库分为两种&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;[maven快照版本和发布版本](https://www.cnblogs.com/wuchanming/p/5484091.html)
+&quot;&gt;[3]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，snapshot快照仓库和release发布仓库。snapshot快照仓库用于保存开发过程中的不稳定版本，release正式仓库则是用来保存稳定的发行版本。&lt;/p&gt;
+&lt;p&gt;定义一个组件/模块为快照版本，只需要在pom文件中在该模块的版本号后加上-SNAPSHOT即可(注意这里必须是大写)，如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;com.schdri&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;bimgis&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;3.10.0-SNAPSHOT&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;$&amp;#123;project.artifactId&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;packaging&lt;/span&gt;&amp;gt;&lt;/span&gt;pom&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;packaging&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;organization&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;pig4cloud&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;url&lt;/span&gt;&amp;gt;&lt;/span&gt;https://www.pig4cloud.com&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;url&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;organization&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Maven" scheme="http://www.typedefine.cn/categories/Maven/"/>
+    
+      <category term="DevOps" scheme="http://www.typedefine.cn/categories/Maven/DevOps/"/>
+    
+    
+      <category term="Maven" scheme="http://www.typedefine.cn/tags/Maven/"/>
+    
+      <category term="DevOps" scheme="http://www.typedefine.cn/tags/DevOps/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SQL建模规范</title>
+    <link href="http://www.typedefine.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/"/>
+    <id>http://www.typedefine.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/</id>
+    <published>2021-03-29T01:39:50.000Z</published>
+    <updated>2021-03-29T01:39:50.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;建模原则&quot;&gt;&lt;a href=&quot;#建模原则&quot; class=&quot;headerlink&quot; title=&quot;建模原则&quot;&gt;&lt;/a&gt;建模原则&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;数据库字段小写，下划线连接；每个字段都需要由COMMENT，说明其业务含义。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;使用id作为主键，建议类型为bigint(20)， 其对应的java类型为Long。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mybatis Plus框架自动生成主键插入（雪花算法）&lt;/li&gt;
+&lt;li&gt;也可以使用数据库自增，当只有1个服务，数据量较小的时候建议选择，提升插入性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;update_time、create_time&lt;br&gt;使用timestamp或者datetime作为时间类型的首选。Mybatis-Plus框架生成的相应Java类型都是LocalDateTime。大部分场景下2种类型可以互相替换，不过在时间范围和时区支持上有差异。&lt;br&gt;使用MySQL的自动初始化和自动更新功能。 字段变化之后，update_time数据库自动更新，如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;create_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP &lt;span class=&quot;keyword&quot;&gt;COMMENT&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;创建时间&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;create_by &lt;span class=&quot;built_in&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;36&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;COMMENT&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;创建人&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;update_at &lt;span class=&quot;built_in&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;CURRENT_TIMESTAMP&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;UPDATE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;CURRENT_TIMESTAMP&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;COMMENT&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;更新时间&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;update_by &lt;span class=&quot;built_in&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;36&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;COMMENT&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;更新人&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;  
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;布尔型字段使用tinyint(1)即可。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;参考《阿里巴巴Java开发手册(华山版).pdf》。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;雪花算法实现&quot;&gt;&lt;a href=&quot;#雪花算法实现&quot; class=&quot;headerlink&quot; title=&quot;雪花算法实现&quot;&gt;&lt;/a&gt;雪花算法实现&lt;/h1&gt;
+    
+    </summary>
+    
+    
+      <category term="SQL" scheme="http://www.typedefine.cn/categories/SQL/"/>
+    
+      <category term="建模" scheme="http://www.typedefine.cn/categories/SQL/%E5%BB%BA%E6%A8%A1/"/>
+    
+      <category term="数据库" scheme="http://www.typedefine.cn/categories/SQL/%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="建模" scheme="http://www.typedefine.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
+    
+      <category term="SQL" scheme="http://www.typedefine.cn/tags/SQL/"/>
+    
+      <category term="数据库" scheme="http://www.typedefine.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Cloud支持MongoDB</title>
+    <link href="http://www.typedefine.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/"/>
+    <id>http://www.typedefine.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/</id>
+    <published>2020-12-07T07:09:46.000Z</published>
+    <updated>2020-12-07T07:09:46.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用mongoose的ORM框架结合到express框架，生产力会提高一大截。&lt;/p&gt;
+&lt;p&gt;稍显不足的是，MongoDB对于中文索引支持的力度不够，对于某些要求强事务的领域应用（比如金融、财务等）略显不足，至少还没有看到有成熟应用的案例。如果有，请告诉我。另外一个就是，在搭建MongoDB集群的时候，相对来说是比较复杂的。水平扩展虽然很简单，但是做Sharding的时候也需要仔细的考量。&lt;/p&gt;
+&lt;p&gt;本文简单介绍一下如何在Spring Boot/Spring Cloud程序中使用MongoDB数据库。&lt;/p&gt;
+&lt;h1 id=&quot;Java-Config&quot;&gt;&lt;a href=&quot;#Java-Config&quot; class=&quot;headerlink&quot; title=&quot;Java Config&quot;&gt;&lt;/a&gt;Java Config&lt;/h1&gt;&lt;p&gt;第一种方式就是采用Java Config的方式，直接上代码，如下：&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://www.typedefine.cn/categories/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="MongoDB" scheme="http://www.typedefine.cn/tags/MongoDB/"/>
+    
+      <category term="建模" scheme="http://www.typedefine.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
+    
+      <category term="NoSQL" scheme="http://www.typedefine.cn/tags/NoSQL/"/>
+    
+      <category term="Spring" scheme="http://www.typedefine.cn/tags/Spring/"/>
+    
+      <category term="Spring Cloud" scheme="http://www.typedefine.cn/tags/Spring-Cloud/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB建模的简单原则</title>
+    <link href="http://www.typedefine.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/"/>
+    <id>http://www.typedefine.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/</id>
+    <published>2020-12-07T06:56:59.000Z</published>
+    <updated>2020-12-07T06:56:59.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h1 id=&quot;建模原则：&quot;&gt;&lt;a href=&quot;#建模原则：&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://www.typedefine.cn/categories/%E6%9E%B6%E6%9E%84/"/>
+    
+    
+      <category term="MongoDB" scheme="http://www.typedefine.cn/tags/MongoDB/"/>
+    
+      <category term="建模" scheme="http://www.typedefine.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
+    
+      <category term="NoSQL" scheme="http://www.typedefine.cn/tags/NoSQL/"/>
+    
+  </entry>
   
   <entry>
     <title>Nacos不支持MYSQL 8的问题</title>
@@ -318,9 +457,9 @@
     
       <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
-      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/tags/Message-Queue-Kafka/"/>
-    
       <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
+    
+      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/tags/Message-Queue-Kafka/"/>
     
   </entry>
   

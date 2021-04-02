@@ -247,20 +247,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-count">54</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -304,6 +304,444 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+      <meta itemprop="description" content="写关于数据的故事！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="探索数据之美">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/" class="post-title-link" itemprop="url">Maven配置部署指北</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-29 16:50:12" itemprop="dateCreated datePublished" datetime="2021-03-29T16:50:12+08:00">2021-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Maven/" itemprop="url" rel="index"><span itemprop="name">Maven</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Maven/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Snapshots和release仓库"><a href="#Snapshots和release仓库" class="headerlink" title="Snapshots和release仓库"></a>Snapshots和release仓库</h1><h2 id="二者区别是什么"><a href="#二者区别是什么" class="headerlink" title="二者区别是什么"></a>二者区别是什么</h2><p>Snapshot<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[Maven快照](https://www.runoob.com/maven/maven-snapshots.html)
+">[2]</span></a></sup>，快照，是一种特殊的版本，指定了某个当前的开发进度的副本。不同于常规的版本，Maven 每次构建都会在远程仓库中检查新的快照。比如发布了一个app-1.0-SNAPSHOT版本，那么maven构件的时候，每次都会去仓库检查是否有最新的版本已经被发布。如果有，则替换。如果是release仓库，那么除非版本升级，否则maven构件的时候不会去检查最新的jar包，即便是在nexus仓库中已经更新了。</p>
+<p>maven中的仓库分为两种<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[maven快照版本和发布版本](https://www.cnblogs.com/wuchanming/p/5484091.html)
+">[3]</span></a></sup>，snapshot快照仓库和release发布仓库。snapshot快照仓库用于保存开发过程中的不稳定版本，release正式仓库则是用来保存稳定的发行版本。</p>
+<p>定义一个组件/模块为快照版本，只需要在pom文件中在该模块的版本号后加上-SNAPSHOT即可(注意这里必须是大写)，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.schdri<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bimgis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>3.10.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">organization</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>pig4cloud<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://www.pig4cloud.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+      <meta itemprop="description" content="写关于数据的故事！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="探索数据之美">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">SQL建模规范</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-29 09:39:50" itemprop="dateCreated datePublished" datetime="2021-03-29T09:39:50+08:00">2021-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SQL/%E5%BB%BA%E6%A8%A1/" itemprop="url" rel="index"><span itemprop="name">建模</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SQL/%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="建模原则"><a href="#建模原则" class="headerlink" title="建模原则"></a>建模原则</h1><ol>
+<li><p>数据库字段小写，下划线连接；每个字段都需要由COMMENT，说明其业务含义。</p>
+</li>
+<li><p>使用id作为主键，建议类型为bigint(20)， 其对应的java类型为Long。</p>
+<ul>
+<li>Mybatis Plus框架自动生成主键插入（雪花算法）</li>
+<li>也可以使用数据库自增，当只有1个服务，数据量较小的时候建议选择，提升插入性能。</li>
+</ul>
+</li>
+<li><p>update_time、create_time<br>使用timestamp或者datetime作为时间类型的首选。Mybatis-Plus框架生成的相应Java类型都是LocalDateTime。大部分场景下2种类型可以互相替换，不过在时间范围和时区支持上有差异。<br>使用MySQL的自动初始化和自动更新功能。 字段变化之后，update_time数据库自动更新，如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line">create_by <span class="built_in">varchar</span>(<span class="number">36</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'创建人'</span>,</span><br><span class="line">update_at <span class="built_in">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>,</span><br><span class="line">update_by <span class="built_in">varchar</span>(<span class="number">36</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'更新人'</span>,</span><br></pre></td></tr></table></figure>  
+</li>
+<li><p>布尔型字段使用tinyint(1)即可。</p>
+</li>
+<li><p>参考《阿里巴巴Java开发手册(华山版).pdf》。</p>
+</li>
+</ol>
+<h1 id="雪花算法实现"><a href="#雪花算法实现" class="headerlink" title="雪花算法实现"></a>雪花算法实现</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+      <meta itemprop="description" content="写关于数据的故事！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="探索数据之美">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/" class="post-title-link" itemprop="url">Spring Cloud支持MongoDB</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-07 15:09:46" itemprop="dateCreated datePublished" datetime="2020-12-07T15:09:46+08:00">2020-12-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">架构</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>16k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>15 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用mongoose的ORM框架结合到express框架，生产力会提高一大截。</p>
+<p>稍显不足的是，MongoDB对于中文索引支持的力度不够，对于某些要求强事务的领域应用（比如金融、财务等）略显不足，至少还没有看到有成熟应用的案例。如果有，请告诉我。另外一个就是，在搭建MongoDB集群的时候，相对来说是比较复杂的。水平扩展虽然很简单，但是做Sharding的时候也需要仔细的考量。</p>
+<p>本文简单介绍一下如何在Spring Boot/Spring Cloud程序中使用MongoDB数据库。</p>
+<h1 id="Java-Config"><a href="#Java-Config" class="headerlink" title="Java Config"></a>Java Config</h1><p>第一种方式就是采用Java Config的方式，直接上代码，如下：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+      <meta itemprop="description" content="写关于数据的故事！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="探索数据之美">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/" class="post-title-link" itemprop="url">MongoDB建模的简单原则</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-07 14:56:59" itemprop="dateCreated datePublished" datetime="2020-12-07T14:56:59+08:00">2020-12-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">架构</span></a>
+        </span>
+    </span>
+
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>510</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="建模原则："><a href="#建模原则：" class="headerlink" title="建模原则："></a>建模原则：</h1><ol>
+<li><p>数据库名字、Collection名字、属性字段均小写，并使用下划线连接。<br>但是对应的Java DAO对象的属性字段需要按照驼峰命名法书写，并且每个字段都需要加上@Field注解，即使数据库字段和名字是完全一样的。</p>
+</li>
+<li><p>对于大规模数据，字段存储的时候使用缩写。</p>
+</li>
+<li><p>如果嵌套的Document数量会不断的增长或者频繁发生变化，那么可以考虑单独存Collection</p>
+<p>  The maximum BSON document size is 16 megabytes.</p>
+</li>
+<li><p>如果从逻辑上对象是从属并且是1:1的关系，直接使用嵌套对象。</p>
+<p>  但是如果多个地方使用了同一个对象，比如A包含了B， C也包含了B，那么可以考虑将B单独建集合，然后通过DBRefs（对于Spring Data Mongo来说就是注解@DBRef）来引用。</p>
+</li>
+</ol>
+<h1 id="建索引原则："><a href="#建索引原则：" class="headerlink" title="建索引原则："></a>建索引原则：</h1><ol>
+<li><p>复合索引不在Java POJO对象上加注解完成。而是手工创建。</p>
+</li>
+<li><p>对于复合索引，要将能够快速缩小数据范围（命中率更高）的字段放在复合索引前面并排序。</p>
+</li>
+<li><p>稀疏索引，如果某字段对于大部分数据都可能不存在，或者为null， 要指定该索引为稀疏索引</p>
+</li>
+</ol>
+<h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><p><a href="https://docs.mongodb.com/manual/core/document/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/core/document/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -361,7 +799,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>386</span>
+      <span>385</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -379,7 +817,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Nacos遇到MySQL 8版本连接会报错，并且MySQL多次连接报错之后会拒绝连接。遇到这种情况之后登陆到mysql，然后flush hosts;。</p>
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Nacos遇到MySQL 8版本连接会报错，并且MySQL多次连接报错之后会拒绝连接。遇到这种情况之后登陆到mysql，然后flush hosts。</p>
 <p>在Nacos 1.2.0版本中解决了连接MySQL 8报错的问题<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://github.com/alibaba/nacos/issues/2042
 ">[1]</span></a></sup>.</p>
 <h2 id="1-下载对应版本的connector"><a href="#1-下载对应版本的connector" class="headerlink" title="1. 下载对应版本的connector"></a>1. 下载对应版本的connector</h2><p>比如mysql-connector-java-8.0.17.jar<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://downloads.mysql.com/archives/c-j/">[2]</span></a></sup>。注意这里加载的jar包对应的版本必须要和MySQL版本完全一致。否则可能出现报错。</p>
@@ -961,418 +1399,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/" class="post-title-link" itemprop="url">Kafka调研（1）：跨数据中心的多集群镜像</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-02-14 11:12:23" itemprop="dateCreated datePublished" datetime="2020-02-14T11:12:23+08:00">2020-02-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue-Kafka/" itemprop="url" rel="index"><span itemprop="name">Message Queue - Kafka</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="调研结果和建议"><a href="#调研结果和建议" class="headerlink" title="调研结果和建议"></a>调研结果和建议</h2><p>针对是否可以跨数据中心部署Kafka集群的问题，答案是可行，但是不建议。建议先支持单集群部署，以简化运维成本，支持多地多应用业务上线。</p>
-<h3 id="可行性与跨网络部署产生的问题"><a href="#可行性与跨网络部署产生的问题" class="headerlink" title="可行性与跨网络部署产生的问题"></a>可行性与跨网络部署产生的问题</h3><p>Kafka实际上并不禁止将Broker部署到不同的网络地域。但是，Kafka的设计是按照单个数据中心进行设计、开发、测试和调优的。从Kafka的官方文档<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="Kafka Documentation#Datacenter。http://kafka.apache.org/documentation/#datacenters
-">[1]</span></a></sup>来看，并不推荐将集群跨网络部署。 由于Broker分布在不同的跨地域的网络（WAN）, 除了数据同步会极大地增加延迟之外， 并且如果由于网络中断无法保证zk始终可用，带来其他问题，比如：</p>
-<ol>
-<li>Partition Leader无法选举。或者由于网络问题，某个Broker频繁掉线导致集群不稳定。</li>
-<li>在Producer推送数据时候，产生延迟（推送到remote Broker）。或者由于网络问题，无法获取ACK。</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/" class="post-title-link" itemprop="url">什么是Kafka</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-02-14 10:30:23" itemprop="dateCreated datePublished" datetime="2020-02-14T10:30:23+08:00">2020-02-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue-Kafka/" itemprop="url" rel="index"><span itemprop="name">Message Queue - Kafka</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue-Kafka/Architecture/" itemprop="url" rel="index"><span itemprop="name">Architecture</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>占坑，后面有时间对Kafka进行详细的更新</em></strong></p>
-<h1 id="A-bit-of-History"><a href="#A-bit-of-History" class="headerlink" title="A bit of History"></a>A bit of History</h1><p>Kafka是高性能的、分布式的、数据可持久化的消息丢列。最初由LinkedIn开发，用来跟踪Web上的用户的一系列事件，譬如页面浏览(Page view)，搜索框的输入，展示的广告等等。这些事件对于监控和调查用于对于网站交互的参与度非常的重要。每天都有大量的数据产生，因为，需要一个可以轻松扩展，同时又不会增加额外负担的一个解决方案。</p>
-<p>总体来说，Kafka从设计之初有3个目标：</p>
-<ol>
-<li>简单的生产者/消费者API设计</li>
-<li>尽可能减少网络传输和磁盘存储的额外成本</li>
-<li>从一开始就为可扩展性而设计</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/" class="post-title-link" itemprop="url">什么是MQ</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-02-14 10:10:23" itemprop="dateCreated datePublished" datetime="2020-02-14T10:10:23+08:00">2020-02-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue-Kafka/" itemprop="url" rel="index"><span itemprop="name">Message Queue - Kafka</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>这篇文章是一篇未完成稿，有时间再写</em></strong></p>
-<h1 id="什么是消息队列（Message-Queue）"><a href="#什么是消息队列（Message-Queue）" class="headerlink" title="什么是消息队列（Message Queue）?"></a>什么是消息队列（Message Queue）?</h1><p>消息队列使得应用之间可以通过互发消息的方式来通信，这和传统的RPC方式有很大的区别。通过消息队列提供的服务，解除了点对点，星形拓扑通信耦合的问题。同时，当目标服务不可用的时候，消息队列充当了临时的消息缓存。</p>
-<p>下面先解释一下什么是消息队列<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.cloudamqp.com/blog/2014-12-03-what-is-message-queuing.html
-">[1]</span></a></sup>，怎么使用，在架构层面又会带来什么样的好处<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="扩展阅读：https://www.ibm.com/cloud/learn/message-queues
-">[2]</span></a></sup>。</p>
-<p><strong><em>队列</em></strong>就是将事物排成一列，依次处理，并且依照先进先出(First In, First Out)的顺序。那么消息队列（MQ），就是用于不同系统或者应用之间通信的的列表， 将需要通信的消息保存在队列中，等待应用依次处理。<a href="http://queues.io/" target="_blank" rel="noopener">queues.io</a>是一个比较好的网站可以查找各种不同功能的队列。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/" class="post-title-link" itemprop="url">Thrift介绍、编译参数以及如何和maven集成</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-02-13 21:07:49" itemprop="dateCreated datePublished" datetime="2020-02-13T21:07:49+08:00">2020-02-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/thrift/" itemprop="url" rel="index"><span itemprop="name">thrift</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>13k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>12 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="什么是Thrift"><a href="#什么是Thrift" class="headerlink" title="什么是Thrift?"></a>什么是Thrift?</h1><p>Thrift是一种接口描述语言和二进制通讯协议，它被用来定义和创建跨语言的服务。它被当作一个远程过程调用（RPC）框架来使用，是由Facebook为“大规模跨语言服务开发”而开发的。它通过一个代码生成引擎联合了一个软件栈，来创建不同程度的、无缝的跨平台高效服务，可以使用C#、C++（基于POSIX兼容系统）、Cappuccino、Cocoa、Delphi、Erlang、Go、Haskell、Java、Node.js、OCaml、Perl、PHP、Python、Ruby和Smalltalk。虽然它以前是由Facebook开发的，但它现在是Apache软件基金会的开源项目了。该实现被描述在2007年4月的一篇由Facebook发表的技术论文中，该论文现由Apache掌管。</p>
-<p>目前流行的服务调用方式有很多种，例如基于 SOAP 消息格式的 Web Service，基于 JSON 消息格式的 RESTful 服务等。其中所用到的数据传输方式包括 XML，JSON 等，然而 XML 相对体积太大，传输效率低，JSON 体积较小，新颖，但还不够完善。本文将介绍由 Facebook 开发的远程服务调用框架 Apache Thrift，它采用接口描述语言定义并创建服务，支持可扩展的跨语言服务开发，所包含的代码生成引擎可以在多种语言中，如 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, Smalltalk 等创建高效的、无缝的服务，其传输数据采用二进制格式，相对 XML 和 JSON 体积更小，对于高并发、大数据量和多语言的环境更有优势。本文将详细介绍 Thrift 的使用，并且提供丰富的实例代码加以解释说明，帮助使用者快速构建服务。Thrift的下载地址是：<a href="http://thrift.apache.org/download" target="_blank" rel="noopener">http://thrift.apache.org/download</a></p>
-<h1 id="thrift-exe支持的参数有哪些？"><a href="#thrift-exe支持的参数有哪些？" class="headerlink" title="thrift.exe支持的参数有哪些？"></a>thrift.exe支持的参数有哪些？</h1>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
 
   
   <nav class="pagination">
@@ -1417,7 +1443,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020</span>
+  <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -1428,13 +1454,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">50k</span>
+    <span title="站点总字数">78k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">45 分钟</span>
+    <span title="站点阅读时长">1:11</span>
   </span>
 </div>
 <div class="busuanzi-count">

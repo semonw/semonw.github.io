@@ -3,6 +3,69 @@
 
 
     <url>
+        <loc>http://www.typedefine.cn/tags/DevOps/</loc>
+        <lastmod>2021-03-29T08:50:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Maven/</loc>
+        <lastmod>2021-03-29T08:50:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593/</loc>
+        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/SQL/</loc>
+        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/%25E5%25BB%25BA%25E6%25A8%25A1/</loc>
+        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Spring-Cloud/</loc>
+        <lastmod>2020-12-07T07:09:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/Spring/</loc>
+        <lastmod>2020-12-07T07:09:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/NoSQL/</loc>
+        <lastmod>2020-12-07T07:09:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/tags/MongoDB/</loc>
+        <lastmod>2020-12-07T07:09:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.typedefine.cn/tags/MySQL/</loc>
         <lastmod>2020-04-29T14:22:14.000Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -192,14 +255,14 @@
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/tags/JMS/</loc>
+        <loc>http://www.typedefine.cn/tags/Message-Queue-Kafka/</loc>
         <lastmod>2020-02-14T02:30:23.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/tags/Message-Queue-Kafka/</loc>
+        <loc>http://www.typedefine.cn/tags/JMS/</loc>
         <lastmod>2020-02-14T02:30:23.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

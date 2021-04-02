@@ -8,6 +8,48 @@
     </url>
 
     <url>
+        <loc>http://www.typedefine.cn/categories/Maven/DevOps/</loc>
+        <lastmod>2021-03-29T08:50:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/categories/Maven/</loc>
+        <lastmod>2021-03-29T08:50:12.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/categories/SQL/%25E5%25BB%25BA%25E6%25A8%25A1/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593/</loc>
+        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/categories/SQL/%25E5%25BB%25BA%25E6%25A8%25A1/</loc>
+        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/categories/SQL/</loc>
+        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.typedefine.cn/categories/%25E6%259E%25B6%25E6%259E%2584/</loc>
+        <lastmod>2020-12-07T07:09:46.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.typedefine.cn/categories/%25E6%25A1%2586%25E6%259E%25B6/%25E5%25BE%25AE%25E6%259C%258D%25E5%258A%25A1/</loc>
         <lastmod>2020-04-29T14:22:14.000Z</lastmod>
         <changefreq>weekly</changefreq>
