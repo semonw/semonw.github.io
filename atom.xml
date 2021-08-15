@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.typedefine.cn/"/>
-  <updated>2021-03-29T08:50:12.000Z</updated>
+  <updated>2021-07-28T08:17:34.000Z</updated>
   <id>http://www.typedefine.cn/</id>
   
   <author>
@@ -15,6 +15,66 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>如何降低MongoDB的使用内存</title>
+    <link href="http://www.typedefine.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/"/>
+    <id>http://www.typedefine.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/</id>
+    <published>2021-07-28T08:17:34.000Z</published>
+    <updated>2021-07-28T08:17:34.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在我们的系统中部署了很多套MongoDB的集群，但是有的时候会发现MongoDB启动不起来，或者启动之后一会儿MongoDB实例就挂了，也不知道是什么原因。我们按照如下方式进行了排查：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;检查所在宿主OS中MongoDB的存储磁盘空间是否足够&lt;img src=&quot;/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/B7B7DFDD-DF85-41ea-A9B4-3A583BACBA59.png&quot; class=&quot;&quot; title&gt;&lt;/li&gt;
+&lt;li&gt;检查所在宿主OS中的空闲内存是否足够&lt;br&gt;使用命令free -h或者用命令top也可以&lt;/li&gt;
+&lt;li&gt;检查MongoDB的运行日志&lt;img src=&quot;/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/FBB27F6E-B5A1-4e0e-B30C-85FF768FB6BB.png&quot; class=&quot;&quot; title&gt;&lt;/li&gt;
+&lt;li&gt;通过top -p pid命令跟踪进程的内存占用&lt;img src=&quot;/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/598ACA72-0B06-4b76-90B5-C5B395E4677D.png&quot; class=&quot;&quot; title&gt;
+发现进程突然被kill掉。怀疑这时是因为进程的内存增长过快导致&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;[OOM Killer](https://blog.csdn.net/w635614017/article/details/89204253?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)
+&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。
+    
+    </summary>
+    
+    
+      <category term="MongoDB" scheme="http://www.typedefine.cn/categories/MongoDB/"/>
+    
+      <category term="系统分析" scheme="http://www.typedefine.cn/categories/MongoDB/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="MongoDB" scheme="http://www.typedefine.cn/tags/MongoDB/"/>
+    
+      <category term="OOM" scheme="http://www.typedefine.cn/tags/OOM/"/>
+    
+      <category term="systemd" scheme="http://www.typedefine.cn/tags/systemd/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>如何设计一个标签系统？</title>
+    <link href="http://www.typedefine.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/"/>
+    <id>http://www.typedefine.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/</id>
+    <published>2021-07-27T08:27:06.000Z</published>
+    <updated>2021-07-27T08:27:06.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在很多系统中都有打标签的需求，比如图片、书籍、电影、博客、评论等，并且打标签的对象往往是海量数据。这就给系统的设计提出了挑战：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;要求可以根据标签进行分组、过滤、协同查询（比如标签的并集、交集、差集等等）&lt;/li&gt;
+&lt;li&gt;要求查询的效率很高&lt;/li&gt;
+&lt;li&gt;要求整个标签系统的扩展性很强&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="系统设计" scheme="http://www.typedefine.cn/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"/>
+    
+    
+      <category term="标签" scheme="http://www.typedefine.cn/tags/%E6%A0%87%E7%AD%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>Maven配置部署指北</title>
@@ -252,9 +312,9 @@
       <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
     
@@ -310,9 +370,9 @@
       <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
     
@@ -374,9 +434,9 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
@@ -415,9 +475,9 @@
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
-    
       <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+    
+      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
     
       <category term="Data center" scheme="http://www.typedefine.cn/tags/Data-center/"/>
     
@@ -457,9 +517,9 @@
     
       <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
     
-      <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
-    
       <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/tags/Message-Queue-Kafka/"/>
+    
+      <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
     
   </entry>
   

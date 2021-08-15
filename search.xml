@@ -937,11 +937,12 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
 <ul>
 <li>要求可以根据标签进行分组、过滤、协同查询（比如标签的并集、交集、差集等等）</li>
 <li>要求查询的效率很高</li>
-<li>要求整个标签系统的扩展性很强<a id="more"></a>
-<h1 id="如何设计？"><a href="#如何设计？" class="headerlink" title="如何设计？"></a>如何设计？</h1>在Tags: Database schemas<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[Tags: Database schemas](http://howto.philippkeller.com/2005/04/24/Tags-Database-schemas/)
-">[1]</span></a></sup>一文中已经列举出了三种设计方式，并对三种方式做了一些性能测试<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[Tagsystems: performance tests](http://howto.philippkeller.com/2005/06/19/Tagsystems-performance-tests/)
-">[2]</span></a></sup>。</li>
+<li>要求整个标签系统的扩展性很强</li>
 </ul>
+<a id="more"></a>
+<h1 id="如何设计？"><a href="#如何设计？" class="headerlink" title="如何设计？"></a>如何设计？</h1><p>在Tags: Database schemas<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[Tags: Database schemas](http://howto.philippkeller.com/2005/04/24/Tags-Database-schemas/)
+">[1]</span></a></sup>一文中已经列举出了三种设计方式，并对三种方式做了一些性能测试<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[Tagsystems: performance tests](http://howto.philippkeller.com/2005/06/19/Tagsystems-performance-tests/)
+">[2]</span></a></sup>。</p>
 <ol>
 <li>“MySQLicious” solution</li>
 <li>“Scuttle” solution</li>
