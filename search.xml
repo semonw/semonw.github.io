@@ -1017,6 +1017,76 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
       </tags>
   </entry>
   <entry>
+    <title>一家估值1.75 亿美金的公司是如何被一行 Python代码给毁掉的</title>
+    <url>/2021/09/19/digg-python/</url>
+    <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2021/09/19/digg-python/0.jpg" class="" title>
+
+<p>先分享一篇文章，这是我在几年前阅读过的文章，原文在elthain.com网站上。后被网友在v2ex网站上分享。大概的故事是这样的：</p>
+<h1 id="一行代码引发的惨案"><a href="#一行代码引发的惨案" class="headerlink" title="一行代码引发的惨案"></a>一行代码引发的惨案</h1><p>2011 年，Google 推出「 Panda 」机制动摇了很多老的 SEO 手段，digg 流量被腰斩。推出 DiggV4 作战计划。经过紧张的开发发布，不过访客页面没问题，已登录用户打不开 MyNews 页面。开发不得不用临时手段把登录用户的默认页面改成 TopNews。MyNews 只能通过不断重启进程才能短暂修复。初期以为是 cassandra 的缓存击穿了 memcache，后来加紧用 redis 重写了，还是得每4个小时重启一次进程。</p>
+<p>（折腾了一个月之后）</p>
+<a id="more"></a>
+<img src="/2021/09/19/digg-python/1.jpg" class="" title>
+
+<p>API服务是用基于Python的Tornado服务，这样的话，所有的调用都会进入Python的后端服务层，叫Bobtail（前端叫Bobcat）。其中一个调用频率最高的端点是通过用户的名字或者ID来获取用户信息。我们姑且将这个函数定义为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_user_by_ids</span><span class="params">(ids=[])</span></span></span><br></pre></td></tr></table></figure>
+
+<p>由于支持没名字或者ID，所以将函数的参数默认值设置为空的列表。看起来是一件很合理的事情。但是，Python只会在第一次调用函数的时候初始化这个默认参数，后面每一次调用使用的是同一个列表。结果就是，如果你修改了参数中的值，那么这种修改会在所有的调用中传播。</p>
+<blockquote>
+<p>编者按：函数并不是幂等的，两次函数调用之间存在隐晦的状态关联。这样会带来极难以定位的问题。Python的可变默认函数参数就会存在类似的问题。</p>
+</blockquote>
+<p>在这种情况下，每次函数被调用的时候，用户的ID和名字被append盗了这个空的列表。几个小时之后，这些列表每一次的请求都会接收到数十万的用户，这直接导致memcache的缓存被击穿。只所以这个问题难以发现，是因为函数返回的是一个dictionary，这个字典每次都返回了必要的数据，只是包含了很多额外的不需要的数据而已。所以很难以比较显眼的方式呈现出来。</p>
+<p>编者按：当程序出了A问题，但是实际上表现出来的现象可能是B问题。所以在分析问题的时候，不能只盯着B问题，而是要从整体上分析。这个时候，Divide and conquer策略失效了。</p>
+<p>在Fix掉了这个关键的Bug之后，Digg v4终于发布了。</p>
+<p>一个星期以后，最后一任CEO加入。</p>
+<p>一个月以后，第三轮裁员开始。</p>
+<p>一年以后，公司被卖掉了。</p>
+<p>故事到这里就结束了。</p>
+<h1 id="为什么Digg会失败？"><a href="#为什么Digg会失败？" class="headerlink" title="为什么Digg会失败？"></a>为什么Digg会失败？</h1><p>首先，纠正一个数字。Digg的最高估值不是1.6亿美金，而是1.75亿美金。当然这和后来50万就卖掉了形成了强烈的反差。</p>
+<p>应该来说，Digg的失败并不是由于一行Python的代码引起的问题，而是在2007年-2010年外部互联网环境的剧烈变化，以至于Digg没有能力保持用户的粘性和用户数量的增长，以至于在互联网媒体上失去了左右的话语权。</p>
+<p>《卫报》的报道是这样的：</p>
+<blockquote>
+<p>“不久之后，Digg会是第一个因为社交疲倦而失败的网络公司。” Mike Phillips在2010年6月如此写道。“Facebook和Twitter正在增长，LinkedIn逐步稳定，甚至Myspace似乎都找到了落脚点。但是Digg已经消亡了。”</p>
+</blockquote>
+<blockquote>
+<p>“事实上，用户——活生生的人——已经开始感到厌倦。提交、上传、投票、点赞、加个好友，打一下卡，推荐一下、转发一下。有太多的事情可以做。唯一剩下可以分为Digg就是坟墓了。”</p>
+</blockquote>
+<p>另一方面，Digg自身并没有第一手的专业新闻采编团队。只做新闻的聚合的话，就不可能对用户产生长久的价值。相反，你看所有的新闻网站最后都偏向于进行内容的生产。最终决定市场和用户的不是技术本身，而是内容。</p>
+<p>再一个就是版权的问题。澳大利亚2021年2月25日通过了《新闻媒体和数字平台强制性议价法案》。该法案要求谷歌、脸书等数字平台在使用澳大利亚新闻内容时付费。据路透社报道，这项法案旨在使澳大利亚新闻媒体自制的内容获得合理的报酬，并维持和推动澳大利亚新闻行业发展。报道称，“新闻议价法”提供了一个框架，让新闻媒体与数字平台可以进行友好协商，同时双方也可通过“公正和平衡”的仲裁程序来解决重大争端。</p>
+<p>此前，谷歌曾就此法案威胁称要退出澳洲市场。不过欧美的各大巨头对此态度不一。谷歌明确反对，而微软则声称支持，如果谷歌退出，则有意取代谷歌在澳洲提供搜索服务。司马昭之心路人皆知。</p>
+<p>“无论对于新闻还是科技行业，这都是一个重要的时刻”，美国有线电视新闻网24日这样评论称，澳大利亚要求科技公司向出版商支付费用的行动将可能为其他国家未来采取类似行动奠定基础。“多米诺骨牌效应已经开始显现，出版商正在向欧盟施压，要求他们效仿澳大利亚的做法”，评论称，美国一家有超过50家媒体组成的新闻媒体联盟代表表示，这是数字新闻建设拥有可持续未来的一个“转折点”。</p>
+<p>最后，让我们来回顾一下这几点的几个重要互联网媒体公司的时间点：</p>
+<ul>
+<li><p>2005，Reddit由Steve Huffman和Alexis Ohanian创立，是Y Combinator早期最为成功的企业。</p>
+</li>
+<li><p>2005年3月，Dorsey 创立 Twitter。</p>
+</li>
+<li><p>2008年11月，Twitter 信息量突破 10 亿大关。</p>
+</li>
+<li><p>2010年，Digg v4改版失败，用户流向Reddit。</p>
+</li>
+<li><p>2011，微软的MySpace关闭。</p>
+</li>
+<li><p>2012年6月，Digg以50万美金卖给Betaworks。</p>
+</li>
+<li><p>2013年11月，Twitter在纽交所上市。</p>
+</li>
+</ul>
+<p>这就是为什么Digg失败的原因。</p>
+<p>你看出来了吗？</p>
+<p><em>参考：</em></p>
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://lethain.com/digg-v4/" target="_blank" rel="noopener">原始报道</a><a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://moz.com/learn/seo/google-panda" target="_blank" rel="noopener">谷歌Panda算法</a><a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://baijiahao.baidu.com/s?id=1692711612394432686&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">澳通过“新闻议价法”给数字平台立规矩</a><a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.theguardian.com/technology/2012/jul/13/digg-sold-for-500000" target="_blank" rel="noopener">英国卫报报道Digg</a><a href="#fnref:4" rev="footnote"> ↩</a></span></li><li id="fn:5"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">5.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;"><a href="https://www.aph.gov.au/Parliamentary_Business/Bills_Legislation/Bills_Search_Results/Result?bId=r6652" target="_blank" rel="noopener">News Media and Digital Platforms MandatoryBargaining Code</a><a href="#fnref:5" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
+      <categories>
+        <category>商业</category>
+        <category>Python</category>
+        <category>新媒体</category>
+      </categories>
+      <tags>
+        <tag>商业</tag>
+        <tag>Python</tag>
+        <tag>新媒体</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>404</title>
     <url>/404/index.html</url>
     <content><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><script src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js"

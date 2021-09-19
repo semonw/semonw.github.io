@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.typedefine.cn/"/>
-  <updated>2021-07-28T08:17:34.000Z</updated>
+  <updated>2021-09-19T02:33:45.000Z</updated>
   <id>http://www.typedefine.cn/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一家估值1.75 亿美金的公司是如何被一行 Python代码给毁掉的</title>
+    <link href="http://www.typedefine.cn/2021/09/19/digg-python/"/>
+    <id>http://www.typedefine.cn/2021/09/19/digg-python/</id>
+    <published>2021-09-19T02:33:45.000Z</published>
+    <updated>2021-09-19T02:33:45.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2021/09/19/digg-python/0.jpg&quot; class=&quot;&quot; title&gt;
+
+&lt;p&gt;先分享一篇文章，这是我在几年前阅读过的文章，原文在elthain.com网站上。后被网友在v2ex网站上分享。大概的故事是这样的：&lt;/p&gt;
+&lt;h1 id=&quot;一行代码引发的惨案&quot;&gt;&lt;a href=&quot;#一行代码引发的惨案&quot; class=&quot;headerlink&quot; title=&quot;一行代码引发的惨案&quot;&gt;&lt;/a&gt;一行代码引发的惨案&lt;/h1&gt;&lt;p&gt;2011 年，Google 推出「 Panda 」机制动摇了很多老的 SEO 手段，digg 流量被腰斩。推出 DiggV4 作战计划。经过紧张的开发发布，不过访客页面没问题，已登录用户打不开 MyNews 页面。开发不得不用临时手段把登录用户的默认页面改成 TopNews。MyNews 只能通过不断重启进程才能短暂修复。初期以为是 cassandra 的缓存击穿了 memcache，后来加紧用 redis 重写了，还是得每4个小时重启一次进程。&lt;/p&gt;
+&lt;p&gt;（折腾了一个月之后）&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="商业" scheme="http://www.typedefine.cn/categories/%E5%95%86%E4%B8%9A/"/>
+    
+      <category term="Python" scheme="http://www.typedefine.cn/categories/%E5%95%86%E4%B8%9A/Python/"/>
+    
+      <category term="新媒体" scheme="http://www.typedefine.cn/categories/%E5%95%86%E4%B8%9A/Python/%E6%96%B0%E5%AA%92%E4%BD%93/"/>
+    
+    
+      <category term="商业" scheme="http://www.typedefine.cn/tags/%E5%95%86%E4%B8%9A/"/>
+    
+      <category term="Python" scheme="http://www.typedefine.cn/tags/Python/"/>
+    
+      <category term="新媒体" scheme="http://www.typedefine.cn/tags/%E6%96%B0%E5%AA%92%E4%BD%93/"/>
+    
+  </entry>
   
   <entry>
     <title>如何降低MongoDB的使用内存</title>
@@ -671,30 +704,6 @@
       <category term="protocol" scheme="http://www.typedefine.cn/tags/protocol/"/>
     
       <category term="buffer" scheme="http://www.typedefine.cn/tags/buffer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>不同linux发行版软件安装工具</title>
-    <link href="http://www.typedefine.cn/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/"/>
-    <id>http://www.typedefine.cn/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/</id>
-    <published>2020-02-09T08:40:41.000Z</published>
-    <updated>2020-02-09T08:40:41.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;RPM&quot;&gt;&lt;a href=&quot;#RPM&quot; class=&quot;headerlink&quot; title=&quot;RPM&quot;&gt;&lt;/a&gt;RPM&lt;/h3&gt;&lt;p&gt;RPM是Red-Hat Package Manager（RPM软件包管理器）的缩写，这一文件格式名称虽然打上了RedHat的标志&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;Redhat guide: https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/5/html/deployment_guide/
-&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，但是其原始设计理念是开放式的，现在包括OpenLinux、S.u.S.E.以及Turbo Linux等Linux的分发版本都有采用，可以算是公认的行业标准了。&lt;/p&gt;
-&lt;h3 id=&quot;apt-get&quot;&gt;&lt;a href=&quot;#apt-get&quot; class=&quot;headerlink&quot; title=&quot;apt-get&quot;&gt;&lt;/a&gt;apt-get&lt;/h3&gt;&lt;p&gt;apt-get&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;RPM使用参考：https://www.cnblogs.com/xiaochaohuashengmi/archive/2011/10/08/2203153.html
-&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，是一条linux命令，适用于deb包管理式的操作系统，主要用于自动从互联网的软件仓库中搜索、安装、升级、卸载软件或操作系统。主要适用于Debian、Ubuntu的系统。 &lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Linux" scheme="http://www.typedefine.cn/categories/Linux/"/>
-    
-    
-      <category term="Linux" scheme="http://www.typedefine.cn/tags/Linux/"/>
     
   </entry>
   
