@@ -2,42 +2,42 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://www.typedefine.cn</loc>
+        <loc>http://www.jinnotes.cn</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
     
     <url>
-        <loc>http://www.typedefine.cn/about/</loc>
-        <lastmod>2020-02-09T15:08:04.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/about/</loc>
+        <lastmod>2026-07-06T04:06:36.546Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>http://www.typedefine.cn/schedule/</loc>
-        <lastmod>2020-02-09T10:56:17.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/tags/</loc>
+        <lastmod>2026-07-05T09:28:57.788Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>http://www.typedefine.cn/categories/</loc>
-        <lastmod>2020-02-09T09:02:19.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/schedule/</loc>
+        <lastmod>2026-07-05T09:28:57.787Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>http://www.typedefine.cn/tags/</loc>
-        <lastmod>2020-02-09T09:00:31.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/</loc>
+        <lastmod>2026-07-05T09:28:57.784Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
-        <loc>http://www.typedefine.cn/404/</loc>
-        <lastmod>1969-12-31T16:00:00.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/404/</loc>
+        <lastmod>2026-07-05T09:28:57.675Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

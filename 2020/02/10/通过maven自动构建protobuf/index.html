@@ -2,10 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -16,106 +15,76 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.typedefine.cn","root":"/","scheme":"Pisces","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":true,"preload":true}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-  <meta name="description" content="通过maven自动化构建protocal buffer当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代">
+    <meta name="description" content="通过maven自动化构建protocal buffer当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过maven自动化构建protobuf class代码">
-<meta property="og:url" content="http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/index.html">
-<meta property="og:site_name" content="探索数据之美">
+<meta property="og:url" content="http://www.jinnotes.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
 <meta property="og:description" content="通过maven自动化构建protocal buffer当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-10T05:30:03.000Z">
-<meta property="article:modified_time" content="2020-02-10T05:30:03.000Z">
+<meta property="article:modified_time" content="2026-07-05T09:28:57.679Z">
 <meta property="article:author" content="山野@成都">
-<meta property="article:tag" content="protobuf">
+<meta property="article:tag" content="buffer">
 <meta property="article:tag" content="maven">
-<meta property="article:tag" content="maven plugins">
+<meta property="article:tag" content="protocol">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/">
+<link rel="canonical" href="http://www.jinnotes.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/">
 
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/","path":"2020/02/10/通过maven自动构建protobuf/","title":"通过maven自动化构建protobuf class代码"}</script>
 
-  <title>通过maven自动化构建protobuf class代码 | 探索数据之美</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>通过maven自动化构建protobuf class代码 | AI观察与大数据</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158079573-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-158079573-1');
-      }
-    </script>
 
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
 
 
 
 
 
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="探索数据之美" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -126,14 +95,14 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">探索数据之美</h1>
+      <p class="site-title">AI观察与大数据</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -142,42 +111,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -189,37 +123,30 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
@@ -234,78 +161,49 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过maven自动化构建protocal-buffer"><span class="nav-number">1.</span> <span class="nav-text">通过maven自动化构建protocal buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第1种方式：使用protobuf-maven-plugin"><span class="nav-number">2.</span> <span class="nav-text">第1种方式：使用protobuf-maven-plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置插件protobuf-maven-plugin"><span class="nav-number">2.1.</span> <span class="nav-text">配置插件protobuf-maven-plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进一步改进maven配置"><span class="nav-number">2.2.</span> <span class="nav-text">进一步改进maven配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第2种方式通过antrun插件来完成"><span class="nav-number">3.</span> <span class="nav-text">第2种方式通过antrun插件来完成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前置条件："><span class="nav-number">3.1.</span> <span class="nav-text">前置条件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置依赖的Protocol-Buffer-API"><span class="nav-number">3.2.</span> <span class="nav-text">配置依赖的Protocol Buffer API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查操作系统类型，并生成相应的工程属性Properties"><span class="nav-number">3.3.</span> <span class="nav-text">检查操作系统类型，并生成相应的工程属性Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动下载平台相关的编译器"><span class="nav-number">3.4.</span> <span class="nav-text">自动下载平台相关的编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用protoc生成相关的Java代码。"><span class="nav-number">3.5.</span> <span class="nav-text">调用protoc生成相关的Java代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将Java代码添加到包中"><span class="nav-number">3.6.</span> <span class="nav-text">将Java代码添加到包中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对Protocol-Buffer包进行shading"><span class="nav-number">3.7.</span> <span class="nav-text">对Protocol Buffer包进行shading</span></a></li></ol></li></ol></div>
-        </section>
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BAprotocal-buffer"><span class="nav-number">1.</span> <span class="nav-text">通过maven自动化构建protocal buffer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC1%E7%A7%8D%E6%96%B9%E5%BC%8F%EF%BC%9A%E4%BD%BF%E7%94%A8protobuf-maven-plugin"><span class="nav-number">2.</span> <span class="nav-text">第1种方式：使用protobuf-maven-plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%8F%92%E4%BB%B6protobuf-maven-plugin"><span class="nav-number">2.1.</span> <span class="nav-text">配置插件protobuf-maven-plugin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9B%E4%B8%80%E6%AD%A5%E6%94%B9%E8%BF%9Bmaven%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">进一步改进maven配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC2%E7%A7%8D%E6%96%B9%E5%BC%8F%E9%80%9A%E8%BF%87antrun%E6%8F%92%E4%BB%B6%E6%9D%A5%E5%AE%8C%E6%88%90"><span class="nav-number">3.</span> <span class="nav-text">第2种方式通过antrun插件来完成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6%EF%BC%9A"><span class="nav-number">3.1.</span> <span class="nav-text">前置条件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E4%BE%9D%E8%B5%96%E7%9A%84Protocol-Buffer-API"><span class="nav-number">3.2.</span> <span class="nav-text">配置依赖的Protocol Buffer API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A3%80%E6%9F%A5%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%B1%BB%E5%9E%8B%EF%BC%8C%E5%B9%B6%E7%94%9F%E6%88%90%E7%9B%B8%E5%BA%94%E7%9A%84%E5%B7%A5%E7%A8%8B%E5%B1%9E%E6%80%A7Properties"><span class="nav-number">3.3.</span> <span class="nav-text">检查操作系统类型，并生成相应的工程属性Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E4%B8%8B%E8%BD%BD%E5%B9%B3%E5%8F%B0%E7%9B%B8%E5%85%B3%E7%9A%84%E7%BC%96%E8%AF%91%E5%99%A8"><span class="nav-number">3.4.</span> <span class="nav-text">自动下载平台相关的编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B0%83%E7%94%A8protoc%E7%94%9F%E6%88%90%E7%9B%B8%E5%85%B3%E7%9A%84Java%E4%BB%A3%E7%A0%81%E3%80%82"><span class="nav-number">3.5.</span> <span class="nav-text">调用protoc生成相关的Java代码。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86Java%E4%BB%A3%E7%A0%81%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%8C%85%E4%B8%AD"><span class="nav-number">3.6.</span> <span class="nav-text">将Java代码添加到包中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9Protocol-Buffer%E5%8C%85%E8%BF%9B%E8%A1%8Cshading"><span class="nav-number">3.7.</span> <span class="nav-text">对Protocol Buffer包进行shading</span></a></li></ol></li></ol></div>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">山野@成都</p>
-  <div class="site-description" itemprop="description">写关于数据的故事！</div>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+        <a href="/archives/">
           <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
+          <a href="/categories/">
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
+          <a href="/tags/">
         <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license site-overview-item animated" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
-
-
-        </section>
+        </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
+  </aside>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    </div>
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -315,16 +213,21 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="通过maven自动化构建protobuf class代码 | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -343,6 +246,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -356,21 +266,13 @@
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8.5k</span>
+      <span>8.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -387,12 +289,11 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="通过maven自动化构建protocal-buffer"><a href="#通过maven自动化构建protocal-buffer" class="headerlink" title="通过maven自动化构建protocal buffer"></a>通过maven自动化构建protocal buffer</h2><p>当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。<br>从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代码，并打包成相应的jar包，集成到工程发布包中。<br>这里有2种方式，如下。</p>
-<a id="more"></a>
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="通过maven自动化构建protocal-buffer"><a href="#通过maven自动化构建protocal-buffer" class="headerlink" title="通过maven自动化构建protocal buffer"></a>通过maven自动化构建protocal buffer</h2><p>当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。<br>从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代码，并打包成相应的jar包，集成到工程发布包中。<br>这里有2种方式，如下。</p>
+<span id="more"></span>
 
 <h2 id="第1种方式：使用protobuf-maven-plugin"><a href="#第1种方式：使用protobuf-maven-plugin" class="headerlink" title="第1种方式：使用protobuf-maven-plugin"></a>第1种方式：使用protobuf-maven-plugin</h2><h3 id="配置插件protobuf-maven-plugin"><a href="#配置插件protobuf-maven-plugin" class="headerlink" title="配置插件protobuf-maven-plugin"></a>配置插件protobuf-maven-plugin</h3><p>先从官网<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="下载protoc: https://developers.google.com/protocol-buffers/docs/downloads
-">[2]</span></a></sup>上将protobuf的工具包下载下来，然后拷贝到工程目录下，配置POM文件如下, 通过相对路径引用protoc.exe文件。<br>.protow文件默认的路径在src/main/proto文件中。下面所有的子目录都会被当成包结构。</p>
+">[2]</span></a></sup>上将protobuf的工具包下载下来，然后拷贝到工程目录下，配置POM文件如下, 通过相对路径引用protoc.exe文件。<br>.protow文件默认的路径在src&#x2F;main&#x2F;proto文件中。下面所有的子目录都会被当成包结构。</p>
 <p>protobuf-maven-plugin<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="插件使用：https://www.xolstice.org/protobuf-maven-plugin/plugin-info.html
 ">[1]</span></a></sup>的maven配置如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.xolstice.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>protobuf-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">checkStaleness</span>&gt;</span>false<span class="tag">&lt;/<span class="name">checkStaleness</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">staleMillis</span>&gt;</span>10000<span class="tag">&lt;/<span class="name">staleMillis</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">protocExecutable</span>&gt;</span>$&#123;basedir&#125;\..\protobuf\bin\protoc.exe<span class="tag">&lt;/<span class="name">protocExecutable</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">useArgumentFile</span>&gt;</span>true<span class="tag">&lt;/<span class="name">useArgumentFile</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>test-compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -421,7 +322,7 @@
 
 
 
-<h3 id="调用protoc生成相关的Java代码。"><a href="#调用protoc生成相关的Java代码。" class="headerlink" title="调用protoc生成相关的Java代码。"></a>调用protoc生成相关的Java代码。</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- compile proto buffer files using copied protoc binary --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-antrun-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;maven-antrun-plugin.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>exec-protoc<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"protoc.filename"</span> <span class="attr">value</span>=<span class="string">"protoc-$&#123;protobuf.version&#125;-$&#123;os.detected.classifier&#125;.exe"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"protoc.filepath"</span> <span class="attr">value</span>=<span class="string">"$&#123;project.build.directory&#125;/$&#123;protoc.filename&#125;"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">chmod</span> <span class="attr">file</span>=<span class="string">"$&#123;protoc.filepath&#125;"</span> <span class="attr">perm</span>=<span class="string">"ugo+rx"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">"$&#123;protobuf.output.directory&#125;"</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">path</span> <span class="attr">id</span>=<span class="string">"protobuf.input.filepaths.path"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">"$&#123;protobuf.input.directory&#125;"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"**/*.proto"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">pathconvert</span> <span class="attr">pathsep</span>=<span class="string">" "</span> <span class="attr">property</span>=<span class="string">"protobuf.input.filepaths"</span> <span class="attr">refid</span>=<span class="string">"protobuf.input.filepaths.path"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">exec</span> <span class="attr">executable</span>=<span class="string">"$&#123;protoc.filepath&#125;"</span> <span class="attr">failonerror</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">"-I"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">"$&#123;protobuf.input.directory&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">"--java_out"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">"$&#123;protobuf.output.directory&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">line</span>=<span class="string">"$&#123;protobuf.input.filepaths&#125;"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">exec</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="调用protoc生成相关的Java代码。"><a href="#调用protoc生成相关的Java代码。" class="headerlink" title="调用protoc生成相关的Java代码。"></a>调用protoc生成相关的Java代码。</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- compile proto buffer files using copied protoc binary --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-antrun-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;maven-antrun-plugin.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>exec-protoc<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;protoc.filename&quot;</span> <span class="attr">value</span>=<span class="string">&quot;protoc-$&#123;protobuf.version&#125;-$&#123;os.detected.classifier&#125;.exe&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;protoc.filepath&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;project.build.directory&#125;/$&#123;protoc.filename&#125;&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">chmod</span> <span class="attr">file</span>=<span class="string">&quot;$&#123;protoc.filepath&#125;&quot;</span> <span class="attr">perm</span>=<span class="string">&quot;ugo+rx&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">&quot;$&#123;protobuf.output.directory&#125;&quot;</span> /&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">path</span> <span class="attr">id</span>=<span class="string">&quot;protobuf.input.filepaths.path&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">dir</span>=<span class="string">&quot;$&#123;protobuf.input.directory&#125;&quot;</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">&quot;**/*.proto&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">path</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">pathconvert</span> <span class="attr">pathsep</span>=<span class="string">&quot; &quot;</span> <span class="attr">property</span>=<span class="string">&quot;protobuf.input.filepaths&quot;</span> <span class="attr">refid</span>=<span class="string">&quot;protobuf.input.filepaths.path&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">exec</span> <span class="attr">executable</span>=<span class="string">&quot;$&#123;protoc.filepath&#125;&quot;</span> <span class="attr">failonerror</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">&quot;-I&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;protobuf.input.directory&#125;&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">&quot;--java_out&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;protobuf.output.directory&#125;&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">line</span>=<span class="string">&quot;$&#123;protobuf.input.filepaths&#125;&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">exec</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 <h3 id="将Java代码添加到包中"><a href="#将Java代码添加到包中" class="headerlink" title="将Java代码添加到包中"></a>将Java代码添加到包中</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- add generated proto buffer classes into the package --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.mojo<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>build-helper-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;build-helper-maven-plugin.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>add-classes<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>add-source<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">sources</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">source</span>&gt;</span>$&#123;protobuf.output.directory&#125;<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">sources</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -437,19 +338,11 @@
     
     
     
-      
-  <div class="popular-posts-header">相关文章</div>
-  <ul class="popular-posts">
-    <li class="popular-posts-item">
-      <div class="popular-posts-title"><a href="\2020\02\10\maven构建的一些小技巧\" rel="bookmark">maven构建的一些小技巧</a></div>
-    </li>
-  </ul>
-
 
     <footer class="post-footer">
           <div class="reward-container">
-  <div>一杯咖啡吸收宇宙能量!</div>
-  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+  <div>请我一杯咖啡吧！</div>
+  <button>
     赞赏
   </button>
   <div class="post-reward">
@@ -461,54 +354,10 @@
   </div>
 </div>
 
-          
-
-<div class="post-copyright">
-<ul>
-  <li class="post-copyright-author">
-      <strong>本文作者： </strong>山野@成都
-  </li>
-  <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/" title="通过maven自动化构建protobuf class代码">http://www.typedefine.cn/2020/02/10/通过maven自动构建protobuf/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-          <div class="followme">
-  <span>欢迎关注我的其它发布渠道</span>
-
-  <div class="social-list">
-
-      <div class="social-item">
-        <a target="_blank" class="social-link" href="/images/qrcode_for_gh_e7834ce9fdca_344.jpg">
-          <span class="icon">
-            <i class="wechat"></i>
-          </span>
-
-          <span class="label">微信公众号</span>
-        </a>
-      </div>
-
-      <div class="social-item">
-        <a target="_blank" class="social-link" href="/atom.xml">
-          <span class="icon">
-            <i class="rss"></i>
-          </span>
-
-          <span class="label">RSS</span>
-        </a>
-      </div>
-  </div>
-</div>
-
           <div class="post-tags">
-              <a href="/tags/maven/" rel="tag"><i class="fa fa-tag"></i> maven</a>
-              <a href="/tags/protocol/" rel="tag"><i class="fa fa-tag"></i> protocol</a>
-              <a href="/tags/buffer/" rel="tag"><i class="fa fa-tag"></i> buffer</a>
+              <a href="/tags/maven/" rel="tag"># maven</a>
+              <a href="/tags/protocol/" rel="tag"># protocol</a>
+              <a href="/tags/buffer/" rel="tag"># buffer</a>
           </div>
 
         
@@ -516,12 +365,12 @@
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2020/02/09/%E4%B8%8D%E5%90%8Clinux%E5%8F%91%E8%A1%8C%E7%89%88%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B7%A5%E5%85%B7/" rel="prev" title="不同linux发行版软件安装工具">
-                  <i class="fa fa-chevron-left"></i> 不同linux发行版软件安装工具
+                  <i class="fa fa-angle-left"></i> 不同linux发行版软件安装工具
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/" rel="next" title="maven构建的一些小技巧">
-                  maven构建的一些小技巧 <i class="fa fa-chevron-right"></i>
+                  maven构建的一些小技巧 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -534,129 +383,55 @@
 
 
 
-      
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
-  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">蜀ICP备2021032086号-1 </a>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野@成都</span>
   </div>
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">山野@成都</span>
-</div>
 <div class="wordcount">
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">84k</span>
+    <span title="站点总字数">85k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:16</span>
+    <span title="站点阅读时长">1:17</span>
   </span>
 </div>
-<div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1278608574&web_id=1278608574"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
-
-
-
-
-
-  
-
-  
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 </body>
 </html>

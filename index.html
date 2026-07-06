@@ -2,10 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -16,105 +15,72 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.typedefine.cn","root":"/","scheme":"Pisces","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":true,"preload":true}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-  <meta name="description" content="写关于数据的故事！">
+    <meta name="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="探索数据之美">
-<meta property="og:url" content="http://www.typedefine.cn/index.html">
-<meta property="og:site_name" content="探索数据之美">
-<meta property="og:description" content="写关于数据的故事！">
+<meta property="og:title" content="AI观察与大数据">
+<meta property="og:url" content="http://www.jinnotes.cn/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
+<meta property="og:description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="山野@成都">
-<meta property="article:tag" content="大数据">
-<meta property="article:tag" content="spark">
-<meta property="article:tag" content="data mining">
-<meta property="article:tag" content="gis">
+<meta property="article:tag" content="Big Data,大数据,Agent Engineering,Loop Engineering,Architecture,spark,RDD,Data Platform,Data Mining,Cesium,GIS">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://www.typedefine.cn/">
+<link rel="canonical" href="http://www.jinnotes.cn/">
 
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : true,
-    isPost : false,
-    lang   : 'zh-CN'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
 
-  <title>探索数据之美</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>AI观察与大数据</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158079573-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-158079573-1');
-      }
-    </script>
 
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
 
 
 
 
 
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="探索数据之美" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -125,14 +91,14 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">探索数据之美</h1>
+      <h1 class="site-title">AI观察与大数据</h1>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -141,42 +107,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -188,37 +119,30 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-overview-active">
@@ -233,77 +157,48 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
-        </section>
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">山野@成都</p>
-  <div class="site-description" itemprop="description">写关于数据的故事！</div>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+        <a href="/archives/">
           <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
+          <a href="/categories/">
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
+          <a href="/tags/">
         <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license site-overview-item animated" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
-
-
-        </section>
+        </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
+  </aside>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    </div>
 
     <div class="main-inner index posts-expand">
-      
 
-      
     
 
 
@@ -311,22 +206,26 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2021/09/19/digg-python/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2021/09/19/digg-python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/19/digg-python/" class="post-title-link" itemprop="url">一家估值1.75 亿美金的公司是如何被一行 Python代码给毁掉的</a>
+          <a href="/2021/09/19/digg-python/" class="post-title-link" itemprop="url">一家估值1.75 亿美金的公司是如何被一行 Python代码给毁掉的</a>
         </h2>
 
         <div class="post-meta-container">
@@ -338,6 +237,13 @@
       <span class="post-meta-item-text">发表于</span>
 
       <time title="创建时间：2021-09-19 10:33:45" itemprop="dateCreated datePublished" datetime="2021-09-19T10:33:45+08:00">2021-09-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -358,8 +264,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -420,22 +325,26 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/" class="post-title-link" itemprop="url">如何降低MongoDB的使用内存</a>
+          <a href="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/" class="post-title-link" itemprop="url">如何降低MongoDB的使用内存</a>
         </h2>
 
         <div class="post-meta-container">
@@ -447,6 +356,13 @@
       <span class="post-meta-item-text">发表于</span>
 
       <time title="创建时间：2021-07-28 16:17:34" itemprop="dateCreated datePublished" datetime="2021-07-28T16:17:34+08:00">2021-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -463,14 +379,13 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.2k</span>
+      <span>2.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -495,7 +410,8 @@
 <li>检查MongoDB的运行日志<img src="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/FBB27F6E-B5A1-4e0e-B30C-85FF768FB6BB.png" class="" title></li>
 <li>通过top -p pid命令跟踪进程的内存占用<img src="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/598ACA72-0B06-4b76-90B5-C5B395E4677D.png" class="" title>
 发现进程突然被kill掉。怀疑这时是因为进程的内存增长过快导致<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[OOM Killer](https://blog.csdn.net/w635614017/article/details/89204253?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)
-">[2]</span></a></sup>。
+">[2]</span></a></sup>。</li>
+</ol>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/#more" rel="contents">
@@ -528,22 +444,26 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/" class="post-title-link" itemprop="url">如何设计一个标签系统？</a>
+          <a href="/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/" class="post-title-link" itemprop="url">如何设计一个标签系统？</a>
         </h2>
 
         <div class="post-meta-container">
@@ -558,6 +478,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -567,8 +494,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -630,128 +556,26 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/" class="post-title-link" itemprop="url">Maven配置部署指北</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-03-29 16:50:12" itemprop="dateCreated datePublished" datetime="2021-03-29T16:50:12+08:00">2021-03-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Maven/" itemprop="url" rel="index"><span itemprop="name">Maven</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Maven/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
-        </span>
-    </span>
-
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4.8k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Snapshots和release仓库"><a href="#Snapshots和release仓库" class="headerlink" title="Snapshots和release仓库"></a>Snapshots和release仓库</h1><h2 id="二者区别是什么"><a href="#二者区别是什么" class="headerlink" title="二者区别是什么"></a>二者区别是什么</h2><p>Snapshot<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[Maven快照](https://www.runoob.com/maven/maven-snapshots.html)
-">[2]</span></a></sup>，快照，是一种特殊的版本，指定了某个当前的开发进度的副本。不同于常规的版本，Maven 每次构建都会在远程仓库中检查新的快照。比如发布了一个app-1.0-SNAPSHOT版本，那么maven构件的时候，每次都会去仓库检查是否有最新的版本已经被发布。如果有，则替换。如果是release仓库，那么除非版本升级，否则maven构件的时候不会去检查最新的jar包，即便是在nexus仓库中已经更新了。</p>
-<p>maven中的仓库分为两种<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[maven快照版本和发布版本](https://www.cnblogs.com/wuchanming/p/5484091.html)
-">[3]</span></a></sup>，snapshot快照仓库和release发布仓库。snapshot快照仓库用于保存开发过程中的不稳定版本，release正式仓库则是用来保存稳定的发行版本。</p>
-<p>定义一个组件/模块为快照版本，只需要在pom文件中在该模块的版本号后加上-SNAPSHOT即可(注意这里必须是大写)，如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.schdri<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bimgis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>3.10.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">organization</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>pig4cloud<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://www.pig4cloud.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">SQL建模规范</a>
+          <a href="/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">SQL建模规范</a>
         </h2>
 
         <div class="post-meta-container">
@@ -763,6 +587,13 @@
       <span class="post-meta-item-text">发表于</span>
 
       <time title="创建时间：2021-03-29 09:39:50" itemprop="dateCreated datePublished" datetime="2021-03-29T09:39:50+08:00">2021-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -783,14 +614,13 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.3k</span>
+      <span>6.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -818,12 +648,13 @@
 </ul>
 </li>
 <li><p>update_time、create_time<br>使用timestamp或者datetime作为时间类型的首选。Mybatis-Plus框架生成的相应Java类型都是LocalDateTime。大部分场景下2种类型可以互相替换，不过在时间范围和时区支持上有差异。<br>使用MySQL的自动初始化和自动更新功能。 字段变化之后，update_time数据库自动更新，如下：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP <span class="keyword">COMMENT</span> <span class="string">'创建时间'</span>,</span><br><span class="line">create_by <span class="built_in">varchar</span>(<span class="number">36</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'创建人'</span>,</span><br><span class="line">update_at <span class="built_in">timestamp</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="keyword">CURRENT_TIMESTAMP</span> <span class="keyword">COMMENT</span> <span class="string">'更新时间'</span>,</span><br><span class="line">update_by <span class="built_in">varchar</span>(<span class="number">36</span>) <span class="keyword">DEFAULT</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> <span class="string">'更新人'</span>,</span><br></pre></td></tr></table></figure>  
 </li>
-<li><p>布尔型字段使用tinyint(1)即可。</p>
-</li>
-<li><p>参考《阿里巴巴Java开发手册(华山版).pdf》。</p>
-</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create_at <span class="type">timestamp</span> <span class="keyword">NOT NULL</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> COMMENT <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">create_by <span class="type">varchar</span>(<span class="number">36</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建人&#x27;</span>,</span><br><span class="line">update_at <span class="type">timestamp</span> <span class="keyword">NOT NULL</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="built_in">CURRENT_TIMESTAMP</span> COMMENT <span class="string">&#x27;更新时间&#x27;</span>,</span><br><span class="line">update_by <span class="type">varchar</span>(<span class="number">36</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;更新人&#x27;</span>,</span><br></pre></td></tr></table></figure>  
+
+<ol start="4">
+<li>布尔型字段使用tinyint(1)即可。</li>
+<li>参考《阿里巴巴Java开发手册(华山版).pdf》。</li>
 </ol>
 <h1 id="雪花算法实现"><a href="#雪花算法实现" class="headerlink" title="雪花算法实现"></a>雪花算法实现</h1>
           <!--noindex-->
@@ -858,22 +689,142 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/" class="post-title-link" itemprop="url">Spring Cloud支持MongoDB</a>
+          <a href="/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/" class="post-title-link" itemprop="url">Maven配置部署指北</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-29 16:50:12" itemprop="dateCreated datePublished" datetime="2021-03-29T16:50:12+08:00">2021-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Maven/" itemprop="url" rel="index"><span itemprop="name">Maven</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Maven/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Snapshots和release仓库"><a href="#Snapshots和release仓库" class="headerlink" title="Snapshots和release仓库"></a>Snapshots和release仓库</h1><h2 id="二者区别是什么"><a href="#二者区别是什么" class="headerlink" title="二者区别是什么"></a>二者区别是什么</h2><p>Snapshot<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[Maven快照](https://www.runoob.com/maven/maven-snapshots.html)
+">[2]</span></a></sup>，快照，是一种特殊的版本，指定了某个当前的开发进度的副本。不同于常规的版本，Maven 每次构建都会在远程仓库中检查新的快照。比如发布了一个app-1.0-SNAPSHOT版本，那么maven构件的时候，每次都会去仓库检查是否有最新的版本已经被发布。如果有，则替换。如果是release仓库，那么除非版本升级，否则maven构件的时候不会去检查最新的jar包，即便是在nexus仓库中已经更新了。</p>
+<p>maven中的仓库分为两种<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[maven快照版本和发布版本](https://www.cnblogs.com/wuchanming/p/5484091.html)
+">[3]</span></a></sup>，snapshot快照仓库和release发布仓库。snapshot快照仓库用于保存开发过程中的不稳定版本，release正式仓库则是用来保存稳定的发行版本。</p>
+<p>定义一个组件&#x2F;模块为快照版本，只需要在pom文件中在该模块的版本号后加上-SNAPSHOT即可(注意这里必须是大写)，如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.schdri<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>bimgis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>3.10.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">name</span>&gt;</span>$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">packaging</span>&gt;</span>pom<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">organization</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>pig4cloud<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://www.pig4cloud.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">organization</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/" class="post-title-link" itemprop="url">Spring Cloud支持MongoDB</a>
         </h2>
 
         <div class="post-meta-container">
@@ -888,6 +839,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -897,8 +855,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -924,7 +881,7 @@
     <div class="post-body" itemprop="articleBody">
           <p>MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用mongoose的ORM框架结合到express框架，生产力会提高一大截。</p>
 <p>稍显不足的是，MongoDB对于中文索引支持的力度不够，对于某些要求强事务的领域应用（比如金融、财务等）略显不足，至少还没有看到有成熟应用的案例。如果有，请告诉我。另外一个就是，在搭建MongoDB集群的时候，相对来说是比较复杂的。水平扩展虽然很简单，但是做Sharding的时候也需要仔细的考量。</p>
-<p>本文简单介绍一下如何在Spring Boot/Spring Cloud程序中使用MongoDB数据库。</p>
+<p>本文简单介绍一下如何在Spring Boot&#x2F;Spring Cloud程序中使用MongoDB数据库。</p>
 <h1 id="Java-Config"><a href="#Java-Config" class="headerlink" title="Java Config"></a>Java Config</h1><p>第一种方式就是采用Java Config的方式，直接上代码，如下：</p>
           <!--noindex-->
             <div class="post-button">
@@ -958,22 +915,26 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/" class="post-title-link" itemprop="url">MongoDB建模的简单原则</a>
+          <a href="/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/" class="post-title-link" itemprop="url">MongoDB建模的简单原则</a>
         </h2>
 
         <div class="post-meta-container">
@@ -988,6 +949,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -997,8 +965,7 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -1042,7 +1009,7 @@
 <li><p>稀疏索引，如果某字段对于大部分数据都可能不存在，或者为null， 要指定该索引为稀疏索引</p>
 </li>
 </ol>
-<h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><p><a href="https://docs.mongodb.com/manual/core/document/" target="_blank" rel="noopener">https://docs.mongodb.com/manual/core/document/</a></p>
+<h1 id="参考文档："><a href="#参考文档：" class="headerlink" title="参考文档："></a>参考文档：</h1><p><a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/core/document/">https://docs.mongodb.com/manual/core/document/</a></p>
 
       
     </div>
@@ -1068,22 +1035,26 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Nacos不支持MYSQL 8的问题</a>
+          <a href="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Nacos不支持MYSQL 8的问题</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1095,6 +1066,13 @@
       <span class="post-meta-item-text">发表于</span>
 
       <time title="创建时间：2020-04-29 22:22:14" itemprop="dateCreated datePublished" datetime="2020-04-29T22:22:14+08:00">2020-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1111,14 +1089,13 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>385</span>
+      <span>395</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1142,7 +1119,7 @@
 <h2 id="1-下载对应版本的connector"><a href="#1-下载对应版本的connector" class="headerlink" title="1. 下载对应版本的connector"></a>1. 下载对应版本的connector</h2><p>比如mysql-connector-java-8.0.17.jar<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://downloads.mysql.com/archives/c-j/">[2]</span></a></sup>。注意这里加载的jar包对应的版本必须要和MySQL版本完全一致。否则可能出现报错。</p>
 <img src="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/image2020-4-29_22-12-27.png" class="" title="download_mysql_connector">
 
-<h2 id="2-配置nacos的mysql插件"><a href="#2-配置nacos的mysql插件" class="headerlink" title="2. 配置nacos的mysql插件"></a>2. 配置nacos的mysql插件</h2><p>在nacos目录下新建 plugins/mysql/mysql-connector-java-8.0.17.jar</p>
+<h2 id="2-配置nacos的mysql插件"><a href="#2-配置nacos的mysql插件" class="headerlink" title="2. 配置nacos的mysql插件"></a>2. 配置nacos的mysql插件</h2><p>在nacos目录下新建 plugins&#x2F;mysql&#x2F;mysql-connector-java-8.0.17.jar</p>
 <img src="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/image2020-4-29_19-34-11.png" class="" title="console_nacos">
 
 <h2 id="3-配置连接数据库，然后启动nacos"><a href="#3-配置连接数据库，然后启动nacos" class="headerlink" title="3. 配置连接数据库，然后启动nacos"></a>3. 配置连接数据库，然后启动nacos</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://github.com/alibaba/nacos/issues/2042<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://downloads.mysql.com/archives/c-j/<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
@@ -1170,22 +1147,26 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/" class="post-title-link" itemprop="url">快车道系列：理解文档对象模型DOM</a>
+          <a href="/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/" class="post-title-link" itemprop="url">快车道系列：理解文档对象模型DOM</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1200,6 +1181,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -1209,14 +1197,13 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.6k</span>
+      <span>2.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1270,22 +1257,26 @@
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">Kafka调研（3）：多点通信方案的设计-2</a>
+          <a href="/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">Kafka调研（3）：多点通信方案的设计-2</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1297,6 +1288,13 @@
       <span class="post-meta-item-text">发表于</span>
 
       <time title="创建时间：2020-03-13 14:46:04" itemprop="dateCreated datePublished" datetime="2020-03-13T14:46:04+08:00">2020-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1313,14 +1311,13 @@
     </span>
 
   
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.6k</span>
+      <span>5.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1347,7 +1344,7 @@
 <li>对每一个topic按照应用进行配置读写权限。</li>
 <li>对每一个接入的应用分配一个唯一的秘钥（该秘钥通过安全方式传递）。</li>
 </ul>
-<p><strong><em>2. 同时我们在应用包装一层API进行消息分派机制</em></strong></p>
+<p><em><strong>2. 同时我们在应用包装一层API进行消息分派机制</strong></em></p>
 <ul>
 <li>应用层的消息需要进行加密。</li>
 <li>应用层需要校验消息的来源和完整性。</li>
@@ -1379,137 +1376,59 @@
 
 
 
-
-  
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
-
-
-      
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
-  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">蜀ICP备2021032086号-1 </a>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野@成都</span>
   </div>
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">山野@成都</span>
-</div>
 <div class="wordcount">
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">84k</span>
+    <span title="站点总字数">85k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:16</span>
+    <span title="站点阅读时长">1:17</span>
   </span>
 </div>
-<div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1278608574&web_id=1278608574"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
-
-
-
-
-
-  
-
-  
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 </body>
 </html>

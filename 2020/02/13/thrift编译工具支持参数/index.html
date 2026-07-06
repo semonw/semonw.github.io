@@ -2,10 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.1">
-
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
@@ -16,112 +15,78 @@
 
 
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"www.typedefine.cn","root":"/","scheme":"Pisces","version":"8.0.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":true,"preload":true}};
-  </script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-  <meta name="description" content="什么是Thrift?Thrift是一种接口描述语言和二进制通讯协议，它被用来定义和创建跨语言的服务。它被当作一个远程过程调用（RPC）框架来使用，是由Facebook为“大规模跨语言服务开发”而开发的。它通过一个代码生成引擎联合了一个软件栈，来创建不同程度的、无缝的跨平台高效服务，可以使用C#、C++（基于POSIX兼容系统）、Cappuccino、Cocoa、Delphi、Erlang、Go、H">
+    <meta name="description" content="什么是Thrift?Thrift是一种接口描述语言和二进制通讯协议，它被用来定义和创建跨语言的服务。它被当作一个远程过程调用（RPC）框架来使用，是由Facebook为“大规模跨语言服务开发”而开发的。它通过一个代码生成引擎联合了一个软件栈，来创建不同程度的、无缝的跨平台高效服务，可以使用C#、C++（基于POSIX兼容系统）、Cappuccino、Cocoa、Delphi、Erlang、Go、H">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Thrift介绍、编译参数以及如何和maven集成">
-<meta property="og:url" content="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/index.html">
-<meta property="og:site_name" content="探索数据之美">
+<meta property="og:url" content="http://www.jinnotes.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
 <meta property="og:description" content="什么是Thrift?Thrift是一种接口描述语言和二进制通讯协议，它被用来定义和创建跨语言的服务。它被当作一个远程过程调用（RPC）框架来使用，是由Facebook为“大规模跨语言服务开发”而开发的。它通过一个代码生成引擎联合了一个软件栈，来创建不同程度的、无缝的跨平台高效服务，可以使用C#、C++（基于POSIX兼容系统）、Cappuccino、Cocoa、Delphi、Erlang、Go、H">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/20200213221502.png">
+<meta property="og:image" content="http://www.jinnotes.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/20200213221502.png">
 <meta property="article:published_time" content="2020-02-13T13:07:49.000Z">
-<meta property="article:modified_time" content="2020-02-13T13:07:49.000Z">
+<meta property="article:modified_time" content="2026-07-05T09:28:57.680Z">
 <meta property="article:author" content="山野@成都">
-<meta property="article:tag" content="thrift">
-<meta property="article:tag" content="compiler">
 <meta property="article:tag" content="command line options">
-<meta property="article:tag" content="serdes">
-<meta property="article:tag" content="serialization">
-<meta property="article:tag" content="deserialization">
+<meta property="article:tag" content="compiler">
 <meta property="article:tag" content="thrift">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/20200213221502.png">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/20200213221502.png">
 
 
-<link rel="canonical" href="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/">
+<link rel="canonical" href="http://www.jinnotes.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/">
 
 
-<script class="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/","path":"2020/02/13/thrift编译工具支持参数/","title":"Thrift介绍、编译参数以及如何和maven集成"}</script>
 
-  <title>Thrift介绍、编译参数以及如何和maven集成 | 探索数据之美</title>
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Thrift介绍、编译参数以及如何和maven集成 | AI观察与大数据</title>
   
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158079573-1"></script>
-    <script>
-      if (CONFIG.hostname === location.hostname) {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-158079573-1');
-      }
-    </script>
 
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
 
 
 
 
 
   <noscript>
-  <style>
-  body { margin-top: 2rem; }
-
-  .use-motion .menu-item,
-  .use-motion .sidebar,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header {
-    visibility: visible;
-  }
-
-  .use-motion .header,
-  .use-motion .site-brand-container .toggle,
-  .use-motion .footer { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle,
-  .use-motion .custom-logo-image {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line {
-    transform: scaleX(1);
-  }
-
-  .search-pop-overlay, .sidebar-nav { display: none; }
-  .sidebar-panel { display: block; }
-  </style>
-</noscript>
-
-<link rel="alternate" href="/atom.xml" title="探索数据之美" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
 
   <main class="main">
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
+    <div class="toggle" aria-label="切换导航栏" role="button">
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
         <span class="toggle-line"></span>
@@ -132,14 +97,14 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">探索数据之美</h1>
+      <p class="site-title">AI观察与大数据</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
   </div>
 
   <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
         <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
@@ -148,42 +113,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-about">
-
-    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
-
-  </li>
-        <li class="menu-item menu-item-sitemap">
-
-    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
-
-  </li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -195,37 +125,30 @@
 
   <div class="search-pop-overlay">
     <div class="popup search-popup">
-        <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocapitalize="off" maxlength="80"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div class="search-result-container no-result">
-  <div class="search-result-icon">
-    <i class="fa fa-spinner fa-pulse fa-5x"></i>
-  </div>
-</div>
-
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
     </div>
   </div>
 
-</div>
+</header>
         
   
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
   <aside class="sidebar">
 
     <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
@@ -240,78 +163,49 @@
 
       <div class="sidebar-panel-container">
         <!--noindex-->
-        <section class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是Thrift"><span class="nav-number">1.</span> <span class="nav-text">什么是Thrift?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#thrift-exe支持的参数有哪些？"><span class="nav-number">2.</span> <span class="nav-text">thrift.exe支持的参数有哪些？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基本用法"><span class="nav-number">3.</span> <span class="nav-text">基本用法:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何支持maven集成"><span class="nav-number">4.</span> <span class="nav-text">如何支持maven集成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件maven-thrift-plugin"><span class="nav-number">4.1.</span> <span class="nav-text">插件maven-thrift-plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#maven-antrun-plugin"><span class="nav-number">4.2.</span> <span class="nav-text">maven-antrun-plugin</span></a></li></ol></li></ol></div>
-        </section>
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFThrift"><span class="nav-number">1.</span> <span class="nav-text">什么是Thrift?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#thrift-exe%E6%94%AF%E6%8C%81%E7%9A%84%E5%8F%82%E6%95%B0%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">thrift.exe支持的参数有哪些？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">基本用法:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81maven%E9%9B%86%E6%88%90"><span class="nav-number">4.</span> <span class="nav-text">如何支持maven集成</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6maven-thrift-plugin"><span class="nav-number">4.1.</span> <span class="nav-text">插件maven-thrift-plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#maven-antrun-plugin"><span class="nav-number">4.2.</span> <span class="nav-text">maven-antrun-plugin</span></a></li></ol></li></ol></div>
+        </div>
         <!--/noindex-->
 
-        <section class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">山野@成都</p>
-  <div class="site-description" itemprop="description">写关于数据的故事！</div>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
 </div>
-<div class="site-state-wrap site-overview-item animated">
+<div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+        <a href="/archives/">
           <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
+          <a href="/categories/">
         <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
+          <a href="/tags/">
         <span class="site-state-item-count">60</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
-      </span>
-      <span class="links-of-author-item">
-        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-  <div class="cc-license site-overview-item animated" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-  </div>
 
-
-
-        </section>
+        </div>
       </div>
     </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
-    </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-  <div class="reading-progress-bar"></div>
+  </aside>
 
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
+    </div>
 
     <div class="main-inner post posts-expand">
-      
 
-      
 
   
 
@@ -321,16 +215,21 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="山野@成都">
-      <meta itemprop="description" content="写关于数据的故事！">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="探索数据之美">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Thrift介绍、编译参数以及如何和maven集成 | AI观察与大数据">
+      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
@@ -349,6 +248,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -358,15 +264,7 @@
     </span>
 
   
-    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="far fa-eye"></i>
-      </span>
-      <span class="post-meta-item-text">阅读次数：</span>
-      <span id="busuanzi_value_page_pv"></span>
-    </span>
-      </div>
-      <div class="post-meta">
+    <span class="post-meta-break"></span>
     <span class="post-meta-item" title="本文字数">
       <span class="post-meta-item-icon">
         <i class="far fa-file-word"></i>
@@ -389,22 +287,23 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="什么是Thrift"><a href="#什么是Thrift" class="headerlink" title="什么是Thrift?"></a>什么是Thrift?</h1><p>Thrift是一种接口描述语言和二进制通讯协议，它被用来定义和创建跨语言的服务。它被当作一个远程过程调用（RPC）框架来使用，是由Facebook为“大规模跨语言服务开发”而开发的。它通过一个代码生成引擎联合了一个软件栈，来创建不同程度的、无缝的跨平台高效服务，可以使用C#、C++（基于POSIX兼容系统）、Cappuccino、Cocoa、Delphi、Erlang、Go、Haskell、Java、Node.js、OCaml、Perl、PHP、Python、Ruby和Smalltalk。虽然它以前是由Facebook开发的，但它现在是Apache软件基金会的开源项目了。该实现被描述在2007年4月的一篇由Facebook发表的技术论文中，该论文现由Apache掌管。</p>
-<p>目前流行的服务调用方式有很多种，例如基于 SOAP 消息格式的 Web Service，基于 JSON 消息格式的 RESTful 服务等。其中所用到的数据传输方式包括 XML，JSON 等，然而 XML 相对体积太大，传输效率低，JSON 体积较小，新颖，但还不够完善。本文将介绍由 Facebook 开发的远程服务调用框架 Apache Thrift，它采用接口描述语言定义并创建服务，支持可扩展的跨语言服务开发，所包含的代码生成引擎可以在多种语言中，如 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, Smalltalk 等创建高效的、无缝的服务，其传输数据采用二进制格式，相对 XML 和 JSON 体积更小，对于高并发、大数据量和多语言的环境更有优势。本文将详细介绍 Thrift 的使用，并且提供丰富的实例代码加以解释说明，帮助使用者快速构建服务。Thrift的下载地址是：<a href="http://thrift.apache.org/download" target="_blank" rel="noopener">http://thrift.apache.org/download</a></p>
-<h1 id="thrift-exe支持的参数有哪些？"><a href="#thrift-exe支持的参数有哪些？" class="headerlink" title="thrift.exe支持的参数有哪些？"></a>thrift.exe支持的参数有哪些？</h1><a id="more"></a>
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="什么是Thrift"><a href="#什么是Thrift" class="headerlink" title="什么是Thrift?"></a>什么是Thrift?</h1><p>Thrift是一种接口描述语言和二进制通讯协议，它被用来定义和创建跨语言的服务。它被当作一个远程过程调用（RPC）框架来使用，是由Facebook为“大规模跨语言服务开发”而开发的。它通过一个代码生成引擎联合了一个软件栈，来创建不同程度的、无缝的跨平台高效服务，可以使用C#、C++（基于POSIX兼容系统）、Cappuccino、Cocoa、Delphi、Erlang、Go、Haskell、Java、Node.js、OCaml、Perl、PHP、Python、Ruby和Smalltalk。虽然它以前是由Facebook开发的，但它现在是Apache软件基金会的开源项目了。该实现被描述在2007年4月的一篇由Facebook发表的技术论文中，该论文现由Apache掌管。</p>
+<p>目前流行的服务调用方式有很多种，例如基于 SOAP 消息格式的 Web Service，基于 JSON 消息格式的 RESTful 服务等。其中所用到的数据传输方式包括 XML，JSON 等，然而 XML 相对体积太大，传输效率低，JSON 体积较小，新颖，但还不够完善。本文将介绍由 Facebook 开发的远程服务调用框架 Apache Thrift，它采用接口描述语言定义并创建服务，支持可扩展的跨语言服务开发，所包含的代码生成引擎可以在多种语言中，如 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, Smalltalk 等创建高效的、无缝的服务，其传输数据采用二进制格式，相对 XML 和 JSON 体积更小，对于高并发、大数据量和多语言的环境更有优势。本文将详细介绍 Thrift 的使用，并且提供丰富的实例代码加以解释说明，帮助使用者快速构建服务。Thrift的下载地址是：<a target="_blank" rel="noopener" href="http://thrift.apache.org/download">http://thrift.apache.org/download</a></p>
+<h1 id="thrift-exe支持的参数有哪些？"><a href="#thrift-exe支持的参数有哪些？" class="headerlink" title="thrift.exe支持的参数有哪些？"></a>thrift.exe支持的参数有哪些？</h1><span id="more"></span>
 
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Microsoft Windows [版本 10.0.18362.657]</span><br><span class="line">(c) 2019 Microsoft Corporation。保留所有权利。</span><br><span class="line"></span><br><span class="line">~&gt;thrift-0.13.0.exe -<span class="built_in">help</span></span><br><span class="line">Usage: thrift [options] file</span><br><span class="line">Options:</span><br><span class="line">  -version    Print the compiler version</span><br><span class="line">  -o dir      Set the output directory <span class="keyword">for</span> gen-* packages</span><br><span class="line">               (default: current directory)</span><br><span class="line">  -out dir    Set the ouput location <span class="keyword">for</span> generated files.</span><br><span class="line">               (no gen-* folder will be created)</span><br><span class="line">  -I dir      Add a directory to the list of directories</span><br><span class="line">                searched <span class="keyword">for</span> include directives</span><br><span class="line">  -nowarn     Suppress all compiler warnings (BAD!)</span><br><span class="line">  -strict     Strict compiler warnings on</span><br><span class="line">  -v[erbose]  Verbose mode</span><br><span class="line">  -r[ecurse]  Also generate included files</span><br><span class="line">  -debug      Parse debug trace to stdout</span><br><span class="line">  --allow-neg-keys  Allow negative field keys (Used to preserve protocol</span><br><span class="line">                compatibility with older .thrift files)</span><br><span class="line">  --allow-64bit-consts  Do not <span class="built_in">print</span> warnings about using 64-bit constants</span><br><span class="line">  --gen STR   Generate code with a dynamically-registered generator.</span><br><span class="line">                STR has the form language[:key1=val1[,key2[,key3=val3]]].</span><br><span class="line">                Keys and values are options passed to the generator.</span><br><span class="line">                Many options will not require values.</span><br><span class="line"></span><br><span class="line">Options related to audit operation</span><br><span class="line">   --audit OldFile   Old Thrift file to be audited with <span class="string">'file'</span></span><br><span class="line">  -Iold dir    Add a directory to the list of directories</span><br><span class="line">                searched <span class="keyword">for</span> include directives <span class="keyword">for</span> old thrift file</span><br><span class="line">  -Inew dir    Add a directory to the list of directories</span><br><span class="line">                searched <span class="keyword">for</span> include directives <span class="keyword">for</span> new thrift file</span><br><span class="line"></span><br><span class="line">Available generators (and options):</span><br><span class="line">  as3 (AS3):</span><br><span class="line">    bindable:        Add [bindable] metadata to all the struct classes.</span><br><span class="line">  c_glib (C, using GLib):</span><br><span class="line">  cl (Common Lisp):</span><br><span class="line">    no_asd:          Do not define ASDF systems <span class="keyword">for</span> each generated Thrift program.</span><br><span class="line">    sys_pref=        The prefix to give ASDF system names. Default: thrift-gen-</span><br><span class="line">  cpp (C++):</span><br><span class="line">    cob_style:       Generate <span class="string">"Continuation OBject"</span>-style classes.</span><br><span class="line">    no_client_completion:</span><br><span class="line">                     Omit calls to completion__() <span class="keyword">in</span> CobClient class.</span><br><span class="line">    no_default_operators:</span><br><span class="line">                     Omits generation of default operators ==, != and &lt;</span><br><span class="line">    templates:       Generate templatized reader/writer methods.</span><br><span class="line">    pure_enums:      Generate pure enums instead of wrapper classes.</span><br><span class="line">    include_prefix:  Use full include paths <span class="keyword">in</span> generated files.</span><br><span class="line">    moveable_types:  Generate move constructors and assignment operators.</span><br><span class="line">    no_ostream_operators:</span><br><span class="line">                     Omit generation of ostream definitions.</span><br><span class="line">    no_skeleton:     Omits generation of skeleton.</span><br><span class="line">  csharp (C<span class="comment">#):</span></span><br><span class="line">    async:           Adds Async support using Task.Run.</span><br><span class="line">    wcf:             Adds bindings <span class="keyword">for</span> WCF to generated classes.</span><br><span class="line">    serial:          Add serialization support to generated classes.</span><br><span class="line">    nullable:        Use nullable types <span class="keyword">for</span> properties.</span><br><span class="line">    hashcode:        Generate a hashcode and equals implementation <span class="keyword">for</span> classes.</span><br><span class="line">    union:           Use new union typing, <span class="built_in">which</span> includes a static <span class="built_in">read</span> <span class="keyword">function</span> <span class="keyword">for</span> union types.</span><br><span class="line">  d (D):</span><br><span class="line">  dart (Dart):</span><br><span class="line">    library_name:    Optional override <span class="keyword">for</span> library name.</span><br><span class="line">    library_prefix:  Generate code that can be used within an existing library.</span><br><span class="line">                     Use a dot-separated string, e.g. <span class="string">"my_parent_lib.src.gen"</span></span><br><span class="line">    pubspec_lib:     Optional override <span class="keyword">for</span> thrift lib dependency <span class="keyword">in</span> pubspec.yaml,</span><br><span class="line">                     e.g. <span class="string">"thrift: 0.x.x"</span>.  Use a pipe delimiter to separate lines,</span><br><span class="line">                     e.g. <span class="string">"thrift:|  git:|    url: git@foo.com"</span></span><br><span class="line">  delphi (delphi):</span><br><span class="line">    ansistr_binary:  Use AnsiString <span class="keyword">for</span> binary datatype (default is TBytes).</span><br><span class="line">    register_types:  Enable TypeRegistry, allows <span class="keyword">for</span> creation of struct, union</span><br><span class="line">                     and container instances by interface or TypeInfo()</span><br><span class="line">    constprefix:     Name TConstants classes after IDL to reduce ambiguities</span><br><span class="line">    events:          Enable and use processing events <span class="keyword">in</span> the generated code.</span><br><span class="line">    xmldoc:          Enable XMLDoc comments <span class="keyword">for</span> Help Insight etc.</span><br><span class="line">    async:           Generate IAsync interface to use Parallel Programming Library (XE7+ only).</span><br><span class="line">  erl (Erlang):</span><br><span class="line">    legacynames:     Output files retain naming conventions of Thrift 0.9.1 and earlier.</span><br><span class="line">    maps:            Generate maps instead of dicts.</span><br><span class="line">    otp16:           Generate non-namespaced dict and <span class="built_in">set</span> instead of dict:dict and sets:<span class="built_in">set</span>.</span><br><span class="line">  go (Go):</span><br><span class="line">    package_prefix=  Package prefix <span class="keyword">for</span> generated files.</span><br><span class="line">    thrift_import=   Override thrift package import path (default:github.com/apache/thrift/lib/go/thrift)</span><br><span class="line">    package=         Package name (default: inferred from thrift file name)</span><br><span class="line">    ignore_initialisms</span><br><span class="line">                     Disable automatic spelling correction of initialisms (e.g. <span class="string">"URL"</span>)</span><br><span class="line">    read_write_private</span><br><span class="line">                     Make <span class="built_in">read</span>/write methods private, default is public Read/Write</span><br><span class="line">  gv (Graphviz):</span><br><span class="line">    exceptions:      Whether to draw arrows from <span class="built_in">functions</span> to exception.</span><br><span class="line">  haxe (Haxe):</span><br><span class="line">    callbacks        Use onError()/onSuccess() callbacks <span class="keyword">for</span> service methods (like AS3)</span><br><span class="line">    rtti             Enable @:rtti <span class="keyword">for</span> generated classes and interfaces</span><br><span class="line">    buildmacro=my.macros.Class.method(args)</span><br><span class="line">                     Add @:build macro calls to generated classes and interfaces</span><br><span class="line">  hs (Haskell):</span><br><span class="line">  html (HTML):</span><br><span class="line">    standalone:      Self-contained mode, includes all CSS <span class="keyword">in</span> the HTML files.</span><br><span class="line">                     Generates no style.css file, but HTML files will be larger.</span><br><span class="line">    noescape:        Do not escape html <span class="keyword">in</span> doc text.</span><br><span class="line">  java (Java):</span><br><span class="line">    beans:           Members will be private, and setter methods will <span class="built_in">return</span> void.</span><br><span class="line">    private-members: Members will be private, but setter methods will <span class="built_in">return</span> <span class="string">'this'</span> like usual.</span><br><span class="line">    nocamel:         Do not use CamelCase field accessors with beans.</span><br><span class="line">    fullcamel:       Convert underscored_accessor_or_service_names to camelCase.</span><br><span class="line">    android:         Generated structures are Parcelable.</span><br><span class="line">    android_legacy:  Do not use java.io.IOException(throwable) (available <span class="keyword">for</span> Android 2.3 and above).</span><br><span class="line">    option_type:     Wrap optional fields <span class="keyword">in</span> an Option <span class="built_in">type</span>.</span><br><span class="line">    rethrow_unhandled_exceptions:</span><br><span class="line">                     Enable rethrow of unhandled exceptions and <span class="built_in">let</span> them propagate futher. (Default behavior is to catch and <span class="built_in">log</span> it.)</span><br><span class="line">    java5:           Generate Java 1.5 compliant code (includes android_legacy flag).</span><br><span class="line">    reuse-objects:   Data objects will not be allocated, but existing instances will be used (<span class="built_in">read</span> and write).</span><br><span class="line">    sorted_containers:</span><br><span class="line">                     Use TreeSet/TreeMap instead of HashSet/HashMap as a implementation of <span class="built_in">set</span>/map.</span><br><span class="line">    generated_annotations=[undated|suppress]:</span><br><span class="line">                     undated: suppress the date at @Generated annotations</span><br><span class="line">                     suppress: suppress @Generated annotations entirely</span><br><span class="line">    unsafe_binaries: Do not copy ByteBuffers <span class="keyword">in</span> constructors, getters, and setters.</span><br><span class="line">  javame (Java ME):</span><br><span class="line">  js (Javascript):</span><br><span class="line">    jquery:          Generate jQuery compatible code.</span><br><span class="line">    node:            Generate node.js compatible code.</span><br><span class="line">    ts:              Generate TypeScript definition files.</span><br><span class="line">    with_ns:         Create global namespace objects when using node.js</span><br><span class="line">    es6:             Create ES6 code with Promises</span><br><span class="line">    thrift_package_output_directory=&lt;path&gt;:</span><br><span class="line">                     Generate episode file and use the &lt;path&gt; as prefix</span><br><span class="line">    imports=&lt;paths_to_modules&gt;:</span><br><span class="line">                     <span class="string">':'</span> separated list of paths of modules that has episode files <span class="keyword">in</span> their root</span><br><span class="line">  json (JSON):</span><br><span class="line">    merge:           Generate output with included files merged</span><br><span class="line">  lua (Lua):</span><br><span class="line">    omit_requires:   Suppress generation of require <span class="string">'somefile'</span>.</span><br><span class="line">  netcore (C<span class="comment">#):</span></span><br><span class="line">    wcf:             Adds bindings <span class="keyword">for</span> WCF to generated classes.</span><br><span class="line">    serial:          Add serialization support to generated classes.</span><br><span class="line">    nullable:        Use nullable types <span class="keyword">for</span> properties.</span><br><span class="line">    hashcode:        Generate a hashcode and equals implementation <span class="keyword">for</span> classes.</span><br><span class="line">    union:           Use new union typing, <span class="built_in">which</span> includes a static <span class="built_in">read</span> <span class="keyword">function</span> <span class="keyword">for</span> union types.</span><br><span class="line">  netstd (C<span class="comment">#):</span></span><br><span class="line">    wcf:             Adds bindings <span class="keyword">for</span> WCF to generated classes.</span><br><span class="line">    serial:          Add serialization support to generated classes.</span><br><span class="line">    union:           Use new union typing, <span class="built_in">which</span> includes a static <span class="built_in">read</span> <span class="keyword">function</span> <span class="keyword">for</span> union types.</span><br><span class="line">  ocaml (OCaml):</span><br><span class="line">  perl (Perl):</span><br><span class="line">  php (PHP):</span><br><span class="line">    inlined:         Generate PHP inlined files</span><br><span class="line">    server:          Generate PHP server stubs</span><br><span class="line">    oop:             Generate PHP with object oriented subclasses</span><br><span class="line">    classmap:        Generate old-style PHP files (use classmap autoloading)</span><br><span class="line">    rest:            Generate PHP REST processors</span><br><span class="line">    nsglobal=NAME:   Set global namespace</span><br><span class="line">    validate:        Generate PHP validator methods</span><br><span class="line">    json:            Generate JsonSerializable classes (requires PHP &gt;= 5.4)</span><br><span class="line">  py (Python):</span><br><span class="line">    zope.interface:  Generate code <span class="keyword">for</span> use with zope.interface.</span><br><span class="line">    twisted:         Generate Twisted-friendly RPC services.</span><br><span class="line">    tornado:         Generate code <span class="keyword">for</span> use with Tornado.</span><br><span class="line">    no_utf8strings:  Do not Encode/decode strings using utf8 <span class="keyword">in</span> the generated code. Basically no effect <span class="keyword">for</span> Python 3.</span><br><span class="line">    coding=CODING:   Add file encoding <span class="built_in">declare</span> <span class="keyword">in</span> generated file.</span><br><span class="line">    slots:           Generate code using slots <span class="keyword">for</span> instance members.</span><br><span class="line">    dynamic:         Generate dynamic code, less code generated but slower.</span><br><span class="line">    dynbase=CLS      Derive generated classes from class CLS instead of TBase.</span><br><span class="line">    dynfrozen=CLS    Derive generated immutable classes from class CLS instead of TFrozenBase.</span><br><span class="line">    dynexc=CLS       Derive generated exceptions from CLS instead of TExceptionBase.</span><br><span class="line">    dynimport=<span class="string">'from foo.bar import CLS'</span></span><br><span class="line">                     Add an import line to generated code to find the dynbase class.</span><br><span class="line">    package_prefix=<span class="string">'top.package.'</span></span><br><span class="line">                     Package prefix <span class="keyword">for</span> generated files.</span><br><span class="line">    old_style:       Deprecated. Generate old-style classes.</span><br><span class="line">  rb (Ruby):</span><br><span class="line">    rubygems:        Add a <span class="string">"require 'rubygems'"</span> line to the top of each generated file.</span><br><span class="line">    namespaced:      Generate files <span class="keyword">in</span> idiomatic namespaced directories.</span><br><span class="line">  rs (Rust):</span><br><span class="line"></span><br><span class="line">  st (Smalltalk):</span><br><span class="line">  swift (Swift 3.0):</span><br><span class="line">    log_unexpected:  Log every time an unexpected field ID or <span class="built_in">type</span> is encountered.</span><br><span class="line">    debug_descriptions:</span><br><span class="line">                     Allow use of debugDescription so the app can add description via a cateogory/extension</span><br><span class="line">    async_clients:   Generate clients <span class="built_in">which</span> invoke asynchronously via block syntax.</span><br><span class="line">    namespaced:      Generate <span class="built_in">source</span> <span class="keyword">in</span> Module scoped output directories <span class="keyword">for</span> Swift Namespacing.</span><br><span class="line">    cocoa:           Generate Swift 2.x code compatible with the Thrift/Cocoa library</span><br><span class="line">    promise_kit:     Generate clients <span class="built_in">which</span> invoke asynchronously via promises (only use with cocoa flag)</span><br><span class="line">    safe_enums:      Generate enum types with an unknown <span class="keyword">case</span> to handle unspecified values rather than throw a serialization error</span><br><span class="line">  xml (XML):</span><br><span class="line">    merge:           Generate output with included files merged</span><br><span class="line">    no_default_ns:   Omit default xmlns and add idl: prefix to all elements</span><br><span class="line">    no_namespaces:   Do not add namespace definitions to the XML model</span><br><span class="line">  xsd (XSD):</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Microsoft Windows [版本 10.0.18362.657]</span><br><span class="line">(c) 2019 Microsoft Corporation。保留所有权利。</span><br><span class="line"></span><br><span class="line">~&gt;thrift-0.13.0.exe -<span class="built_in">help</span></span><br><span class="line">Usage: thrift [options] file</span><br><span class="line">Options:</span><br><span class="line">  -version    Print the compiler version</span><br><span class="line">  -o <span class="built_in">dir</span>      Set the output directory <span class="keyword">for</span> gen-* packages</span><br><span class="line">               (default: current directory)</span><br><span class="line">  -out <span class="built_in">dir</span>    Set the ouput location <span class="keyword">for</span> generated files.</span><br><span class="line">               (no gen-* folder will be created)</span><br><span class="line">  -I <span class="built_in">dir</span>      Add a directory to the list of directories</span><br><span class="line">                searched <span class="keyword">for</span> include directives</span><br><span class="line">  -nowarn     Suppress all compiler warnings (BAD!)</span><br><span class="line">  -strict     Strict compiler warnings on</span><br><span class="line">  -v[erbose]  Verbose mode</span><br><span class="line">  -r[ecurse]  Also generate included files</span><br><span class="line">  -debug      Parse debug trace to stdout</span><br><span class="line">  --allow-neg-keys  Allow negative field keys (Used to preserve protocol</span><br><span class="line">                compatibility with older .thrift files)</span><br><span class="line">  --allow-64bit-consts  Do not <span class="built_in">print</span> warnings about using 64-bit constants</span><br><span class="line">  --gen STR   Generate code with a dynamically-registered generator.</span><br><span class="line">                STR has the form language[:key1=val1[,key2[,key3=val3]]].</span><br><span class="line">                Keys and values are options passed to the generator.</span><br><span class="line">                Many options will not require values.</span><br><span class="line"></span><br><span class="line">Options related to audit operation</span><br><span class="line">   --audit OldFile   Old Thrift file to be audited with <span class="string">&#x27;file&#x27;</span></span><br><span class="line">  -Iold <span class="built_in">dir</span>    Add a directory to the list of directories</span><br><span class="line">                searched <span class="keyword">for</span> include directives <span class="keyword">for</span> old thrift file</span><br><span class="line">  -Inew <span class="built_in">dir</span>    Add a directory to the list of directories</span><br><span class="line">                searched <span class="keyword">for</span> include directives <span class="keyword">for</span> new thrift file</span><br><span class="line"></span><br><span class="line">Available generators (and options):</span><br><span class="line">  as3 (AS3):</span><br><span class="line">    bindable:        Add [bindable] metadata to all the struct classes.</span><br><span class="line">  c_glib (C, using GLib):</span><br><span class="line">  cl (Common Lisp):</span><br><span class="line">    no_asd:          Do not define ASDF systems <span class="keyword">for</span> each generated Thrift program.</span><br><span class="line">    sys_pref=        The prefix to give ASDF system names. Default: thrift-gen-</span><br><span class="line">  cpp (C++):</span><br><span class="line">    cob_style:       Generate <span class="string">&quot;Continuation OBject&quot;</span>-style classes.</span><br><span class="line">    no_client_completion:</span><br><span class="line">                     Omit calls to completion__() <span class="keyword">in</span> CobClient class.</span><br><span class="line">    no_default_operators:</span><br><span class="line">                     Omits generation of default operators ==, != and &lt;</span><br><span class="line">    templates:       Generate templatized reader/writer methods.</span><br><span class="line">    pure_enums:      Generate pure enums instead of wrapper classes.</span><br><span class="line">    include_prefix:  Use full include paths <span class="keyword">in</span> generated files.</span><br><span class="line">    moveable_types:  Generate move constructors and assignment operators.</span><br><span class="line">    no_ostream_operators:</span><br><span class="line">                     Omit generation of ostream definitions.</span><br><span class="line">    no_skeleton:     Omits generation of skeleton.</span><br><span class="line">  csharp (C#):</span><br><span class="line">    async:           Adds Async support using Task.Run.</span><br><span class="line">    wcf:             Adds bindings <span class="keyword">for</span> WCF to generated classes.</span><br><span class="line">    serial:          Add serialization support to generated classes.</span><br><span class="line">    nullable:        Use nullable types <span class="keyword">for</span> properties.</span><br><span class="line">    hashcode:        Generate a hashcode and equals implementation <span class="keyword">for</span> classes.</span><br><span class="line">    union:           Use new union typing, <span class="built_in">which</span> includes a static <span class="built_in">read</span> <span class="keyword">function</span> <span class="keyword">for</span> union types.</span><br><span class="line">  d (D):</span><br><span class="line">  dart (Dart):</span><br><span class="line">    library_name:    Optional override <span class="keyword">for</span> library name.</span><br><span class="line">    library_prefix:  Generate code that can be used within an existing library.</span><br><span class="line">                     Use a dot-separated string, e.g. <span class="string">&quot;my_parent_lib.src.gen&quot;</span></span><br><span class="line">    pubspec_lib:     Optional override <span class="keyword">for</span> thrift lib dependency <span class="keyword">in</span> pubspec.yaml,</span><br><span class="line">                     e.g. <span class="string">&quot;thrift: 0.x.x&quot;</span>.  Use a pipe delimiter to separate lines,</span><br><span class="line">                     e.g. <span class="string">&quot;thrift:|  git:|    url: git@foo.com&quot;</span></span><br><span class="line">  delphi (delphi):</span><br><span class="line">    ansistr_binary:  Use AnsiString <span class="keyword">for</span> binary datatype (default is TBytes).</span><br><span class="line">    register_types:  Enable TypeRegistry, allows <span class="keyword">for</span> creation of struct, union</span><br><span class="line">                     and container instances by interface or TypeInfo()</span><br><span class="line">    constprefix:     Name TConstants classes after IDL to reduce ambiguities</span><br><span class="line">    events:          Enable and use processing events <span class="keyword">in</span> the generated code.</span><br><span class="line">    xmldoc:          Enable XMLDoc comments <span class="keyword">for</span> Help Insight etc.</span><br><span class="line">    async:           Generate IAsync interface to use Parallel Programming Library (XE7+ only).</span><br><span class="line">  erl (Erlang):</span><br><span class="line">    legacynames:     Output files retain naming conventions of Thrift 0.9.1 and earlier.</span><br><span class="line">    maps:            Generate maps instead of dicts.</span><br><span class="line">    otp16:           Generate non-namespaced dict and <span class="built_in">set</span> instead of dict:dict and sets:<span class="built_in">set</span>.</span><br><span class="line">  go (Go):</span><br><span class="line">    package_prefix=  Package prefix <span class="keyword">for</span> generated files.</span><br><span class="line">    thrift_import=   Override thrift package import path (default:github.com/apache/thrift/lib/go/thrift)</span><br><span class="line">    package=         Package name (default: inferred from thrift file name)</span><br><span class="line">    ignore_initialisms</span><br><span class="line">                     Disable automatic spelling correction of initialisms (e.g. <span class="string">&quot;URL&quot;</span>)</span><br><span class="line">    read_write_private</span><br><span class="line">                     Make <span class="built_in">read</span>/write methods private, default is public Read/Write</span><br><span class="line">  gv (Graphviz):</span><br><span class="line">    exceptions:      Whether to draw arrows from <span class="built_in">functions</span> to exception.</span><br><span class="line">  haxe (Haxe):</span><br><span class="line">    callbacks        Use onError()/onSuccess() callbacks <span class="keyword">for</span> service methods (like AS3)</span><br><span class="line">    rtti             Enable @:rtti <span class="keyword">for</span> generated classes and interfaces</span><br><span class="line">    buildmacro=my.macros.Class.method(args)</span><br><span class="line">                     Add @:build macro calls to generated classes and interfaces</span><br><span class="line">  hs (Haskell):</span><br><span class="line">  html (HTML):</span><br><span class="line">    standalone:      Self-contained mode, includes all CSS <span class="keyword">in</span> the HTML files.</span><br><span class="line">                     Generates no style.css file, but HTML files will be larger.</span><br><span class="line">    noescape:        Do not escape html <span class="keyword">in</span> doc text.</span><br><span class="line">  java (Java):</span><br><span class="line">    beans:           Members will be private, and setter methods will <span class="built_in">return</span> void.</span><br><span class="line">    private-members: Members will be private, but setter methods will <span class="built_in">return</span> <span class="string">&#x27;this&#x27;</span> like usual.</span><br><span class="line">    nocamel:         Do not use CamelCase field accessors with beans.</span><br><span class="line">    fullcamel:       Convert underscored_accessor_or_service_names to camelCase.</span><br><span class="line">    android:         Generated structures are Parcelable.</span><br><span class="line">    android_legacy:  Do not use java.io.IOException(throwable) (available <span class="keyword">for</span> Android 2.3 and above).</span><br><span class="line">    option_type:     Wrap optional fields <span class="keyword">in</span> an Option <span class="built_in">type</span>.</span><br><span class="line">    rethrow_unhandled_exceptions:</span><br><span class="line">                     Enable rethrow of unhandled exceptions and <span class="built_in">let</span> them propagate futher. (Default behavior is to catch and <span class="built_in">log</span> it.)</span><br><span class="line">    java5:           Generate Java 1.5 compliant code (includes android_legacy flag).</span><br><span class="line">    reuse-objects:   Data objects will not be allocated, but existing instances will be used (<span class="built_in">read</span> and write).</span><br><span class="line">    sorted_containers:</span><br><span class="line">                     Use TreeSet/TreeMap instead of HashSet/HashMap as a implementation of <span class="built_in">set</span>/map.</span><br><span class="line">    generated_annotations=[undated|suppress]:</span><br><span class="line">                     undated: suppress the <span class="built_in">date</span> at @Generated annotations</span><br><span class="line">                     suppress: suppress @Generated annotations entirely</span><br><span class="line">    unsafe_binaries: Do not copy ByteBuffers <span class="keyword">in</span> constructors, getters, and setters.</span><br><span class="line">  javame (Java ME):</span><br><span class="line">  js (Javascript):</span><br><span class="line">    jquery:          Generate jQuery compatible code.</span><br><span class="line">    node:            Generate node.js compatible code.</span><br><span class="line">    ts:              Generate TypeScript definition files.</span><br><span class="line">    with_ns:         Create global namespace objects when using node.js</span><br><span class="line">    es6:             Create ES6 code with Promises</span><br><span class="line">    thrift_package_output_directory=&lt;path&gt;:</span><br><span class="line">                     Generate episode file and use the &lt;path&gt; as prefix</span><br><span class="line">    imports=&lt;paths_to_modules&gt;:</span><br><span class="line">                     <span class="string">&#x27;:&#x27;</span> separated list of paths of modules that has episode files <span class="keyword">in</span> their root</span><br><span class="line">  json (JSON):</span><br><span class="line">    merge:           Generate output with included files merged</span><br><span class="line">  lua (Lua):</span><br><span class="line">    omit_requires:   Suppress generation of require <span class="string">&#x27;somefile&#x27;</span>.</span><br><span class="line">  netcore (C#):</span><br><span class="line">    wcf:             Adds bindings <span class="keyword">for</span> WCF to generated classes.</span><br><span class="line">    serial:          Add serialization support to generated classes.</span><br><span class="line">    nullable:        Use nullable types <span class="keyword">for</span> properties.</span><br><span class="line">    hashcode:        Generate a hashcode and equals implementation <span class="keyword">for</span> classes.</span><br><span class="line">    union:           Use new union typing, <span class="built_in">which</span> includes a static <span class="built_in">read</span> <span class="keyword">function</span> <span class="keyword">for</span> union types.</span><br><span class="line">  netstd (C#):</span><br><span class="line">    wcf:             Adds bindings <span class="keyword">for</span> WCF to generated classes.</span><br><span class="line">    serial:          Add serialization support to generated classes.</span><br><span class="line">    union:           Use new union typing, <span class="built_in">which</span> includes a static <span class="built_in">read</span> <span class="keyword">function</span> <span class="keyword">for</span> union types.</span><br><span class="line">  ocaml (OCaml):</span><br><span class="line">  perl (Perl):</span><br><span class="line">  php (PHP):</span><br><span class="line">    inlined:         Generate PHP inlined files</span><br><span class="line">    server:          Generate PHP server stubs</span><br><span class="line">    oop:             Generate PHP with object oriented subclasses</span><br><span class="line">    classmap:        Generate old-style PHP files (use classmap autoloading)</span><br><span class="line">    rest:            Generate PHP REST processors</span><br><span class="line">    nsglobal=NAME:   Set global namespace</span><br><span class="line">    validate:        Generate PHP validator methods</span><br><span class="line">    json:            Generate JsonSerializable classes (requires PHP &gt;= 5.4)</span><br><span class="line">  py (Python):</span><br><span class="line">    zope.interface:  Generate code <span class="keyword">for</span> use with zope.interface.</span><br><span class="line">    twisted:         Generate Twisted-friendly RPC services.</span><br><span class="line">    tornado:         Generate code <span class="keyword">for</span> use with Tornado.</span><br><span class="line">    no_utf8strings:  Do not Encode/decode strings using utf8 <span class="keyword">in</span> the generated code. Basically no effect <span class="keyword">for</span> Python 3.</span><br><span class="line">    coding=CODING:   Add file encoding <span class="built_in">declare</span> <span class="keyword">in</span> generated file.</span><br><span class="line">    slots:           Generate code using slots <span class="keyword">for</span> instance members.</span><br><span class="line">    dynamic:         Generate dynamic code, less code generated but slower.</span><br><span class="line">    dynbase=CLS      Derive generated classes from class CLS instead of TBase.</span><br><span class="line">    dynfrozen=CLS    Derive generated immutable classes from class CLS instead of TFrozenBase.</span><br><span class="line">    dynexc=CLS       Derive generated exceptions from CLS instead of TExceptionBase.</span><br><span class="line">    dynimport=<span class="string">&#x27;from foo.bar import CLS&#x27;</span></span><br><span class="line">                     Add an import line to generated code to find the dynbase class.</span><br><span class="line">    package_prefix=<span class="string">&#x27;top.package.&#x27;</span></span><br><span class="line">                     Package prefix <span class="keyword">for</span> generated files.</span><br><span class="line">    old_style:       Deprecated. Generate old-style classes.</span><br><span class="line">  rb (Ruby):</span><br><span class="line">    rubygems:        Add a <span class="string">&quot;require &#x27;rubygems&#x27;&quot;</span> line to the top of each generated file.</span><br><span class="line">    namespaced:      Generate files <span class="keyword">in</span> idiomatic namespaced directories.</span><br><span class="line">  rs (Rust):</span><br><span class="line"></span><br><span class="line">  st (Smalltalk):</span><br><span class="line">  swift (Swift 3.0):</span><br><span class="line">    log_unexpected:  Log every <span class="keyword">time</span> an unexpected field ID or <span class="built_in">type</span> is encountered.</span><br><span class="line">    debug_descriptions:</span><br><span class="line">                     Allow use of debugDescription so the app can add description via a cateogory/extension</span><br><span class="line">    async_clients:   Generate clients <span class="built_in">which</span> invoke asynchronously via block syntax.</span><br><span class="line">    namespaced:      Generate <span class="built_in">source</span> <span class="keyword">in</span> Module scoped output directories <span class="keyword">for</span> Swift Namespacing.</span><br><span class="line">    cocoa:           Generate Swift 2.x code compatible with the Thrift/Cocoa library</span><br><span class="line">    promise_kit:     Generate clients <span class="built_in">which</span> invoke asynchronously via promises (only use with cocoa flag)</span><br><span class="line">    safe_enums:      Generate enum types with an unknown <span class="keyword">case</span> to handle unspecified values rather than throw a serialization error</span><br><span class="line">  xml (XML):</span><br><span class="line">    merge:           Generate output with included files merged</span><br><span class="line">    no_default_ns:   Omit default xmlns and add idl: prefix to all elements</span><br><span class="line">    no_namespaces:   Do not add namespace definitions to the XML model</span><br><span class="line">  xsd (XSD):</span><br><span class="line">  </span><br></pre></td></tr></table></figure>
 
 
 <h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法:"></a>基本用法:</h1><p>thrift –gen <language> <Thrift filename> 把一个thrift文件编译成对应语言的代码<br>thrift -r –gen <language> <Thrift filename> 将所有<Thrift filename> thrift所有引用的thrift全部编译成代码</p>
 <p>常用做法是定义一个顶级的include.thrift，将所有其他的thrift文件全部包含进来，加上-r参数之后，这样所有的模型都能编译了。</p>
-<p>常用参数解释：<br>-o dir gen-* 包的输出目录, 比如gen-java, 下面就是java的包<br>-out dir 生成文件的输出地址，gen-* 目录不会生成，和上面的命令互斥，用一个就行了。<br>-I dir 将目录加到引用文件的搜索路径列表中<br>–gen STR   <strong><em>用动态注册的生成器来产生代码。</em></strong><br>            <strong><em>这里的参数格式是这样的: language:[:key1=val1[,key2[,key3=val3]]]</em></strong><br>            <strong><em>冒号后的键和值是传递给生成器的参数。有的参数不需要值。</em></strong></p>
-<pre><code>以java为例：
-thrift.exe --gen java:beans,nocamel xxx.thrift
-的意思就是，生产java代码，传递给生成器的参数是beans和nocamel
-beans: 所有的成员变量私有，setter返回void
-nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如何支持maven集成"><a href="#如何支持maven集成" class="headerlink" title="如何支持maven集成"></a>如何支持maven集成</h1><h2 id="插件maven-thrift-plugin"><a href="#插件maven-thrift-plugin" class="headerlink" title="插件maven-thrift-plugin"></a>插件maven-thrift-plugin</h2><p>插件的Github目录<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://github.com/dtrott/maven-thrift-plugin
+<p>常用参数解释：<br>-o dir gen-* 包的输出目录, 比如gen-java, 下面就是java的包<br>-out dir 生成文件的输出地址，gen-* 目录不会生成，和上面的命令互斥，用一个就行了。<br>-I dir 将目录加到引用文件的搜索路径列表中<br>–gen STR   <em><strong>用动态注册的生成器来产生代码。</strong></em><br>            <em><strong>这里的参数格式是这样的: language:[:key1&#x3D;val1[,key2[,key3&#x3D;val3]]]</strong></em><br>            <em><strong>冒号后的键和值是传递给生成器的参数。有的参数不需要值。</strong></em></p>
+<pre><code>        以java为例：
+        thrift.exe --gen java:beans,nocamel xxx.thrift
+        的意思就是，生产java代码，传递给生成器的参数是beans和nocamel
+        beans: 所有的成员变量私有，setter返回void
+        nocamel:beans代码的accessor不用驼峰命名法。
+</code></pre>
+<h1 id="如何支持maven集成"><a href="#如何支持maven集成" class="headerlink" title="如何支持maven集成"></a>如何支持maven集成</h1><h2 id="插件maven-thrift-plugin"><a href="#插件maven-thrift-plugin" class="headerlink" title="插件maven-thrift-plugin"></a>插件maven-thrift-plugin</h2><p>插件的Github目录<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://github.com/dtrott/maven-thrift-plugin
 ">[2]</span></a></sup>上表示最小配置是这样的：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.thrift.tools<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-thrift-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>0.1.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--&lt;thriftExecutable&gt;/usr/local/bin/thrift&lt;/thriftExecutable&gt;--&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--&lt;thriftSourceRoot&gt;src/main/thrift&lt;/thriftSourceRoot&gt;--&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--&lt;outputDirectory&gt;src/main/java&lt;/outputDirectory&gt;--&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">id</span>&gt;</span>thrift-sources<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">goal</span>&gt;</span>compile<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--&lt;execution&gt;--&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--&lt;id&gt;thrift-test-sources&lt;/id&gt;--&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--&lt;phase&gt;generate-test-sources&lt;/phase&gt;--&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--&lt;goals&gt;--&gt;</span></span><br><span class="line">                        <span class="comment">&lt;!--&lt;goal&gt;testCompile&lt;/goal&gt;--&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!--&lt;/goals&gt;--&gt;</span></span><br><span class="line">                <span class="comment">&lt;!--&lt;/execution&gt;--&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -412,10 +311,10 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
 <img src="/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/20200213221502.png" class="" title="github截图">
 
 <h2 id="maven-antrun-plugin"><a href="#maven-antrun-plugin" class="headerlink" title="maven-antrun-plugin"></a>maven-antrun-plugin</h2><p>用这种方式虽然可能比较ugly，但是非常的灵活。几乎可以做你想用命令行或者脚本做到的任何事情。<br>我的配置是这样的：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-antrun-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;maven-antrun-plugin.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"thrift.filename"</span> <span class="attr">value</span>=<span class="string">"thrift-$&#123;thrift.versoin&#125;.exe"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"thrift.filepath"</span> <span class="attr">value</span>=<span class="string">"$&#123;basedir&#125;/../thrift/$&#123;thrift.filename&#125;"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"thrift.compile.result"</span>&gt;</span>0<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">"$&#123;thrift.output.directory&#125;"</span>/&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- Define fileset of thrift files --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">id</span>=<span class="string">"thrift.src.files"</span> <span class="attr">dir</span>=<span class="string">"$&#123;thrift.input.directory&#125;"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">"**/*.thrift"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="comment">&lt;!-- Invoke thrift binary for each of these files --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">apply</span> <span class="attr">executable</span>=<span class="string">"$&#123;thrift.filepath&#125;"</span> <span class="attr">resultproperty</span>=<span class="string">"thrift.compile.result"</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">failifexecutionfails</span>=<span class="string">"true"</span> <span class="attr">failonerror</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">searchpath</span>=<span class="string">"true"</span> <span class="attr">dir</span>=<span class="string">"$&#123;basedir&#125;"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">"-o"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">"$&#123;thrift.output.directory&#125;"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">"--gen"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">"java"</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">srcfile</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">refid</span>=<span class="string">"thrift.src.files"</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">apply</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">"execution result is: $&#123;thrift.compile.result&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">echo</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-antrun-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;maven-antrun-plugin.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>generate-sources<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;thrift.filename&quot;</span> <span class="attr">value</span>=<span class="string">&quot;thrift-$&#123;thrift.versoin&#125;.exe&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;thrift.filepath&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;basedir&#125;/../thrift/$&#123;thrift.filename&#125;&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;thrift.compile.result&quot;</span>&gt;</span>0<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="tag">&lt;<span class="name">mkdir</span> <span class="attr">dir</span>=<span class="string">&quot;$&#123;thrift.output.directory&#125;&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="comment">&lt;!-- Define fileset of thrift files --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">id</span>=<span class="string">&quot;thrift.src.files&quot;</span> <span class="attr">dir</span>=<span class="string">&quot;$&#123;thrift.input.directory&#125;&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">include</span> <span class="attr">name</span>=<span class="string">&quot;**/*.thrift&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">fileset</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="comment">&lt;!-- Invoke thrift binary for each of these files --&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">apply</span> <span class="attr">executable</span>=<span class="string">&quot;$&#123;thrift.filepath&#125;&quot;</span> <span class="attr">resultproperty</span>=<span class="string">&quot;thrift.compile.result&quot;</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">failifexecutionfails</span>=<span class="string">&quot;true&quot;</span> <span class="attr">failonerror</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">                            <span class="attr">searchpath</span>=<span class="string">&quot;true&quot;</span> <span class="attr">dir</span>=<span class="string">&quot;$&#123;basedir&#125;&quot;</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">&quot;-o&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;thrift.output.directory&#125;&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">&quot;--gen&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">value</span>=<span class="string">&quot;java&quot;</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">srcfile</span>/&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">fileset</span> <span class="attr">refid</span>=<span class="string">&quot;thrift.src.files&quot;</span>/&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">apply</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">echo</span> <span class="attr">message</span>=<span class="string">&quot;execution result is: $&#123;thrift.compile.result&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">echo</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">goal</span>&gt;</span>run<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>这里重点介绍一下apply<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://ant.apache.org/manual/Tasks/apply.html
-">[3]</span></a></sup>的用法。 Apply是Ant的一个内置Task，用来执行一个系统命令。在windows上就是run, 在linux命令上类似bash。<br>解释一下这几个参数的用法:<br><em>executable</em> 可执行文件的路径。<br><em>resultproperty</em> 将命令的返回值保存到属性中。 <strong><em>实际上我们只有在命令执行报错的时候才会关注这个值。比如当我们将failonerror设置为true, 这个时候命令执行报错，但是构建不会停止，这个时候我们才需要将返回值保存下来留待后面检查。</em></strong><br><em>failonerror</em> 当命令返回值不是0的时候停止构建。默认false。<br><em>failifexecutionfails</em> 如果无法启动程序的时候停止构建。默认true。</p>
+">[3]</span></a></sup>的用法。 Apply是Ant的一个内置Task，用来执行一个系统命令。在windows上就是run, 在linux命令上类似bash。<br>解释一下这几个参数的用法:<br><em>executable</em> 可执行文件的路径。<br><em>resultproperty</em> 将命令的返回值保存到属性中。 <em><strong>实际上我们只有在命令执行报错的时候才会关注这个值。比如当我们将failonerror设置为true, 这个时候命令执行报错，但是构建不会停止，这个时候我们才需要将返回值保存下来留待后面检查。</strong></em><br><em>failonerror</em> 当命令返回值不是0的时候停止构建。默认false。<br><em>failifexecutionfails</em> 如果无法启动程序的时候停止构建。默认true。</p>
 <p><fileset><sup id="fnref:4"><a href="#fn:4" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://ant.apache.org/manual/Types/fileset.html
 ">[4]</span></a></sup>就是一组文件，通过模式匹配或者其他参数来搜索到一组文件。比较简单。</p>
 <p>也有兴趣也可以翻阅一下，其他一些ant任务的介绍<sup id="fnref:5"><a href="#fn:5" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://blog.csdn.net/fanxiaobin577328725/article/details/53699735">[5]</span></a></sup>。</p>
@@ -425,13 +324,11 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
     
     
     
-      
-
 
     <footer class="post-footer">
           <div class="reward-container">
-  <div>一杯咖啡吸收宇宙能量!</div>
-  <button onclick="document.querySelector('.post-reward').classList.toggle('active');">
+  <div>请我一杯咖啡吧！</div>
+  <button>
     赞赏
   </button>
   <div class="post-reward">
@@ -443,54 +340,10 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
   </div>
 </div>
 
-          
-
-<div class="post-copyright">
-<ul>
-  <li class="post-copyright-author">
-      <strong>本文作者： </strong>山野@成都
-  </li>
-  <li class="post-copyright-link">
-      <strong>本文链接：</strong>
-      <a href="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/" title="Thrift介绍、编译参数以及如何和maven集成">http://www.typedefine.cn/2020/02/13/thrift编译工具支持参数/</a>
-  </li>
-  <li class="post-copyright-license">
-    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
-  </li>
-</ul>
-</div>
-
-          <div class="followme">
-  <span>欢迎关注我的其它发布渠道</span>
-
-  <div class="social-list">
-
-      <div class="social-item">
-        <a target="_blank" class="social-link" href="/images/qrcode_for_gh_e7834ce9fdca_344.jpg">
-          <span class="icon">
-            <i class="wechat"></i>
-          </span>
-
-          <span class="label">微信公众号</span>
-        </a>
-      </div>
-
-      <div class="social-item">
-        <a target="_blank" class="social-link" href="/atom.xml">
-          <span class="icon">
-            <i class="rss"></i>
-          </span>
-
-          <span class="label">RSS</span>
-        </a>
-      </div>
-  </div>
-</div>
-
           <div class="post-tags">
-              <a href="/tags/thrift/" rel="tag"><i class="fa fa-tag"></i> thrift</a>
-              <a href="/tags/compiler/" rel="tag"><i class="fa fa-tag"></i> compiler</a>
-              <a href="/tags/command-line-options/" rel="tag"><i class="fa fa-tag"></i> command line options</a>
+              <a href="/tags/thrift/" rel="tag"># thrift</a>
+              <a href="/tags/compiler/" rel="tag"># compiler</a>
+              <a href="/tags/command-line-options/" rel="tag"># command line options</a>
           </div>
 
         
@@ -498,12 +351,12 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
           <div class="post-nav">
             <div class="post-nav-item">
                 <a href="/2020/02/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AE%B3%E6%80%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="prev" title="为什么会害怕人工智能">
-                  <i class="fa fa-chevron-left"></i> 为什么会害怕人工智能
+                  <i class="fa fa-angle-left"></i> 为什么会害怕人工智能
                 </a>
             </div>
             <div class="post-nav-item">
                 <a href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/" rel="next" title="什么是MQ">
-                  什么是MQ <i class="fa fa-chevron-right"></i>
+                  什么是MQ <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -516,129 +369,55 @@ nocamel:beans代码的accessor不用驼峰命名法。</code></pre><h1 id="如�
 
 
 
-      
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      const commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-    </div>
+</div>
   </main>
 
   <footer class="footer">
     <div class="footer-inner">
-      
 
-      
-  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">蜀ICP备2021032086号-1 </a>
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野@成都</span>
   </div>
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2021</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">山野@成都</span>
-</div>
 <div class="wordcount">
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">84k</span>
+    <span title="站点总字数">85k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:16</span>
+    <span title="站点阅读时长">1:17</span>
   </span>
 </div>
-<div class="busuanzi-count">
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
 
     </div>
   </footer>
 
   
-  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-  <script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-
-  <div style="display: none;">
-    <script src="//s95.cnzz.com/z_stat.php?id=1278608574&web_id=1278608574"></script>
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
   </div>
 
-
-
-
-
-
-  
-
-  
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 </body>
 </html>

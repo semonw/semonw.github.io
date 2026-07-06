@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>探索数据之美</title>
-  <icon>http://www.typedefine.cn/icon.png</icon>
+  <title>AI观察与大数据</title>
+  <icon>http://www.jinnotes.cn/icon.png</icon>
   <subtitle>不忘初心，砥砺前行！</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://www.typedefine.cn/"/>
-  <updated>2021-09-19T02:33:45.000Z</updated>
-  <id>http://www.typedefine.cn/</id>
+  <link href="http://www.jinnotes.cn/"/>
+  <updated>2026-07-05T09:28:57.780Z</updated>
+  <id>http://www.jinnotes.cn/</id>
   
   <author>
     <name>山野@成都</name>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>一家估值1.75 亿美金的公司是如何被一行 Python代码给毁掉的</title>
-    <link href="http://www.typedefine.cn/2021/09/19/digg-python/"/>
-    <id>http://www.typedefine.cn/2021/09/19/digg-python/</id>
+    <link href="http://www.jinnotes.cn/2021/09/19/digg-python/"/>
+    <id>http://www.jinnotes.cn/2021/09/19/digg-python/</id>
     <published>2021-09-19T02:33:45.000Z</published>
-    <updated>2021-09-19T02:33:45.000Z</updated>
+    <updated>2026-07-05T09:28:57.780Z</updated>
     
     <summary type="html">
     
@@ -34,27 +34,27 @@
     </summary>
     
     
-      <category term="商业" scheme="http://www.typedefine.cn/categories/%E5%95%86%E4%B8%9A/"/>
+      <category term="商业" scheme="http://www.jinnotes.cn/categories/%E5%95%86%E4%B8%9A/"/>
     
-      <category term="Python" scheme="http://www.typedefine.cn/categories/%E5%95%86%E4%B8%9A/Python/"/>
+      <category term="Python" scheme="http://www.jinnotes.cn/categories/%E5%95%86%E4%B8%9A/Python/"/>
     
-      <category term="新媒体" scheme="http://www.typedefine.cn/categories/%E5%95%86%E4%B8%9A/Python/%E6%96%B0%E5%AA%92%E4%BD%93/"/>
+      <category term="新媒体" scheme="http://www.jinnotes.cn/categories/%E5%95%86%E4%B8%9A/Python/%E6%96%B0%E5%AA%92%E4%BD%93/"/>
     
     
-      <category term="商业" scheme="http://www.typedefine.cn/tags/%E5%95%86%E4%B8%9A/"/>
+      <category term="商业" scheme="http://www.jinnotes.cn/tags/%E5%95%86%E4%B8%9A/"/>
     
-      <category term="Python" scheme="http://www.typedefine.cn/tags/Python/"/>
+      <category term="Python" scheme="http://www.jinnotes.cn/tags/Python/"/>
     
-      <category term="新媒体" scheme="http://www.typedefine.cn/tags/%E6%96%B0%E5%AA%92%E4%BD%93/"/>
+      <category term="新媒体" scheme="http://www.jinnotes.cn/tags/%E6%96%B0%E5%AA%92%E4%BD%93/"/>
     
   </entry>
   
   <entry>
     <title>如何降低MongoDB的使用内存</title>
-    <link href="http://www.typedefine.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/"/>
-    <id>http://www.typedefine.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/</id>
+    <link href="http://www.jinnotes.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/"/>
+    <id>http://www.jinnotes.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/</id>
     <published>2021-07-28T08:17:34.000Z</published>
-    <updated>2021-07-28T08:17:34.000Z</updated>
+    <updated>2026-07-05T09:28:57.774Z</updated>
     
     <summary type="html">
     
@@ -65,30 +65,31 @@
 &lt;li&gt;检查MongoDB的运行日志&lt;img src=&quot;/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/FBB27F6E-B5A1-4e0e-B30C-85FF768FB6BB.png&quot; class=&quot;&quot; title&gt;&lt;/li&gt;
 &lt;li&gt;通过top -p pid命令跟踪进程的内存占用&lt;img src=&quot;/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/598ACA72-0B06-4b76-90B5-C5B395E4677D.png&quot; class=&quot;&quot; title&gt;
 发现进程突然被kill掉。怀疑这时是因为进程的内存增长过快导致&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;[OOM Killer](https://blog.csdn.net/w635614017/article/details/89204253?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)
-&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。
+&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
     
-      <category term="MongoDB" scheme="http://www.typedefine.cn/categories/MongoDB/"/>
+      <category term="MongoDB" scheme="http://www.jinnotes.cn/categories/MongoDB/"/>
     
-      <category term="系统分析" scheme="http://www.typedefine.cn/categories/MongoDB/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/"/>
+      <category term="系统分析" scheme="http://www.jinnotes.cn/categories/MongoDB/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/"/>
     
     
-      <category term="MongoDB" scheme="http://www.typedefine.cn/tags/MongoDB/"/>
+      <category term="MongoDB" scheme="http://www.jinnotes.cn/tags/MongoDB/"/>
     
-      <category term="OOM" scheme="http://www.typedefine.cn/tags/OOM/"/>
+      <category term="OOM" scheme="http://www.jinnotes.cn/tags/OOM/"/>
     
-      <category term="systemd" scheme="http://www.typedefine.cn/tags/systemd/"/>
+      <category term="systemd" scheme="http://www.jinnotes.cn/tags/systemd/"/>
     
   </entry>
   
   <entry>
     <title>如何设计一个标签系统？</title>
-    <link href="http://www.typedefine.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/"/>
-    <id>http://www.typedefine.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/</id>
+    <link href="http://www.jinnotes.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/"/>
+    <id>http://www.jinnotes.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/</id>
     <published>2021-07-27T08:27:06.000Z</published>
-    <updated>2021-07-27T08:27:06.000Z</updated>
+    <updated>2026-07-05T09:28:57.773Z</updated>
     
     <summary type="html">
     
@@ -102,19 +103,19 @@
     </summary>
     
     
-      <category term="系统设计" scheme="http://www.typedefine.cn/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"/>
+      <category term="系统设计" scheme="http://www.jinnotes.cn/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"/>
     
     
-      <category term="标签" scheme="http://www.typedefine.cn/tags/%E6%A0%87%E7%AD%BE/"/>
+      <category term="标签" scheme="http://www.jinnotes.cn/tags/%E6%A0%87%E7%AD%BE/"/>
     
   </entry>
   
   <entry>
     <title>Maven配置部署指北</title>
-    <link href="http://www.typedefine.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/"/>
-    <id>http://www.typedefine.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/</id>
+    <link href="http://www.jinnotes.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/"/>
+    <id>http://www.jinnotes.cn/2021/03/29/Maven%E9%85%8D%E7%BD%AE%E9%83%A8%E7%BD%B2%E6%8C%87%E5%8C%97/</id>
     <published>2021-03-29T08:50:12.000Z</published>
-    <updated>2021-03-29T08:50:12.000Z</updated>
+    <updated>2026-07-05T09:28:57.770Z</updated>
     
     <summary type="html">
     
@@ -122,29 +123,29 @@
 &quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，快照，是一种特殊的版本，指定了某个当前的开发进度的副本。不同于常规的版本，Maven 每次构建都会在远程仓库中检查新的快照。比如发布了一个app-1.0-SNAPSHOT版本，那么maven构件的时候，每次都会去仓库检查是否有最新的版本已经被发布。如果有，则替换。如果是release仓库，那么除非版本升级，否则maven构件的时候不会去检查最新的jar包，即便是在nexus仓库中已经更新了。&lt;/p&gt;
 &lt;p&gt;maven中的仓库分为两种&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;[maven快照版本和发布版本](https://www.cnblogs.com/wuchanming/p/5484091.html)
 &quot;&gt;[3]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，snapshot快照仓库和release发布仓库。snapshot快照仓库用于保存开发过程中的不稳定版本，release正式仓库则是用来保存稳定的发行版本。&lt;/p&gt;
-&lt;p&gt;定义一个组件/模块为快照版本，只需要在pom文件中在该模块的版本号后加上-SNAPSHOT即可(注意这里必须是大写)，如下：&lt;/p&gt;
+&lt;p&gt;定义一个组件&amp;#x2F;模块为快照版本，只需要在pom文件中在该模块的版本号后加上-SNAPSHOT即可(注意这里必须是大写)，如下：&lt;/p&gt;
 &lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;com.schdri&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;groupId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;bimgis&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;artifactId&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;3.10.0-SNAPSHOT&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;version&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;$&amp;#123;project.artifactId&amp;#125;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;packaging&lt;/span&gt;&amp;gt;&lt;/span&gt;pom&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;packaging&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;organization&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;pig4cloud&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;name&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;url&lt;/span&gt;&amp;gt;&lt;/span&gt;https://www.pig4cloud.com&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;url&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;organization&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
     
-      <category term="Maven" scheme="http://www.typedefine.cn/categories/Maven/"/>
+      <category term="Maven" scheme="http://www.jinnotes.cn/categories/Maven/"/>
     
-      <category term="DevOps" scheme="http://www.typedefine.cn/categories/Maven/DevOps/"/>
+      <category term="DevOps" scheme="http://www.jinnotes.cn/categories/Maven/DevOps/"/>
     
     
-      <category term="Maven" scheme="http://www.typedefine.cn/tags/Maven/"/>
+      <category term="Maven" scheme="http://www.jinnotes.cn/tags/Maven/"/>
     
-      <category term="DevOps" scheme="http://www.typedefine.cn/tags/DevOps/"/>
+      <category term="DevOps" scheme="http://www.jinnotes.cn/tags/DevOps/"/>
     
   </entry>
   
   <entry>
     <title>SQL建模规范</title>
-    <link href="http://www.typedefine.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/"/>
-    <id>http://www.typedefine.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/</id>
+    <link href="http://www.jinnotes.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/"/>
+    <id>http://www.jinnotes.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/</id>
     <published>2021-03-29T01:39:50.000Z</published>
-    <updated>2021-03-29T01:39:50.000Z</updated>
+    <updated>2026-07-05T09:28:57.773Z</updated>
     
     <summary type="html">
     
@@ -158,71 +159,72 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;update_time、create_time&lt;br&gt;使用timestamp或者datetime作为时间类型的首选。Mybatis-Plus框架生成的相应Java类型都是LocalDateTime。大部分场景下2种类型可以互相替换，不过在时间范围和时区支持上有差异。&lt;br&gt;使用MySQL的自动初始化和自动更新功能。 字段变化之后，update_time数据库自动更新，如下：&lt;/p&gt;
-&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;create_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP &lt;span class=&quot;keyword&quot;&gt;COMMENT&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;创建时间&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;create_by &lt;span class=&quot;built_in&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;36&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;COMMENT&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;创建人&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;update_at &lt;span class=&quot;built_in&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;CURRENT_TIMESTAMP&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;UPDATE&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;CURRENT_TIMESTAMP&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;COMMENT&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;更新时间&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;update_by &lt;span class=&quot;built_in&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;36&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;COMMENT&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;更新人&#39;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;  
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;布尔型字段使用tinyint(1)即可。&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;参考《阿里巴巴Java开发手册(华山版).pdf》。&lt;/p&gt;
-&lt;/li&gt;
+&lt;/ol&gt;
+&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;create_at &lt;span class=&quot;type&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NOT NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;CURRENT_TIMESTAMP&lt;/span&gt; COMMENT &lt;span class=&quot;string&quot;&gt;&amp;#x27;创建时间&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;create_by &lt;span class=&quot;type&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;36&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NULL&lt;/span&gt; COMMENT &lt;span class=&quot;string&quot;&gt;&amp;#x27;创建人&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;update_at &lt;span class=&quot;type&quot;&gt;timestamp&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NOT NULL&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;CURRENT_TIMESTAMP&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;UPDATE&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;CURRENT_TIMESTAMP&lt;/span&gt; COMMENT &lt;span class=&quot;string&quot;&gt;&amp;#x27;更新时间&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;update_by &lt;span class=&quot;type&quot;&gt;varchar&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;36&lt;/span&gt;) &lt;span class=&quot;keyword&quot;&gt;DEFAULT&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;NULL&lt;/span&gt; COMMENT &lt;span class=&quot;string&quot;&gt;&amp;#x27;更新人&amp;#x27;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;  
+
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;布尔型字段使用tinyint(1)即可。&lt;/li&gt;
+&lt;li&gt;参考《阿里巴巴Java开发手册(华山版).pdf》。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h1 id=&quot;雪花算法实现&quot;&gt;&lt;a href=&quot;#雪花算法实现&quot; class=&quot;headerlink&quot; title=&quot;雪花算法实现&quot;&gt;&lt;/a&gt;雪花算法实现&lt;/h1&gt;
     
     </summary>
     
     
-      <category term="SQL" scheme="http://www.typedefine.cn/categories/SQL/"/>
+      <category term="SQL" scheme="http://www.jinnotes.cn/categories/SQL/"/>
     
-      <category term="建模" scheme="http://www.typedefine.cn/categories/SQL/%E5%BB%BA%E6%A8%A1/"/>
+      <category term="建模" scheme="http://www.jinnotes.cn/categories/SQL/%E5%BB%BA%E6%A8%A1/"/>
     
-      <category term="数据库" scheme="http://www.typedefine.cn/categories/SQL/%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="http://www.jinnotes.cn/categories/SQL/%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-      <category term="建模" scheme="http://www.typedefine.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
+      <category term="建模" scheme="http://www.jinnotes.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
     
-      <category term="SQL" scheme="http://www.typedefine.cn/tags/SQL/"/>
+      <category term="SQL" scheme="http://www.jinnotes.cn/tags/SQL/"/>
     
-      <category term="数据库" scheme="http://www.typedefine.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="http://www.jinnotes.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
   </entry>
   
   <entry>
     <title>Spring Cloud支持MongoDB</title>
-    <link href="http://www.typedefine.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/"/>
-    <id>http://www.typedefine.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/</id>
+    <link href="http://www.jinnotes.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/"/>
+    <id>http://www.jinnotes.cn/2020/12/07/%E5%A6%82%E4%BD%95%E5%9C%A8Spring-Cloud%E6%9C%8D%E5%8A%A1%E4%B8%AD%E9%85%8D%E7%BD%AEMongoDB/</id>
     <published>2020-12-07T07:09:46.000Z</published>
-    <updated>2020-12-07T07:09:46.000Z</updated>
+    <updated>2026-07-05T09:28:57.768Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用mongoose的ORM框架结合到express框架，生产力会提高一大截。&lt;/p&gt;
 &lt;p&gt;稍显不足的是，MongoDB对于中文索引支持的力度不够，对于某些要求强事务的领域应用（比如金融、财务等）略显不足，至少还没有看到有成熟应用的案例。如果有，请告诉我。另外一个就是，在搭建MongoDB集群的时候，相对来说是比较复杂的。水平扩展虽然很简单，但是做Sharding的时候也需要仔细的考量。&lt;/p&gt;
-&lt;p&gt;本文简单介绍一下如何在Spring Boot/Spring Cloud程序中使用MongoDB数据库。&lt;/p&gt;
+&lt;p&gt;本文简单介绍一下如何在Spring Boot&amp;#x2F;Spring Cloud程序中使用MongoDB数据库。&lt;/p&gt;
 &lt;h1 id=&quot;Java-Config&quot;&gt;&lt;a href=&quot;#Java-Config&quot; class=&quot;headerlink&quot; title=&quot;Java Config&quot;&gt;&lt;/a&gt;Java Config&lt;/h1&gt;&lt;p&gt;第一种方式就是采用Java Config的方式，直接上代码，如下：&lt;/p&gt;
     
     </summary>
     
     
-      <category term="架构" scheme="http://www.typedefine.cn/categories/%E6%9E%B6%E6%9E%84/"/>
+      <category term="架构" scheme="http://www.jinnotes.cn/categories/%E6%9E%B6%E6%9E%84/"/>
     
     
-      <category term="MongoDB" scheme="http://www.typedefine.cn/tags/MongoDB/"/>
+      <category term="MongoDB" scheme="http://www.jinnotes.cn/tags/MongoDB/"/>
     
-      <category term="建模" scheme="http://www.typedefine.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
+      <category term="建模" scheme="http://www.jinnotes.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
     
-      <category term="NoSQL" scheme="http://www.typedefine.cn/tags/NoSQL/"/>
+      <category term="NoSQL" scheme="http://www.jinnotes.cn/tags/NoSQL/"/>
     
-      <category term="Spring" scheme="http://www.typedefine.cn/tags/Spring/"/>
+      <category term="Spring" scheme="http://www.jinnotes.cn/tags/Spring/"/>
     
-      <category term="Spring Cloud" scheme="http://www.typedefine.cn/tags/Spring-Cloud/"/>
+      <category term="Spring Cloud" scheme="http://www.jinnotes.cn/tags/Spring-Cloud/"/>
     
   </entry>
   
   <entry>
     <title>MongoDB建模的简单原则</title>
-    <link href="http://www.typedefine.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/"/>
-    <id>http://www.typedefine.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/</id>
+    <link href="http://www.jinnotes.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/"/>
+    <id>http://www.jinnotes.cn/2020/12/07/MongoDB%E5%BB%BA%E6%A8%A1%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AE%80%E5%8D%95%E5%8E%9F%E5%88%99/</id>
     <published>2020-12-07T06:56:59.000Z</published>
-    <updated>2020-12-07T06:56:59.000Z</updated>
+    <updated>2026-07-05T09:28:57.767Z</updated>
     
     <summary type="html">
     
@@ -237,23 +239,23 @@
     </summary>
     
     
-      <category term="架构" scheme="http://www.typedefine.cn/categories/%E6%9E%B6%E6%9E%84/"/>
+      <category term="架构" scheme="http://www.jinnotes.cn/categories/%E6%9E%B6%E6%9E%84/"/>
     
     
-      <category term="MongoDB" scheme="http://www.typedefine.cn/tags/MongoDB/"/>
+      <category term="MongoDB" scheme="http://www.jinnotes.cn/tags/MongoDB/"/>
     
-      <category term="建模" scheme="http://www.typedefine.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
+      <category term="建模" scheme="http://www.jinnotes.cn/tags/%E5%BB%BA%E6%A8%A1/"/>
     
-      <category term="NoSQL" scheme="http://www.typedefine.cn/tags/NoSQL/"/>
+      <category term="NoSQL" scheme="http://www.jinnotes.cn/tags/NoSQL/"/>
     
   </entry>
   
   <entry>
     <title>Nacos不支持MYSQL 8的问题</title>
-    <link href="http://www.typedefine.cn/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://www.typedefine.cn/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/</id>
+    <link href="http://www.jinnotes.cn/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://www.jinnotes.cn/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/</id>
     <published>2020-04-29T14:22:14.000Z</published>
-    <updated>2020-04-29T14:22:14.000Z</updated>
+    <updated>2026-07-05T09:28:57.765Z</updated>
     
     <summary type="html">
     
@@ -268,25 +270,25 @@
     </summary>
     
     
-      <category term="框架" scheme="http://www.typedefine.cn/categories/%E6%A1%86%E6%9E%B6/"/>
+      <category term="框架" scheme="http://www.jinnotes.cn/categories/%E6%A1%86%E6%9E%B6/"/>
     
-      <category term="微服务" scheme="http://www.typedefine.cn/categories/%E6%A1%86%E6%9E%B6/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+      <category term="微服务" scheme="http://www.jinnotes.cn/categories/%E6%A1%86%E6%9E%B6/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     
-      <category term="微服务" scheme="http://www.typedefine.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+      <category term="微服务" scheme="http://www.jinnotes.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
-      <category term="Nacos" scheme="http://www.typedefine.cn/tags/Nacos/"/>
+      <category term="Nacos" scheme="http://www.jinnotes.cn/tags/Nacos/"/>
     
-      <category term="MySQL" scheme="http://www.typedefine.cn/tags/MySQL/"/>
+      <category term="MySQL" scheme="http://www.jinnotes.cn/tags/MySQL/"/>
     
   </entry>
   
   <entry>
     <title>快车道系列：理解文档对象模型DOM</title>
-    <link href="http://www.typedefine.cn/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/"/>
-    <id>http://www.typedefine.cn/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/</id>
+    <link href="http://www.jinnotes.cn/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/"/>
+    <id>http://www.jinnotes.cn/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/</id>
     <published>2020-03-30T13:53:13.000Z</published>
-    <updated>2020-03-30T13:53:13.000Z</updated>
+    <updated>2026-07-05T09:28:57.763Z</updated>
     
     <summary type="html">
     
@@ -298,25 +300,25 @@
     </summary>
     
     
-      <category term="web" scheme="http://www.typedefine.cn/categories/web/"/>
+      <category term="web" scheme="http://www.jinnotes.cn/categories/web/"/>
     
     
-      <category term="web" scheme="http://www.typedefine.cn/tags/web/"/>
+      <category term="web" scheme="http://www.jinnotes.cn/tags/web/"/>
     
-      <category term="DOM" scheme="http://www.typedefine.cn/tags/DOM/"/>
+      <category term="DOM" scheme="http://www.jinnotes.cn/tags/DOM/"/>
     
-      <category term="Fast Track" scheme="http://www.typedefine.cn/tags/Fast-Track/"/>
+      <category term="Fast Track" scheme="http://www.jinnotes.cn/tags/Fast-Track/"/>
     
-      <category term="快车道" scheme="http://www.typedefine.cn/tags/%E5%BF%AB%E8%BD%A6%E9%81%93/"/>
+      <category term="快车道" scheme="http://www.jinnotes.cn/tags/%E5%BF%AB%E8%BD%A6%E9%81%93/"/>
     
   </entry>
   
   <entry>
     <title>Kafka调研（3）：多点通信方案的设计-2</title>
-    <link href="http://www.typedefine.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
-    <id>http://www.typedefine.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
+    <link href="http://www.jinnotes.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
+    <id>http://www.jinnotes.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
     <published>2020-03-13T06:46:04.000Z</published>
-    <updated>2020-03-13T06:46:04.000Z</updated>
+    <updated>2026-07-05T09:28:57.699Z</updated>
     
     <summary type="html">
     
@@ -329,7 +331,7 @@
 &lt;li&gt;对每一个topic按照应用进行配置读写权限。&lt;/li&gt;
 &lt;li&gt;对每一个接入的应用分配一个唯一的秘钥（该秘钥通过安全方式传递）。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;2. 同时我们在应用包装一层API进行消息分派机制&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;2. 同时我们在应用包装一层API进行消息分派机制&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;应用层的消息需要进行加密。&lt;/li&gt;
 &lt;li&gt;应用层需要校验消息的来源和完整性。&lt;/li&gt;
@@ -340,57 +342,57 @@
     </summary>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/categories/Kafka/"/>
+      <category term="Kafka" scheme="http://www.jinnotes.cn/categories/Kafka/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
+      <category term="Architecture" scheme="http://www.jinnotes.cn/categories/Kafka/Architecture/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+      <category term="Message Queue" scheme="http://www.jinnotes.cn/tags/Message-Queue/"/>
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+      <category term="Kafka" scheme="http://www.jinnotes.cn/tags/Kafka/"/>
     
-      <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
+      <category term="Topo Comm model" scheme="http://www.jinnotes.cn/tags/Topo-Comm-model/"/>
     
-      <category term="Frameword" scheme="http://www.typedefine.cn/tags/Frameword/"/>
+      <category term="Frameword" scheme="http://www.jinnotes.cn/tags/Frameword/"/>
     
-      <category term="星形拓扑通信" scheme="http://www.typedefine.cn/tags/%E6%98%9F%E5%BD%A2%E6%8B%93%E6%89%91%E9%80%9A%E4%BF%A1/"/>
+      <category term="星形拓扑通信" scheme="http://www.jinnotes.cn/tags/%E6%98%9F%E5%BD%A2%E6%8B%93%E6%89%91%E9%80%9A%E4%BF%A1/"/>
     
-      <category term="应用层设计" scheme="http://www.typedefine.cn/tags/%E5%BA%94%E7%94%A8%E5%B1%82%E8%AE%BE%E8%AE%A1/"/>
+      <category term="应用层设计" scheme="http://www.jinnotes.cn/tags/%E5%BA%94%E7%94%A8%E5%B1%82%E8%AE%BE%E8%AE%A1/"/>
     
   </entry>
   
   <entry>
     <title>Kafka调研（3）：多点通信方案的设计-1</title>
-    <link href="http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
-    <id>http://www.typedefine.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
+    <link href="http://www.jinnotes.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/"/>
+    <id>http://www.jinnotes.cn/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/</id>
     <published>2020-02-17T03:30:38.000Z</published>
-    <updated>2020-02-17T03:30:38.000Z</updated>
+    <updated>2026-07-05T09:28:57.692Z</updated>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;1-引言&quot;&gt;&lt;a href=&quot;#1-引言&quot; class=&quot;headerlink&quot; title=&quot;1. 引言&quot;&gt;&lt;/a&gt;1. 引言&lt;/h1&gt;&lt;p&gt;在华为核心网和无线领域有几个重量级的产品比如U2000/M2000等网管系统&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
-&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。里面的底层通信就是一套基于MDP(Message Dispatching Process)的星形拓扑通信系统。不同的业务进程之间通过消息(REQ/RSP)来通信，而不是通信RPC或者库的依赖。&lt;/p&gt;
+      &lt;h1 id=&quot;1-引言&quot;&gt;&lt;a href=&quot;#1-引言&quot; class=&quot;headerlink&quot; title=&quot;1. 引言&quot;&gt;&lt;/a&gt;1. 引言&lt;/h1&gt;&lt;p&gt;在华为核心网和无线领域有几个重量级的产品比如U2000&amp;#x2F;M2000等网管系统&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;http://ishare.iask.sina.com.cn/f/LmFNcBVsuz.html
+&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。里面的底层通信就是一套基于MDP(Message Dispatching Process)的星形拓扑通信系统。不同的业务进程之间通过消息(REQ&amp;#x2F;RSP)来通信，而不是通信RPC或者库的依赖。&lt;/p&gt;
 &lt;p&gt;由于年代久远，和现在主流的MQ技术相比有一些不同的地方，随便说几点:&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;消息序列化只支持ASN.1&lt;/em&gt;&lt;/strong&gt;. 当然好处在于提供一套抽象的语义定义，并且大家只需要传递ASN.1文件即可。或者由一个公共方将ASN.1文件编程对应的模型和支撑库提供给各个端对进行开发。但是同时呢，不好的地方也很明显，一方面是技术过时，再一个就是需要一个专门的团队来维护ASN.1定义和相应的工具；另一方面在于管理上没有形成一个好的ASN.1的分发机制。导致版本之间定义很混乱。对于前后向兼容性问题很难做到。当然，在网上也可以找到一些开源的ASN.1 Compiler&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://github.com/vlm/asn1c
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;消息序列化只支持ASN.1&lt;/strong&gt;&lt;/em&gt;. 当然好处在于提供一套抽象的语义定义，并且大家只需要传递ASN.1文件即可。或者由一个公共方将ASN.1文件编程对应的模型和支撑库提供给各个端对进行开发。但是同时呢，不好的地方也很明显，一方面是技术过时，再一个就是需要一个专门的团队来维护ASN.1定义和相应的工具；另一方面在于管理上没有形成一个好的ASN.1的分发机制。导致版本之间定义很混乱。对于前后向兼容性问题很难做到。当然，在网上也可以找到一些开源的ASN.1 Compiler&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://github.com/vlm/asn1c
 &quot;&gt;[3]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。能不能用不清楚。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;MDP并不支持消息的缓存和队列机制，本身也不提供可靠性保证。&lt;/em&gt;&lt;/strong&gt; 那么如何来提供不丢失的消息呢？ 在华为，答案是提供一个框架层，业务团队并不直接使用MDP提供的库和接口，而是使用封装之后的一套框架，这套框架中提供了可靠性事件的发送的。实现的机制就是在发送之前存库。在接收业务处理完成之后，再从数据库中移除。当然这套机制也出现过不少问题，比如消息积压，数据库的内容不断上涨，甚至在局点可能出现过数据库表过大，导致其他业务访问很慢，甚至于极端情况下，整个数据库崩掉的情况都有。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;MDP并不支持消息的缓存和队列机制，本身也不提供可靠性保证。&lt;/strong&gt;&lt;/em&gt; 那么如何来提供不丢失的消息呢？ 在华为，答案是提供一个框架层，业务团队并不直接使用MDP提供的库和接口，而是使用封装之后的一套框架，这套框架中提供了可靠性事件的发送的。实现的机制就是在发送之前存库。在接收业务处理完成之后，再从数据库中移除。当然这套机制也出现过不少问题，比如消息积压，数据库的内容不断上涨，甚至在局点可能出现过数据库表过大，导致其他业务访问很慢，甚至于极端情况下，整个数据库崩掉的情况都有。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;MDP无法水平扩展，当消息出现峰值的时候，MDP有可能出现丢包的问题。&lt;/em&gt;&lt;/strong&gt; 这个问题也比较头疼。这是从一开始设计的时候就没有考虑的问题。考虑到U2000/M2000对应的数据量实际上是很大的。假如MDP的处理峰值在于2000/s，每秒钟2W条消息尽力保证不丢包。 这个阈值总会在未来的某一天会被打破，那么这个时候问题就出来了，系统会出现频繁丢包，系统业务频繁故障，但是由于底层数据通道，在应用层面几乎无法做到一个比较好的解决方案。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;&lt;strong&gt;MDP无法水平扩展，当消息出现峰值的时候，MDP有可能出现丢包的问题。&lt;/strong&gt;&lt;/em&gt; 这个问题也比较头疼。这是从一开始设计的时候就没有考虑的问题。考虑到U2000&amp;#x2F;M2000对应的数据量实际上是很大的。假如MDP的处理峰值在于2000&amp;#x2F;s，每秒钟2W条消息尽力保证不丢包。 这个阈值总会在未来的某一天会被打破，那么这个时候问题就出来了，系统会出现频繁丢包，系统业务频繁故障，但是由于底层数据通道，在应用层面几乎无法做到一个比较好的解决方案。&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;MDP采用ACE&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;http://www.dre.vanderbilt.edu/~schmidt/TAO-overview.html
-&quot;&gt;[4]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，这一套框架比较复杂。&lt;/em&gt;&lt;/strong&gt;当然整体的U2000/M2000都是基于这个来开发，导致比较重型。&lt;br&gt;另外就是在U2000/M2000北向领域，采用了大量的ACE/TAO/Event Channel机制。灵活性不够。&lt;br&gt;&lt;strong&gt;&lt;em&gt;为什么说CORBA是一个很不好的技术，最终会被时代所抛弃? 可以看这篇论文&lt;/em&gt;&lt;/strong&gt;。&lt;a href=&quot;/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/1142031.1142044.pdf&quot; title=&quot;下载链接&quot;&gt;下载链接&lt;/a&gt;&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;***MDP采用ACE&lt;sup id=&quot;fnref:4&quot;&gt;&lt;a href=&quot;#fn:4&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;http://www.dre.vanderbilt.edu/~schmidt/TAO-overview.html
+&quot;&gt;[4]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，这一套框架比较复杂。***当然整体的U2000&amp;#x2F;M2000都是基于这个来开发，导致比较重型。&lt;br&gt;另外就是在U2000&amp;#x2F;M2000北向领域，采用了大量的ACE&amp;#x2F;TAO&amp;#x2F;Event Channel机制。灵活性不够。&lt;br&gt;&lt;em&gt;&lt;strong&gt;为什么说CORBA是一个很不好的技术，最终会被时代所抛弃? 可以看这篇论文&lt;/strong&gt;&lt;/em&gt;。&lt;a href=&quot;/2020/02/17/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A3%EF%BC%9A%E5%9F%BA%E4%BA%8EKafka%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/1142031.1142044.pdf&quot; title=&quot;下载链接&quot;&gt;下载链接&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;&lt;em&gt;当前通信架构转异构通信架构的难度。&lt;/em&gt;&lt;/strong&gt;对于U2000/M2000来说，所有的开发支撑库都需要自己来完成。当然，对于华为来说，这个不是问题。问题这是人力预算的问题。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;***当前通信架构转异构通信架构的难度。***对于U2000&amp;#x2F;M2000来说，所有的开发支撑库都需要自己来完成。当然，对于华为来说，这个不是问题。问题这是人力预算的问题。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;上面说的一些问题在华为内部看来，有一些并不是问题，有一些问题可以绕过。有几个点：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;客户的OSS/BSS系统都是基于CORBA调用。&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;ITU的标准定义就是基于ASN.1模型发布。&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;整个产品技术切换的成本太高, 所以要保护既有投资，CORBA技术带来的复杂度也可以成为一种护城河。&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;em&gt;整个业务开发团队转型所面临的学习成本、人才招聘、人力缺口等等。&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;客户的OSS&amp;#x2F;BSS系统都是基于CORBA调用。&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;ITU的标准定义就是基于ASN.1模型发布。&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;整个产品技术切换的成本太高, 所以要保护既有投资，CORBA技术带来的复杂度也可以成为一种护城河。&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;&lt;strong&gt;整个业务开发团队转型所面临的学习成本、人才招聘、人力缺口等等。&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;那么，从这几点来考虑，保持当前技术稳定，保持客户服务的稳定变是重点。所以，对于大企业来说，真的不是某个技术好就要上的。上面这个并非是吐槽，而是纯粹从技术上来分析我所经历过的产品在架构上的一些问题。&lt;/p&gt;
 &lt;p&gt;那么回过头来，那么如何通过messge queue来解耦不同系统（同构的还是异构的)来交换和通信来实现多异构同构系统之间的 星形通信呢？ 我们来做一个简单的设计。&lt;/p&gt;
@@ -398,23 +400,23 @@
     </summary>
     
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/categories/Kafka/"/>
+      <category term="Kafka" scheme="http://www.jinnotes.cn/categories/Kafka/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/categories/Kafka/Architecture/"/>
+      <category term="Architecture" scheme="http://www.jinnotes.cn/categories/Kafka/Architecture/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+      <category term="Message Queue" scheme="http://www.jinnotes.cn/tags/Message-Queue/"/>
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+      <category term="Kafka" scheme="http://www.jinnotes.cn/tags/Kafka/"/>
     
-      <category term="Topo Comm model" scheme="http://www.typedefine.cn/tags/Topo-Comm-model/"/>
+      <category term="Topo Comm model" scheme="http://www.jinnotes.cn/tags/Topo-Comm-model/"/>
     
   </entry>
   
   <entry>
     <title>使用Socket.io搭建WS服务并通过Nginx反向代理</title>
-    <link href="http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/"/>
-    <id>http://www.typedefine.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</id>
+    <link href="http://www.jinnotes.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/"/>
+    <id>http://www.jinnotes.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</id>
     <published>2020-02-17T01:46:21.000Z</published>
     <updated>2020-03-07T04:40:00.000Z</updated>
     
@@ -422,7 +424,7 @@
     
       &lt;h1 id=&quot;Nodejs、Express、Socket-io、Nginx&quot;&gt;&lt;a href=&quot;#Nodejs、Express、Socket-io、Nginx&quot; class=&quot;headerlink&quot; title=&quot;Nodejs、Express、Socket.io、Nginx&quot;&gt;&lt;/a&gt;Nodejs、Express、Socket.io、Nginx&lt;/h1&gt;&lt;p&gt;使用Express框架和Socket.io库将websocket搭建起来，并监听同一个端口，参考官方例子&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://socket.io/docs/#Using-with-Express
 &quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;就可以，非常简单。&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; app = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;express&#39;&lt;/span&gt;)();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; server = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;http&#39;&lt;/span&gt;).Server(app);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; io = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;socket.io&#39;&lt;/span&gt;)(server);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;server.listen(&lt;span class=&quot;number&quot;&gt;80&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// WARNING: app.listen(80) will NOT work here!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;app.get(&lt;span class=&quot;string&quot;&gt;&#39;/&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;req, res&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;res.sendFile(__dirname + &lt;span class=&quot;string&quot;&gt;&#39;/index.html&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;io.on(&lt;span class=&quot;string&quot;&gt;&#39;connection&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;socket&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;socket.emit(&lt;span class=&quot;string&quot;&gt;&#39;news&#39;&lt;/span&gt;, &amp;#123; &lt;span class=&quot;attr&quot;&gt;hello&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&#39;world&#39;&lt;/span&gt; &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;socket.on(&lt;span class=&quot;string&quot;&gt;&#39;my other event&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;data&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; app = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;express&amp;#x27;&lt;/span&gt;)();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; server = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;http&amp;#x27;&lt;/span&gt;).&lt;span class=&quot;title class_&quot;&gt;Server&lt;/span&gt;(app);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; io = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;socket.io&amp;#x27;&lt;/span&gt;)(server);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;server.&lt;span class=&quot;title function_&quot;&gt;listen&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;80&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// WARNING: app.listen(80) will NOT work here!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;app.&lt;span class=&quot;title function_&quot;&gt;get&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;/&amp;#x27;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;req, res&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;res.&lt;span class=&quot;title function_&quot;&gt;sendFile&lt;/span&gt;(__dirname + &lt;span class=&quot;string&quot;&gt;&amp;#x27;/index.html&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;io.&lt;span class=&quot;title function_&quot;&gt;on&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;connection&amp;#x27;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;socket&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;socket.&lt;span class=&quot;title function_&quot;&gt;emit&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;news&amp;#x27;&lt;/span&gt;, &amp;#123; &lt;span class=&quot;attr&quot;&gt;hello&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&amp;#x27;world&amp;#x27;&lt;/span&gt; &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;socket.&lt;span class=&quot;title function_&quot;&gt;on&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;my other event&amp;#x27;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;data&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;variable language_&quot;&gt;console&lt;/span&gt;.&lt;span class=&quot;title function_&quot;&gt;log&lt;/span&gt;(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 
 &lt;h1 id=&quot;Nginx同时作为Web-Server和WebSocket-Reverse-Proxy&quot;&gt;&lt;a href=&quot;#Nginx同时作为Web-Server和WebSocket-Reverse-Proxy&quot; class=&quot;headerlink&quot; title=&quot;Nginx同时作为Web Server和WebSocket Reverse Proxy&quot;&gt;&lt;/a&gt;Nginx同时作为Web Server和WebSocket Reverse Proxy&lt;/h1&gt;&lt;p&gt;在配置Nginx的时候，遇到了很多的问题，并且在网上现在找不到一篇对这个问题讲解的非常清楚的文档。&lt;br&gt;比如：&lt;/p&gt;
@@ -430,29 +432,29 @@
     </summary>
     
     
-      <category term="websokcet" scheme="http://www.typedefine.cn/categories/websokcet/"/>
+      <category term="websokcet" scheme="http://www.jinnotes.cn/categories/websokcet/"/>
     
-      <category term="nodejs" scheme="http://www.typedefine.cn/categories/websokcet/nodejs/"/>
+      <category term="nodejs" scheme="http://www.jinnotes.cn/categories/websokcet/nodejs/"/>
     
     
-      <category term="websocket" scheme="http://www.typedefine.cn/tags/websocket/"/>
+      <category term="websocket" scheme="http://www.jinnotes.cn/tags/websocket/"/>
     
-      <category term="nginx" scheme="http://www.typedefine.cn/tags/nginx/"/>
+      <category term="nginx" scheme="http://www.jinnotes.cn/tags/nginx/"/>
     
-      <category term="Socket.io" scheme="http://www.typedefine.cn/tags/Socket-io/"/>
+      <category term="Socket.io" scheme="http://www.jinnotes.cn/tags/Socket-io/"/>
     
-      <category term="Nodejs" scheme="http://www.typedefine.cn/tags/Nodejs/"/>
+      <category term="Nodejs" scheme="http://www.jinnotes.cn/tags/Nodejs/"/>
     
-      <category term="express" scheme="http://www.typedefine.cn/tags/express/"/>
+      <category term="express" scheme="http://www.jinnotes.cn/tags/express/"/>
     
   </entry>
   
   <entry>
     <title>Kafka调研（2）：消息序列化框架建议与对比</title>
-    <link href="http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/"/>
-    <id>http://www.typedefine.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/</id>
+    <link href="http://www.jinnotes.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/"/>
+    <id>http://www.jinnotes.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/</id>
     <published>2020-02-14T03:57:26.000Z</published>
-    <updated>2020-02-14T03:57:26.000Z</updated>
+    <updated>2026-07-05T09:28:57.685Z</updated>
     
     <summary type="html">
     
@@ -464,33 +466,33 @@
     </summary>
     
     
-      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
+      <category term="Message Queue - Kafka" scheme="http://www.jinnotes.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+      <category term="Message Queue" scheme="http://www.jinnotes.cn/tags/Message-Queue/"/>
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+      <category term="Kafka" scheme="http://www.jinnotes.cn/tags/Kafka/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+      <category term="Serialization" scheme="http://www.jinnotes.cn/tags/Serialization/"/>
     
-      <category term="Serialization" scheme="http://www.typedefine.cn/tags/Serialization/"/>
+      <category term="JSON" scheme="http://www.jinnotes.cn/tags/JSON/"/>
     
-      <category term="JSON" scheme="http://www.typedefine.cn/tags/JSON/"/>
+      <category term="Apahce Avro" scheme="http://www.jinnotes.cn/tags/Apahce-Avro/"/>
     
-      <category term="Apahce Avro" scheme="http://www.typedefine.cn/tags/Apahce-Avro/"/>
+      <category term="Apahce Thrift" scheme="http://www.jinnotes.cn/tags/Apahce-Thrift/"/>
     
-      <category term="Apahce Thrift" scheme="http://www.typedefine.cn/tags/Apahce-Thrift/"/>
+      <category term="Protocol Buffers" scheme="http://www.jinnotes.cn/tags/Protocol-Buffers/"/>
     
-      <category term="Protocol Buffers" scheme="http://www.typedefine.cn/tags/Protocol-Buffers/"/>
+      <category term="Architecture" scheme="http://www.jinnotes.cn/tags/Architecture/"/>
     
   </entry>
   
   <entry>
     <title>Kafka调研（1）：跨数据中心的多集群镜像</title>
-    <link href="http://www.typedefine.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/"/>
-    <id>http://www.typedefine.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/</id>
+    <link href="http://www.jinnotes.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/"/>
+    <id>http://www.jinnotes.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/</id>
     <published>2020-02-14T03:12:23.000Z</published>
-    <updated>2020-02-14T03:12:23.000Z</updated>
+    <updated>2026-07-05T09:28:57.681Z</updated>
     
     <summary type="html">
     
@@ -505,37 +507,37 @@
     </summary>
     
     
-      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
+      <category term="Message Queue - Kafka" scheme="http://www.jinnotes.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+      <category term="Message Queue" scheme="http://www.jinnotes.cn/tags/Message-Queue/"/>
     
-      <category term="Kafka" scheme="http://www.typedefine.cn/tags/Kafka/"/>
+      <category term="Kafka" scheme="http://www.jinnotes.cn/tags/Kafka/"/>
     
-      <category term="Data center" scheme="http://www.typedefine.cn/tags/Data-center/"/>
+      <category term="Architecture" scheme="http://www.jinnotes.cn/tags/Architecture/"/>
     
-      <category term="Cluster" scheme="http://www.typedefine.cn/tags/Cluster/"/>
+      <category term="Data center" scheme="http://www.jinnotes.cn/tags/Data-center/"/>
     
-      <category term="Mirror Maker" scheme="http://www.typedefine.cn/tags/Mirror-Maker/"/>
+      <category term="Cluster" scheme="http://www.jinnotes.cn/tags/Cluster/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+      <category term="Mirror Maker" scheme="http://www.jinnotes.cn/tags/Mirror-Maker/"/>
     
   </entry>
   
   <entry>
     <title>什么是Kafka</title>
-    <link href="http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/"/>
-    <id>http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/</id>
+    <link href="http://www.jinnotes.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/"/>
+    <id>http://www.jinnotes.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/</id>
     <published>2020-02-14T02:30:23.000Z</published>
-    <updated>2020-02-14T02:30:23.000Z</updated>
+    <updated>2026-07-05T09:28:57.685Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;&lt;em&gt;占坑，后面有时间对Kafka进行详细的更新&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;em&gt;&lt;strong&gt;占坑，后面有时间对Kafka进行详细的更新&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&quot;A-bit-of-History&quot;&gt;&lt;a href=&quot;#A-bit-of-History&quot; class=&quot;headerlink&quot; title=&quot;A bit of History&quot;&gt;&lt;/a&gt;A bit of History&lt;/h1&gt;&lt;p&gt;Kafka是高性能的、分布式的、数据可持久化的消息丢列。最初由LinkedIn开发，用来跟踪Web上的用户的一系列事件，譬如页面浏览(Page view)，搜索框的输入，展示的广告等等。这些事件对于监控和调查用于对于网站交互的参与度非常的重要。每天都有大量的数据产生，因为，需要一个可以轻松扩展，同时又不会增加额外负担的一个解决方案。&lt;/p&gt;
 &lt;p&gt;总体来说，Kafka从设计之初有3个目标：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;简单的生产者/消费者API设计&lt;/li&gt;
+&lt;li&gt;简单的生产者&amp;#x2F;消费者API设计&lt;/li&gt;
 &lt;li&gt;尽可能减少网络传输和磁盘存储的额外成本&lt;/li&gt;
 &lt;li&gt;从一开始就为可扩展性而设计&lt;/li&gt;
 &lt;/ol&gt;
@@ -543,86 +545,86 @@
     </summary>
     
     
-      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
+      <category term="Message Queue - Kafka" scheme="http://www.jinnotes.cn/categories/Message-Queue-Kafka/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/Architecture/"/>
+      <category term="Architecture" scheme="http://www.jinnotes.cn/categories/Message-Queue-Kafka/Architecture/"/>
     
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+      <category term="Architecture" scheme="http://www.jinnotes.cn/tags/Architecture/"/>
     
-      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/tags/Message-Queue-Kafka/"/>
+      <category term="JMS" scheme="http://www.jinnotes.cn/tags/JMS/"/>
     
-      <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
+      <category term="Message Queue - Kafka" scheme="http://www.jinnotes.cn/tags/Message-Queue-Kafka/"/>
     
   </entry>
   
   <entry>
     <title>什么是MQ</title>
-    <link href="http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/"/>
-    <id>http://www.typedefine.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/</id>
+    <link href="http://www.jinnotes.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/"/>
+    <id>http://www.jinnotes.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/</id>
     <published>2020-02-14T02:10:23.000Z</published>
-    <updated>2020-02-14T02:10:23.000Z</updated>
+    <updated>2026-07-05T09:28:57.690Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;&lt;strong&gt;&lt;em&gt;这篇文章是一篇未完成稿，有时间再写&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;em&gt;&lt;strong&gt;这篇文章是一篇未完成稿，有时间再写&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;h1 id=&quot;什么是消息队列（Message-Queue）&quot;&gt;&lt;a href=&quot;#什么是消息队列（Message-Queue）&quot; class=&quot;headerlink&quot; title=&quot;什么是消息队列（Message Queue）?&quot;&gt;&lt;/a&gt;什么是消息队列（Message Queue）?&lt;/h1&gt;&lt;p&gt;消息队列使得应用之间可以通过互发消息的方式来通信，这和传统的RPC方式有很大的区别。通过消息队列提供的服务，解除了点对点，星形拓扑通信耦合的问题。同时，当目标服务不可用的时候，消息队列充当了临时的消息缓存。&lt;/p&gt;
 &lt;p&gt;下面先解释一下什么是消息队列&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://www.cloudamqp.com/blog/2014-12-03-what-is-message-queuing.html
 &quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;，怎么使用，在架构层面又会带来什么样的好处&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;扩展阅读：https://www.ibm.com/cloud/learn/message-queues
 &quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;队列&lt;/em&gt;&lt;/strong&gt;就是将事物排成一列，依次处理，并且依照先进先出(First In, First Out)的顺序。那么消息队列（MQ），就是用于不同系统或者应用之间通信的的列表， 将需要通信的消息保存在队列中，等待应用依次处理。&lt;a href=&quot;http://queues.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;queues.io&lt;/a&gt;是一个比较好的网站可以查找各种不同功能的队列。&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;队列&lt;/strong&gt;&lt;/em&gt;就是将事物排成一列，依次处理，并且依照先进先出(First In, First Out)的顺序。那么消息队列（MQ），就是用于不同系统或者应用之间通信的的列表， 将需要通信的消息保存在队列中，等待应用依次处理。&lt;a href=&quot;http://queues.io/&quot;&gt;queues.io&lt;/a&gt;是一个比较好的网站可以查找各种不同功能的队列。&lt;/p&gt;
     
     </summary>
     
     
-      <category term="Message Queue - Kafka" scheme="http://www.typedefine.cn/categories/Message-Queue-Kafka/"/>
+      <category term="Message Queue - Kafka" scheme="http://www.jinnotes.cn/categories/Message-Queue-Kafka/"/>
     
     
-      <category term="Message Queue" scheme="http://www.typedefine.cn/tags/Message-Queue/"/>
+      <category term="Message Queue" scheme="http://www.jinnotes.cn/tags/Message-Queue/"/>
     
-      <category term="Architecture" scheme="http://www.typedefine.cn/tags/Architecture/"/>
+      <category term="Architecture" scheme="http://www.jinnotes.cn/tags/Architecture/"/>
     
-      <category term="JMS" scheme="http://www.typedefine.cn/tags/JMS/"/>
+      <category term="JMS" scheme="http://www.jinnotes.cn/tags/JMS/"/>
     
-      <category term="AMQP" scheme="http://www.typedefine.cn/tags/AMQP/"/>
+      <category term="AMQP" scheme="http://www.jinnotes.cn/tags/AMQP/"/>
     
-      <category term="MQTT" scheme="http://www.typedefine.cn/tags/MQTT/"/>
+      <category term="MQTT" scheme="http://www.jinnotes.cn/tags/MQTT/"/>
     
   </entry>
   
   <entry>
     <title>Thrift介绍、编译参数以及如何和maven集成</title>
-    <link href="http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/"/>
-    <id>http://www.typedefine.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/</id>
+    <link href="http://www.jinnotes.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/"/>
+    <id>http://www.jinnotes.cn/2020/02/13/thrift%E7%BC%96%E8%AF%91%E5%B7%A5%E5%85%B7%E6%94%AF%E6%8C%81%E5%8F%82%E6%95%B0/</id>
     <published>2020-02-13T13:07:49.000Z</published>
-    <updated>2020-02-13T13:07:49.000Z</updated>
+    <updated>2026-07-05T09:28:57.680Z</updated>
     
     <summary type="html">
     
       &lt;h1 id=&quot;什么是Thrift&quot;&gt;&lt;a href=&quot;#什么是Thrift&quot; class=&quot;headerlink&quot; title=&quot;什么是Thrift?&quot;&gt;&lt;/a&gt;什么是Thrift?&lt;/h1&gt;&lt;p&gt;Thrift是一种接口描述语言和二进制通讯协议，它被用来定义和创建跨语言的服务。它被当作一个远程过程调用（RPC）框架来使用，是由Facebook为“大规模跨语言服务开发”而开发的。它通过一个代码生成引擎联合了一个软件栈，来创建不同程度的、无缝的跨平台高效服务，可以使用C#、C++（基于POSIX兼容系统）、Cappuccino、Cocoa、Delphi、Erlang、Go、Haskell、Java、Node.js、OCaml、Perl、PHP、Python、Ruby和Smalltalk。虽然它以前是由Facebook开发的，但它现在是Apache软件基金会的开源项目了。该实现被描述在2007年4月的一篇由Facebook发表的技术论文中，该论文现由Apache掌管。&lt;/p&gt;
-&lt;p&gt;目前流行的服务调用方式有很多种，例如基于 SOAP 消息格式的 Web Service，基于 JSON 消息格式的 RESTful 服务等。其中所用到的数据传输方式包括 XML，JSON 等，然而 XML 相对体积太大，传输效率低，JSON 体积较小，新颖，但还不够完善。本文将介绍由 Facebook 开发的远程服务调用框架 Apache Thrift，它采用接口描述语言定义并创建服务，支持可扩展的跨语言服务开发，所包含的代码生成引擎可以在多种语言中，如 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, Smalltalk 等创建高效的、无缝的服务，其传输数据采用二进制格式，相对 XML 和 JSON 体积更小，对于高并发、大数据量和多语言的环境更有优势。本文将详细介绍 Thrift 的使用，并且提供丰富的实例代码加以解释说明，帮助使用者快速构建服务。Thrift的下载地址是：&lt;a href=&quot;http://thrift.apache.org/download&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://thrift.apache.org/download&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;目前流行的服务调用方式有很多种，例如基于 SOAP 消息格式的 Web Service，基于 JSON 消息格式的 RESTful 服务等。其中所用到的数据传输方式包括 XML，JSON 等，然而 XML 相对体积太大，传输效率低，JSON 体积较小，新颖，但还不够完善。本文将介绍由 Facebook 开发的远程服务调用框架 Apache Thrift，它采用接口描述语言定义并创建服务，支持可扩展的跨语言服务开发，所包含的代码生成引擎可以在多种语言中，如 C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, Smalltalk 等创建高效的、无缝的服务，其传输数据采用二进制格式，相对 XML 和 JSON 体积更小，对于高并发、大数据量和多语言的环境更有优势。本文将详细介绍 Thrift 的使用，并且提供丰富的实例代码加以解释说明，帮助使用者快速构建服务。Thrift的下载地址是：&lt;a href=&quot;http://thrift.apache.org/download&quot;&gt;http://thrift.apache.org/download&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;thrift-exe支持的参数有哪些？&quot;&gt;&lt;a href=&quot;#thrift-exe支持的参数有哪些？&quot; class=&quot;headerlink&quot; title=&quot;thrift.exe支持的参数有哪些？&quot;&gt;&lt;/a&gt;thrift.exe支持的参数有哪些？&lt;/h1&gt;
     
     </summary>
     
     
-      <category term="thrift" scheme="http://www.typedefine.cn/categories/thrift/"/>
+      <category term="thrift" scheme="http://www.jinnotes.cn/categories/thrift/"/>
     
     
-      <category term="thrift" scheme="http://www.typedefine.cn/tags/thrift/"/>
+      <category term="thrift" scheme="http://www.jinnotes.cn/tags/thrift/"/>
     
-      <category term="compiler" scheme="http://www.typedefine.cn/tags/compiler/"/>
+      <category term="compiler" scheme="http://www.jinnotes.cn/tags/compiler/"/>
     
-      <category term="command line options" scheme="http://www.typedefine.cn/tags/command-line-options/"/>
+      <category term="command line options" scheme="http://www.jinnotes.cn/tags/command-line-options/"/>
     
   </entry>
   
   <entry>
     <title>为什么会害怕人工智能</title>
-    <link href="http://www.typedefine.cn/2020/02/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AE%B3%E6%80%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>http://www.typedefine.cn/2020/02/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AE%B3%E6%80%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</id>
+    <link href="http://www.jinnotes.cn/2020/02/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AE%B3%E6%80%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    <id>http://www.jinnotes.cn/2020/02/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AE%B3%E6%80%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</id>
     <published>2020-02-12T03:08:30.000Z</published>
-    <updated>2020-02-12T03:08:30.000Z</updated>
+    <updated>2026-07-05T09:28:57.679Z</updated>
     
     <summary type="html">
     
@@ -637,27 +639,27 @@
     </summary>
     
     
-      <category term="科技 - 人工智能" scheme="http://www.typedefine.cn/categories/%E7%A7%91%E6%8A%80-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+      <category term="科技 - 人工智能" scheme="http://www.jinnotes.cn/categories/%E7%A7%91%E6%8A%80-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
-      <category term="翻译" scheme="http://www.typedefine.cn/categories/%E7%A7%91%E6%8A%80-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BF%BB%E8%AF%91/"/>
+      <category term="翻译" scheme="http://www.jinnotes.cn/categories/%E7%A7%91%E6%8A%80-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BF%BB%E8%AF%91/"/>
     
     
-      <category term="人工智能" scheme="http://www.typedefine.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+      <category term="人工智能" scheme="http://www.jinnotes.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
-      <category term="未来科技" scheme="http://www.typedefine.cn/tags/%E6%9C%AA%E6%9D%A5%E7%A7%91%E6%8A%80/"/>
+      <category term="未来科技" scheme="http://www.jinnotes.cn/tags/%E6%9C%AA%E6%9D%A5%E7%A7%91%E6%8A%80/"/>
     
-      <category term="麻省理工评论" scheme="http://www.typedefine.cn/tags/%E9%BA%BB%E7%9C%81%E7%90%86%E5%B7%A5%E8%AF%84%E8%AE%BA/"/>
+      <category term="麻省理工评论" scheme="http://www.jinnotes.cn/tags/%E9%BA%BB%E7%9C%81%E7%90%86%E5%B7%A5%E8%AF%84%E8%AE%BA/"/>
     
-      <category term="自由意志" scheme="http://www.typedefine.cn/tags/%E8%87%AA%E7%94%B1%E6%84%8F%E5%BF%97/"/>
+      <category term="自由意志" scheme="http://www.jinnotes.cn/tags/%E8%87%AA%E7%94%B1%E6%84%8F%E5%BF%97/"/>
     
   </entry>
   
   <entry>
     <title>maven构建的一些小技巧</title>
-    <link href="http://www.typedefine.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    <id>http://www.typedefine.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</id>
+    <link href="http://www.jinnotes.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
+    <id>http://www.jinnotes.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</id>
     <published>2020-02-10T08:02:55.000Z</published>
-    <updated>2020-02-10T08:02:55.000Z</updated>
+    <updated>2026-07-05T09:28:57.678Z</updated>
     
     <summary type="html">
     
@@ -667,25 +669,25 @@
     </summary>
     
     
-      <category term="Building tools - maven" scheme="http://www.typedefine.cn/categories/Building-tools-maven/"/>
+      <category term="Building tools - maven" scheme="http://www.jinnotes.cn/categories/Building-tools-maven/"/>
     
     
-      <category term="maven" scheme="http://www.typedefine.cn/tags/maven/"/>
+      <category term="maven" scheme="http://www.jinnotes.cn/tags/maven/"/>
     
-      <category term="profiles" scheme="http://www.typedefine.cn/tags/profiles/"/>
+      <category term="profiles" scheme="http://www.jinnotes.cn/tags/profiles/"/>
     
-      <category term="settings.xml" scheme="http://www.typedefine.cn/tags/settings-xml/"/>
+      <category term="settings.xml" scheme="http://www.jinnotes.cn/tags/settings-xml/"/>
     
-      <category term="mirrorOf" scheme="http://www.typedefine.cn/tags/mirrorOf/"/>
+      <category term="mirrorOf" scheme="http://www.jinnotes.cn/tags/mirrorOf/"/>
     
   </entry>
   
   <entry>
     <title>通过maven自动化构建protobuf class代码</title>
-    <link href="http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/"/>
-    <id>http://www.typedefine.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/</id>
+    <link href="http://www.jinnotes.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/"/>
+    <id>http://www.jinnotes.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/</id>
     <published>2020-02-10T05:30:03.000Z</published>
-    <updated>2020-02-10T05:30:03.000Z</updated>
+    <updated>2026-07-05T09:28:57.679Z</updated>
     
     <summary type="html">
     
@@ -694,16 +696,16 @@
     </summary>
     
     
-      <category term="Building tools - maven" scheme="http://www.typedefine.cn/categories/Building-tools-maven/"/>
+      <category term="Building tools - maven" scheme="http://www.jinnotes.cn/categories/Building-tools-maven/"/>
     
-      <category term="protocol buffer" scheme="http://www.typedefine.cn/categories/Building-tools-maven/protocol-buffer/"/>
+      <category term="protocol buffer" scheme="http://www.jinnotes.cn/categories/Building-tools-maven/protocol-buffer/"/>
     
     
-      <category term="maven" scheme="http://www.typedefine.cn/tags/maven/"/>
+      <category term="maven" scheme="http://www.jinnotes.cn/tags/maven/"/>
     
-      <category term="protocol" scheme="http://www.typedefine.cn/tags/protocol/"/>
+      <category term="protocol" scheme="http://www.jinnotes.cn/tags/protocol/"/>
     
-      <category term="buffer" scheme="http://www.typedefine.cn/tags/buffer/"/>
+      <category term="buffer" scheme="http://www.jinnotes.cn/tags/buffer/"/>
     
   </entry>
   

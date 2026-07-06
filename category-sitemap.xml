@@ -2,196 +2,196 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>http://www.typedefine.cn</loc>
+        <loc>http://www.jinnotes.cn</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/%25E5%2595%2586%25E4%25B8%259A/Python/%25E6%2596%25B0%25E5%25AA%2592%25E4%25BD%2593/</loc>
-        <lastmod>2021-09-19T02:33:45.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/Python/%25E6%2596%25B0%25E5%25AA%2592%25E4%25BD%2593/</loc>
+        <lastmod>2026-07-05T09:28:57.780Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/%25E5%2595%2586%25E4%25B8%259A/Python/</loc>
-        <lastmod>2021-09-19T02:33:45.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/Python/</loc>
+        <lastmod>2026-07-05T09:28:57.780Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/%25E5%2595%2586%25E4%25B8%259A/</loc>
-        <lastmod>2021-09-19T02:33:45.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/</loc>
+        <lastmod>2026-07-05T09:28:57.780Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/MongoDB/%25E7%25B3%25BB%25E7%25BB%259F%25E5%2588%2586%25E6%259E%2590/</loc>
-        <lastmod>2021-07-28T08:17:34.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/MongoDB/%25E7%25B3%25BB%25E7%25BB%259F%25E5%2588%2586%25E6%259E%2590/</loc>
+        <lastmod>2026-07-05T09:28:57.774Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/MongoDB/</loc>
-        <lastmod>2021-07-28T08:17:34.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/MongoDB/</loc>
+        <lastmod>2026-07-05T09:28:57.774Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/%25E7%25B3%25BB%25E7%25BB%259F%25E8%25AE%25BE%25E8%25AE%25A1/</loc>
-        <lastmod>2021-07-27T08:27:06.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/SQL/%25E5%25BB%25BA%25E6%25A8%25A1/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593/</loc>
+        <lastmod>2026-07-05T09:28:57.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/Maven/DevOps/</loc>
-        <lastmod>2021-03-29T08:50:12.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/SQL/%25E5%25BB%25BA%25E6%25A8%25A1/</loc>
+        <lastmod>2026-07-05T09:28:57.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/Maven/</loc>
-        <lastmod>2021-03-29T08:50:12.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/SQL/</loc>
+        <lastmod>2026-07-05T09:28:57.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/SQL/%25E5%25BB%25BA%25E6%25A8%25A1/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593/</loc>
-        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/%25E7%25B3%25BB%25E7%25BB%259F%25E8%25AE%25BE%25E8%25AE%25A1/</loc>
+        <lastmod>2026-07-05T09:28:57.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/SQL/%25E5%25BB%25BA%25E6%25A8%25A1/</loc>
-        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/Maven/DevOps/</loc>
+        <lastmod>2026-07-05T09:28:57.770Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/SQL/</loc>
-        <lastmod>2021-03-29T01:39:50.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/Maven/</loc>
+        <lastmod>2026-07-05T09:28:57.770Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/%25E6%259E%25B6%25E6%259E%2584/</loc>
-        <lastmod>2020-12-07T07:09:46.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/%25E6%259E%25B6%25E6%259E%2584/</loc>
+        <lastmod>2026-07-05T09:28:57.768Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/%25E6%25A1%2586%25E6%259E%25B6/%25E5%25BE%25AE%25E6%259C%258D%25E5%258A%25A1/</loc>
-        <lastmod>2020-04-29T14:22:14.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/%25E6%25A1%2586%25E6%259E%25B6/%25E5%25BE%25AE%25E6%259C%258D%25E5%258A%25A1/</loc>
+        <lastmod>2026-07-05T09:28:57.765Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/%25E6%25A1%2586%25E6%259E%25B6/</loc>
-        <lastmod>2020-04-29T14:22:14.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/%25E6%25A1%2586%25E6%259E%25B6/</loc>
+        <lastmod>2026-07-05T09:28:57.765Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/web/</loc>
-        <lastmod>2020-03-30T13:53:13.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/web/</loc>
+        <lastmod>2026-07-05T09:28:57.763Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/Kafka/Architecture/</loc>
-        <lastmod>2020-03-13T06:46:04.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/Kafka/Architecture/</loc>
+        <lastmod>2026-07-05T09:28:57.699Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/Kafka/</loc>
-        <lastmod>2020-03-13T06:46:04.000Z</lastmod>
+        <loc>http://www.jinnotes.cn/categories/Kafka/</loc>
+        <lastmod>2026-07-05T09:28:57.699Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/websokcet/nodejs/</loc>
+        <loc>http://www.jinnotes.cn/categories/Message-Queue-Kafka/</loc>
+        <lastmod>2026-07-05T09:28:57.690Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/Message-Queue-Kafka/Architecture/</loc>
+        <lastmod>2026-07-05T09:28:57.685Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/thrift/</loc>
+        <lastmod>2026-07-05T09:28:57.680Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/Building-tools-maven/protocol-buffer/</loc>
+        <lastmod>2026-07-05T09:28:57.679Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/%25E7%25A7%2591%25E6%258A%2580-%25E4%25BA%25BA%25E5%25B7%25A5%25E6%2599%25BA%25E8%2583%25BD/%25E7%25BF%25BB%25E8%25AF%2591/</loc>
+        <lastmod>2026-07-05T09:28:57.679Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/Building-tools-maven/</loc>
+        <lastmod>2026-07-05T09:28:57.679Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/%25E7%25A7%2591%25E6%258A%2580-%25E4%25BA%25BA%25E5%25B7%25A5%25E6%2599%25BA%25E8%2583%25BD/</loc>
+        <lastmod>2026-07-05T09:28:57.679Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/Linux/</loc>
+        <lastmod>2026-07-05T09:28:57.678Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/websokcet/nodejs/</loc>
         <lastmod>2020-03-07T04:40:00.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>http://www.typedefine.cn/categories/websokcet/</loc>
+        <loc>http://www.jinnotes.cn/categories/websokcet/</loc>
         <lastmod>2020-03-07T04:40:00.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/categories/Message-Queue-Kafka/</loc>
-        <lastmod>2020-02-14T03:57:26.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/categories/Message-Queue-Kafka/Architecture/</loc>
-        <lastmod>2020-02-14T02:30:23.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/categories/thrift/</loc>
-        <lastmod>2020-02-13T13:07:49.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/categories/%25E7%25A7%2591%25E6%258A%2580-%25E4%25BA%25BA%25E5%25B7%25A5%25E6%2599%25BA%25E8%2583%25BD/%25E7%25BF%25BB%25E8%25AF%2591/</loc>
-        <lastmod>2020-02-12T03:08:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/categories/%25E7%25A7%2591%25E6%258A%2580-%25E4%25BA%25BA%25E5%25B7%25A5%25E6%2599%25BA%25E8%2583%25BD/</loc>
-        <lastmod>2020-02-12T03:08:30.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/categories/Building-tools-maven/</loc>
-        <lastmod>2020-02-10T08:02:55.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/categories/Building-tools-maven/protocol-buffer/</loc>
-        <lastmod>2020-02-10T05:30:03.000Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.typedefine.cn/categories/Linux/</loc>
-        <lastmod>2020-02-09T08:40:41.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
