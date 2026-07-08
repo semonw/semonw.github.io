@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="什么是NoSQL？NoSQL（最初表示Non-SQL，后来有人转解为Not only SQL），是对不同于传统的关系数据库（RDBMS）的统称。允许部分资料使用SQL系统存储，而其他资料允许使用NOSQL系统存储。其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是NoSQL？">
+<meta property="og:url" content="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
+<meta property="og:description" content="什么是NoSQL？NoSQL（最初表示Non-SQL，后来有人转解为Not only SQL），是对不同于传统的关系数据库（RDBMS）的统称。允许部分资料使用SQL系统存储，而其他资料允许使用NOSQL系统存储。其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/1.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/2.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/3.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/4.webp">
+<meta property="article:published_time" content="2026-07-08T07:22:54.000Z">
+<meta property="article:modified_time" content="2026-07-08T07:46:59.205Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="NoSQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/1.webp">
+
+
+<link rel="canonical" href="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/","path":"2026/07/08/什么是NoSQL/","title":"什么是NoSQL？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>什么是NoSQL？ | AI观察与大数据</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">AI观察与大数据</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFNoSQL%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是NoSQL？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NoSQL%E4%B8%8E%E5%A4%A7%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">NoSQL与大数据</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="什么是NoSQL？ | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          什么是NoSQL？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-08 15:22:54 / 修改时间：15:46:59" itemprop="dateCreated datePublished" datetime="2026-07-08T15:22:54+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NoSQL/" itemprop="url" rel="index"><span itemprop="name">NoSQL</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/1.webp" class="">
+
+<h1 id="什么是NoSQL？"><a href="#什么是NoSQL？" class="headerlink" title="什么是NoSQL？"></a>什么是NoSQL？</h1><p>NoSQL（最初表示Non-SQL，后来有人转解为Not only SQL），是对不同于传统的关系数据库（RDBMS）的统称。允许部分资料使用SQL系统存储，而其他资料允许使用NOSQL系统存储。其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。</p>
+<span id="more"></span>
+
+<h1 id="NoSQL与大数据"><a href="#NoSQL与大数据" class="headerlink" title="NoSQL与大数据"></a>NoSQL与大数据</h1><p>2000年以后，互联网浪潮使得现代的软件系统需要面对海量的非结构化的数据和数以千万的用户。而NoSQL的出现就是为了解决传统的关系型数据库管理系统无法解决的性能、可扩展性的问题：</p>
+<ul>
+<li>数据量级呈指数级增长（BIG DATA）</li>
+<li>同时在线人数规模快速增长，这意味着同时需要处理每秒数十万甚至百万的数据读&#x2F;写（BIG USER）</li>
+<li>对于复杂和灵活的数据处理需求，同时应对快速的需求变化（数据灵活性 FLEXIBLE DATA）</li>
+<li>云计算降低了中小企业（SME）的技术门槛，使得他们可以和技术巨头之间进行竞争（CLOUD COMPUTING）</li>
+</ul>
+<img src="/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/2.webp" class="">
+
+<p>NoSQL近年来的成长也令人侧目，几乎所有的公司都部署有自己的商业数据的NoSQL数据库实例。Gartner公司预测未来90%的数据都将是非结构化的。NoSQL的快速部署和扩展能力，也对软件的快速推向市场提供了巨大的帮助。</p>
+<p>但同时，也需要注意到，NoSQL的应用不再需要专业的DBA团队。缺乏正规的设计和更进一步的数据处理会对数据的监管带来一定的困难。比如，你很难确定你的数据到底是存在哪个地方（因为数据是分布式存储和水平分割）。另外，对于公司数据层面的审计和合规报告来说也带来了挑战。</p>
+<img src="/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/3.webp" class="">
+
+<p>最新的DB-Engine排名，前10的排名中有4个是属于的NoSQL数据库，分别是MongoDB，Redis，ElasticSearch，Cassandra。这说明NoSQL已经占据了半壁江山。</p>
+<img src="/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/4.webp" class="">
+
+<p>预告：</p>
+<p>排名说明了一个什么问题？这说明理解和学会使用NoSQL数据库基本上是一个必知必会的技能。</p>
+<p>在下一篇中，我们将会对MongoDB进行重点介绍。</p>
+<font style="font-size: 14px" color="#B2B2B2">
+参考：
+<p>http://terrydhariwal.github.io/the_basics/2015/09/21/nosql-big-data</p>
+<p>https://zh.wikipedia.org/wiki/NoSQL#cite_note-7</p>
+<p>https://www.cnblogs.com/sunddenly/p/4265861.html</p>
+<p>https://creware.asia/best-nosql-database-in-usability-trend/</p>
+<p>https://go.54cuatro.com/en/nosql-governance/</p>
+</font>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="山野@成都 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/NoSQL/" rel="tag"># NoSQL</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" rel="prev" title="CORBA是什么？">
+                  <i class="fa fa-angle-left"></i> CORBA是什么？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/" rel="next" title="MongoDB介绍-关键概念、架构、扩展能力">
+                  MongoDB介绍-关键概念、架构、扩展能力 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">109k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:39</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="关于成功没有一个确切的公式，但关于失败我可以找到一个：总是尽力取悦所有人。 Herbert Bayard Swope  MongoDB是一款流行的基于文档的开源NoSQL数据库，跨平台、高性能、灵活水平扩展、支持企业级应用。存储格式为JSON格式[1]。MongoDB可以通过云平台MongoDB Atlas使用，也可以通过MongoDB Server使用。同时，MongoDB也提供基于云服务的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB介绍-关键概念、架构、扩展能力">
+<meta property="og:url" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
+<meta property="og:description" content="关于成功没有一个确切的公式，但关于失败我可以找到一个：总是尽力取悦所有人。 Herbert Bayard Swope  MongoDB是一款流行的基于文档的开源NoSQL数据库，跨平台、高性能、灵活水平扩展、支持企业级应用。存储格式为JSON格式[1]。MongoDB可以通过云平台MongoDB Atlas使用，也可以通过MongoDB Server使用。同时，MongoDB也提供基于云服务的">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/1.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/2.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/3.webp">
+<meta property="article:published_time" content="2026-07-08T07:28:25.000Z">
+<meta property="article:modified_time" content="2026-07-08T07:46:39.007Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="MongoDB">
+<meta property="article:tag" content="NoSQL">
+<meta property="article:tag" content="大数据">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/1.webp">
+
+
+<link rel="canonical" href="http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/","path":"2026/07/08/MongoDB介绍-关键概念/","title":"MongoDB介绍-关键概念、架构、扩展能力"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MongoDB介绍-关键概念、架构、扩展能力 | AI观察与大数据</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">AI观察与大数据</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8MongoDB"><span class="nav-number">1.</span> <span class="nav-text">为什么要使用MongoDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB%E8%A6%81%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">MongoDB要解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%92%8CSQL%E5%AF%B9%E6%AF%94"><span class="nav-number">3.</span> <span class="nav-text">和SQL对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">4.</span> <span class="nav-text">MongoDB的一些基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">4.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">4.2.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E6%A1%A3"><span class="nav-number">4.3.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%86%E5%90%88"><span class="nav-number">4.4.</span> <span class="nav-text">集合</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB%E5%88%86%E7%89%87"><span class="nav-number">5.</span> <span class="nav-text">MongoDB分片</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%89%87"><span class="nav-number">5.1.</span> <span class="nav-text">分片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mongos"><span class="nav-number">5.2.</span> <span class="nav-text">Mongos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">5.3.</span> <span class="nav-text">配置服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%89%87-1"><span class="nav-number">5.4.</span> <span class="nav-text">分片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E9%9B%86"><span class="nav-number">5.5.</span> <span class="nav-text">复制集</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">MongoDB的重要性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">7.</span> <span class="nav-text">结论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MongoDB介绍-关键概念、架构、扩展能力 | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MongoDB介绍-关键概念、架构、扩展能力
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-08 15:28:25 / 修改时间：15:46:39" itemprop="dateCreated datePublished" datetime="2026-07-08T15:28:25+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A4%A7%E6%95%B0%E6%8D%AE/NoSQL/" itemprop="url" rel="index"><span itemprop="name">NoSQL</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%A4%A7%E6%95%B0%E6%8D%AE/NoSQL/MongoDB/" itemprop="url" rel="index"><span itemprop="name">MongoDB</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/1.webp" class="">
+
+<blockquote><p>关于成功没有一个确切的公式，但关于失败我可以找到一个：总是尽力取悦所有人。</p>
+<footer><strong>Herbert Bayard Swope</strong></footer></blockquote>
+
+<p>MongoDB是一款流行的基于文档的开源NoSQL数据库，跨平台、高性能、灵活水平扩展、支持企业级应用。存储格式为JSON格式[1]。MongoDB可以通过云平台MongoDB Atlas使用，也可以通过MongoDB Server使用。同时，MongoDB也提供基于云服务的数据分析平台。本文我们将重点介绍一些关键的概念，帮助理解MongoDB可以做什么，可以解决哪些问题。</p>
+<h1 id="为什么要使用MongoDB"><a href="#为什么要使用MongoDB" class="headerlink" title="为什么要使用MongoDB"></a>为什么要使用MongoDB</h1><p>MongoDB可以处理海量数据，比较容易上手，也适用于很多的应用场景，比如物联网（IoT）、银行、金融、游戏、电子商务、物流和内容管理。</p>
+<ul>
+<li>高性能 、并且易于数据迁移</li>
+<li>轻松的水平扩展能力，可以支持海量数据</li>
+<li>对开发者友好 </li>
+<li>可以轻松获取 、通过云服务Atlas或者社区版的MongoDB服务器</li>
+<li>支持快速迭代 </li>
+<li>有活跃的社区 支持</li>
+</ul>
+<span id="more"></span>
+
+<h1 id="MongoDB要解决的问题"><a href="#MongoDB要解决的问题" class="headerlink" title="MongoDB要解决的问题"></a>MongoDB要解决的问题</h1><p>本质上，MongoDB是一个数据库，要解决的问题也是数据管理的问题，以及软件系统开发过程的问题。但是 演进到现在，MongoDB已经不仅仅是一个单一的数据库，而是一个数据湖、云服务部署的一个整套的 数据分析生态系统 。</p>
+<ul>
+<li>将大量不同来源的数据集成到一个统一的视图中</li>
+<li>可以描述并支持复杂的数据格式，即便这些格式在不停的演进和变化中。</li>
+<li>支持地理数据和 空间查询 </li>
+<li>天生支持高扩展性，提供高效的查询性能。</li>
+<li>灵活部署，支持混合、公有或者私有云部署</li>
+<li>基于文档的数据库，容易理解和使用，支持敏捷的开发和项目协作。</li>
+</ul>
+<p>额外的特性：</p>
+<ul>
+<li>高性能。支持嵌套文档模型。</li>
+<li>支持所有的CRUD操作。</li>
+<li>丰富的查询语言和算子。</li>
+<li>支持数据集的自动复制。</li>
+<li>支持分片，以达到水平扩展。</li>
+<li>支持多种存储引擎。</li>
+</ul>
+<p>一些缺点：</p>
+<p>这些缺点MongoDB社区也在尝试解决。比如：</p>
+<ul>
+<li>不支持ACID。不过在MongoDB 4.0之后，引入了在复制集多文档事务这一特性。</li>
+<li>不支持存储过程。</li>
+</ul>
+<img src="/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/2.webp" class="">
+
+<h1 id="和SQL对比"><a href="#和SQL对比" class="headerlink" title="和SQL对比"></a>和SQL对比</h1><p>和关系数据库的对比</p>
+<table>
+<thead>
+<tr>
+<th>SQL术语&#x2F;概念</th>
+<th>MongoDB术语&#x2F;概念</th>
+<th>解释&#x2F;说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>database</td>
+<td>database</td>
+<td>数据库</td>
+</tr>
+<tr>
+<td>table</td>
+<td>collection</td>
+<td>数据库表&#x2F;集合</td>
+</tr>
+<tr>
+<td>row</td>
+<td>document</td>
+<td>数据记录行&#x2F;文档</td>
+</tr>
+<tr>
+<td>column</td>
+<td>field</td>
+<td>数据字段&#x2F;域</td>
+</tr>
+<tr>
+<td>index</td>
+<td>index</td>
+<td>索引</td>
+</tr>
+<tr>
+<td>table joins</td>
+<td></td>
+<td>表连接,MongoDB不支持</td>
+</tr>
+<tr>
+<td>primary key</td>
+<td>primary key</td>
+<td>主键,MongoDB自动将_id字段设置为主键</td>
+</tr>
+</tbody></table>
+<h1 id="MongoDB的一些基本概念"><a href="#MongoDB的一些基本概念" class="headerlink" title="MongoDB的一些基本概念"></a>MongoDB的一些基本概念</h1><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>数据库-Database</li>
+<li>集合-Collection</li>
+<li>文档-Document</li>
+</ul>
+<h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>数据库 是物理上数据集合的容器。一个单一MongoDB数据库实例可以有多个数据库。每一个数据库都有一个独立的文件系统和一堆的文件。</p>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><p>文档 是一组键值(key-value)对（也就是 BSON格式 ，Binary JSON，见参考[1]）。MongoDB 的文档具有 动态的Schema ，也就是说，每一份文档不需要设置相同的字段，并且相同的字段不需要相同的数据类型，这与关系型数据库有很大的区别，也是 MongoDB 非常突出的特点。</p>
+<p>一个简单的文档例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"><span class="string">&quot;_id&quot;</span>: <span class="title class_">ObjectId</span>(<span class="string">&quot;5f2133a613e1be0e41851fe0&quot;</span>),</span><br><span class="line"><span class="string">&quot;title&quot;</span>: <span class="string">&quot;MongoDB简介&quot;</span>,</span><br><span class="line"><span class="string">&quot;description&quot;</span>: <span class="string">&quot;公众号推文介绍MongoDB&quot;</span>,</span><br><span class="line"><span class="string">&quot;author&quot;</span>: <span class="string">&quot;山野&quot;</span>,</span><br><span class="line"><span class="string">&quot;url&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;tags&quot;</span>: [<span class="string">&quot;mongodb&quot;</span>, <span class="string">&quot;nosql&quot;</span>, <span class="string">&quot;bigdata&quot;</span>],</span><br><span class="line"><span class="string">&quot;cover&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;abstract&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;createDate&quot;</span>: <span class="title class_">ISODate</span>(<span class="string">&quot;2021-08-12T02:45:12.248Z&quot;</span>),</span><br><span class="line"><span class="string">&quot;lastModifiedDate&quot;</span>: <span class="title class_">ISODate</span>(<span class="string">&quot;2021-08-12T02:45:12.248Z&quot;</span>),</span><br><span class="line"><span class="string">&quot;remarks&quot;</span>: [&#123;</span><br><span class="line"><span class="string">&quot;date&quot;</span>: <span class="title class_">ISODate</span>(<span class="string">&quot;2021-08-12T02:45:12.248Z&quot;</span>),</span><br><span class="line"><span class="string">&quot;remark&quot;</span>: <span class="string">&quot;一些留言&quot;</span>,</span><br><span class="line"><span class="string">&quot;by&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;by_id&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="string">&quot;date&quot;</span>: <span class="title class_">ISODate</span>(<span class="string">&quot;2021-08-12T02:45:12.248Z&quot;</span>),</span><br><span class="line"><span class="string">&quot;remark&quot;</span>: <span class="string">&quot;对我帮助很大&quot;</span>,</span><br><span class="line"><span class="string">&quot;by&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;by_id&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line"><span class="string">&quot;date&quot;</span>: <span class="title class_">ISODate</span>(<span class="string">&quot;2021-08-12T02:45:12.248Z&quot;</span>),</span><br><span class="line"><span class="string">&quot;remark&quot;</span>: <span class="string">&quot;博主很用心&quot;</span>,</span><br><span class="line"><span class="string">&quot;by&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line"><span class="string">&quot;by_id&quot;</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是：</p>
+<ul>
+<li>文档中的键&#x2F;值对是有序的。</li>
+<li>文档中的值不仅可以是在双引号里面的字符串，还可以是其他几种数据类型（甚至可以是整个嵌入的文档)。</li>
+<li>MongoDB区分类型和大小写。</li>
+<li>MongoDB的文档不能有重复的键。</li>
+<li>文档的键是字符串。除了少数例外情况，键可以使用任意UTF-8字符。</li>
+</ul>
+<p>文档键命名规范：</p>
+<ul>
+<li>键不能含有\0 (空字符)。这个字符用来表示键的结尾。</li>
+<li>.和$有特别的意义，只有在特定环境下才能使用。</li>
+<li>以下划线”_”开头的键是保留的(不是严格要求的)。</li>
+</ul>
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><p>MongoDB中的 集合 就是一堆文档的组（group of Documents），相当于关系数据库中的表。集合存在于数据库中，集合没有固定的结构，这意味着你在对集合可以插入不同格式和类型的数据，但通常情况下我们插入集合的数据都会有一定的关联性。</p>
+<p>比如，我们可以将以下不同数据结构的文档插入到集合中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;site&quot;</span>: <span class="string">&quot;www.baidu.com&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;site&quot;</span>: <span class="string">&quot;www.google.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;Google&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;site&quot;</span>: <span class="string">&quot;https://mp.weixin.qq.com/&quot;</span>,</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="string">&quot;微信公众号平台&quot;</span>,</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;gh_13fdasfda12&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>合法的集合名需要满足如下规则：</p>
+<ul>
+<li>集合名不能是空字符串””。</li>
+<li>集合名不能含有\0字符（空字符)，这个字符表示集合名的结尾。</li>
+<li>集合名不能以”system.”开头，这是为系统集合保留的前缀。</li>
+<li>用户创建的集合名字不能含有保留字符。有些驱动程序的确支持在集合名里面包含，这是因为某些系统生成的集合中包含该字符。除非你要访问这种系统创建的集合，否则千万不要在名字里出现$。</li>
+</ul>
+<h1 id="MongoDB分片"><a href="#MongoDB分片" class="headerlink" title="MongoDB分片"></a>MongoDB分片</h1><h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p>在MongoDB中分片的部署架构看起来比较复杂。不过好在我们现在不需要直接进入实操的环节中。<br>我们只需要理解分片的各个部分即可。</p>
+<img src="/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/3.webp" class="">
+
+<h3 id="Mongos"><a href="#Mongos" class="headerlink" title="Mongos"></a>Mongos</h3><p>集群的入口，连接配置服务器和分片集群。因此由Mongos确定应该由哪一个分片集群来响应查询。</p>
+<h3 id="配置服务器"><a href="#配置服务器" class="headerlink" title="配置服务器"></a>配置服务器</h3><p>配置服务器保存所有分片的元数据。通过保持和集群所有其他部分的连接，来帮助mongos确保任何时候都可以响应查询。</p>
+<h3 id="分片-1"><a href="#分片-1" class="headerlink" title="分片"></a>分片</h3><p>分片是将数据均匀地分布在不同的机器上达到扩展的目的。一般来说有2种扩展方式：<br>垂直扩展，增加单一机器的CPU处理能力，更多的内存和磁盘容量。<br>水平扩展，分割数据集，将数据分布在多个机器上。通过增加机器的数量达到扩容的目的。</p>
+<h3 id="复制集"><a href="#复制集" class="headerlink" title="复制集"></a>复制集</h3><p>每一个分片都是一个 复制集 。复制集一个服务集群，通过自动复制拷贝来实现失效自动恢复的能力。</p>
+<h1 id="MongoDB的重要性"><a href="#MongoDB的重要性" class="headerlink" title="MongoDB的重要性"></a>MongoDB的重要性</h1><p>和传统DB相比，MongoDB有比较明显的优势，扩展性就是一个很重要的方面。其他方面，比如：</p>
+<ul>
+<li>分布式 数据平台：合理的建设系统可以使得数据全局均匀分布</li>
+<li>文本搜索：文本搜索使得应用层使用起来不</li>
+<li>灵活的数据模型：支持动态的Schema，给开发者不会带来限制</li>
+<li>快速灵活的迭代开发：MongoDB支持变化，拥抱变化值得敏捷开发过程更容易。</li>
+<li>集成的特性： 分析平台 、 数据可视化 、时间驱动 流数据 处理、 文本搜索 、 空间查询 、 图计算 、内存存储、安全性都可以让开发者在没有额外负担的情况下进行数据集成。</li>
+<li>经济和成本：相比其他数据库系统，MongoDB在商业支持和维护方面都比较经济。</li>
+</ul>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文中，我们简单介绍了MongoDB和它的一些 关键特性 、 概念 、 架构 、 水平扩展 能力，强调了其重要性。</p>
+<p>在互联网和企业级的海量数据时代，MongoDB的高性能查询以及强大的水平扩展能力，不仅使软件系统开发迭代的速度更快，也使企业在对数据的利用和挖掘上提供了更好的工具。</p>
+<p>使用MongoDB，就不会在 数据海洋 中迷失方向。</p>
+<p>Follow me。 让我们一起在数据和技术的海洋中到达彼岸。下一期，我们将介绍如何在Windows上 如何使用 MongoDB。</p>
+<font style="font-size: 14px" color="#B2B2B2">
+参考：
+<p>[1]: 实际上MongoDB的存储格式为BSON格式，即二进制存储的JSON格式。参考：https://bsonspec.org/</p>
+<p>[2]: https://digitalvarys.com/introduction-to-mongodb/</p>
+</font>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="山野@成都 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+              <a href="/tags/NoSQL/" rel="tag"># NoSQL</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 数据库</a>
+              <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag"># 大数据</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/" rel="prev" title="什么是NoSQL？">
+                  <i class="fa fa-angle-left"></i> 什么是NoSQL？
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/07/08/BSON/" rel="next" title="什么是BSON？什么是JSON?">
+                  什么是BSON？什么是JSON? <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">109k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:39</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

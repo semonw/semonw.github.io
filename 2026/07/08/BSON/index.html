@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="JSON是什么？JSON，JavaScript Object Notation，最初在2000年左右由JavaScript的设计者Douglas Crockford所定义。2003年才官方正式定名。 JavaScript中的对象类似于一个 关联容器 （比如Map，HashMap），每一个文本键都对应一个值（值的类型可以是数字、字符串、函数、或者另外一个对象）。这种简单的特性使得JavaScri">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是BSON？什么是JSON?">
+<meta property="og:url" content="http://www.jinnotes.cn/2026/07/08/BSON/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
+<meta property="og:description" content="JSON是什么？JSON，JavaScript Object Notation，最初在2000年左右由JavaScript的设计者Douglas Crockford所定义。2003年才官方正式定名。 JavaScript中的对象类似于一个 关联容器 （比如Map，HashMap），每一个文本键都对应一个值（值的类型可以是数字、字符串、函数、或者另外一个对象）。这种简单的特性使得JavaScri">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/BSON/1.webp">
+<meta property="article:published_time" content="2026-07-08T07:47:43.000Z">
+<meta property="article:modified_time" content="2026-07-08T08:03:36.152Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="BSON">
+<meta property="article:tag" content="JSON">
+<meta property="article:tag" content="MongoDB">
+<meta property="article:tag" content="NoSQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/BSON/1.webp">
+
+
+<link rel="canonical" href="http://www.jinnotes.cn/2026/07/08/BSON/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2026/07/08/BSON/","path":"2026/07/08/BSON/","title":"什么是BSON？什么是JSON?"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>什么是BSON？什么是JSON? | AI观察与大数据</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">AI观察与大数据</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JSON%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">JSON是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB%E4%B8%8EJSON"><span class="nav-number">2.</span> <span class="nav-text">MongoDB与JSON</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BSON"><span class="nav-number">3.</span> <span class="nav-text">BSON</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BSON%E8%BF%98%E6%98%AFJSON%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">BSON还是JSON？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BSON%E6%9C%89%E5%93%AA%E4%BA%9B%E5%AE%9E%E7%8E%B0%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">BSON有哪些实现？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BSON%E6%9C%89%E5%93%AA%E4%BA%9B%E7%B1%BB%E5%9E%8B%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">BSON有哪些类型？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BSON-vs-JSON"><span class="nav-number">7.</span> <span class="nav-text">BSON vs JSON</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8B%E6%9C%9F%E9%A2%84%E5%91%8A"><span class="nav-number">9.</span> <span class="nav-text">下期预告</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/BSON/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="什么是BSON？什么是JSON? | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          什么是BSON？什么是JSON?
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-08 15:47:43 / 修改时间：16:03:36" itemprop="dateCreated datePublished" datetime="2026-07-08T15:47:43+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NoSQL/" itemprop="url" rel="index"><span itemprop="name">NoSQL</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NoSQL/MongoDB/" itemprop="url" rel="index"><span itemprop="name">MongoDB</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NoSQL/MongoDB/BSON/" itemprop="url" rel="index"><span itemprop="name">BSON</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/NoSQL/MongoDB/BSON/JSON/" itemprop="url" rel="index"><span itemprop="name">JSON</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/BSON/1.webp" class="">
+
+<h1 id="JSON是什么？"><a href="#JSON是什么？" class="headerlink" title="JSON是什么？"></a>JSON是什么？</h1><p>JSON，JavaScript Object Notation，最初在2000年左右由JavaScript的设计者Douglas Crockford所定义。2003年才官方正式定名。</p>
+<p>JavaScript中的对象类似于一个 关联容器 （比如Map，HashMap），每一个文本键都对应一个值（值的类型可以是数字、字符串、函数、或者另外一个对象）。这种简单的特性使得JavaScript的对象通过文本表达起来异常简单。</p>
+<span id="more"></span>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;_id&quot;</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;first&quot;</span>: <span class="string">&quot;John&quot;</span>,</span><br><span class="line">        <span class="string">&quot;last&quot;</span>: <span class="string">&quot;Backus&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;contribs&quot;</span>: [<span class="string">&quot;Fortran&quot;</span>, <span class="string">&quot;ALGOL&quot;</span>, <span class="string">&quot;Backus-Naur Form&quot;</span>, <span class="string">&quot;FP&quot;</span>],</span><br><span class="line">    <span class="string">&quot;awards&quot;</span>: [&#123;</span><br><span class="line">        <span class="string">&quot;award&quot;</span>: <span class="string">&quot;W.W. McDowell Award&quot;</span>,</span><br><span class="line">        <span class="string">&quot;year&quot;</span>: <span class="number">1967</span>,</span><br><span class="line">        <span class="string">&quot;by&quot;</span>: <span class="string">&quot;IEEE Computer Society&quot;</span></span><br><span class="line">    &#125;, &#123;</span><br><span class="line">        <span class="string">&quot;award&quot;</span>: <span class="string">&quot;Draper Prize&quot;</span>,</span><br><span class="line">        <span class="string">&quot;year&quot;</span>: <span class="number">1993</span>,</span><br><span class="line">        <span class="string">&quot;by&quot;</span>: <span class="string">&quot;National Academy of Engineering&quot;</span></span><br><span class="line">    &#125;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>随着JavaScript成为了web浏览器的默认 脚本语言 ，几乎所有的现代浏览器都支持JavaScript。JSON也有了更多的用武之地。由于这种格式兼顾了人的可读性和机器的可读性，并且其他语言实现起来也相对简单，JSON的使用范围大大超出原来的Web领域。比如：</p>
+<ul>
+<li>API定义</li>
+<li>配置文件</li>
+<li>日志消息</li>
+<li>数据库存储</li>
+</ul>
+<p>最常见的，比如 Restful API 就是基于HTTP协议的application&#x2F;json的请求&#x2F;响应，请求和响应都是JSON格式的。</p>
+<h1 id="MongoDB与JSON"><a href="#MongoDB与JSON" class="headerlink" title="MongoDB与JSON"></a>MongoDB与JSON</h1><p>MongoDB作为一款从一开始就被设计成为 现代应用 程序开发服务的数据存储平台。所以选择JSON这种通用格式作为MongoDB的文档模型是一件很自然的事情。但是JSON有几个问题：</p>
+<ul>
+<li>JSON是文本格式的。 文本解析 通常比较慢。</li>
+<li>JSON的存储格式 空间利用效率 比较低。</li>
+<li>JSON只支持有限的集中基本数据类型。<br>为了使得MongoDB以JSON作为文档模型，同时兼顾性能和通用目的，于是BSON应运而生: 用二进制来存储数据，同时针对性能、空间、灵活性做了专门的优化。</li>
+</ul>
+<blockquote><p>提示：从这个层面上来说，和protobuf、thrift并没有本质的差异。BSON可以作为一种通用的数据交换格式，类似于protobuf和thrift，或者avro之类的来使用。</p>
+</blockquote>
+
+<h1 id="BSON"><a href="#BSON" class="headerlink" title="BSON"></a>BSON</h1><p>BSON，Binary JSON，将JSON以 二进制 的方式存储。由于同时存储了字段的类型、长度，所以BSON的解析效率非常高。</p>
+<p>同JSON一样，支持内嵌的文档对象和数组对象，但是BSON添加了一些JSON没有的一些数据类型，如Date和BinData类型。</p>
+<p>BSON有三个特点：</p>
+<ul>
+<li><p>轻量性<br>JSON采用文本格式存储，而BSON采用二进制。在空间占用上尽可能的小。</p>
+</li>
+<li><p>可遍历性<br>每个字段都会存储对应的key，每个对象都会存储对应的Schema。这使得对象可以完全的还原。这对MongoDB来说非常的关键。</p>
+</li>
+<li><p>高效性<br>由于使用了C语言的数据结构类型，使得BSON的数据编解码可以达到一个非常优秀的性能。</p>
+</li>
+</ul>
+<h1 id="BSON还是JSON？"><a href="#BSON还是JSON？" class="headerlink" title="BSON还是JSON？"></a>BSON还是JSON？</h1><p>MongoDB存储或者网络传输都是BSON。但是，你可以把MongoDB当做一款JSON数据库。所有可以通过JSON表示的数据都可以存储在MongoDB中，并按照JSON方式从数据库中取出来。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;<span class="string">&quot;hello&quot;</span>: <span class="string">&quot;world&quot;</span>&#125; →</span><br><span class="line"></span><br><span class="line">\x16\x00\x00\x00           <span class="comment">// total document size</span></span><br><span class="line"></span><br><span class="line">\x02                       <span class="comment">// 0x02 = type String</span></span><br><span class="line"></span><br><span class="line">hello\x00                  <span class="comment">// field name</span></span><br><span class="line"></span><br><span class="line">\x06\x00\x00\x00world\x00  <span class="comment">// field value</span></span><br><span class="line"></span><br><span class="line">\x00                       <span class="comment">// 0x00 = type EOO (&#x27;end of object&#x27;)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;<span class="string">&quot;BSON&quot;</span>: [<span class="string">&quot;awesome&quot;</span>, <span class="number">5.05</span>, <span class="number">1986</span>]&#125; →</span><br><span class="line"></span><br><span class="line"> \x31\x00\x00\x00</span><br><span class="line"></span><br><span class="line"> \x04BSON\x00</span><br><span class="line"></span><br><span class="line"> \x26\x00\x00\x00</span><br><span class="line"></span><br><span class="line"> \x02\x30\x00\x08\x00\x00\x00awesome\x00</span><br><span class="line"></span><br><span class="line"> \x01\x31\x00\x33\x33\x33\x33\x33\x33\x14\x40</span><br><span class="line"></span><br><span class="line"> \x10\x32\x00\xc2\x07\x00\x00</span><br><span class="line"></span><br><span class="line"> \x00</span><br><span class="line"></span><br><span class="line"> \x00</span><br></pre></td></tr></table></figure>
+
+<p>不同于某些系统直接将JSON存储为字符串，或者二进制的Blob，MongoDB通过BSON提供了强大的索引、查询能力。</p>
+<p>比如 多层嵌套 的BSON&#x2F;JSON文档，MongoDB允许开发者通过特定的键直接查询和操作这些对象，并生成索引。</p>
+<p>不过在使用的时候，需要注意不同语言的抽象级别和具体的语法不同带来的不一致性，具体就需要参考对应的驱动的文档来详细的了解。比如</p>
+<ul>
+<li>BSON可能包含原始JSON无法表达的对象（Date或者二进制）。</li>
+<li>JSON对象的键是有序的。但是Python的字典是无须的，诸如此类的语义上的差异。</li>
+<li>BSON支持一些列的数值类型。这些类型在JSON中不存在。并且不同的语言在对应这些数值类型的时候也不一样。</li>
+</ul>
+<h1 id="BSON有哪些实现？"><a href="#BSON有哪些实现？" class="headerlink" title="BSON有哪些实现？"></a>BSON有哪些实现？</h1><p>由于MongoDB是第一个使用BSON的大型项目，所以很多实现实际上整合在了MongoDB的驱动中。几乎每一种语言都提供了BSON的实现库。这些库都可以 独立使用 。</p>
+<p>库：</p>
+<ul>
+<li>The MongoDB C++ Driver Library - MongoDB的官方C++驱动，健壮并经过了充分的测试。如果愿意，可以只使用其中BSON的部分。</li>
+<li>gomongo - Driver for MongoDB.</li>
+<li>bson - BSON serialization and deserialization library used by the official MongoDB Node.js driver.</li>
+<li>PyMongo - official MongoDB driver</li>
+<li>MongoDB Scala driver - Official MongoDB driver.</li>
+</ul>
+<p>工具：</p>
+<ul>
+<li>bsontools - Command line utilities for manipulating BSON files and for translating them to and from other formats such as CSV, JSON, and XML.</li>
+<li>Kaitai Struct: BSON - Machine-readable description for generating a BSON parser automatically (C#, Java, JavaScript, Perl, PHP, Python, Ruby, …).</li>
+</ul>
+<p>项目：</p>
+<ul>
+<li>MongoDB - A distributed document-oriented database using BSON as both the network and on-disk representation of documents.</li>
+<li>ModeShape - A hierarchical JCR data store using BSON to serialize the data.</li>
+<li>bsonsearch - BSON matching engine to perform offline document comparisons without a MongoDB server. C dynamic library with Python wrapper.</li>
+</ul>
+<h1 id="BSON有哪些类型？"><a href="#BSON有哪些类型？" class="headerlink" title="BSON有哪些类型？"></a>BSON有哪些类型？</h1><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>编号</th>
+<th>别名</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Double</td>
+<td>1</td>
+<td>“double”</td>
+<td></td>
+</tr>
+<tr>
+<td>String</td>
+<td>2</td>
+<td>“string”</td>
+<td></td>
+</tr>
+<tr>
+<td>Object</td>
+<td>3</td>
+<td>“object”</td>
+<td></td>
+</tr>
+<tr>
+<td>Array</td>
+<td>4</td>
+<td>“array”</td>
+<td></td>
+</tr>
+<tr>
+<td>Binary data</td>
+<td>5</td>
+<td>“binData”</td>
+<td></td>
+</tr>
+<tr>
+<td>Undefined</td>
+<td>6</td>
+<td>“undefined”</td>
+<td>Deprecated.</td>
+</tr>
+<tr>
+<td>ObjectId</td>
+<td>7</td>
+<td>“objectId”</td>
+<td></td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>8</td>
+<td>“bool”</td>
+<td></td>
+</tr>
+<tr>
+<td>Date</td>
+<td>9</td>
+<td>“date”</td>
+<td></td>
+</tr>
+<tr>
+<td>Null</td>
+<td>10</td>
+<td>“null”</td>
+<td></td>
+</tr>
+<tr>
+<td>Regular Expression</td>
+<td>11</td>
+<td>“regex”</td>
+<td></td>
+</tr>
+<tr>
+<td>DBPointer</td>
+<td>12</td>
+<td>“dbPointer”</td>
+<td>Deprecated.</td>
+</tr>
+<tr>
+<td>JavaScript</td>
+<td>13</td>
+<td>“javascript”</td>
+<td></td>
+</tr>
+<tr>
+<td>Symbol</td>
+<td>14</td>
+<td>“symbol”</td>
+<td>Deprecated.</td>
+</tr>
+<tr>
+<td>JavaScript code with scope</td>
+<td>15</td>
+<td>“javascriptWithScope”</td>
+<td>Deprecated in MongoDB 4.4.</td>
+</tr>
+<tr>
+<td>32-bit integer</td>
+<td>16</td>
+<td>“int”</td>
+<td></td>
+</tr>
+<tr>
+<td>Timestamp</td>
+<td>17</td>
+<td>“timestamp”</td>
+<td></td>
+</tr>
+<tr>
+<td>64-bit integer</td>
+<td>18</td>
+<td>“long”</td>
+<td></td>
+</tr>
+<tr>
+<td>Decimal128</td>
+<td>19</td>
+<td>“decimal”</td>
+<td>New in version 3.4.</td>
+</tr>
+<tr>
+<td>Min key</td>
+<td>-1</td>
+<td>“minKey”</td>
+<td></td>
+</tr>
+<tr>
+<td>Max key</td>
+<td>127</td>
+<td>“maxKey”</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="BSON-vs-JSON"><a href="#BSON-vs-JSON" class="headerlink" title="BSON vs JSON"></a>BSON vs JSON</h1><p>BSON作为JSON数据的二进制表达，同时为了更为通用的应用做了特定的 扩展 ，对数据的存储和查询做了 优化 。总体来说，BSON就是JSON的亲兄弟。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>JSON</th>
+<th>BSON</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Encoding 内置编码</td>
+<td>UTF-8 String</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Data Support 类型支持</td>
+<td>String, Boolean, Number, Array</td>
+<td>String, Boolean, Number (Integer, Float, Long, Decimal128…), Array, Date, Raw Binary</td>
+</tr>
+<tr>
+<td>Readability 可阅读性</td>
+<td>Human and Machine</td>
+<td>Machine Only</td>
+</tr>
+</tbody></table>
+<p>BSON和JSON的一个重要差异，就是BSON支持更多的 高级数据类型 。比如JavaScript的数值类型只定义了一个Number类型，没有从语言级别区分开整数和浮点数（浮点数也没有具体的精度控制）。大部分的后端开发语言都有复杂的数值类型，比如Java中有int, long, float, double，更高精度的有BigDecimal等等。所以这也是为什么BSON会做扩展的原因。扩展之后，很多复杂的数值计算都直接可以基于MongoDB提供的 算子 （Query Operator）或者 流水线 （Pipeline）来执行。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>相比于传统的关系型数据库，采用BSON&#x2F;JSON文档模型的数据库对开发者的一个最大的吸引力就是 动态 的、 灵活 的Schema。</p>
+<p>首先，JSON文档是 Polymorphic ，也就是说同一个集合中不同的文档对象的字段可以不同。</p>
+<p>其次，数据集合中的文档对象不需要提前声明Schema：文档是 自描述 的。开发人员可以直接开始写代码，并将对象存储到数据库中。</p>
+<p>再次，如果要添加一个新的字段到文档中，直接添加即可，不会影响到集合中的其他文档，也不需要将数据库或者应用下线。对文档对象的变更也不需要修改集合的任何属性，不需要做<font style="font-size: 16px" color="blue"><strong>ALTER TABLE</strong></font>之类的操作。</p>
+<p>综合这些优势，文档模型提供的灵活性正好切合了现代程序开发过程中的这种诉求。</p>
+<p>但是有的时候，灵活性是一个很强大的工具，但是在有一些场景下，你想对你的数据结构和内容有很多的控制。大部分的文档数据库都将这些 控制策略 交给开发者在 应用层 实施。但是，基本上大部分高级文档数据库都会提供Schema的校验机制，采用类似<font style="font-size: 16px" color="blue"><strong>IETF JSON Schema</strong></font>标准类，比如MongoDB。</p>
+<blockquote><p>比如，如果使用Nodejs来开发后端服务的话，可以使用Mongoose ODM组件，提供了丰富的按照字段和数据类型进行校验的API，当然也可以自定义校验的规则。</p>
+</blockquote>
+
+<h1 id="下期预告"><a href="#下期预告" class="headerlink" title="下期预告"></a>下期预告</h1><p>下一期推文中，我会将一些MongoDB比较适合的 应用场景 ，以及针对这些场景如何来建模，来抽离出一些通用的业务 建模原则 ，供大家阅读参考。</p>
+<font style="font-size: 14px" color="#B2B2B2">
+参考：
+<p>CSDN博客：https://blog.csdn.net/z69183787/article/details/26709505</p>
+<p>JSON和BSON: https://www.mongodb.com/json-and-bson</p>
+<p>JSON标准：https://json-schema.org/</p>
+<p>BSON：https://bsonspec.org/</p>
+<p>MongoDB数据类型：https://docs.mongodb.com/manual/reference/bson-types/</p>
+</font>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="山野@成都 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/JSON/" rel="tag"># JSON</a>
+              <a href="/tags/MongoDB/" rel="tag"># MongoDB</a>
+              <a href="/tags/NoSQL/" rel="tag"># NoSQL</a>
+              <a href="/tags/BSON/" rel="tag"># BSON</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/" rel="prev" title="MongoDB介绍-关键概念、架构、扩展能力">
+                  <i class="fa fa-angle-left"></i> MongoDB介绍-关键概念、架构、扩展能力
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">109k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:39</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -3,6 +3,55 @@
 
 
     <url>
+        <loc>http://www.jinnotes.cn/tags/Java/</loc>
+        <lastmod>2026-07-08T08:06:03.934Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/BSON/</loc>
+        <lastmod>2026-07-08T08:03:36.152Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/NoSQL/</loc>
+        <lastmod>2026-07-08T08:03:36.152Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/MongoDB/</loc>
+        <lastmod>2026-07-08T08:03:36.152Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/JSON/</loc>
+        <lastmod>2026-07-08T08:03:36.152Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/%25E5%25A4%25A7%25E6%2595%25B0%25E6%258D%25AE/</loc>
+        <lastmod>2026-07-08T07:46:39.007Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593/</loc>
+        <lastmod>2026-07-08T07:46:39.007Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.jinnotes.cn/tags/%25E7%2594%25B5%25E4%25BF%25A1%25E7%25BD%2591%25E7%25BB%259C%25E7%25AE%25A1%25E7%2590%2586/</loc>
         <lastmod>2026-07-08T05:11:05.934Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -19,13 +68,6 @@
     <url>
         <loc>http://www.jinnotes.cn/tags/CORBA/</loc>
         <lastmod>2026-07-08T05:11:05.934Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/tags/Java/</loc>
-        <lastmod>2026-07-08T03:07:03.776Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -61,20 +103,6 @@
     <url>
         <loc>http://www.jinnotes.cn/tags/OOM/</loc>
         <lastmod>2026-07-05T09:28:57.774Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/tags/MongoDB/</loc>
-        <lastmod>2026-07-05T09:28:57.774Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/tags/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593/</loc>
-        <lastmod>2026-07-05T09:28:57.773Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -123,13 +151,6 @@
 
     <url>
         <loc>http://www.jinnotes.cn/tags/Spring/</loc>
-        <lastmod>2026-07-05T09:28:57.768Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/tags/NoSQL/</loc>
         <lastmod>2026-07-05T09:28:57.768Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -277,13 +298,6 @@
 
     <url>
         <loc>http://www.jinnotes.cn/tags/Apahce-Avro/</loc>
-        <lastmod>2026-07-05T09:28:57.685Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/tags/JSON/</loc>
         <lastmod>2026-07-05T09:28:57.685Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
