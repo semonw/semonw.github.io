@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="The beginning of wisdom in human as well as international affairs was knowing when to stop. Paul Kennedy, The Rise and Fall of the Great Powers   引言我在ACM Queue上看到一篇文章《The rise and fall of CORBA》，很有启">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CORBA是什么？">
+<meta property="og:url" content="http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
+<meta property="og:description" content="The beginning of wisdom in human as well as international affairs was knowing when to stop. Paul Kennedy, The Rise and Fall of the Great Powers   引言我在ACM Queue上看到一篇文章《The rise and fall of CORBA》，很有启">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/corba_arch.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/corba_network.webp">
+<meta property="article:published_time" content="2026-07-08T05:04:06.000Z">
+<meta property="article:modified_time" content="2026-07-08T05:11:05.934Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="CORBA">
+<meta property="article:tag" content="技术">
+<meta property="article:tag" content="电信网络管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/corba_arch.webp">
+
+
+<link rel="canonical" href="http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/","path":"2026/07/08/CORBA是什么？/","title":"CORBA是什么？"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CORBA是什么？ | AI观察与大数据</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">AI观察与大数据</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CORBA%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">CORBA简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E5%AE%9A%E7%9A%84%E6%B2%A1%E8%90%BD"><span class="nav-number">3.</span> <span class="nav-text">注定的没落</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CORBA是什么？ | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CORBA是什么？
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-08 13:04:06 / 修改时间：13:11:05" itemprop="dateCreated datePublished" datetime="2026-07-08T13:04:06+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/CORBA/" itemprop="url" rel="index"><span itemprop="name">CORBA</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/corba_arch.webp" class="">
+
+<blockquote><p>The beginning of wisdom in human as well as international affairs was knowing when to stop.</p>
+<p>Paul Kennedy, The Rise and Fall of the Great Powers</p>
+</blockquote>
+
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我在ACM Queue上看到一篇文章《The rise and fall of CORBA》，很有启发，后面抽点时间把对应的文章翻译出来。</p>
+<p>在这里，我想抽一点点时间，来简单说一说我了解到的CORBA技术。</p>
+<p>众所周知，CORBA技术陡峭的学习曲线、复杂的技术栈而令人生畏。不过在电信行业，OSS和网管软件之间的通信、以及BOSS系统都是通过CORBA接口来完成信令下发和告警上报的。</p>
+<p>也是因为这个原因，不管是运营商还是华为，都是CORBA技术做了大量的投资，投入了大量的资源开发相应的系统。</p>
+<p>其中，我在2010年到15年几年的时间在华为核心产品线从事的北向接口，就接触到了网管产品中的CORBA技术。所谓北向接口，就是将核心网收集到的关于网络的状态数据，正常的、异常的、告警的、日志类型的、统计类型的所有相关的数据通过电信定义的接口报送到更上层的系统中。同时，也提供对不同类型的设备、网络、协议栈等根据电信协议提供一套抽象的接口，用于上层系统的业务定义、业务发放动作、甚至于设备的控制等等。</p>
+<p>下面我简单介绍一下什么是CORBA。</p>
+<span id="more"></span>
+
+<h1 id="CORBA简介"><a href="#CORBA简介" class="headerlink" title="CORBA简介"></a>CORBA简介</h1><p>CORBA，Common ObjectRequest Broker Architecture，翻译为“公共对象请求代理体系结构”，简单说，是一个由OMG组织定义的规范，用于软件模块&#x2F;分布式对象之间跨语言、跨机器、跨网络软件之间进行通信，类似于RPC。<br>CORBA有2个比较知名的实现，一个是ACE，一个是JacORB。ACE是C++实现的，非常的复杂。推荐大家看看文末的链接。而JacORB的实现我看到官网最后的更新时间是2017年。</p>
+<img src="/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/corba_network.webp" class="">
+
+<p>其实华为和其他电信厂商之所以选择使用CORBA来管理网络，主要是因为有网络管理的标准。这些标准的指定都是通过CORBA的IDL来定义的。并且要求系统间的数据传递&#x2F;调用都通过CORBA对象来操作。CORBA就成了一道绕不过去的门槛。任何一个想要进入电信网络管理领域的厂商都无法绕过这一套技术栈，不管是华为、中兴、浪潮还是其他。</p>
+<p>电信网络管理的几个标准主要是用TM Forum来制定的。这里面有2个重要的协议，</p>
+<ul>
+<li>一个是MTNM，主要就是电信的核心网络管理，定义了一大堆基于CORBA技术的接口族。用于存量管理、资源发放、告警、性能管理等等。注意，这里的T，Technology，专指的是电信的传输层技术，比如SONET&#x2F;SDH, PDH, DWDM, Ethernet, DSL, ATM, Frame Relay, and Control Plane management。</li>
+<li>一个是MTOSI，基于XML技术的，System to System的通信接口定义。相对的，MTNM，是Sytem to Element的通信接口定义。这里的System指的是上层的OSS系统，Element指的是网元（一个独立的网络设备、节点、虚拟节点等等）。</li>
+</ul>
+<p>不过读者不用关注和继续阅读这里的提到的协议细节。因为我自己也不确定当前最新的EMS、NMS、OSS之间的传递是否还遵循着这些标准。</p>
+<h1 id="注定的没落"><a href="#注定的没落" class="headerlink" title="注定的没落"></a>注定的没落</h1><p>CORBA技术毫无疑问已经过时了，但是为什么我想写一点东西呢？一方面我是想借着这个机会吐槽一些以前使用CORBA技术时槽点。另一方面呢，也是想写一些我自己的思考。我们不能简单粗暴的说，这个技术很复杂，所以它会失败。同时，对于我们在做软件系统的时候，如何选择一个合适的技术也是一种提示。</p>
+<p>CORBA协议的分布式对象是用IDL（Interface Definition Language）定义的，而IDL是和具体的程序语言无关的。通过编译器将IDL自动生成对应的stub和client代码。这在当时是一种进步。现在thrift，grpc都是采用了IDL的设计。这在当时，无疑是很先进的。只不过通过编译器生成出来的接口比较复杂而已。这个锅应该是CORBA来背还是ACE来背还是C++语言来背呢？</p>
+<p>第二个是CORBA对象之间的通信协议。并不符合任何一种现有的标准协议，虽然也是基于TCP&#x2F;IP协议族，但是确实独立定义的IIOP协议，这一块的整体由具体的ORB框架来实现。这个设计是一个累赘。为什么这么说呢？协议的定义、规范无疑是一个漫长而耗时的工作。没有利用现成的协议来通信，就意味着需要框架和具体的厂商来实现所有的细节。</p>
+<p>第三个是CORBA提供了名字服务。名字服务就是用于发现具体的CORBA对象的。这一点也是创新。但是也存在一个问题，就是没有利用现有的技术。也没有统一的官方机构来统一解析IIOP协议的调用。基本上，所有使用名字服务和CORBA的系统都是部署在企业内部的。如果说真正的跨全球网络调用，名字解析的效率、数据的安全传输都将会是一个问题。如果利用了DNS域名解析的话，无疑将会便捷很多。可惜，设计者当时并没有考虑到这么多。</p>
+<p>还有不少想说的，不过囿于篇幅和时间，不再展开了。后面我会抽时间把《The rise and fall of CORBA》这篇文章翻译出来。如果感兴趣的话，请关注我的公众号。</p>
+<div style="color:grey; font-size:14px;">
+参考：
+<p>[1]:学之者生，用之者死——ACE的历史与简评，https://www.iteye.com/blog/fly-hyp-746611</p>
+<p>[2]: ACE的陷阱，https://blog.csdn.net/fullsail/article/details/2915685</p>
+<p>[3]: CORBA, https://www.pcmag.com/encyclopedia/term/corba</p>
+<p>[4]: JacORB，https://www.jacorb.org/</p>
+<p>[5]: MTNM,https://www.tmforum.org/mtnm/</p>
+<p>[6]: MTOSI，https://www.tmforum.org/mtosi/</p>
+<p>[7]: The rise and fall of CORBA: https://queue.acm.org/detail.cfm?id=1142044</p>
+</div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="山野@成都 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/CORBA/" rel="tag"># CORBA</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
+              <a href="/tags/%E7%94%B5%E4%BF%A1%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/" rel="tag"># 电信网络管理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/" rel="prev" title="MongoDB简史">
+                  <i class="fa fa-angle-left"></i> MongoDB简史
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">98k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:29</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

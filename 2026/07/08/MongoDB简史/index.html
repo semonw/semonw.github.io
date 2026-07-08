@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="说到现代 Web 应用程序开发，不得不提到 MongoDB。如果你是一名全栈程序员，每天都会跟 MERN 打交道，其中 M 指的就是 MongoDB。MongoDB 开源社区版为大量的 Web 应用程序提供支持。从 2007 年开始，MongoDB 走过了漫长的道路。它是 MongoDB 公司的主要产品，这家公司市值已经超过 100 亿美元。与很多产品一样，在线广告是推动 MongoDB 愿景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB简史">
+<meta property="og:url" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
+<meta property="og:description" content="说到现代 Web 应用程序开发，不得不提到 MongoDB。如果你是一名全栈程序员，每天都会跟 MERN 打交道，其中 M 指的就是 MongoDB。MongoDB 开源社区版为大量的 Web 应用程序提供支持。从 2007 年开始，MongoDB 走过了漫长的道路。它是 MongoDB 公司的主要产品，这家公司市值已经超过 100 亿美元。与很多产品一样，在线广告是推动 MongoDB 愿景">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/founder.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/arch.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/fault.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/sharding.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/timeline.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/publish.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/roadmap.webp">
+<meta property="article:published_time" content="2026-07-08T04:39:39.000Z">
+<meta property="article:modified_time" content="2026-07-08T05:02:49.060Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="Big Data,大数据,Agent Engineering,Loop Engineering,Architecture,spark,RDD,Data Platform,Data Mining,Cesium,GIS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp">
+
+
+<link rel="canonical" href="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/","path":"2026/07/08/MongoDB简史/","title":"MongoDB简史"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MongoDB简史 | AI观察与大数据</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">AI观察与大数据</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%80%E7%AB%AF%EF%BC%9A%E5%A4%A7%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E6%83%B3%E6%B3%95%E7%9A%84%E8%90%8C%E8%8A%BD"><span class="nav-number">1.</span> <span class="nav-text">开端：大型数据库想法的萌芽</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB-%E6%97%A9%E6%9C%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%93%B2%E5%AD%A6"><span class="nav-number">2.</span> <span class="nav-text">MongoDB 早期的设计哲学</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF-MongoDB%EF%BC%9F"><span class="nav-number">3.</span> <span class="nav-text">什么是 MongoDB？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB-%E6%9E%B6%E6%9E%84"><span class="nav-number">4.</span> <span class="nav-text">MongoDB 架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E6%9C%8D%E5%8A%A1%E5%99%A8-%E5%AE%B9%E9%94%99%E8%AE%BE%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">单服务器 &#x2F; 容错设置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B7%E6%9C%89%E6%B0%B4%E5%B9%B3%E4%BC%B8%E7%BC%A9%E8%83%BD%E5%8A%9B%E7%9A%84%E5%88%86%E7%89%87%E9%9B%86%E7%BE%A4"><span class="nav-number">6.</span> <span class="nav-text">具有水平伸缩能力的分片集群</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#MongoDB-%E7%9A%84%E6%BC%94%E5%8C%96%E5%8F%B2-2009-%E5%B9%B4%E2%80%94%E2%80%942020-%E5%B9%B4"><span class="nav-number">7.</span> <span class="nav-text">MongoDB 的演化史 (2009 年——2020 年)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%B0%E5%9C%A8%E7%9A%84-MongoDB"><span class="nav-number">8.</span> <span class="nav-text">现在的 MongoDB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E6%96%B9%E7%9A%84%E9%81%93%E8%B7%AF"><span class="nav-number">9.</span> <span class="nav-text">前方的道路</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="nav-number">10.</span> <span class="nav-text">写在最后</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MongoDB简史 | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MongoDB简史
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-08 12:39:39 / 修改时间：13:02:49" itemprop="dateCreated datePublished" datetime="2026-07-08T12:39:39+08:00">2026-07-08</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp" class="">
+
+<p>说到现代 Web 应用程序开发，不得不提到 MongoDB。如果你是一名全栈程序员，每天都会跟 MERN 打交道，其中 M 指的就是 MongoDB。MongoDB 开源社区版为大量的 Web 应用程序提供支持。从 2007 年开始，MongoDB 走过了漫长的道路。它是 MongoDB 公司的主要产品，这家公司市值已经超过 100 亿美元。与很多产品一样，在线广告是推动 MongoDB 愿景和发展的关键催化剂。MongoDB 的故事很有趣，在本文中，我将带你一起探索 MongoDB 的发展之旅。</p>
+<h1 id="开端：大型数据库想法的萌芽"><a href="#开端：大型数据库想法的萌芽" class="headerlink" title="开端：大型数据库想法的萌芽"></a>开端：大型数据库想法的萌芽</h1><p>MongoDB 的故事开始于 2007 年。1995 年，Dwight Merriman 和 Kevin O’Connor 创办了著名的在线广告公司 DoubleClick。不久后，Kevin Ryan 也加入了这个团队 (Dwight 和 Kevin 后来共同创办了 5 家公司——Gilt、10gen、Panther Express、ShopWiki 和 Business Insider)。DoubleClick 很<br>快就大获成功，几年之内，它的广告流量达到了每秒 40 万条。当时的关系型数据库技术还没有预料到会有如此大规模的流量。配备如此规模的关系数据库需要大量的资金和硬件资源。因此，Dwight(他是当时的 CTO) 和他的团队开发了自定义数据库实现来扩展 DoubleClick，以应对流量的激增。</p>
+<span id="more"></span>
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/founder.webp" class="">
+
+<p>2003 年，Eliot Horowitz 在大学毕业之后加入 DoubleClick 的研发部门，成为一名软件工程师。两年后，他离开了 DoubleClick，和 Dwight 一起创办了 ShopWiki。他们都意识到，他们在一次又一次地解决同样的水平伸缩性问题。因此，2007 年，Dwight、Eliot 和 Kevin Ryan 一起创办了一家叫作 10gen 的新公司。10gen 专注于提供一个带有自有应用程序和数据库栈的 PaaS 托管解决方案。10gen 很快引起了风险投资人 Albert Wenger(Union Square Ventures) 的注意，他向 10gen 投资了 150 万美元。以下是 Albert Wenger 在 2008 年写的有关 10gen 投资的文字：</p>
+<blockquote><p>今天，我们很高兴地宣布，我们将为一支特立独行的团队提供支持，也就是 10gen 的一班天才们。他们汇聚了构建互联网规模系统的经验，比如 DART、Panther Express CDN，广泛参与了开源活动，包括 Apache 软件基金会。他们正在为云计算构建一个开源技术栈，包括一个应用服务器和一个数据库，它们都是基于现代硬件能力和构建 Web 站点或服务的经验从头开始开发的。应用服务器最初支持服务器端 JavaScript 和 Ruby(实验性的)。数据库采用了一种有趣的设计来存储对象，这种设计在快速随机访问和高效的集合扫描之间做出了平衡。</p>
+</blockquote>
+
+<p>Albert 所说的“采用了有趣的设计的数据库”实际上指的就是 MongoDB。从 2007 年到 2009 年，这个新数据库迅速发展。Dwight 第一次提交的 MongoDB 代码可以在这里看到。</p>
+<p>MongoDB 的核心引擎是用 C++ 开发的。之所以把这个数据库叫作 MongoDB，是因为他们想用它来为一些典型的应用场景 (如内容服务) 提供海量数据的存储服务。最初，这个团队只有 4 名工程师 (包括 Dwight 和 Eliot)，并只专注于 MongoDB 数据库。他们的商业理念是通过开源免费下载的方式来发布数据库，并在这个基础上提供商业支持和培训服务。</p>
+<p>MongoDB 1.0 于 2009 年 2 月发布。最初的版本提供了一种具有文档模型、索引和基本复制功能的查询语言，还提供了实验版的分片功能，但生产版本的分片集群功能在一年后发布的 1.6 版本中才有。</p>
+<p>以下是 Dwight 对于“Mongo 是否适用于高度可伸缩系统”的问题的回答：</p>
+<blockquote><p>在水平伸缩方面，可以使用自动分片功能来构建大型的 MongoDB 集群。现在是 alpha 版，但如果你的项目才刚刚启动，那么当你需要它的时候，它可能已经生产就绪了。</p>
+</blockquote>
+
+<h1 id="MongoDB-早期的设计哲学"><a href="#MongoDB-早期的设计哲学" class="headerlink" title="MongoDB 早期的设计哲学"></a>MongoDB 早期的设计哲学</h1><p>在早期，MongoDB 的基本设计原则如下：</p>
+<ul>
+<li>快速和简单的数据模型，实现更快的编程——支持 CRUD 的文档模型。</li>
+<li>使用熟悉的编程语言和格式——JavaScript&#x2F;JSON。</li>
+<li>无模式文档——方便敏捷迭代开发。</li>
+<li>为了快速开发和更易于伸缩，只提供必要的功能，没有连接和跨集合的事务。</li>
+<li>支持简单的水平伸缩和持久性 &#x2F; 可用性 (复制 &#x2F; 分片)。</li>
+</ul>
+<p>在 2011 年的一次“NoSQL 以及为什么我们要开发 MongoDB”的 ZendCon 演讲中，Dwight 详细介绍了这些原则。大约在 42 分钟的时候，还出现了一个有关复制和分片之间区别的讨论。随着代码的成熟和 MongoDB 成为主流，这些原则当中有很多都被明显淡化了。最新的 MongoDB（从 4.2 开始）可以在一定程度上支持连接，甚至是支持分布式事务！</p>
+<h1 id="什么是-MongoDB？"><a href="#什么是-MongoDB？" class="headerlink" title="什么是 MongoDB？"></a>什么是 MongoDB？</h1><p>在详细讲述 MongoDB 的历史和发展历程之前，我们先简单地了解一下 MongoDB！</p>
+<p>MongoDB 是一个基于文档的 NoSQL 数据库。它可以在所有主流平台上运行 (Windows、Linux、Mac)，并且可以免费下载它的开源版本。MongoDB 将数据实体存储在集合中，存储的每一个数据块都是 JSON 格式。例如，如果一个用户提交了一个在线订单，该订单的全部细节 (订单号、订单项、收获地址等) 将保存在一个 JSON 文档中，然后将其保存到“customer_order”集合中。</p>
+<p>MongoDB 还附带了一个控制台客户端，这是一个功能齐全的 JavaScript 环境，你可以用它添加、删除、编辑或查询数据库中的文档数据。</p>
+<h1 id="MongoDB-架构"><a href="#MongoDB-架构" class="headerlink" title="MongoDB 架构"></a>MongoDB 架构</h1><p>下面是 MongoDB 服务器主要组件的架构视图。</p>
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/arch.webp" class="">
+<p>MongoDB 目前为 13 种编程语言提供了驱动程序，包括 Java、Node.JS、Python、PHP 和 Swift。存储引擎 MMAPv1 从 4.2 版本开始就被移除了。加密存储引擎只在商业版中提供。<br>MongoDB 的美妙之处在于它的开源免费社区版为你提供了这些能力：</p>
+<ul>
+<li>一个简单的单机实例就可以满足大多数小型应用程序的需求。</li>
+<li>一个多机实例可以为大多数商业应用程序提供持久性 &#x2F; 高可用性。</li>
+<li>一个具有水平伸缩能力的大型集群 (分片集群) 可以处理非常大的数据集和大量的查询。MongoDB 提供了自动化基础设施，用于实现分布式的数据分布和处理。</li>
+</ul>
+<p>下面的这些图表演示了各种运行 MongoDB 实例的方式。</p>
+<h1 id="单服务器-容错设置"><a href="#单服务器-容错设置" class="headerlink" title="单服务器 &#x2F; 容错设置"></a>单服务器 &#x2F; 容错设置</h1><p>对于小型应用程序，单台服务器就足以满足频繁的数据备份需求了。如果需要容错，可以使用副本集。在容错配置中，通常有 3 个或更多的 MongoDB 实例。这些实例当中只有一个作为主实例，如果它发生故障，其他两个辅助实例中的一个将成为主实例。这些实例中的数据都是一样的。</p>
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/fault.webp" class="">
+
+<h1 id="具有水平伸缩能力的分片集群"><a href="#具有水平伸缩能力的分片集群" class="headerlink" title="具有水平伸缩能力的分片集群"></a>具有水平伸缩能力的分片集群</h1><p>对于同时要求具备水平伸缩能力和容错能力的大型数据库，需要使用 MongoDB 分片集群。从下图可以看出，一个容错分片集群推荐的最小机器数量是 14 台！每一个容错副本集只处理数据的一个子集，数据分区是由 MongoDB 引擎自动完成的。</p>
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/sharding.webp" class="">
+
+<p>在下载最新版本的 MongoDB(4.4) 并解压缩之后，你会发现它只包含以下三个主要文件：</p>
+<ul>
+<li>mongo——MongoDB Shell，使用基于 JavaScript 的命令与服务器发生交互。</li>
+<li>mongod——运行 MongoDB 的主文件，可以作为单个数据库实例、分片集群的成员或分片集群的配置服务器运行。</li>
+<li>mongos——一个路由器应用程序，用在具有水平伸缩能力的数据库服务器集群中。</li>
+</ul>
+<p>在 Mac 上，这 3 个可执行文件的总大小约为 150MB。对于任意类型的 MongoDB 部署，都只需要这几个组件！在一个软件膨胀的世界里，这是一种很受欢迎的变革！这种简单和优雅让 MongoDB 变得强大而可靠。</p>
+<h1 id="MongoDB-的演化史-2009-年——2020-年"><a href="#MongoDB-的演化史-2009-年——2020-年" class="headerlink" title="MongoDB 的演化史 (2009 年——2020 年)"></a>MongoDB 的演化史 (2009 年——2020 年)</h1><p>MongoDB 1.0 是在 2009 年 2 月发布的，提供了大部分基本的查询功能。MongoDB 1.2 是在 2009 年 12 月发布的，引入了 map-reduce，支持大规模数据处理。在看到 MongoDB 的巨大潜力之后，10gen 公司迅速壮大了团队。MongoDB 1.4(2010 年 3 月) 引入了后台索引创建，MongoDB 1.6(2010 年 8 月) 引入了一些主要特性，比如用于水平伸缩的分片、具备自动故障转移能力的副本集以及对 IPv6 的支持。</p>
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/timeline.webp" class="">
+
+<p>到了 2012 年，10gen 有 100 名员工，公司开始提供 24&#x2F;7 服务。MongoDB 2.2 版本 (2012 年 8 月) 引入了聚合管道，可以将多个数据处理步骤组合成一个操作链。到了 2013 年，10gen 拥有 250 多名员工和 1000 多名客户。为了挖掘商业潜力，10gen 更名为 MongoDB 公司，专注于数据库产品。MongoDB 2.4 版本 (2013 年 3 月) 在 Mongo Shell 中引入了文本搜索和谷歌的 V8 JS 引擎等增强功能。除了 2.4 之外，还发布了 MongoDB 企业版，提供了监控和安全集成等附加功能。</p>
+<p>MongoDB 早期版本的一个主要问题是它用来保存和管理磁盘数据的存储引擎相对较弱。于是，MongoDB 公司进行了第一笔收购，收购了 WiredTiger 公司。这家公司有超级稳定的存储引擎产品 WiredTiger。MongoDB 拿下了这家公司的开发团队和产品，以及首席架构师 Michael Cahill(也是 Berkeley DB 的架构师之一)，让他担任存储工程总监一职。WiredTiger 是一个高效的存储引擎，使用了各种编程技术，如风险指针（hazard pointer）、无锁算法、快速锁存（fast latch）和消息传递，与其他引擎相比，WiredTiger 可以在每个 CPU 内核上执行更多的任务。为了最小化磁盘开销和 I&#x2F;O，WiredTiger 使用了紧凑的文件格式和压缩（可选）。</p>
+<p>MongoDB 的下一个主要版本是 3.0(2015 年 3 月)，其中包含了新的 WiredTiger 存储引擎、可插拔存储引擎 API、增加了 50 个副本集限制和安全改进。同年，Glassdoor 将 MongoDB 公司列为最佳的雇主之一。同年晚些时候又发布了 3.2 版本，支持文档验证、部分索引和一些主要的聚合增强。</p>
+<p>2017 年，微软发布了多模型 NoSQL 数据库服务 CosmosDB，作为微软 Azure 云平台的一部分。它提供了与 MongoDB 3.2 的协议兼容性，针对 MongoDB 3.2 的查询也可以在 CosmosDB 上运行，这加快了开发人员采用 CosmosDB 的速度。</p>
+<p>截止 2016 年，MongoDB 公司拥有 500 多名员工，数据库的下载量超过 2000 万次。2017 年 10 月，MongoDB 公司上市，市值超过 10 亿美元。MongoDB 3.6 在一个月后 (2017 年 11 月) 发布，为多集合连接查询、变更流和使用 JSON 模式进行文档验证提供了更好的支持。MongoDB 3.6 是微软 Azure CosmosDB 截至 2020 年 8 月能够支持的最新版本。</p>
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/publish.webp" class="">
+
+<p>2018 年，MongoDB 公司斥资 6800 万美元收购了 mLab，这是 MongoDB 公司的第二笔收购。当时，mLab 在云端提供 MongoDB 服务 (DBaaS)，并拥有大量的客户。云计算是未来，MongoDB 公司迅速收购并集成了 mLab，将其作为 MongoDB Atlas 云平台的一部分。然后，他们通过改变开源版本的许可条款来限制更多的 DBaaS 竞争者出现！</p>
+<p>MongoDB 开源社区版和高级企业版都使用了相同的底层引擎。这意味着任何人都可以使用社区版，然后基于社区版提供付费的云服务。对于 MongoDB 公司来说，它们的云产品 MongoDB Atlas 就多了很多直接竞争者。因此，在 2018 年 10 月，MongoDB 公司将社区版的许可从 GNU AGPLv3 (AGPL) 更改为服务器端公共许可 (SSPL)。许可中有一个条款用来防止未来 SaaS 竞争对手使用 MongoDB 并提供他们自己的 SaaS 版本：</p>
+<blockquote><p>如果您将本程序的功能或修改版本作为服务提供给第三方，必须将服务源代码通过网络下载的方式免费提供给所有人。</p>
+</blockquote>
+
+<p>这是一个由 MongoDB 公司自己提出的许可条款，并声称兼容 OSI。不过，该条款后来在开放源码计划 (OSI) 的审批过程中被撤回，不过开源版本的 MongoDB 仍然采用 SSPL 许可。</p>
+<p>到了 2018 年，MongoDB 公司拥有 1000 多名员工。下一个主要版本 MongoDB 4.0(2018 年 6 月) 提供了跨文档事务处理能力。这是一个重要的里程碑，MongoDB 已经为高数据完整性需求做好了准备。</p>
+<p>云生态系统在快速增长，不久后，MongoDB 公司意识到他们需要发展成一个成熟的云平台，而不只是提供数据库服务。2019 年，MongoDB 公司进行了第三笔收购，以 3900 万美元收购了云计算移动数据库公司 Realm。有意思的是，MongoDB 最初也是一种 PaaS 托管解决方案，而 12 年之后，它又回到了同样的方向。同年，MongoDB 公司发布了带有分布式事务支持的 MongoDB 4.2。</p>
+<p>截至 2020 年 8 月，MongoDB 社区版版本是 4.4。值得注意的是，MongoDB 数据库工具可以单独下载。MongoDB 4.4 包含了一些主要的特性增强，比如多集合联合聚合、复合哈希分片键和对冲读（Hedged Read）&#x2F; 镜像读。</p>
+<h1 id="现在的-MongoDB"><a href="#现在的-MongoDB" class="headerlink" title="现在的 MongoDB"></a>现在的 MongoDB</h1><p>截至 2020 年，MongoDB 的全球下载量达到了 1.1 亿次。MongoDB 公司目前有 2000 多名员工，有超过 18000 名付费客户，其中有很多客户同时使用 MongoDB Atlas 和 MongoDB 企业版。截至 2020 年 8 月，MongoDB 社区版版本是 4.4。大多数大公司在内部的一些场景中使用社区版。MongoDB 社区版仍然是开源的，除了一些关键特性外，它与 MongoDB 企业版差不多。</p>
+<p>MongoDB 企业版 (每个服务器每年的费用在 1 万美元左右) 提供了以下这些附加功能：</p>
+<ul>
+<li>内存存储引擎——适用于需要快速数据访问而不需要持久存储的场景。</li>
+<li>审计——数据库管理员在部署时跟踪系统活动。</li>
+<li>身份验证和授权——支持 Kerberos 身份验证和 LDAP 身份验证和授权。</li>
+<li>加密——WiredTiger 引擎提供了一个原生加密选项。默认是 AES256，使用 OpenSSL。</li>
+</ul>
+<p>除了社区版，MongoDB 公司还提供了以下这些产品：<br>MongoDB Database Tools——命令行工具集合，包括导入 &#x2F; 导出 (mongodump、mongorestore 等) 和诊断工具 (mongostat、mongotop)。</p>
+<p>MongoDB 企业服务器——企业版，提供额外的安全和审计功能。</p>
+<ul>
+<li>MongoDB Atlas——基于云的 SaaS 版服务器。</li>
+<li>Atlas Data Lake——一个基于云的数据湖工具，由 MongoDB 查询语言提供支持，可以通过 MongoDB Atlas 和 AWS S3 查询和分析数据。</li>
+<li>Atlas Search——一个基于云的全文搜索引擎，基于 MongoDB Atlas。</li>
+<li>MongoDB Realm——一个为移动应用提供后端服务的托管云服务。</li>
+<li>MongoDB Charts——一个云工具，用于创建 MongoDB 数据的可视化表示。</li>
+<li>MongoDB Compass——可下载的 GUI 工具，用于连接 MongoDB 数据库和查询数据。</li>
+<li>MongoDB Ops Manager——用于在自定义基础设施上部署、备份和扩展 MongoDB 的管理平台。</li>
+<li>MongoDB Cloud Manager——云版本的 Ops 管理器。</li>
+<li>MongoDB Connectors——为其他平台 &#x2F; 工具提供的用于连接 MongoDB 的驱动程序。</li>
+</ul>
+<h1 id="前方的道路"><a href="#前方的道路" class="headerlink" title="前方的道路"></a>前方的道路</h1><p>由于在 SSPL 许可方面存在争议，开发者社区中有一些人对 MongoDB 生态系统持谨慎态度。投资者还面临着围绕生态系统创收的压力。如果你把 2008 年版和 2020 年版的 MongoDB 主页放在一起看，这一点就显而易见 (见下图)。MongoDB 社区版下载页面实际上也列出了企业版中才有的特性！</p>
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/roadmap.webp" class="">
+
+<p>另外，MongoDB 公司还面临来自云供应商的激烈竞争。MongoDB 公司面临的主要问题是数据存储只是企业应用程序的一部分，如果没有一个令人信服的全栈云服务，在未来可能很难与云供应商竞争。</p>
+<p>Eliot Horowitz (MongoDB 的关键人物) 于 2020 年 7 月离开了公司。尽管他还在担任顾问的角色，但 MongoDB 的产品仍存在一些风险，比如焦点被弱化、减少对免费社区版的支持或进一步修改许可条款。</p>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>MongoDB 是一个围绕开源技术产品成功创办一家公司的完美案例，也是在产品生命周期中如何选择正确时机转向的绝佳例子。MongoDB 的简单性和较小的安装体积可以在不增加很多开销的情况下构建复杂的系统。我希望 MongoDB 公司在未来几年继续为社区版提供支持。</p>
+<p><font style="font-size: 14px" color="#B2B2B2">编译时间：2026-07-08 之前放在公众号，现在移动到博客上来</font><br><font style="font-size: 14px" color="#B2B2B2">原文 | <a target="_blank" rel="noopener" href="https://www.quickprogrammingtips.com/mongodb/mongodb-history.html">https://www.quickprogrammingtips.com/mongodb/mongodb-history.html</a></font><br><font style="font-size: 14px" color="#B2B2B2">翻译 | <a target="_blank" rel="noopener" href="https://www.infoq.cn/article/3d4suwkc2fvikykemnvw" style="color:grey">https://www.infoq.cn/article/3d4suwkc2fvikykemnvw</a></font></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="山野@成都 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/" rel="prev" title="一文搞懂Oracle JDK与OpenJDK">
+                  <i class="fa fa-angle-left"></i> 一文搞懂Oracle JDK与OpenJDK
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" rel="next" title="CORBA是什么？">
+                  CORBA是什么？ <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">98k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:29</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -170,22 +170,30 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">60</span>
+        <span class="site-state-item-count">64</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
         </div>
       </div>
@@ -198,6 +206,325 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/" class="post-title-link" itemprop="url">CORBA是什么？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-08 13:04:06 / 修改时间：13:11:05" itemprop="dateCreated datePublished" datetime="2026-07-08T13:04:06+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/CORBA/" itemprop="url" rel="index"><span itemprop="name">CORBA</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/corba_arch.webp" class="">
+
+<blockquote><p>The beginning of wisdom in human as well as international affairs was knowing when to stop.</p>
+<p>Paul Kennedy, The Rise and Fall of the Great Powers</p>
+</blockquote>
+
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>我在ACM Queue上看到一篇文章《The rise and fall of CORBA》，很有启发，后面抽点时间把对应的文章翻译出来。</p>
+<p>在这里，我想抽一点点时间，来简单说一说我了解到的CORBA技术。</p>
+<p>众所周知，CORBA技术陡峭的学习曲线、复杂的技术栈而令人生畏。不过在电信行业，OSS和网管软件之间的通信、以及BOSS系统都是通过CORBA接口来完成信令下发和告警上报的。</p>
+<p>也是因为这个原因，不管是运营商还是华为，都是CORBA技术做了大量的投资，投入了大量的资源开发相应的系统。</p>
+<p>其中，我在2010年到15年几年的时间在华为核心产品线从事的北向接口，就接触到了网管产品中的CORBA技术。所谓北向接口，就是将核心网收集到的关于网络的状态数据，正常的、异常的、告警的、日志类型的、统计类型的所有相关的数据通过电信定义的接口报送到更上层的系统中。同时，也提供对不同类型的设备、网络、协议栈等根据电信协议提供一套抽象的接口，用于上层系统的业务定义、业务发放动作、甚至于设备的控制等等。</p>
+<p>下面我简单介绍一下什么是CORBA。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/" class="post-title-link" itemprop="url">MongoDB简史</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-08 12:39:39 / 修改时间：13:02:49" itemprop="dateCreated datePublished" datetime="2026-07-08T12:39:39+08:00">2026-07-08</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp" class="">
+
+<p>说到现代 Web 应用程序开发，不得不提到 MongoDB。如果你是一名全栈程序员，每天都会跟 MERN 打交道，其中 M 指的就是 MongoDB。MongoDB 开源社区版为大量的 Web 应用程序提供支持。从 2007 年开始，MongoDB 走过了漫长的道路。它是 MongoDB 公司的主要产品，这家公司市值已经超过 100 亿美元。与很多产品一样，在线广告是推动 MongoDB 愿景和发展的关键催化剂。MongoDB 的故事很有趣，在本文中，我将带你一起探索 MongoDB 的发展之旅。</p>
+<h1 id="开端：大型数据库想法的萌芽"><a href="#开端：大型数据库想法的萌芽" class="headerlink" title="开端：大型数据库想法的萌芽"></a>开端：大型数据库想法的萌芽</h1><p>MongoDB 的故事开始于 2007 年。1995 年，Dwight Merriman 和 Kevin O’Connor 创办了著名的在线广告公司 DoubleClick。不久后，Kevin Ryan 也加入了这个团队 (Dwight 和 Kevin 后来共同创办了 5 家公司——Gilt、10gen、Panther Express、ShopWiki 和 Business Insider)。DoubleClick 很<br>快就大获成功，几年之内，它的广告流量达到了每秒 40 万条。当时的关系型数据库技术还没有预料到会有如此大规模的流量。配备如此规模的关系数据库需要大量的资金和硬件资源。因此，Dwight(他是当时的 CTO) 和他的团队开发了自定义数据库实现来扩展 DoubleClick，以应对流量的激增。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/" class="post-title-link" itemprop="url">一文搞懂Oracle JDK与OpenJDK</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-08 10:42:59 / 修改时间：11:07:03" itemprop="dateCreated datePublished" datetime="2026-07-08T10:42:59+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <img src="/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/640.webp" class="">
+
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>在本文中，我们将探讨Oracle Java Development Kit和OpenJDK之间的差异并进行比较。</p>
+<h1 id="Oracle-JDK"><a href="#Oracle-JDK" class="headerlink" title="Oracle JDK"></a>Oracle JDK</h1><p>Oracle JDK由Oracle公司开发，该公司是Sun许可证，基于Java标准版规范实现。它以二进制产品的形式发布。它支持多种操作系统，如Windows，Linux，Solaris，MacOS等。它支持不同的平台，如Intel 32位和64位架构，ARM架构和SPARC。它完全基于Java编程语言。之后，该许可证宣布将根据GPL（通用公共许可证）许可证发布。Oracle JDK包含许多组件作为库形式的编程工具集合。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1028,354 +1355,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AI观察与大数据">
-      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | AI观察与大数据">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Nacos不支持MYSQL 8的问题</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-04-29 22:22:14" itemprop="dateCreated datePublished" datetime="2020-04-29T22:22:14+08:00">2020-04-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%A1%86%E6%9E%B6/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>395</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>Nacos遇到MySQL 8版本连接会报错，并且MySQL多次连接报错之后会拒绝连接。遇到这种情况之后登陆到mysql，然后flush hosts。</p>
-<p>在Nacos 1.2.0版本中解决了连接MySQL 8报错的问题<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://github.com/alibaba/nacos/issues/2042
-">[1]</span></a></sup>.</p>
-<h2 id="1-下载对应版本的connector"><a href="#1-下载对应版本的connector" class="headerlink" title="1. 下载对应版本的connector"></a>1. 下载对应版本的connector</h2><p>比如mysql-connector-java-8.0.17.jar<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://downloads.mysql.com/archives/c-j/">[2]</span></a></sup>。注意这里加载的jar包对应的版本必须要和MySQL版本完全一致。否则可能出现报错。</p>
-<img src="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/image2020-4-29_22-12-27.png" class="" title="download_mysql_connector">
-
-<h2 id="2-配置nacos的mysql插件"><a href="#2-配置nacos的mysql插件" class="headerlink" title="2. 配置nacos的mysql插件"></a>2. 配置nacos的mysql插件</h2><p>在nacos目录下新建 plugins&#x2F;mysql&#x2F;mysql-connector-java-8.0.17.jar</p>
-<img src="/2020/04/29/Nacos%E4%B8%8D%E6%94%AF%E6%8C%81MYSQL-8%E7%9A%84%E9%97%AE%E9%A2%98/image2020-4-29_19-34-11.png" class="" title="console_nacos">
-
-<h2 id="3-配置连接数据库，然后启动nacos"><a href="#3-配置连接数据库，然后启动nacos" class="headerlink" title="3. 配置连接数据库，然后启动nacos"></a>3. 配置连接数据库，然后启动nacos</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://github.com/alibaba/nacos/issues/2042<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://downloads.mysql.com/archives/c-j/<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AI观察与大数据">
-      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | AI观察与大数据">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/" class="post-title-link" itemprop="url">快车道系列：理解文档对象模型DOM</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-03-30 21:53:13" itemprop="dateCreated datePublished" datetime="2020-03-30T21:53:13+08:00">2020-03-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/web/" itemprop="url" rel="index"><span itemprop="name">web</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="DOM是什么？"><a href="#DOM是什么？" class="headerlink" title="DOM是什么？"></a>DOM是什么？</h3><p>Document Object Model<sup id="fnref:0"><a href="#fn:0" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.w3.org/TR/DOM-Level-2-Core/introduction.html
-">[0]</span></a></sup>，简称DOM, 文档对象模型， 是一套抽象的、单一的、具有一致性的API。这一套API是与具体实现和具体语言无关的。在WHATAG CORE 3 Living Standard<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://dom.spec.whatwg.org/
-">[1]</span></a></sup>上通过Web IDL定义给出。</p>
-<p>HTML和定义良好的XML都是结构化，里面的内容、表现、属性都可以通过节点和对象的方式来表示，形成一棵树形结构（或者是森林）。而DOM所定义的API就是用来访问、操作、修改里面的数据。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/30/Web%E5%BF%AB%E8%BD%A6%E9%81%93%E7%B3%BB%E5%88%97%EF%BC%9A%E7%90%86%E8%A7%A3%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8BDOM/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AI观察与大数据">
-      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | AI观察与大数据">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">Kafka调研（3）：多点通信方案的设计-2</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-03-13 14:46:04" itemprop="dateCreated datePublished" datetime="2020-03-13T14:46:04+08:00">2020-03-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Kafka/" itemprop="url" rel="index"><span itemprop="name">Kafka</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Kafka/Architecture/" itemprop="url" rel="index"><span itemprop="name">Architecture</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>5.5k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="1-星形拓扑的通信模型"><a href="#1-星形拓扑的通信模型" class="headerlink" title="1. 星形拓扑的通信模型"></a>1. 星形拓扑的通信模型</h1><p>星形的意思是说，有一个消息接收和转发中心，应用两两之间并不直接通信。所有的应用层消息都通过Kafka集群进行中转。但是对Kafka来说，消息的机制是推拉机制。如果需要接收消息，需要应用层连接到集群，订阅感兴趣的topic，然后poll消息。</p>
-<p>为了实现这种模型，<br><strong>1. 我们利用Kafka本身的ACL控制机制来对topic权限进行控制</strong>。</p>
-<ul>
-<li>对每一个应用分配唯一的Consumer Group。</li>
-<li>对每一个接入的应用分配唯一的账户和密码。</li>
-<li>对每一个接入的应用分配SSL证书</li>
-<li>对每一个topic按照应用进行配置读写权限。</li>
-<li>对每一个接入的应用分配一个唯一的秘钥（该秘钥通过安全方式传递）。</li>
-</ul>
-<p><em><strong>2. 同时我们在应用包装一层API进行消息分派机制</strong></em></p>
-<ul>
-<li>应用层的消息需要进行加密。</li>
-<li>应用层需要校验消息的来源和完整性。</li>
-<li>判断该消息是否应该被处理，比如消息的接收方是否包含了自己。</li>
-<li>应用层需要按照消息的业务ID（或者其他机制）分派合适的处理函数。</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/13/%E5%88%A9%E7%94%A8Kafka%E8%AE%BE%E8%AE%A1%E5%BA%94%E7%94%A8%E5%B1%82%E5%A4%9A%E7%82%B9%E9%80%9A%E4%BF%A1%E6%96%B9%E6%A1%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1387,25 +1366,25 @@
     <div class="footer-inner">
 
   <div class="copyright">
-    &copy; 
+    &copy; 2020 – 
     <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
-    <span class="author" itemprop="copyrightHolder">山野@成都</span>
+    <span class="author" itemprop="copyrightHolder">山野</span>
   </div>
 <div class="wordcount">
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">85k</span>
+    <span title="站点总字数">98k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:17</span>
+    <span title="站点阅读时长">1:29</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

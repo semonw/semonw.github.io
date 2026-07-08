@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jinnotes.cn/"/>
-  <updated>2026-07-05T09:28:57.780Z</updated>
+  <updated>2026-07-08T05:11:05.934Z</updated>
   <id>http://www.jinnotes.cn/</id>
   
   <author>
@@ -15,6 +15,90 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CORBA是什么？</title>
+    <link href="http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/"/>
+    <id>http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</id>
+    <published>2026-07-08T05:04:06.000Z</published>
+    <updated>2026-07-08T05:11:05.934Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/corba_arch.webp&quot; class=&quot;&quot;&gt;
+
+&lt;blockquote&gt;&lt;p&gt;The beginning of wisdom in human as well as international affairs was knowing when to stop.&lt;/p&gt;
+&lt;p&gt;Paul Kennedy, The Rise and Fall of the Great Powers&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;我在ACM Queue上看到一篇文章《The rise and fall of CORBA》，很有启发，后面抽点时间把对应的文章翻译出来。&lt;/p&gt;
+&lt;p&gt;在这里，我想抽一点点时间，来简单说一说我了解到的CORBA技术。&lt;/p&gt;
+&lt;p&gt;众所周知，CORBA技术陡峭的学习曲线、复杂的技术栈而令人生畏。不过在电信行业，OSS和网管软件之间的通信、以及BOSS系统都是通过CORBA接口来完成信令下发和告警上报的。&lt;/p&gt;
+&lt;p&gt;也是因为这个原因，不管是运营商还是华为，都是CORBA技术做了大量的投资，投入了大量的资源开发相应的系统。&lt;/p&gt;
+&lt;p&gt;其中，我在2010年到15年几年的时间在华为核心产品线从事的北向接口，就接触到了网管产品中的CORBA技术。所谓北向接口，就是将核心网收集到的关于网络的状态数据，正常的、异常的、告警的、日志类型的、统计类型的所有相关的数据通过电信定义的接口报送到更上层的系统中。同时，也提供对不同类型的设备、网络、协议栈等根据电信协议提供一套抽象的接口，用于上层系统的业务定义、业务发放动作、甚至于设备的控制等等。&lt;/p&gt;
+&lt;p&gt;下面我简单介绍一下什么是CORBA。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://www.jinnotes.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="CORBA" scheme="http://www.jinnotes.cn/categories/%E6%8A%80%E6%9C%AF/CORBA/"/>
+    
+    
+      <category term="CORBA" scheme="http://www.jinnotes.cn/tags/CORBA/"/>
+    
+      <category term="技术" scheme="http://www.jinnotes.cn/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="电信网络管理" scheme="http://www.jinnotes.cn/tags/%E7%94%B5%E4%BF%A1%E7%BD%91%E7%BB%9C%E7%AE%A1%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB简史</title>
+    <link href="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/"/>
+    <id>http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/</id>
+    <published>2026-07-08T04:39:39.000Z</published>
+    <updated>2026-07-08T05:02:49.060Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp&quot; class=&quot;&quot;&gt;
+
+&lt;p&gt;说到现代 Web 应用程序开发，不得不提到 MongoDB。如果你是一名全栈程序员，每天都会跟 MERN 打交道，其中 M 指的就是 MongoDB。MongoDB 开源社区版为大量的 Web 应用程序提供支持。从 2007 年开始，MongoDB 走过了漫长的道路。它是 MongoDB 公司的主要产品，这家公司市值已经超过 100 亿美元。与很多产品一样，在线广告是推动 MongoDB 愿景和发展的关键催化剂。MongoDB 的故事很有趣，在本文中，我将带你一起探索 MongoDB 的发展之旅。&lt;/p&gt;
+&lt;h1 id=&quot;开端：大型数据库想法的萌芽&quot;&gt;&lt;a href=&quot;#开端：大型数据库想法的萌芽&quot; class=&quot;headerlink&quot; title=&quot;开端：大型数据库想法的萌芽&quot;&gt;&lt;/a&gt;开端：大型数据库想法的萌芽&lt;/h1&gt;&lt;p&gt;MongoDB 的故事开始于 2007 年。1995 年，Dwight Merriman 和 Kevin O’Connor 创办了著名的在线广告公司 DoubleClick。不久后，Kevin Ryan 也加入了这个团队 (Dwight 和 Kevin 后来共同创办了 5 家公司——Gilt、10gen、Panther Express、ShopWiki 和 Business Insider)。DoubleClick 很&lt;br&gt;快就大获成功，几年之内，它的广告流量达到了每秒 40 万条。当时的关系型数据库技术还没有预料到会有如此大规模的流量。配备如此规模的关系数据库需要大量的资金和硬件资源。因此，Dwight(他是当时的 CTO) 和他的团队开发了自定义数据库实现来扩展 DoubleClick，以应对流量的激增。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>一文搞懂Oracle JDK与OpenJDK</title>
+    <link href="http://www.jinnotes.cn/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/"/>
+    <id>http://www.jinnotes.cn/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/</id>
+    <published>2026-07-08T02:42:59.000Z</published>
+    <updated>2026-07-08T03:07:03.776Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/640.webp&quot; class=&quot;&quot;&gt;
+
+&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在本文中，我们将探讨Oracle Java Development Kit和OpenJDK之间的差异并进行比较。&lt;/p&gt;
+&lt;h1 id=&quot;Oracle-JDK&quot;&gt;&lt;a href=&quot;#Oracle-JDK&quot; class=&quot;headerlink&quot; title=&quot;Oracle JDK&quot;&gt;&lt;/a&gt;Oracle JDK&lt;/h1&gt;&lt;p&gt;Oracle JDK由Oracle公司开发，该公司是Sun许可证，基于Java标准版规范实现。它以二进制产品的形式发布。它支持多种操作系统，如Windows，Linux，Solaris，MacOS等。它支持不同的平台，如Intel 32位和64位架构，ARM架构和SPARC。它完全基于Java编程语言。之后，该许可证宣布将根据GPL（通用公共许可证）许可证发布。Oracle JDK包含许多组件作为库形式的编程工具集合。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://www.jinnotes.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+      <category term="Java" scheme="http://www.jinnotes.cn/categories/%E6%8A%80%E6%9C%AF/Java/"/>
+    
+    
+      <category term="Java" scheme="http://www.jinnotes.cn/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>一家估值1.75 亿美金的公司是如何被一行 Python代码给毁掉的</title>
@@ -616,96 +700,6 @@
       <category term="compiler" scheme="http://www.jinnotes.cn/tags/compiler/"/>
     
       <category term="command line options" scheme="http://www.jinnotes.cn/tags/command-line-options/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>为什么会害怕人工智能</title>
-    <link href="http://www.jinnotes.cn/2020/02/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AE%B3%E6%80%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    <id>http://www.jinnotes.cn/2020/02/12/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%AE%B3%E6%80%95%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</id>
-    <published>2020-02-12T03:08:30.000Z</published>
-    <updated>2026-07-05T09:28:57.679Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;原作者： 保罗▪福特 2015年2月11日&lt;br&gt;译者： 山野@成都 2017&lt;/p&gt;
-&lt;h1 id=&quot;在阅读之前&quot;&gt;&lt;a href=&quot;#在阅读之前&quot; class=&quot;headerlink&quot; title=&quot;在阅读之前&quot;&gt;&lt;/a&gt;在阅读之前&lt;/h1&gt;&lt;p&gt;这篇文章&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://www.technologyreview.com/s/534871/our-fear-of-artificial-intelligence/
-&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;是我在2017年在麻省理工评论（MIT Technology Review）上看到的翻译的。 作者是保罗▪福特&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://www.technologyreview.com/profile/paul-ford/
-&quot;&gt;[2]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;。距离当初的翻译已经过去了2年。现在人工智能的概念已经深入到各行各业，从大家经常接触的SNS社交数据挖掘、智能客服、B2C商品推荐系统、新闻推荐系统、智能汽车，以及到更广泛的更偏向于传统的领域，比如医疗、城市规划、交通领域、建筑领域、社区管理、行政服务等等的一切都在提到一个词，那就是“智慧”，“智能”。&lt;/p&gt;
-&lt;p&gt;这一切的背后都和机器学习技术（深度学习、加强学习）等等的兴起，以及更加容易使用的框架和API，比如谷歌的tensorflow；更加容易处理大规模数据的框架，比如Apache Spark、Apache Hadoop套件等，这些都助力于并提高了各种业务对于基于大量数据的建模和预测能力。而这些能力就是大家所说的人工智能。&lt;/p&gt;
-&lt;p&gt;下面这篇文章并没有讲解具体的某种应用于人工智能的技术，而是从更高更抽象的层面，从社会和伦理的层面探讨了人工智能所带来的一些问题。&lt;/p&gt;
-&lt;p&gt;下面是正文：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="科技 - 人工智能" scheme="http://www.jinnotes.cn/categories/%E7%A7%91%E6%8A%80-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    
-      <category term="翻译" scheme="http://www.jinnotes.cn/categories/%E7%A7%91%E6%8A%80-%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BF%BB%E8%AF%91/"/>
-    
-    
-      <category term="人工智能" scheme="http://www.jinnotes.cn/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    
-      <category term="未来科技" scheme="http://www.jinnotes.cn/tags/%E6%9C%AA%E6%9D%A5%E7%A7%91%E6%8A%80/"/>
-    
-      <category term="麻省理工评论" scheme="http://www.jinnotes.cn/tags/%E9%BA%BB%E7%9C%81%E7%90%86%E5%B7%A5%E8%AF%84%E8%AE%BA/"/>
-    
-      <category term="自由意志" scheme="http://www.jinnotes.cn/tags/%E8%87%AA%E7%94%B1%E6%84%8F%E5%BF%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>maven构建的一些小技巧</title>
-    <link href="http://www.jinnotes.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/"/>
-    <id>http://www.jinnotes.cn/2020/02/10/maven%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7/</id>
-    <published>2020-02-10T08:02:55.000Z</published>
-    <updated>2026-07-05T09:28:57.678Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;maven从设计上来说非常的简单，但是却是一个非常强大的工具。很多人将maven只是当做一个构建工具（从源代码生成可运行软件），但是实际上可以将maven当做一个项目管理工具，比如工程管理、插件管理、Jar包依赖管理、软件发布仓库管理等。&lt;/p&gt;
-&lt;p&gt;下面讲解一些在使用maven当中所遇到的一些小的技巧。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Building tools - maven" scheme="http://www.jinnotes.cn/categories/Building-tools-maven/"/>
-    
-    
-      <category term="maven" scheme="http://www.jinnotes.cn/tags/maven/"/>
-    
-      <category term="profiles" scheme="http://www.jinnotes.cn/tags/profiles/"/>
-    
-      <category term="settings.xml" scheme="http://www.jinnotes.cn/tags/settings-xml/"/>
-    
-      <category term="mirrorOf" scheme="http://www.jinnotes.cn/tags/mirrorOf/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>通过maven自动化构建protobuf class代码</title>
-    <link href="http://www.jinnotes.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/"/>
-    <id>http://www.jinnotes.cn/2020/02/10/%E9%80%9A%E8%BF%87maven%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BAprotobuf/</id>
-    <published>2020-02-10T05:30:03.000Z</published>
-    <updated>2026-07-05T09:28:57.679Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;通过maven自动化构建protocal-buffer&quot;&gt;&lt;a href=&quot;#通过maven自动化构建protocal-buffer&quot; class=&quot;headerlink&quot; title=&quot;通过maven自动化构建protocal buffer&quot;&gt;&lt;/a&gt;通过maven自动化构建protocal buffer&lt;/h2&gt;&lt;p&gt;当对代码进行工程构建的时候，如果能够尽可能的自动化，这样对于提升整个软件质量、节省人力成本、减少因为人工干预导致的各种不可预知的错误是很好。&lt;br&gt;从protobuf的官方文档来看，通过cmd调用protoc当然可以生成相应的代码，但是对构建不够友好。于是，可以考虑通过maven来进行自动化构建，在启动maven构建的时候，自动调用protoc，生成代码，并打包成相应的jar包，集成到工程发布包中。&lt;br&gt;这里有2种方式，如下。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Building tools - maven" scheme="http://www.jinnotes.cn/categories/Building-tools-maven/"/>
-    
-      <category term="protocol buffer" scheme="http://www.jinnotes.cn/categories/Building-tools-maven/protocol-buffer/"/>
-    
-    
-      <category term="maven" scheme="http://www.jinnotes.cn/tags/maven/"/>
-    
-      <category term="protocol" scheme="http://www.jinnotes.cn/tags/protocol/"/>
-    
-      <category term="buffer" scheme="http://www.jinnotes.cn/tags/buffer/"/>
     
   </entry>
   
