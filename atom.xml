@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>AI观察与大数据</title>
   <icon>http://www.jinnotes.cn/icon.png</icon>
-  <subtitle>不忘初心，砥砺前行！</subtitle>
+  
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jinnotes.cn/"/>
