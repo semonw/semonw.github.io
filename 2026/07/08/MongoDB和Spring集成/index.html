@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用Mongoose的ORM框架结合到express框架，生产力会提高一大截。 稍显不足的是，MongoDB对于中文索引支持的力度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB和Spring集成">
+<meta property="og:url" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
+<meta property="og:description" content="MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用Mongoose的ORM框架结合到express框架，生产力会提高一大截。 稍显不足的是，MongoDB对于中文索引支持的力度">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/1.webp">
+<meta property="article:published_time" content="2026-07-08T14:58:14.000Z">
+<meta property="article:modified_time" content="2026-07-09T02:17:07.027Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="Big Data,大数据,Agent Engineering,Loop Engineering,Architecture,spark,RDD,Data Platform,Data Mining,Cesium,GIS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/1.webp">
+
+
+<link rel="canonical" href="http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/","path":"2026/07/08/MongoDB和Spring集成/","title":"MongoDB和Spring集成"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>MongoDB和Spring集成 | AI观察与大数据</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">AI观察与大数据</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">连接数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%B8%80"><span class="nav-number">1.1.</span> <span class="nav-text">方式一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E5%BC%8F%E4%BA%8C"><span class="nav-number">1.2.</span> <span class="nav-text">方式二</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89DAO%E5%AF%B9%E8%B1%A1"><span class="nav-number">2.</span> <span class="nav-text">定义DAO对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.</span> <span class="nav-text">如何分页查询</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="MongoDB和Spring集成 | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MongoDB和Spring集成
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2026-07-08 22:58:14" itemprop="dateCreated datePublished" datetime="2026-07-08T22:58:14+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-09 10:17:07" itemprop="dateModified" datetime="2026-07-09T10:17:07+08:00">2026-07-09</time>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>15k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>14 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/1.webp" class="">
+
+<p>MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用Mongoose的ORM框架结合到express框架，生产力会提高一大截。</p>
+<p>稍显不足的是，MongoDB对于中文索引支持的力度不够，对于某些要求强事务的领域应用（比如金融、财务等）略显不足，至少还没有看到有成熟应用的案例。如果有，请告诉我。</p>
+<p>另外一个就是，在搭建MongoDB集群的时候，相对来说是比较复杂的。水平扩展虽然很简单，但是做Sharding的时候也需要仔细的考量。</p>
+<p>本文简单介绍一下如何在Spring Boot&#x2F;Spring Cloud程序中使用MongoDB数据库。</p>
+<span id="more"></span>
+
+<h1 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h1><h3 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h3><p>在Spring应用引入Spring Data MongoDB的对应的Starter依赖，如果是maven的话，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-data-mongodb&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;<span class="number">2.5</span><span class="number">.8</span>&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样的话，程序启动的时候会触发对应的MongoDB配置。我用的是本地的MongoDB，相应的配置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">data:</span></span><br><span class="line">    <span class="attr">mongodb:</span></span><br><span class="line">      <span class="attr">uri:</span> <span class="string">mongodb://admin:Admin%40123@127.0.0.1:27011/test_db</span></span><br></pre></td></tr></table></figure>
+
+<p>然后直接在业务代码中，直接在代码中使用MongoTemplate类就可以访问数据库了。注意这里的uri可支持多种配置，比如数据库集群。具体请参考Spring的官方文档即可。</p>
+<h3 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h3><p>自定义Java Config文件，直接上代码，如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.mongodb.ConnectionString;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoClientSettings;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.MongoCredential;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoClient;</span><br><span class="line"><span class="keyword">import</span> com.mongodb.client.MongoClients;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Value;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MongoClientConfiguration</span> <span class="keyword">extends</span> <span class="title class_">AbstractMongoClientConfiguration</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;bimgis.mongodb.connection:mongodb://192.168.201.156:27017&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">mongoConnectionStr</span> <span class="operator">=</span> <span class="string">&quot;mongodb://192.168.201.156:27017&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;bimgis.mongodb.auth.user:admin&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">user</span> <span class="operator">=</span> <span class="string">&quot;admin&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;bimgis.mongodb.auth.password:&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">password</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;bimgis.mongodb.auth.source:admin&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">String</span> <span class="variable">adminDatabase</span> <span class="operator">=</span> <span class="string">&quot;admin&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Value(&quot;$&#123;bimgis.mongodb.database:&#125;&quot;)</span></span><br><span class="line">    <span class="keyword">private</span> String database;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> MongoClient <span class="title function_">mongoClient</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">//Refer http://mongodb.github.io/mongo-java-driver/3.12/driver/tutorials/connect-to-mongodb/</span></span><br><span class="line">        <span class="type">MongoCredential</span> <span class="variable">credential</span> <span class="operator">=</span> MongoCredential.createCredential(user, adminDatabase, password.toCharArray());</span><br><span class="line">        <span class="type">MongoClientSettings</span> <span class="variable">settings</span> <span class="operator">=</span> MongoClientSettings.builder()</span><br><span class="line">                .credential(credential)</span><br><span class="line">                .applyConnectionString(<span class="keyword">new</span> <span class="title class_">ConnectionString</span>(mongoConnectionStr))</span><br><span class="line">                .build();</span><br><span class="line">        <span class="keyword">return</span> MongoClients.create(settings);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String <span class="title function_">getDatabaseName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> database;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后在spring.yaml中配置MongoDB的属性：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">bimgis:</span></span><br><span class="line">  <span class="attr">mongodb:</span></span><br><span class="line">    <span class="attr">connection:</span> <span class="string">mongodb://localhost:27011</span></span><br><span class="line">    <span class="attr">auth:</span></span><br><span class="line">      <span class="attr">user:</span> <span class="string">admin</span></span><br><span class="line">      <span class="attr">password:</span> <span class="string">Admin@123</span></span><br><span class="line">      <span class="comment">#授权的数据库</span></span><br><span class="line">      <span class="attr">source:</span> <span class="string">admin</span></span><br><span class="line">    <span class="attr">database:</span> <span class="string">test_db</span></span><br></pre></td></tr></table></figure>
+
+<p>这里达到的效果和方式一是一样的。其实完全不这么做，但是当你想要把一些配置隐藏起来或者做一些额外的事情的时候，才需要这样。</p>
+<h1 id="定义DAO对象"><a href="#定义DAO对象" class="headerlink" title="定义DAO对象"></a>定义DAO对象</h1><p>Spring Data对MongoDB的支持还不错。基本上我们遇到的场景都可以解决掉，查询的效率和性能也基本可以满足要求。那么如何在程序中使用MongoDB中的存储的数据呢？ </p>
+<p>那么得先定义一个DAO对象，用于使用该对象来存储对应集合的数据。虽然MongoDB支持一个集合可以存储任意结构的数据，但是为了维护和理解更简单，还是尽量同一个集合存储同一个结构的数据。这个时候，定义DAO对象就显得很重要了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Document(collection = &quot;section&quot;)</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Section</span> &#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">var</span> _id: String? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field(&quot;name&quot;)</span></span><br><span class="line">    <span class="keyword">var</span> sectionName: String? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field(&quot;project_code&quot;)</span></span><br><span class="line">    <span class="keyword">var</span> projectCode: String? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field(&quot;del&quot;)</span></span><br><span class="line">    <span class="meta">@JsonProperty(&quot;isDelete&quot;)</span></span><br><span class="line">    <span class="type">var</span> <span class="variable">isDelete</span> <span class="operator">=</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field(&quot;ct&quot;)</span></span><br><span class="line">    <span class="keyword">var</span> createTime: Date? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field(&quot;cb&quot;)</span></span><br><span class="line">    <span class="keyword">var</span> createBy: String? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field(&quot;ut&quot;)</span></span><br><span class="line">    <span class="keyword">var</span> updateTime: Date? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Field(&quot;ub&quot;)</span></span><br><span class="line">    <span class="keyword">var</span> updateBy: String? = <span class="literal">null</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对代码做一些简单的说明，@Id来声明主键，在每个字段上都增加@Field注解,这样可以增加代码的清晰度。</p>
+<p>值得注意的时候，@Field注解有很几个参数，比较关键的一个是targetType, 这个参数定义了应用和数据库之间在做序列化的时候DAO对象和MongoDB BSON存储的映射关系。如果不显示声明的话，将使用默认的映射关系。比如BigDecimal的Java类型并不会存储为Decimal128，而是转换成String进行存储。如果想要存储为Decimal128，最简单的手段就是在定义字段的时候做如下声明：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Field(name = &quot;balance&quot;, targetType = FieldType.DECIMAL128)</span></span><br><span class="line"><span class="keyword">var</span> balance: BigDecimal = BigDecimal(<span class="number">0.0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在Spring Data Mongo的MongoConverters中声明了对象的转化实现，有兴趣可以阅读相关代码，这里贴出一部分代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> <span class="title class_">MongoConverters</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">MongoConverters</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> Collection&lt;Object&gt; <span class="title function_">getConvertersToRegister</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;Object&gt; converters = <span class="keyword">new</span> <span class="title class_">ArrayList</span>();</span><br><span class="line">        converters.add(MongoConverters.BigDecimalToStringConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.BigDecimalToDecimal128Converter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.StringToBigDecimalConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.Decimal128ToBigDecimalConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.BigIntegerToStringConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.StringToBigIntegerConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.URLToStringConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.StringToURLConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.DocumentToStringConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.TermToStringConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.NamedMongoScriptToDocumentConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.DocumentToNamedMongoScriptConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.CurrencyToStringConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.StringToCurrencyConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.AtomicIntegerToIntegerConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.AtomicLongToLongConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.LongToAtomicLongConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.IntegerToAtomicIntegerConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.BinaryToByteArrayConverter.INSTANCE);</span><br><span class="line">        converters.add(MongoConverters.BsonTimestampToInstantConverter.INSTANCE);</span><br><span class="line">        converters.add(ConverterBuilder.reading(String.class, URI.class, URI::create).andWriting(URI::toString));</span><br><span class="line">        <span class="keyword">return</span> converters;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="如何分页查询"><a href="#如何分页查询" class="headerlink" title="如何分页查询"></a>如何分页查询</h1><p>MongoTemplete的使用相当的直观，这里不做示范，直接参考官方文档即可。需要说明的时候，MongoDB的分页查询需要自己实现。</p>
+<p>这里贴出MongoDB分页查询的工具类，以供参考。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> demo;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.schdri.bimgis.data.manage.common.entity.PageResult;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Sort;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Sort.Direction;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Sort.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.mongodb.core.MongoTemplate;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.mongodb.core.query.Criteria;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.mongodb.core.query.Query;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Collectors;</span><br><span class="line"><span class="keyword">import</span> java.util.stream.Stream;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MongoDB分页查询工具类.</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MongoPageHelper</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">FIRST_PAGE_NUM</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">DEFAULT_PAGE_SIZE</span> <span class="operator">=</span> <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">ID</span> <span class="operator">=</span> <span class="string">&quot;_id&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MongoPageHelper</span><span class="params">(MongoTemplate mongoTemplate)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.mongoTemplate = mongoTemplate;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页查询，直接返回集合类型的结果.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> MongoPageHelper#pageQuery(Query,</span></span><br><span class="line"><span class="comment">     * Class, Function, Integer, Integer,</span></span><br><span class="line"><span class="comment">     * String)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; PageResult&lt;T&gt; <span class="title function_">pageQuery</span><span class="params">(Query query, Class&lt;T&gt; entityClass, Integer pageSize,</span></span><br><span class="line"><span class="params">                                       Integer pageNum, String collectionName)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> pageQuery(query, entityClass, Function.identity(), pageSize, pageNum, <span class="literal">null</span>, collectionName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页查询，默认集合、可对集合元素进行转换</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> MongoPageHelper#pageQuery(Query,</span></span><br><span class="line"><span class="comment">     * Class, Function, Integer, Integer,</span></span><br><span class="line"><span class="comment">     * String)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T, R&gt; PageResult&lt;R&gt; <span class="title function_">pageQuery</span><span class="params">(Query query, Class&lt;T&gt; entityClass, Function&lt;T, R&gt; mapper,</span></span><br><span class="line"><span class="params">                                          Integer pageSize, Integer pageNum)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> pageQuery(query, entityClass, mapper, pageSize, pageNum, <span class="literal">null</span>, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页查询，使用lastId分页，直接返回集合类型的结果.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> MongoPageHelper#pageQuery(Query,</span></span><br><span class="line"><span class="comment">     * Class, Function, Integer, Integer,</span></span><br><span class="line"><span class="comment">     * String)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; PageResult&lt;T&gt; <span class="title function_">pageQuery</span><span class="params">(Query query, Class&lt;T&gt; entityClass, Integer pageSize,</span></span><br><span class="line"><span class="params">                                       Integer pageNum, Long lastId, String collectionName)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> pageQuery(query, entityClass, Function.identity(), pageSize, pageNum, lastId, collectionName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页查询，不考虑条件分页，直接使用skip-limit来分页.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@see</span> MongoPageHelper#pageQuery(Query,</span></span><br><span class="line"><span class="comment">     * Class, Function, Integer, Integer,</span></span><br><span class="line"><span class="comment">     * String)</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T, R&gt; PageResult&lt;R&gt; <span class="title function_">pageQuery</span><span class="params">(Query query, Class&lt;T&gt; entityClass, Function&lt;T, R&gt; mapper,</span></span><br><span class="line"><span class="params">                                          Integer pageSize, Integer pageNum, String collectionName)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> pageQuery(query, entityClass, mapper, pageSize, pageNum, <span class="literal">null</span>, collectionName);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 分页查询.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> query          Mongo Query对象，构造你自己的查询条件.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> entityClass    Mongo collection定义的entity class，用来确定查询哪个集合.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mapper         映射器，你从db查出来的list的元素类型是entityClass, 如果你想要转换成另一个对象，比如去掉敏感字段等，可以使用mapper来决定如何转换.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pageSize       分页的大小.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pageNum        当前页.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> lastId         条件分页参数, 区别于skip-limit，采用find(_id&gt;lastId).limit分页.</span></span><br><span class="line"><span class="comment">     *                       如果不跳页，像朋友圈，微博这样下拉刷新的分页需求，需要传递上一页的最后一条记录的ObjectId。如果是null，则返回pageNum那一页.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;            collection定义的class类型.</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;R&gt;            最终返回时，展现给页面时的一条记录的类型。</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> collectionName 集合名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> PageResult，一个封装page信息的对象.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T, R&gt; PageResult&lt;R&gt; <span class="title function_">pageQuery</span><span class="params">(Query query, Class&lt;T&gt; entityClass, Function&lt;T, R&gt; mapper,</span></span><br><span class="line"><span class="params">                                          Integer pageSize, Integer pageNum, Long lastId, String collectionName)</span> &#123;</span><br><span class="line">        <span class="comment">//总条数</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">total</span> <span class="operator">=</span> StringUtils.isEmpty(collectionName) ? mongoTemplate.count(query, entityClass) : mongoTemplate.count(query, entityClass, collectionName);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pageNum == <span class="literal">null</span> || pageNum &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            pageNum = FIRST_PAGE_NUM;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pageSize == <span class="literal">null</span> || pageSize &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            pageSize = DEFAULT_PAGE_SIZE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//计算取记录的范围</span></span><br><span class="line">        <span class="keyword">final</span> <span class="type">Integer</span> <span class="variable">pages</span> <span class="operator">=</span> (<span class="type">int</span>) Math.ceil(total / (<span class="type">double</span>) pageSize);</span><br><span class="line">        <span class="keyword">if</span> (pageNum &gt; (pages - <span class="number">1</span>)) &#123;</span><br><span class="line">            pageNum = FIRST_PAGE_NUM;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//确定分页方式</span></span><br><span class="line">        <span class="keyword">if</span> (lastId != <span class="literal">null</span> &amp;&amp; lastId &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (pageNum != FIRST_PAGE_NUM) &#123;</span><br><span class="line">                query.addCriteria(Criteria.where(ID).gt(lastId));</span><br><span class="line">            &#125;</span><br><span class="line">            query.limit(pageSize);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">skip</span> <span class="operator">=</span> pageSize * pageNum;</span><br><span class="line">            query.skip(skip).limit(pageSize);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//查询</span></span><br><span class="line">        <span class="keyword">final</span> List&lt;T&gt; entityList = StringUtils.isEmpty(collectionName) ? mongoTemplate</span><br><span class="line">                .find(query</span><br><span class="line">                                .with(Sort.by(<span class="keyword">new</span> <span class="title class_">Order</span>(Direction.ASC, ID))),</span><br><span class="line">                        entityClass) :</span><br><span class="line">                mongoTemplate</span><br><span class="line">                        .find(query</span><br><span class="line">                                        .with(Sort.by(<span class="keyword">new</span> <span class="title class_">Order</span>(Direction.ASC, ID))),</span><br><span class="line">                                entityClass, collectionName);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//组织查询结果</span></span><br><span class="line">        <span class="keyword">final</span> PageResult&lt;R&gt; pageResult = <span class="keyword">new</span> <span class="title class_">PageResult</span>&lt;&gt;();</span><br><span class="line">        pageResult.setTotal(total);</span><br><span class="line">        pageResult.setPages(pages);</span><br><span class="line">        pageResult.setPageSize(pageSize);</span><br><span class="line">        pageResult.setPageNum(pageNum);</span><br><span class="line">        pageResult.setData(entityList.stream().map(mapper).collect(Collectors.toList()));</span><br><span class="line">        <span class="keyword">return</span> pageResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 内嵌列表分页查询：将内嵌的列表展开关联外层集合的数据形成新列表进行分页查询</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> query          查询筛选参数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> entityClass    外层集合映射的实体类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> flatMapper     展开内嵌列表操作的Lambda表达式</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pageSize       每页记录数</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> pageNum        第几页，从0开始</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> collectionName 外层集合名称，为null则使用entityClass关联的默认集合</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;            外层集合实体类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;R&gt;            经flatMapper转换且分页操作后返回的实体类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T, R&gt; PageResult&lt;R&gt; <span class="title function_">pageQueryByInner</span><span class="params">(Query query, Class&lt;T&gt; entityClass, Function&lt;T, Stream&lt;R&gt;&gt; flatMapper,</span></span><br><span class="line"><span class="params">                                                 Integer pageSize, Integer pageNum, String collectionName)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//查询数据库返回外层集合列表</span></span><br><span class="line">        <span class="keyword">final</span> List&lt;T&gt; entityList = StringUtils.isEmpty(collectionName) ? mongoTemplate</span><br><span class="line">                .find(query.with(Sort.by(<span class="keyword">new</span> <span class="title class_">Order</span>(Direction.ASC, ID))),</span><br><span class="line">                        entityClass) :</span><br><span class="line">                mongoTemplate</span><br><span class="line">                        .find(query.with(Sort.by(<span class="keyword">new</span> <span class="title class_">Order</span>(Direction.ASC, ID))),</span><br><span class="line">                                entityClass, collectionName);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//转换为内嵌集合列表</span></span><br><span class="line">        <span class="keyword">final</span> List&lt;R&gt; innerEntityList = entityList == <span class="literal">null</span> ? <span class="literal">null</span> : entityList.stream().flatMap(flatMapper).collect(Collectors.toList());</span><br><span class="line"></span><br><span class="line">        <span class="comment">//生成分页参数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">total</span> <span class="operator">=</span> innerEntityList == <span class="literal">null</span> ? <span class="number">0</span> : innerEntityList.size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pageNum == <span class="literal">null</span> || pageNum &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            pageNum = FIRST_PAGE_NUM;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (pageSize == <span class="literal">null</span> || pageSize &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            pageSize = DEFAULT_PAGE_SIZE;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> <span class="type">Integer</span> <span class="variable">pages</span> <span class="operator">=</span> (<span class="type">int</span>) Math.ceil(total / (<span class="type">double</span>) pageSize);</span><br><span class="line">        <span class="keyword">if</span> (pageNum &gt; (pages - <span class="number">1</span>)) &#123;</span><br><span class="line">            pageNum = FIRST_PAGE_NUM;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//分页返回</span></span><br><span class="line">        <span class="keyword">final</span> PageResult&lt;R&gt; pageResult = <span class="keyword">new</span> <span class="title class_">PageResult</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (total &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">fromIndex</span> <span class="operator">=</span> pageSize * pageNum;</span><br><span class="line">            <span class="type">int</span> <span class="variable">toIndexTmp</span> <span class="operator">=</span> pageSize * (pageNum + <span class="number">1</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">toIndex</span> <span class="operator">=</span> toIndexTmp &gt; total ? total : toIndexTmp;</span><br><span class="line">            pageResult.setData(innerEntityList.subList(fromIndex, toIndex));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            pageResult.setData(<span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        pageResult.setTotal(Long.valueOf(total));</span><br><span class="line">        pageResult.setPages(pages);</span><br><span class="line">        pageResult.setPageSize(pageSize);</span><br><span class="line">        pageResult.setPageNum(pageNum);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> pageResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 不分页列表查询，指定集合的数据</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> query          筛选条件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> entityClass    列表元素类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> collectionName mongoDB集合名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; PageResult&lt;T&gt; <span class="title function_">noPageQuery</span><span class="params">(Query query, Class&lt;T&gt; entityClass, String collectionName)</span> &#123;</span><br><span class="line"></span><br><span class="line">        List&lt;T&gt; entityList = <span class="literal">null</span>; <span class="comment">//查询结果实体</span></span><br><span class="line">        <span class="type">Long</span> <span class="variable">total</span> <span class="operator">=</span> <span class="number">0L</span>;<span class="comment">//总条数</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//查询</span></span><br><span class="line">        <span class="keyword">if</span> (!StringUtils.isEmpty(collectionName)) &#123;</span><br><span class="line">            total = mongoTemplate.count(query, entityClass, collectionName);</span><br><span class="line">            entityList = mongoTemplate.find(query, entityClass, collectionName);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            total = mongoTemplate.count(query, entityClass);</span><br><span class="line">            entityList = mongoTemplate.find(query, entityClass);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> PageResult&lt;T&gt; pageResult = <span class="keyword">new</span> <span class="title class_">PageResult</span>&lt;&gt;();</span><br><span class="line">        pageResult.setTotal(total);</span><br><span class="line">        pageResult.setPages(<span class="number">1</span>);</span><br><span class="line">        pageResult.setPageSize(total.intValue());</span><br><span class="line">        pageResult.setPageNum(<span class="number">0</span>);</span><br><span class="line">        pageResult.setData(entityList);</span><br><span class="line">        <span class="keyword">return</span> pageResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 不分页列表查询，指定集合的数据,支持数据转换</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> query          筛选条件</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> entityClass    列表元素类</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> collectionName mongoDB集合名称</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T, R&gt; PageResult&lt;R&gt; <span class="title function_">noPageQuery</span><span class="params">(Query query, Class&lt;T&gt; entityClass, String collectionName, Function&lt;T, R&gt; mapper)</span> &#123;</span><br><span class="line"></span><br><span class="line">        List&lt;T&gt; entityList = <span class="literal">null</span>; <span class="comment">//查询结果实体</span></span><br><span class="line">        <span class="type">Long</span> <span class="variable">total</span> <span class="operator">=</span> <span class="number">0L</span>;<span class="comment">//总条数</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//查询</span></span><br><span class="line">        <span class="keyword">if</span> (!StringUtils.isEmpty(collectionName)) &#123;</span><br><span class="line">            total = mongoTemplate.count(query, entityClass, collectionName);</span><br><span class="line">            entityList = mongoTemplate.find(query, entityClass, collectionName);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            total = mongoTemplate.count(query, entityClass);</span><br><span class="line">            entityList = mongoTemplate.find(query, entityClass);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> PageResult&lt;R&gt; pageResult = <span class="keyword">new</span> <span class="title class_">PageResult</span>&lt;&gt;();</span><br><span class="line">        pageResult.setTotal(total);</span><br><span class="line">        pageResult.setPages(<span class="number">1</span>);</span><br><span class="line">        pageResult.setPageSize(total.intValue());</span><br><span class="line">        pageResult.setPageNum(<span class="number">0</span>);</span><br><span class="line">        pageResult.setData(entityList.stream().map(mapper).collect(Collectors.toList()));</span><br><span class="line">        <span class="keyword">return</span> pageResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 不分页列表查询,默认集合的数据</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> query</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> entityClass</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> &lt;T&gt;</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; PageResult&lt;T&gt; <span class="title function_">noPageQuery</span><span class="params">(Query query, Class&lt;T&gt; entityClass)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> noPageQuery(query, entityClass, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>支持CURD查询的话，剩下的工作就是定义一个Controller文件和相应的接口，使用已经自动配置好的MongoTemplate和刚定义的DAO对象去存储数据就可以了。MongoTemplate提供了基本的save，remove，find，findById，upsert，update接口。如何实现业务层的逻辑，不再本文的范围之内，就不赘述了。</p>
+<p>本文中，我们简单介绍了一下如何在Spring Boot程序中使用MongoDB，基本上大家参考这篇文章就可以将服务跑起来。在后面的文章中，我们会把视线更多的放在原理和一些最佳实践上。希望大家持续关注。</p>
+<font style="font-size: 14px" color="#B2B2B2">
+<span style="font-weight: bold">参考：</span>
+<p>【1】Spring Data MongoDB https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#introduction </p>
+<p>【2】Spring Boot程序配置项：https://docs.spring.io/spring-boot/docs/current/reference/html/appendix-application-properties.html </p>
+<p>【3】MongoTempate: https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#mongo-template </p>
+<p>【4】MongoPageHelepr原始博客: https://www.cnblogs.com/woshimrf/p/mongodb-pagenation-performance.html </p>
+<p>【5】Spring Reposiroty 自定义查询：https://docs.spring.io/spring-data/mongodb/docs/current/reference/html/#mongodb.repositories.queries </p>
+<p>【6】mongotemplate api:https://docs.spring.io/spring-data/mongodb/docs/current/api/org/springframework/data/mongodb/core/MongoTemplate.html</p>
+</font>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="山野@成都 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/08/BSON/" rel="prev" title="什么是BSON？什么是JSON?">
+                  <i class="fa fa-angle-left"></i> 什么是BSON？什么是JSON?
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/07/09/H2%E5%AE%9E%E6%88%98/" rel="next" title="内存数据库H2实战：介绍、使用以及和Spring Boot集成">
+                  内存数据库H2实战：介绍、使用以及和Spring Boot集成 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">127k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:56</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

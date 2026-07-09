@@ -170,18 +170,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">30</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">47</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">71</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -206,6 +206,370 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/" class="post-title-link" itemprop="url">如何降低MongoDB的使用内存</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-28 16:17:34" itemprop="dateCreated datePublished" datetime="2021-07-28T16:17:34+08:00">2021-07-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MongoDB/" itemprop="url" rel="index"><span itemprop="name">MongoDB</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/MongoDB/%E7%B3%BB%E7%BB%9F%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">系统分析</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在我们的系统中部署了很多套MongoDB的集群，但是有的时候会发现MongoDB启动不起来，或者启动之后一会儿MongoDB实例就挂了，也不知道是什么原因。我们按照如下方式进行了排查：</p>
+<ol>
+<li>检查所在宿主OS中MongoDB的存储磁盘空间是否足够<img src="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/B7B7DFDD-DF85-41ea-A9B4-3A583BACBA59.png" class="" title></li>
+<li>检查所在宿主OS中的空闲内存是否足够<br>使用命令free -h或者用命令top也可以</li>
+<li>检查MongoDB的运行日志<img src="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/FBB27F6E-B5A1-4e0e-B30C-85FF768FB6BB.png" class="" title></li>
+<li>通过top -p pid命令跟踪进程的内存占用<img src="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/598ACA72-0B06-4b76-90B5-C5B395E4677D.png" class="" title>
+发现进程突然被kill掉。怀疑这时是因为进程的内存增长过快导致<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="[OOM Killer](https://blog.csdn.net/w635614017/article/details/89204253?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control)
+">[2]</span></a></sup>。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/28/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8EMongoDB%E7%9A%84%E4%BD%BF%E7%94%A8%E5%86%85%E5%AD%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/" class="post-title-link" itemprop="url">如何设计一个标签系统？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-27 16:27:06" itemprop="dateCreated datePublished" datetime="2021-07-27T16:27:06+08:00">2021-07-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">系统设计</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>在很多系统中都有打标签的需求，比如图片、书籍、电影、博客、评论等，并且打标签的对象往往是海量数据。这就给系统的设计提出了挑战：</p>
+<ul>
+<li>要求可以根据标签进行分组、过滤、协同查询（比如标签的并集、交集、差集等等）</li>
+<li>要求查询的效率很高</li>
+<li>要求整个标签系统的扩展性很强</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/27/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E7%B3%BB%E7%BB%9F%EF%BC%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">SQL建模规范</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-29 09:39:50" itemprop="dateCreated datePublished" datetime="2021-03-29T09:39:50+08:00">2021-03-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SQL/%E5%BB%BA%E6%A8%A1/" itemprop="url" rel="index"><span itemprop="name">建模</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/SQL/%E5%BB%BA%E6%A8%A1/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="建模原则"><a href="#建模原则" class="headerlink" title="建模原则"></a>建模原则</h1><ol>
+<li><p>数据库字段小写，下划线连接；每个字段都需要由COMMENT，说明其业务含义。</p>
+</li>
+<li><p>使用id作为主键，建议类型为bigint(20)， 其对应的java类型为Long。</p>
+<ul>
+<li>Mybatis Plus框架自动生成主键插入（雪花算法）</li>
+<li>也可以使用数据库自增，当只有1个服务，数据量较小的时候建议选择，提升插入性能。</li>
+</ul>
+</li>
+<li><p>update_time、create_time<br>使用timestamp或者datetime作为时间类型的首选。Mybatis-Plus框架生成的相应Java类型都是LocalDateTime。大部分场景下2种类型可以互相替换，不过在时间范围和时区支持上有差异。<br>使用MySQL的自动初始化和自动更新功能。 字段变化之后，update_time数据库自动更新，如下：</p>
+</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">create_at <span class="type">timestamp</span> <span class="keyword">NOT NULL</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> COMMENT <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">create_by <span class="type">varchar</span>(<span class="number">36</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建人&#x27;</span>,</span><br><span class="line">update_at <span class="type">timestamp</span> <span class="keyword">NOT NULL</span> <span class="keyword">DEFAULT</span> <span class="built_in">CURRENT_TIMESTAMP</span> <span class="keyword">ON</span> <span class="keyword">UPDATE</span> <span class="built_in">CURRENT_TIMESTAMP</span> COMMENT <span class="string">&#x27;更新时间&#x27;</span>,</span><br><span class="line">update_by <span class="type">varchar</span>(<span class="number">36</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;更新人&#x27;</span>,</span><br></pre></td></tr></table></figure>  
+
+<ol start="4">
+<li>布尔型字段使用tinyint(1)即可。</li>
+<li>参考《阿里巴巴Java开发手册(华山版).pdf》。</li>
+</ol>
+<h1 id="雪花算法实现"><a href="#雪花算法实现" class="headerlink" title="雪花算法实现"></a>雪花算法实现</h1>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/29/SQL%E5%BB%BA%E6%A8%A1%E8%A7%84%E8%8C%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1037,346 +1401,6 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AI观察与大数据">
-      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | AI观察与大数据">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/" class="post-title-link" itemprop="url">什么是MQ</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-02-14 10:10:23" itemprop="dateCreated datePublished" datetime="2020-02-14T10:10:23+08:00">2020-02-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue-Kafka/" itemprop="url" rel="index"><span itemprop="name">Message Queue - Kafka</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>这篇文章是一篇未完成稿，有时间再写</strong></em></p>
-<h1 id="什么是消息队列（Message-Queue）"><a href="#什么是消息队列（Message-Queue）" class="headerlink" title="什么是消息队列（Message Queue）?"></a>什么是消息队列（Message Queue）?</h1><p>消息队列使得应用之间可以通过互发消息的方式来通信，这和传统的RPC方式有很大的区别。通过消息队列提供的服务，解除了点对点，星形拓扑通信耦合的问题。同时，当目标服务不可用的时候，消息队列充当了临时的消息缓存。</p>
-<p>下面先解释一下什么是消息队列<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.cloudamqp.com/blog/2014-12-03-what-is-message-queuing.html
-">[1]</span></a></sup>，怎么使用，在架构层面又会带来什么样的好处<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="扩展阅读：https://www.ibm.com/cloud/learn/message-queues
-">[2]</span></a></sup>。</p>
-<p><em><strong>队列</strong></em>就是将事物排成一列，依次处理，并且依照先进先出(First In, First Out)的顺序。那么消息队列（MQ），就是用于不同系统或者应用之间通信的的列表， 将需要通信的消息保存在队列中，等待应用依次处理。<a target="_blank" rel="noopener" href="http://queues.io/">queues.io</a>是一个比较好的网站可以查找各种不同功能的队列。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFMQ/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AI观察与大数据">
-      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | AI观察与大数据">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">Kafka调研（2）：消息序列化框架建议与对比</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-02-14 11:57:26" itemprop="dateCreated datePublished" datetime="2020-02-14T11:57:26+08:00">2020-02-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue-Kafka/" itemprop="url" rel="index"><span itemprop="name">Message Queue - Kafka</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="调研结果和建议"><a href="#调研结果和建议" class="headerlink" title="调研结果和建议"></a>调研结果和建议</h2><p>综合来看，Avro或者Protocol Buffer二选一即可， 但是出于灵活性和标准JSON的支持力度上来看，更推荐Protocol Buffers。同时部分数据依然可以通过JSON方式传输。</p>
-<h2 id="主流序列化框架对比"><a href="#主流序列化框架对比" class="headerlink" title="主流序列化框架对比"></a>主流序列化框架对比</h2><h3 id="Kafka的序列化"><a href="#Kafka的序列化" class="headerlink" title="Kafka的序列化"></a>Kafka的序列化</h3><p>Kafka并不限定的消息格式。Kafka自身提供了一系列的序列化器，比如ByteArraySerializer，ByteBufferSerializer，DoubleSerializer，FloatSerializer，StringSerializer，UUIDSerializer， IntegerDeserializer, LongSerializer, ShortSerializer, 总结起来就是基本类型、字符串类型、二进制消息。</p>
-<p>但是在通常情况下不会使用比如Float这种来做序列化，原因在于系统间交互或者放到Kafka的数据一般来说都比较复杂，无法用一个字段来表示。于是，这种情况下，就需要在Kafka之上建立一个消息格式的契约，以便于Kafka的生产者和消费者之间都能理解消息中的语义。最好地方就是在Kafka基础之上增加一层应用层的消息协议，比如JSON格式、比如二进制编解码协议（序列化），出于性能考虑，一般也不直接使用Java POJO对象的原生序列化（虽然可行）。在Apache Spark中使用的Kryo Register，由于场景限制（不提供IDL定义），不适用Kafka。</p>
-<p>下面对常见的几个序列化框架做一个横向对比：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="山野@成都">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="AI观察与大数据">
-      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | AI观察与大数据">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/" class="post-title-link" itemprop="url">什么是Kafka</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-02-14 10:30:23" itemprop="dateCreated datePublished" datetime="2020-02-14T10:30:23+08:00">2020-02-14</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-07-05 17:28:57" itemprop="dateModified" datetime="2026-07-05T17:28:57+08:00">2026-07-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue-Kafka/" itemprop="url" rel="index"><span itemprop="name">Message Queue - Kafka</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Message-Queue-Kafka/Architecture/" itemprop="url" rel="index"><span itemprop="name">Architecture</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em><strong>占坑，后面有时间对Kafka进行详细的更新</strong></em></p>
-<h1 id="A-bit-of-History"><a href="#A-bit-of-History" class="headerlink" title="A bit of History"></a>A bit of History</h1><p>Kafka是高性能的、分布式的、数据可持久化的消息丢列。最初由LinkedIn开发，用来跟踪Web上的用户的一系列事件，譬如页面浏览(Page view)，搜索框的输入，展示的广告等等。这些事件对于监控和调查用于对于网站交互的参与度非常的重要。每天都有大量的数据产生，因为，需要一个可以轻松扩展，同时又不会增加额外负担的一个解决方案。</p>
-<p>总体来说，Kafka从设计之初有3个目标：</p>
-<ol>
-<li>简单的生产者&#x2F;消费者API设计</li>
-<li>尽可能减少网络传输和磁盘存储的额外成本</li>
-<li>从一开始就为可扩展性而设计</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/14/%E4%BB%80%E4%B9%88%E6%98%AFKafka/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <a class="extend prev" rel="prev" title="上一页" aria-label="上一页" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -1400,13 +1424,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">109k</span>
+    <span title="站点总字数">127k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:39</span>
+    <span title="站点阅读时长">1:56</span>
   </span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动

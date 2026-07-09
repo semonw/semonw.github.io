@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 8.1.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="什么是H2数据库？H2数据库[1]的特点：  非常快， 开源，支持 JDBC API 嵌入式和服务器模式； 内存数据库 基于浏览器的 控制台应用程序 占用空间小，jar只有2MB大小  以上只是官网列出的特点。 由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。 和其他常见数据库之间的对比如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存数据库H2实战：介绍、使用以及和Spring Boot集成">
+<meta property="og:url" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="AI观察与大数据">
+<meta property="og:description" content="什么是H2数据库？H2数据库[1]的特点：  非常快， 开源，支持 JDBC API 嵌入式和服务器模式； 内存数据库 基于浏览器的 控制台应用程序 占用空间小，jar只有2MB大小  以上只是官网列出的特点。 由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。 和其他常见数据库之间的对比如下：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/1.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/2.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/3.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/4.webp">
+<meta property="article:published_time" content="2026-07-09T02:30:58.000Z">
+<meta property="article:modified_time" content="2026-07-09T05:01:00.579Z">
+<meta property="article:author" content="山野@成都">
+<meta property="article:tag" content="H2">
+<meta property="article:tag" content="Spring Boot">
+<meta property="article:tag" content="内存数据库">
+<meta property="article:tag" content="微服务">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/1.webp">
+
+
+<link rel="canonical" href="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/","path":"2026/07/09/H2实战/","title":"内存数据库H2实战：介绍、使用以及和Spring Boot集成"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>内存数据库H2实战：介绍、使用以及和Spring Boot集成 | AI观察与大数据</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="AI观察与大数据" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">AI观察与大数据</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">不忘初心，砥砺前行！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFH2%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">什么是H2数据库？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">SQL的兼容性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E6%88%90Spring-Boot%E5%92%8C%E6%95%B0%E6%8D%AE%E6%BA%90%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">集成Spring Boot和数据源配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#H2%E7%9A%84URL%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">H2的URL有哪些？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">6.</span> <span class="nav-text">结论</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">山野@成都</p>
+  <div class="site-description" itemprop="description">在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">71</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/semonw" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;semonw" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:semonwang@163.com" title="E-Mail → mailto:semonwang@163.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="山野@成都">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="AI观察与大数据">
+      <meta itemprop="description" content="在这里，我会将分享所有我阅读过的关于AI、技术、架构、大数据分析、分布式计算的书籍、文章，以及一些原创性的技术、设计、评论内容。建议您收藏网址，也可以通过微信联系到我icchoe，欢迎交流。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="内存数据库H2实战：介绍、使用以及和Spring Boot集成 | AI观察与大数据">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          内存数据库H2实战：介绍、使用以及和Spring Boot集成
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-07-09 10:30:58 / 修改时间：13:01:00" itemprop="dateCreated datePublished" datetime="2026-07-09T10:30:58+08:00">2026-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/H2/" itemprop="url" rel="index"><span itemprop="name">H2</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/H2/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/H2/Spring-Boot/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">内存数据库</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/H2/Spring-Boot/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/1.webp" class="">
+
+<h1 id="什么是H2数据库？"><a href="#什么是H2数据库？" class="headerlink" title="什么是H2数据库？"></a>什么是H2数据库？</h1><p>H2数据库[1]的特点：</p>
+<ul>
+<li>非常快， 开源，支持 JDBC API</li>
+<li>嵌入式和服务器模式； 内存数据库</li>
+<li>基于浏览器的 控制台应用程序</li>
+<li>占用空间小，jar只有2MB大小</li>
+</ul>
+<p>以上只是官网列出的特点。</p>
+<p>由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。</p>
+<p>和其他常见数据库之间的对比如下：</p>
+<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/2.webp" class="">
+<span id="more"></span>
+
+
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><ul>
+<li>嵌入式数据库。由于额外的资源占用较少，所以比较适合需要嵌入式数据的场景。</li>
+<li>快速数据处理。临时想用SQL来做一些数据的处理的工作，又不想安装MySQL服务器之类的软件，那么H2可以快速投入使用。</li>
+</ul>
+<h1 id="SQL的兼容性"><a href="#SQL的兼容性" class="headerlink" title="SQL的兼容性"></a>SQL的兼容性</h1><p>所有的数据库引擎行为都会有一定的差异。H2除了支持ANSI SQL标准之外，也尝试对其他数据库做一些兼容[2]（MODE&#x3D;XX）。</p>
+<p>比如，MYSQL默认是大小写不敏感，H2是大小写敏感。实际上，H2也支持大小写不敏感，只需要在创建数据库添加参数IGNORECASE&#x3D;TRUE，比如jdbc:h2:~&#x2F;test;IGNORECASE&#x3D;TRUE</p>
+<p>需要注意的是，兼容模式不代表所有的差异都已经被处理，实际实现的只有一小部分差异的子集。可以兼容的数据库有DB2，Derby，HSQLDB，MS SQL Server，MySQL，Oracle，PostgreSQL，Ignite。</p>
+<p>比如兼容DB2的SQL模式，可以如下来配置:<br>jdbc:h2:~&#x2F;test;MODE&#x3D;DB2</p>
+<h1 id="集成Spring-Boot和数据源配置"><a href="#集成Spring-Boot和数据源配置" class="headerlink" title="集成Spring Boot和数据源配置"></a>集成Spring Boot和数据源配置</h1><p>Spring Boot集成其实非常简单，只需要添加依赖和配置数据源即可。</p>
+<p>笔者用的是maven来管理依赖，因此在POM文件中添加H2的依赖。由于我同时使用了Druid的数据库连接池，所以也添加了Druid的jar包。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.h2database<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>h2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote><p>注意，这里配置的时候不需要配置版本号，因为在引入spring-boot-dependencies BOM的时候，已经自带了版本号的配置。</p>
+</blockquote>
+
+<p>比如笔者使用的spring-boot版本是2.4.2，可以看到在spring-boot-dependencies-2.4.2.pom文件中的H2数据库的版本是</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2.version</span>&gt;</span>1.4.200<span class="tag">&lt;/<span class="name">h2.version</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来，我们通过Spring的应用程序属性字段来配置数据源，达到使用H2的效果。笔者用的是application.yaml，配置如下。如果使用application.properties，配置是完全一样的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">spring:</span><br><span class="line">  datasource:</span><br><span class="line">    #Fully qualified name of the connection pool implementation to use. By default, it is auto-detected from the classpath.</span><br><span class="line">    #数据库连接池</span><br><span class="line">    type: com.alibaba.druid.pool.DruidDataSource</span><br><span class="line">    # 驱动</span><br><span class="line">    # Fully qualified name of the JDBC driver. Auto-detected based on the URL by default.</span><br><span class="line">    driver-class-name: org.h2.Driver</span><br><span class="line">    #数据库连接地址</span><br><span class="line">    # h2 内存数据库 内存模式连接配置 库名: testdb</span><br><span class="line">    url: jdbc:h2:mem:testdb</span><br><span class="line">    username: sa</span><br><span class="line">    password:</span><br><span class="line">  #    # 初始化数据表 DDL</span><br><span class="line">  #    schema: classpath:sql/init.sql</span><br><span class="line">  #    #  初始化数据 DML</span><br><span class="line">  #    data: classpath:sql/data.sql</span><br><span class="line"></span><br><span class="line">  h2:</span><br><span class="line">    console:</span><br><span class="line">      enabled: true</span><br><span class="line">      settings:</span><br><span class="line">        #      开启h2 console 跟踪 方便调试  默认 false</span><br><span class="line">        trace: true</span><br><span class="line">        #      允许console 远程访问 默认false</span><br><span class="line">        web-allow-others: true</span><br><span class="line">      #  h2 访问路径上下文</span><br><span class="line">      path: /h2-console</span><br></pre></td></tr></table></figure>
+
+<p>配置完成之后，启动应用程序，数据库就会自动生成。</p>
+<p>这是这么做到的呢？</p>
+<ol>
+<li>程序启动时，确保h2*.jar在classpath上</li>
+<li>使用H2的org.h2.Driver</li>
+<li>通过H2的UR（比如：jdbc:h2:~&#x2F;test）来打开在Home目录下的test数据库</li>
+<li>数据库会由H2自动创建。</li>
+</ol>
+<p>由于我们在application.yaml中配置了H2的控制台，因此我们可以通过浏览器连接数据库。在地址栏中输入<a target="_blank" rel="noopener" href="http://localhost:9001/h2-console%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%BF%9B%E5%85%A5H2%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8F%B0%E3%80%82">http://localhost:9001/h2-console就可以进入H2数据的控制台。</a></p>
+<blockquote><p>注意：红框中的要和配置的保持一致。如果没有配置密码，则直接连Connect就可以进入DB。</p>
+</blockquote>
+<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/3.webp" class="">
+
+<p>进入数据之后，界面主要分为左右两边，左边是数据库，右边是操作区。如下：</p>
+<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/4.webp" class="">
+
+<p>如果要想数据保存的话，那么可以将数据库从内存数据库修改到文件系统。</p>
+<h1 id="H2的URL有哪些？"><a href="#H2的URL有哪些？" class="headerlink" title="H2的URL有哪些？"></a>H2的URL有哪些？</h1><p>内嵌式数据库：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jdbc:h2:~/test &#x27;test&#x27; in the user home directory</span><br><span class="line">jdbc:h2:/data/test &#x27;test&#x27; in the directory /data</span><br><span class="line">jdbc:h2:./test in the current(!) working directory</span><br></pre></td></tr></table></figure>
+
+<p>内存数据库</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jdbc:h2:mem:test multiple connections in one process</span><br><span class="line">jdbc:h2:mem: unnamed private; one connection</span><br></pre></td></tr></table></figure>
+
+<p>服务器模式，启动服务：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp *.jar org.h2.tools.Server</span><br></pre></td></tr></table></figure>
+
+<p>连接：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jdbc:h2:tcp://localhost/~/test user home dir</span><br><span class="line">jdbc:h2:tcp://localhost//data/test absolute dir</span><br></pre></td></tr></table></figure>
+
+<p>配置H2服务器：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jdbc:h2:..;MODE=MySQL compatibility (or HSQLDB,...)</span><br><span class="line">jdbc:h2:..;TRACE_LEVEL_FILE=3 log to *.trace.db</span><br></pre></td></tr></table></figure>
+
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>本文中，我们考察了H2数据的特点、应用场景、兼容性，以及如何和当下流行的Spring框架集成。可以看出，H2是一款小巧但是完备的数据库，在测试、临时数据处理、内嵌式快速开发上很有特点。</p>
+<p>接下来，我将会尽量选择一些有趣的干活内容来尝试写作，可以保证的是，干货满满。</p>
+<p>参考：<br>[1] 官网地址：<a target="_blank" rel="noopener" href="http://www.h2database.com/html/main.html">http://www.h2database.com/html/main.html</a><br>[2] H2的SQL兼容性：<a target="_blank" rel="noopener" href="http://www.h2database.com/html/features.html#compatibility">http://www.h2database.com/html/features.html#compatibility</a><br>[3] Spring Aplication Properties:<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties">https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties</a><br>[4] <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000020636564">https://segmentfault.com/a/1190000020636564</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="山野@成都 微信">
+        <span>微信</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag"># 微服务</a>
+              <a href="/tags/H2/" rel="tag"># H2</a>
+              <a href="/tags/Spring-Boot/" rel="tag"># Spring Boot</a>
+              <a href="/tags/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"># 内存数据库</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/" rel="prev" title="MongoDB和Spring集成">
+                  <i class="fa fa-angle-left"></i> MongoDB和Spring集成
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2026/07/09/%E9%98%B6%E6%AE%B5%E6%80%A7%E7%9A%84%E6%80%BB%E7%BB%93/" rel="next" title="阶段性的总结">
+                  阶段性的总结 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">山野</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">127k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">1:56</span>
+  </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.jinnotes.cn/"/>
-  <updated>2026-07-08T08:03:36.152Z</updated>
+  <updated>2026-07-09T05:01:00.594Z</updated>
   <id>http://www.jinnotes.cn/</id>
   
   <author>
@@ -15,6 +15,108 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>阶段性的总结</title>
+    <link href="http://www.jinnotes.cn/2026/07/09/%E9%98%B6%E6%AE%B5%E6%80%A7%E7%9A%84%E6%80%BB%E7%BB%93/"/>
+    <id>http://www.jinnotes.cn/2026/07/09/%E9%98%B6%E6%AE%B5%E6%80%A7%E7%9A%84%E6%80%BB%E7%BB%93/</id>
+    <published>2026-07-09T02:51:41.000Z</published>
+    <updated>2026-07-09T05:01:00.594Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;抽了一点时间吧，把网站从hexo 3.x版本升级到现在最新的版本，升级过程中也遇到了一些问题，主要还是插件版本陈旧导致的，也都一一解决了。&lt;/p&gt;
+&lt;p&gt;同时也把之前写在公众号的文章全部迁移过来了。&lt;/p&gt;
+&lt;p&gt;我捋了一下之前写的东西，相对来说比较散比较杂，主要还是记录一些在工作上遇到的或者使用的一些技术性总结。接下来，我觉得有必要仔细梳理一下后面的文章写作方向。&lt;/p&gt;
+&lt;p&gt;我将从下面几个方向来写：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;AI相关的新闻、观察、心得、学习笔记，以及last but not the least: Harness Engineering&lt;/li&gt;
+&lt;li&gt;Java和JVM相关&lt;/li&gt;
+&lt;li&gt;服务架构设计和DDD&lt;/li&gt;
+&lt;li&gt;软件工程&lt;/li&gt;
+&lt;li&gt;分布式计算&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+    
+      <category term="随笔" scheme="http://www.jinnotes.cn/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="总结" scheme="http://www.jinnotes.cn/categories/%E9%9A%8F%E7%AC%94/%E6%80%BB%E7%BB%93/"/>
+    
+    
+      <category term="随笔" scheme="http://www.jinnotes.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="总结" scheme="http://www.jinnotes.cn/tags/%E6%80%BB%E7%BB%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内存数据库H2实战：介绍、使用以及和Spring Boot集成</title>
+    <link href="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/"/>
+    <id>http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/</id>
+    <published>2026-07-09T02:30:58.000Z</published>
+    <updated>2026-07-09T05:01:00.579Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2026/07/09/H2%E5%AE%9E%E6%88%98/1.webp&quot; class=&quot;&quot;&gt;
+
+&lt;h1 id=&quot;什么是H2数据库？&quot;&gt;&lt;a href=&quot;#什么是H2数据库？&quot; class=&quot;headerlink&quot; title=&quot;什么是H2数据库？&quot;&gt;&lt;/a&gt;什么是H2数据库？&lt;/h1&gt;&lt;p&gt;H2数据库[1]的特点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;非常快， 开源，支持 JDBC API&lt;/li&gt;
+&lt;li&gt;嵌入式和服务器模式； 内存数据库&lt;/li&gt;
+&lt;li&gt;基于浏览器的 控制台应用程序&lt;/li&gt;
+&lt;li&gt;占用空间小，jar只有2MB大小&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以上只是官网列出的特点。&lt;/p&gt;
+&lt;p&gt;由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。&lt;/p&gt;
+&lt;p&gt;和其他常见数据库之间的对比如下：&lt;/p&gt;
+&lt;img src=&quot;/2026/07/09/H2%E5%AE%9E%E6%88%98/2.webp&quot; class=&quot;&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="H2" scheme="http://www.jinnotes.cn/categories/H2/"/>
+    
+      <category term="Spring Boot" scheme="http://www.jinnotes.cn/categories/H2/Spring-Boot/"/>
+    
+      <category term="内存数据库" scheme="http://www.jinnotes.cn/categories/H2/Spring-Boot/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="微服务" scheme="http://www.jinnotes.cn/categories/H2/Spring-Boot/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+    
+      <category term="微服务" scheme="http://www.jinnotes.cn/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    
+      <category term="H2" scheme="http://www.jinnotes.cn/tags/H2/"/>
+    
+      <category term="Spring Boot" scheme="http://www.jinnotes.cn/tags/Spring-Boot/"/>
+    
+      <category term="内存数据库" scheme="http://www.jinnotes.cn/tags/%E5%86%85%E5%AD%98%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MongoDB和Spring集成</title>
+    <link href="http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/"/>
+    <id>http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/</id>
+    <published>2026-07-08T14:58:14.000Z</published>
+    <updated>2026-07-09T02:17:07.027Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/1.webp&quot; class=&quot;&quot;&gt;
+
+&lt;p&gt;MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用Mongoose的ORM框架结合到express框架，生产力会提高一大截。&lt;/p&gt;
+&lt;p&gt;稍显不足的是，MongoDB对于中文索引支持的力度不够，对于某些要求强事务的领域应用（比如金融、财务等）略显不足，至少还没有看到有成熟应用的案例。如果有，请告诉我。&lt;/p&gt;
+&lt;p&gt;另外一个就是，在搭建MongoDB集群的时候，相对来说是比较复杂的。水平扩展虽然很简单，但是做Sharding的时候也需要仔细的考量。&lt;/p&gt;
+&lt;p&gt;本文简单介绍一下如何在Spring Boot&amp;#x2F;Spring Cloud程序中使用MongoDB数据库。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>什么是BSON？什么是JSON?</title>
@@ -616,117 +718,6 @@
       <category term="Kafka" scheme="http://www.jinnotes.cn/tags/Kafka/"/>
     
       <category term="Topo Comm model" scheme="http://www.jinnotes.cn/tags/Topo-Comm-model/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用Socket.io搭建WS服务并通过Nginx反向代理</title>
-    <link href="http://www.jinnotes.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/"/>
-    <id>http://www.jinnotes.cn/2020/02/17/%E7%94%A8Nodejs%E5%92%8CNginx%E6%90%AD%E5%BB%BAWebsocket%E6%9C%8D%E5%8A%A1%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE/</id>
-    <published>2020-02-17T01:46:21.000Z</published>
-    <updated>2020-03-07T04:40:00.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Nodejs、Express、Socket-io、Nginx&quot;&gt;&lt;a href=&quot;#Nodejs、Express、Socket-io、Nginx&quot; class=&quot;headerlink&quot; title=&quot;Nodejs、Express、Socket.io、Nginx&quot;&gt;&lt;/a&gt;Nodejs、Express、Socket.io、Nginx&lt;/h1&gt;&lt;p&gt;使用Express框架和Socket.io库将websocket搭建起来，并监听同一个端口，参考官方例子&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;https://socket.io/docs/#Using-with-Express
-&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;就可以，非常简单。&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; app = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;express&amp;#x27;&lt;/span&gt;)();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; server = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;http&amp;#x27;&lt;/span&gt;).&lt;span class=&quot;title class_&quot;&gt;Server&lt;/span&gt;(app);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; io = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;socket.io&amp;#x27;&lt;/span&gt;)(server);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;server.&lt;span class=&quot;title function_&quot;&gt;listen&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;80&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;// WARNING: app.listen(80) will NOT work here!&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;app.&lt;span class=&quot;title function_&quot;&gt;get&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;/&amp;#x27;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;req, res&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;res.&lt;span class=&quot;title function_&quot;&gt;sendFile&lt;/span&gt;(__dirname + &lt;span class=&quot;string&quot;&gt;&amp;#x27;/index.html&amp;#x27;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;io.&lt;span class=&quot;title function_&quot;&gt;on&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;connection&amp;#x27;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;socket&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;socket.&lt;span class=&quot;title function_&quot;&gt;emit&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;news&amp;#x27;&lt;/span&gt;, &amp;#123; &lt;span class=&quot;attr&quot;&gt;hello&lt;/span&gt;: &lt;span class=&quot;string&quot;&gt;&amp;#x27;world&amp;#x27;&lt;/span&gt; &amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;socket.&lt;span class=&quot;title function_&quot;&gt;on&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&amp;#x27;my other event&amp;#x27;&lt;/span&gt;, &lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;data&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;variable language_&quot;&gt;console&lt;/span&gt;.&lt;span class=&quot;title function_&quot;&gt;log&lt;/span&gt;(data);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-
-
-&lt;h1 id=&quot;Nginx同时作为Web-Server和WebSocket-Reverse-Proxy&quot;&gt;&lt;a href=&quot;#Nginx同时作为Web-Server和WebSocket-Reverse-Proxy&quot; class=&quot;headerlink&quot; title=&quot;Nginx同时作为Web Server和WebSocket Reverse Proxy&quot;&gt;&lt;/a&gt;Nginx同时作为Web Server和WebSocket Reverse Proxy&lt;/h1&gt;&lt;p&gt;在配置Nginx的时候，遇到了很多的问题，并且在网上现在找不到一篇对这个问题讲解的非常清楚的文档。&lt;br&gt;比如：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="websokcet" scheme="http://www.jinnotes.cn/categories/websokcet/"/>
-    
-      <category term="nodejs" scheme="http://www.jinnotes.cn/categories/websokcet/nodejs/"/>
-    
-    
-      <category term="websocket" scheme="http://www.jinnotes.cn/tags/websocket/"/>
-    
-      <category term="nginx" scheme="http://www.jinnotes.cn/tags/nginx/"/>
-    
-      <category term="Socket.io" scheme="http://www.jinnotes.cn/tags/Socket-io/"/>
-    
-      <category term="Nodejs" scheme="http://www.jinnotes.cn/tags/Nodejs/"/>
-    
-      <category term="express" scheme="http://www.jinnotes.cn/tags/express/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kafka调研（2）：消息序列化框架建议与对比</title>
-    <link href="http://www.jinnotes.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/"/>
-    <id>http://www.jinnotes.cn/2020/02/14/Kafka%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A2-%E6%B6%88%E6%81%AF%E5%BA%8F%E5%88%97%E5%8C%96%E6%A1%86%E6%9E%B6%E6%A8%AA%E5%90%91%E5%AF%B9%E6%AF%94/</id>
-    <published>2020-02-14T03:57:26.000Z</published>
-    <updated>2026-07-05T09:28:57.685Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;调研结果和建议&quot;&gt;&lt;a href=&quot;#调研结果和建议&quot; class=&quot;headerlink&quot; title=&quot;调研结果和建议&quot;&gt;&lt;/a&gt;调研结果和建议&lt;/h2&gt;&lt;p&gt;综合来看，Avro或者Protocol Buffer二选一即可， 但是出于灵活性和标准JSON的支持力度上来看，更推荐Protocol Buffers。同时部分数据依然可以通过JSON方式传输。&lt;/p&gt;
-&lt;h2 id=&quot;主流序列化框架对比&quot;&gt;&lt;a href=&quot;#主流序列化框架对比&quot; class=&quot;headerlink&quot; title=&quot;主流序列化框架对比&quot;&gt;&lt;/a&gt;主流序列化框架对比&lt;/h2&gt;&lt;h3 id=&quot;Kafka的序列化&quot;&gt;&lt;a href=&quot;#Kafka的序列化&quot; class=&quot;headerlink&quot; title=&quot;Kafka的序列化&quot;&gt;&lt;/a&gt;Kafka的序列化&lt;/h3&gt;&lt;p&gt;Kafka并不限定的消息格式。Kafka自身提供了一系列的序列化器，比如ByteArraySerializer，ByteBufferSerializer，DoubleSerializer，FloatSerializer，StringSerializer，UUIDSerializer， IntegerDeserializer, LongSerializer, ShortSerializer, 总结起来就是基本类型、字符串类型、二进制消息。&lt;/p&gt;
-&lt;p&gt;但是在通常情况下不会使用比如Float这种来做序列化，原因在于系统间交互或者放到Kafka的数据一般来说都比较复杂，无法用一个字段来表示。于是，这种情况下，就需要在Kafka之上建立一个消息格式的契约，以便于Kafka的生产者和消费者之间都能理解消息中的语义。最好地方就是在Kafka基础之上增加一层应用层的消息协议，比如JSON格式、比如二进制编解码协议（序列化），出于性能考虑，一般也不直接使用Java POJO对象的原生序列化（虽然可行）。在Apache Spark中使用的Kryo Register，由于场景限制（不提供IDL定义），不适用Kafka。&lt;/p&gt;
-&lt;p&gt;下面对常见的几个序列化框架做一个横向对比：&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Message Queue - Kafka" scheme="http://www.jinnotes.cn/categories/Message-Queue-Kafka/"/>
-    
-    
-      <category term="Message Queue" scheme="http://www.jinnotes.cn/tags/Message-Queue/"/>
-    
-      <category term="Kafka" scheme="http://www.jinnotes.cn/tags/Kafka/"/>
-    
-      <category term="Serialization" scheme="http://www.jinnotes.cn/tags/Serialization/"/>
-    
-      <category term="JSON" scheme="http://www.jinnotes.cn/tags/JSON/"/>
-    
-      <category term="Apahce Avro" scheme="http://www.jinnotes.cn/tags/Apahce-Avro/"/>
-    
-      <category term="Apahce Thrift" scheme="http://www.jinnotes.cn/tags/Apahce-Thrift/"/>
-    
-      <category term="Protocol Buffers" scheme="http://www.jinnotes.cn/tags/Protocol-Buffers/"/>
-    
-      <category term="Architecture" scheme="http://www.jinnotes.cn/tags/Architecture/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Kafka调研（1）：跨数据中心的多集群镜像</title>
-    <link href="http://www.jinnotes.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/"/>
-    <id>http://www.jinnotes.cn/2020/02/14/Kafka%E5%88%9D%E6%AD%A5%E8%B0%83%E7%A0%94%E6%8A%A5%E5%91%8A-%E8%B7%A8%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83%E9%9B%86%E7%BE%A4/</id>
-    <published>2020-02-14T03:12:23.000Z</published>
-    <updated>2026-07-05T09:28:57.681Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;调研结果和建议&quot;&gt;&lt;a href=&quot;#调研结果和建议&quot; class=&quot;headerlink&quot; title=&quot;调研结果和建议&quot;&gt;&lt;/a&gt;调研结果和建议&lt;/h2&gt;&lt;p&gt;针对是否可以跨数据中心部署Kafka集群的问题，答案是可行，但是不建议。建议先支持单集群部署，以简化运维成本，支持多地多应用业务上线。&lt;/p&gt;
-&lt;h3 id=&quot;可行性与跨网络部署产生的问题&quot;&gt;&lt;a href=&quot;#可行性与跨网络部署产生的问题&quot; class=&quot;headerlink&quot; title=&quot;可行性与跨网络部署产生的问题&quot;&gt;&lt;/a&gt;可行性与跨网络部署产生的问题&lt;/h3&gt;&lt;p&gt;Kafka实际上并不禁止将Broker部署到不同的网络地域。但是，Kafka的设计是按照单个数据中心进行设计、开发、测试和调优的。从Kafka的官方文档&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; rel=&quot;footnote&quot;&gt;&lt;span class=&quot;hint--top hint--error hint--medium hint--rounded hint--bounce&quot; aria-label=&quot;Kafka Documentation#Datacenter。http://kafka.apache.org/documentation/#datacenters
-&quot;&gt;[1]&lt;/span&gt;&lt;/a&gt;&lt;/sup&gt;来看，并不推荐将集群跨网络部署。 由于Broker分布在不同的跨地域的网络（WAN）, 除了数据同步会极大地增加延迟之外， 并且如果由于网络中断无法保证zk始终可用，带来其他问题，比如：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Partition Leader无法选举。或者由于网络问题，某个Broker频繁掉线导致集群不稳定。&lt;/li&gt;
-&lt;li&gt;在Producer推送数据时候，产生延迟（推送到remote Broker）。或者由于网络问题，无法获取ACK。&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-    
-      <category term="Message Queue - Kafka" scheme="http://www.jinnotes.cn/categories/Message-Queue-Kafka/"/>
-    
-    
-      <category term="Message Queue" scheme="http://www.jinnotes.cn/tags/Message-Queue/"/>
-    
-      <category term="Kafka" scheme="http://www.jinnotes.cn/tags/Kafka/"/>
-    
-      <category term="Architecture" scheme="http://www.jinnotes.cn/tags/Architecture/"/>
-    
-      <category term="Data center" scheme="http://www.jinnotes.cn/tags/Data-center/"/>
-    
-      <category term="Cluster" scheme="http://www.jinnotes.cn/tags/Cluster/"/>
-    
-      <category term="Mirror Maker" scheme="http://www.jinnotes.cn/tags/Mirror-Maker/"/>
     
   </entry>
   

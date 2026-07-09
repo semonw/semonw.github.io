@@ -3,6 +3,48 @@
 
 
     <url>
+        <loc>http://www.jinnotes.cn/tags/%25E6%2580%25BB%25E7%25BB%2593/</loc>
+        <lastmod>2026-07-09T05:01:00.594Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/%25E9%259A%258F%25E7%25AC%2594/</loc>
+        <lastmod>2026-07-09T05:01:00.594Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/%25E5%2586%2585%25E5%25AD%2598%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593/</loc>
+        <lastmod>2026-07-09T05:01:00.579Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/Spring-Boot/</loc>
+        <lastmod>2026-07-09T05:01:00.579Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/H2/</loc>
+        <lastmod>2026-07-09T05:01:00.579Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/tags/%25E5%25BE%25AE%25E6%259C%258D%25E5%258A%25A1/</loc>
+        <lastmod>2026-07-09T05:01:00.579Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.jinnotes.cn/tags/Java/</loc>
         <lastmod>2026-07-08T08:06:03.934Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -165,13 +207,6 @@
 
     <url>
         <loc>http://www.jinnotes.cn/tags/Nacos/</loc>
-        <lastmod>2026-07-05T09:28:57.765Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/tags/%25E5%25BE%25AE%25E6%259C%258D%25E5%258A%25A1/</loc>
         <lastmod>2026-07-05T09:28:57.765Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
