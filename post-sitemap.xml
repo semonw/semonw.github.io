@@ -8,6 +8,30 @@
     </url>
 
     <url>
+        <loc>http://www.jinnotes.cn/2026/07/09/%E9%98%B6%E6%AE%B5%E6%80%A7%E7%9A%84%E6%80%BB%E7%BB%93/</loc>
+        <lastmod>2026-07-10T03:04:28.608Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/2021/09/19/digg-python/</loc>
+        <lastmod>2026-07-10T02:59:55.937Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</loc>
+        <lastmod>2026-07-10T02:54:08.676Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/</loc>
         <lastmod>2026-07-10T02:51:06.641Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -58,30 +82,6 @@
     <url>
         <loc>http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/</loc>
         <lastmod>2026-07-10T02:02:41.655Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/2026/07/09/%E9%98%B6%E6%AE%B5%E6%80%A7%E7%9A%84%E6%80%BB%E7%BB%93/</loc>
-        <lastmod>2026-07-09T05:01:00.594Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/2026/07/08/CORBA%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F/</loc>
-        <lastmod>2026-07-08T05:11:05.934Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/2021/09/19/digg-python/</loc>
-        <lastmod>2026-07-05T09:28:57.780Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

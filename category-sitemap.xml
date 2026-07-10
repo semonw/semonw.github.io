@@ -8,6 +8,55 @@
     </url>
 
     <url>
+        <loc>http://www.jinnotes.cn/categories/%25E9%259A%258F%25E7%25AC%2594/%25E6%2580%25BB%25E7%25BB%2593/</loc>
+        <lastmod>2026-07-10T03:04:28.608Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/%25E9%259A%258F%25E7%25AC%2594/</loc>
+        <lastmod>2026-07-10T03:04:28.608Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/Python/%25E6%2596%25B0%25E5%25AA%2592%25E4%25BD%2593/</loc>
+        <lastmod>2026-07-10T02:59:55.937Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/Python/</loc>
+        <lastmod>2026-07-10T02:59:55.937Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/</loc>
+        <lastmod>2026-07-10T02:59:55.937Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/%25E6%258A%2580%25E6%259C%25AF/CORBA/</loc>
+        <lastmod>2026-07-10T02:54:08.676Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
+        <loc>http://www.jinnotes.cn/categories/%25E6%258A%2580%25E6%259C%25AF/</loc>
+        <lastmod>2026-07-10T02:54:08.676Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>http://www.jinnotes.cn/categories/MongoDB/%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593/%25E5%25A4%25A7%25E6%2595%25B0%25E6%258D%25AE/NoSQL/</loc>
         <lastmod>2026-07-10T02:51:06.641Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -122,55 +171,6 @@
     <url>
         <loc>http://www.jinnotes.cn/categories/%25E6%258A%2580%25E6%259C%25AF/Java/</loc>
         <lastmod>2026-07-10T02:04:23.634Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/categories/%25E6%258A%2580%25E6%259C%25AF/</loc>
-        <lastmod>2026-07-10T02:04:23.634Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/categories/%25E9%259A%258F%25E7%25AC%2594/%25E6%2580%25BB%25E7%25BB%2593/</loc>
-        <lastmod>2026-07-09T05:01:00.594Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/categories/%25E9%259A%258F%25E7%25AC%2594/</loc>
-        <lastmod>2026-07-09T05:01:00.594Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/categories/%25E6%258A%2580%25E6%259C%25AF/CORBA/</loc>
-        <lastmod>2026-07-08T05:11:05.934Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/Python/%25E6%2596%25B0%25E5%25AA%2592%25E4%25BD%2593/</loc>
-        <lastmod>2026-07-05T09:28:57.780Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/Python/</loc>
-        <lastmod>2026-07-05T09:28:57.780Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
-        <loc>http://www.jinnotes.cn/categories/%25E5%2595%2586%25E4%25B8%259A/</loc>
-        <lastmod>2026-07-05T09:28:57.780Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
