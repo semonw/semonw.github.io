@@ -27,16 +27,18 @@
 <meta property="og:site_name" content="AI观察与大数据">
 <meta property="og:description" content="JSON是什么？JSON，JavaScript Object Notation，最初在2000年左右由JavaScript的设计者Douglas Crockford所定义。2003年才官方正式定名。 JavaScript中的对象类似于一个 关联容器 （比如Map，HashMap），每一个文本键都对应一个值（值的类型可以是数字、字符串、函数、或者另外一个对象）。这种简单的特性使得JavaScri">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/BSON/1.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/BSON/vs.jpg">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/BSON/serialization.jpg">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/BSON/JSON-vs-BSON.jpg">
 <meta property="article:published_time" content="2026-07-08T07:47:43.000Z">
-<meta property="article:modified_time" content="2026-07-08T08:03:36.152Z">
+<meta property="article:modified_time" content="2026-07-10T02:12:33.261Z">
 <meta property="article:author" content="山野@成都">
 <meta property="article:tag" content="BSON">
 <meta property="article:tag" content="JSON">
 <meta property="article:tag" content="MongoDB">
 <meta property="article:tag" content="NoSQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/BSON/1.webp">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/BSON/vs.jpg">
 
 
 <link rel="canonical" href="http://www.jinnotes.cn/2026/07/08/BSON/">
@@ -48,6 +50,8 @@
 <title>什么是BSON？什么是JSON? | AI观察与大数据</title>
   
 
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?e186f6838f79162c71ee2c9b62980a24"></script>
 
 
 
@@ -251,9 +255,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-07-08 15:47:43 / 修改时间：16:03:36" itemprop="dateCreated datePublished" datetime="2026-07-08T15:47:43+08:00">2026-07-08</time>
+      <time title="创建时间：2026-07-08 15:47:43" itemprop="dateCreated datePublished" datetime="2026-07-08T15:47:43+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-10 10:12:33" itemprop="dateModified" datetime="2026-07-10T10:12:33+08:00">2026-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -284,7 +294,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.2k</span>
+      <span>5.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -301,7 +311,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/BSON/1.webp" class="">
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/BSON/vs.jpg" class="">
 
 <h1 id="JSON是什么？"><a href="#JSON是什么？" class="headerlink" title="JSON是什么？"></a>JSON是什么？</h1><p>JSON，JavaScript Object Notation，最初在2000年左右由JavaScript的设计者Douglas Crockford所定义。2003年才官方正式定名。</p>
 <p>JavaScript中的对象类似于一个 关联容器 （比如Map，HashMap），每一个文本键都对应一个值（值的类型可以是数字、字符串、函数、或者另外一个对象）。这种简单的特性使得JavaScript的对象通过文本表达起来异常简单。</p>
@@ -337,7 +347,12 @@
 <li><p>高效性<br>由于使用了C语言的数据结构类型，使得BSON的数据编解码可以达到一个非常优秀的性能。</p>
 </li>
 </ul>
-<h1 id="BSON还是JSON？"><a href="#BSON还是JSON？" class="headerlink" title="BSON还是JSON？"></a>BSON还是JSON？</h1><p>MongoDB存储或者网络传输都是BSON。但是，你可以把MongoDB当做一款JSON数据库。所有可以通过JSON表示的数据都可以存储在MongoDB中，并按照JSON方式从数据库中取出来。</p>
+<h1 id="BSON还是JSON？"><a href="#BSON还是JSON？" class="headerlink" title="BSON还是JSON？"></a>BSON还是JSON？</h1><img src="/2026/07/08/BSON/serialization.jpg" class="">
+
+<p>如何理解这两者之间的差异？从范式定义来说，两者是一样的，数据类型是一样的，表达方式也是一样的。</p>
+<p>即便是BSON，如果不能以肉眼可以识别的方式表达出来，那可能也没有什么意义。</p>
+<p>二者的区别是底层存储的差异。JSON的存储、传输都是文本；而MongoDB存储或者网络传输都是BSON。</p>
+<p>但是，简化理解，你可以把MongoDB当做一款JSON数据库。所有可以通过JSON表示的数据都可以存储在MongoDB中，并按照JSON方式从数据库中取出来。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;<span class="string">&quot;hello&quot;</span>: <span class="string">&quot;world&quot;</span>&#125; →</span><br><span class="line"></span><br><span class="line">\x16\x00\x00\x00           <span class="comment">// total document size</span></span><br><span class="line"></span><br><span class="line">\x02                       <span class="comment">// 0x02 = type String</span></span><br><span class="line"></span><br><span class="line">hello\x00                  <span class="comment">// field name</span></span><br><span class="line"></span><br><span class="line">\x06\x00\x00\x00world\x00  <span class="comment">// field value</span></span><br><span class="line"></span><br><span class="line">\x00                       <span class="comment">// 0x00 = type EOO (&#x27;end of object&#x27;)</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123;<span class="string">&quot;BSON&quot;</span>: [<span class="string">&quot;awesome&quot;</span>, <span class="number">5.05</span>, <span class="number">1986</span>]&#125; →</span><br><span class="line"></span><br><span class="line"> \x31\x00\x00\x00</span><br><span class="line"></span><br><span class="line"> \x04BSON\x00</span><br><span class="line"></span><br><span class="line"> \x26\x00\x00\x00</span><br><span class="line"></span><br><span class="line"> \x02\x30\x00\x08\x00\x00\x00awesome\x00</span><br><span class="line"></span><br><span class="line"> \x01\x31\x00\x33\x33\x33\x33\x33\x33\x14\x40</span><br><span class="line"></span><br><span class="line"> \x10\x32\x00\xc2\x07\x00\x00</span><br><span class="line"></span><br><span class="line"> \x00</span><br><span class="line"></span><br><span class="line"> \x00</span><br></pre></td></tr></table></figure>
 
 <p>不同于某些系统直接将JSON存储为字符串，或者二进制的Blob，MongoDB通过BSON提供了强大的索引、查询能力。</p>
@@ -530,6 +545,9 @@
 </tr>
 </tbody></table>
 <p>BSON和JSON的一个重要差异，就是BSON支持更多的 高级数据类型 。比如JavaScript的数值类型只定义了一个Number类型，没有从语言级别区分开整数和浮点数（浮点数也没有具体的精度控制）。大部分的后端开发语言都有复杂的数值类型，比如Java中有int, long, float, double，更高精度的有BigDecimal等等。所以这也是为什么BSON会做扩展的原因。扩展之后，很多复杂的数值计算都直接可以基于MongoDB提供的 算子 （Query Operator）或者 流水线 （Pipeline）来执行。</p>
+<p>附上一张比较差异图：</p>
+<img src="/2026/07/08/BSON/JSON-vs-BSON.jpg" class="">
+
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>相比于传统的关系型数据库，采用BSON&#x2F;JSON文档模型的数据库对开发者的一个最大的吸引力就是 动态 的、 灵活 的Schema。</p>
 <p>首先，JSON文档是 Polymorphic ，也就是说同一个集合中不同的文档对象的字段可以不同。</p>
 <p>其次，数据集合中的文档对象不需要提前声明Schema：文档是 自描述 的。开发人员可以直接开始写代码，并将对象存储到数据库中。</p>

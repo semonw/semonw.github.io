@@ -20,26 +20,26 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"www.jinnotes.cn","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.28.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="什么是H2数据库？H2数据库[1]的特点：  非常快， 开源，支持 JDBC API 嵌入式和服务器模式； 内存数据库 基于浏览器的 控制台应用程序 占用空间小，jar只有2MB大小  以上只是官网列出的特点。 由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。 和其他常见数据库之间的对比如下：">
+    <meta name="description" content="什么是H2数据库？H2数据库[1]的特点：  非常快， 开源，支持 JDBC API 嵌入式和服务器模式； 内存数据库 基于浏览器的 控制台应用程序 占用空间小，jar只有2MB大小  以上只是官网列出的特点。 由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="内存数据库H2实战：介绍、使用以及和Spring Boot集成">
 <meta property="og:url" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/index.html">
 <meta property="og:site_name" content="AI观察与大数据">
-<meta property="og:description" content="什么是H2数据库？H2数据库[1]的特点：  非常快， 开源，支持 JDBC API 嵌入式和服务器模式； 内存数据库 基于浏览器的 控制台应用程序 占用空间小，jar只有2MB大小  以上只是官网列出的特点。 由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。 和其他常见数据库之间的对比如下：">
+<meta property="og:description" content="什么是H2数据库？H2数据库[1]的特点：  非常快， 开源，支持 JDBC API 嵌入式和服务器模式； 内存数据库 基于浏览器的 控制台应用程序 占用空间小，jar只有2MB大小  以上只是官网列出的特点。 由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/1.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/title.png">
 <meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/2.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/3.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/4.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/console.png">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/zone.png">
 <meta property="article:published_time" content="2026-07-09T02:30:58.000Z">
-<meta property="article:modified_time" content="2026-07-09T05:01:00.579Z">
+<meta property="article:modified_time" content="2026-07-10T02:38:53.288Z">
 <meta property="article:author" content="山野@成都">
 <meta property="article:tag" content="H2">
 <meta property="article:tag" content="Spring Boot">
 <meta property="article:tag" content="内存数据库">
 <meta property="article:tag" content="微服务">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/1.webp">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/title.png">
 
 
 <link rel="canonical" href="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/">
@@ -51,6 +51,8 @@
 <title>内存数据库H2实战：介绍、使用以及和Spring Boot集成 | AI观察与大数据</title>
   
 
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?e186f6838f79162c71ee2c9b62980a24"></script>
 
 
 
@@ -254,9 +256,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-07-09 10:30:58 / 修改时间：13:01:00" itemprop="dateCreated datePublished" datetime="2026-07-09T10:30:58+08:00">2026-07-09</time>
+      <time title="创建时间：2026-07-09 10:30:58" itemprop="dateCreated datePublished" datetime="2026-07-09T10:30:58+08:00">2026-07-09</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-10 10:38:53" itemprop="dateModified" datetime="2026-07-10T10:38:53+08:00">2026-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -304,7 +312,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/1.webp" class="">
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/title.png" class="">
 
 <h1 id="什么是H2数据库？"><a href="#什么是H2数据库？" class="headerlink" title="什么是H2数据库？"></a>什么是H2数据库？</h1><p>H2数据库[1]的特点：</p>
 <ul>
@@ -315,10 +323,10 @@
 </ul>
 <p>以上只是官网列出的特点。</p>
 <p>由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。</p>
-<p>和其他常见数据库之间的对比如下：</p>
-<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/2.webp" class="">
 <span id="more"></span>
 
+<p>和其他常见数据库之间的对比如下：</p>
+<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/2.webp" class="">
 
 <h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><ul>
 <li>嵌入式数据库。由于额外的资源占用较少，所以比较适合需要嵌入式数据的场景。</li>
@@ -352,10 +360,10 @@
 <p>由于我们在application.yaml中配置了H2的控制台，因此我们可以通过浏览器连接数据库。在地址栏中输入<a target="_blank" rel="noopener" href="http://localhost:9001/h2-console%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%BF%9B%E5%85%A5H2%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8F%B0%E3%80%82">http://localhost:9001/h2-console就可以进入H2数据的控制台。</a></p>
 <blockquote><p>注意：红框中的要和配置的保持一致。如果没有配置密码，则直接连Connect就可以进入DB。</p>
 </blockquote>
-<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/3.webp" class="">
+<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/console.png" class="">
 
 <p>进入数据之后，界面主要分为左右两边，左边是数据库，右边是操作区。如下：</p>
-<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/4.webp" class="">
+<img src="/2026/07/09/H2%E5%AE%9E%E6%88%98/zone.png" class="">
 
 <p>如果要想数据保存的话，那么可以将数据库从内存数据库修改到文件系统。</p>
 <h1 id="H2的URL有哪些？"><a href="#H2的URL有哪些？" class="headerlink" title="H2的URL有哪些？"></a>H2的URL有哪些？</h1><p>内嵌式数据库：</p>

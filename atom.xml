@@ -56,11 +56,11 @@
     <link href="http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/"/>
     <id>http://www.jinnotes.cn/2026/07/09/H2%E5%AE%9E%E6%88%98/</id>
     <published>2026-07-09T02:30:58.000Z</published>
-    <updated>2026-07-09T05:01:00.579Z</updated>
+    <updated>2026-07-10T02:38:53.288Z</updated>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2026/07/09/H2%E5%AE%9E%E6%88%98/1.webp&quot; class=&quot;&quot;&gt;
+      &lt;img src=&quot;/2026/07/09/H2%E5%AE%9E%E6%88%98/title.png&quot; class=&quot;&quot;&gt;
 
 &lt;h1 id=&quot;什么是H2数据库？&quot;&gt;&lt;a href=&quot;#什么是H2数据库？&quot; class=&quot;headerlink&quot; title=&quot;什么是H2数据库？&quot;&gt;&lt;/a&gt;什么是H2数据库？&lt;/h1&gt;&lt;p&gt;H2数据库[1]的特点：&lt;/p&gt;
 &lt;ul&gt;
@@ -71,8 +71,6 @@
 &lt;/ul&gt;
 &lt;p&gt;以上只是官网列出的特点。&lt;/p&gt;
 &lt;p&gt;由于本身是由纯Java。还有跨平台的优势，支持目前常见的大部分平台。&lt;/p&gt;
-&lt;p&gt;和其他常见数据库之间的对比如下：&lt;/p&gt;
-&lt;img src=&quot;/2026/07/09/H2%E5%AE%9E%E6%88%98/2.webp&quot; class=&quot;&quot;&gt;
     
     </summary>
     
@@ -101,11 +99,11 @@
     <link href="http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/"/>
     <id>http://www.jinnotes.cn/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/</id>
     <published>2026-07-08T14:58:14.000Z</published>
-    <updated>2026-07-09T02:17:07.027Z</updated>
+    <updated>2026-07-10T02:02:41.655Z</updated>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/1.webp&quot; class=&quot;&quot;&gt;
+      &lt;img src=&quot;/2026/07/08/MongoDB%E5%92%8CSpring%E9%9B%86%E6%88%90/spring-mongodb.jpg&quot; class=&quot;&quot;&gt;
 
 &lt;p&gt;MongoDB无疑是当前在各个领域中NoSQL优选的文档数据库之一。原因在于部署简单，可扩展性强，原生支持javascript脚本编程。对于使用Spring全家桶的团队来说，是一个很好的选择，可以快速的搭建一个服务出来。如果是用JS或者Typescript语言的话，使用Mongoose的ORM框架结合到express框架，生产力会提高一大截。&lt;/p&gt;
 &lt;p&gt;稍显不足的是，MongoDB对于中文索引支持的力度不够，对于某些要求强事务的领域应用（比如金融、财务等）略显不足，至少还没有看到有成熟应用的案例。如果有，请告诉我。&lt;/p&gt;
@@ -123,11 +121,11 @@
     <link href="http://www.jinnotes.cn/2026/07/08/BSON/"/>
     <id>http://www.jinnotes.cn/2026/07/08/BSON/</id>
     <published>2026-07-08T07:47:43.000Z</published>
-    <updated>2026-07-08T08:03:36.152Z</updated>
+    <updated>2026-07-10T02:12:33.261Z</updated>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2026/07/08/BSON/1.webp&quot; class=&quot;&quot;&gt;
+      &lt;img src=&quot;/2026/07/08/BSON/vs.jpg&quot; class=&quot;&quot;&gt;
 
 &lt;h1 id=&quot;JSON是什么？&quot;&gt;&lt;a href=&quot;#JSON是什么？&quot; class=&quot;headerlink&quot; title=&quot;JSON是什么？&quot;&gt;&lt;/a&gt;JSON是什么？&lt;/h1&gt;&lt;p&gt;JSON，JavaScript Object Notation，最初在2000年左右由JavaScript的设计者Douglas Crockford所定义。2003年才官方正式定名。&lt;/p&gt;
 &lt;p&gt;JavaScript中的对象类似于一个 关联容器 （比如Map，HashMap），每一个文本键都对应一个值（值的类型可以是数字、字符串、函数、或者另外一个对象）。这种简单的特性使得JavaScript的对象通过文本表达起来异常简单。&lt;/p&gt;
@@ -159,11 +157,11 @@
     <link href="http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/"/>
     <id>http://www.jinnotes.cn/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/</id>
     <published>2026-07-08T07:28:25.000Z</published>
-    <updated>2026-07-08T07:46:39.007Z</updated>
+    <updated>2026-07-10T02:44:09.813Z</updated>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/1.webp&quot; class=&quot;&quot;&gt;
+      &lt;img src=&quot;/2026/07/08/MongoDB%E4%BB%8B%E7%BB%8D-%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5/concept.png&quot; class=&quot;&quot;&gt;
 
 &lt;blockquote&gt;&lt;p&gt;关于成功没有一个确切的公式，但关于失败我可以找到一个：总是尽力取悦所有人。&lt;/p&gt;
 &lt;footer&gt;&lt;strong&gt;Herbert Bayard Swope&lt;/strong&gt;&lt;/footer&gt;&lt;/blockquote&gt;
@@ -206,11 +204,11 @@
     <link href="http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/"/>
     <id>http://www.jinnotes.cn/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/</id>
     <published>2026-07-08T07:22:54.000Z</published>
-    <updated>2026-07-08T07:46:59.205Z</updated>
+    <updated>2026-07-10T02:24:05.692Z</updated>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/1.webp&quot; class=&quot;&quot;&gt;
+      &lt;img src=&quot;/2026/07/08/%E4%BB%80%E4%B9%88%E6%98%AFNoSQL/nosql-title.png&quot; class=&quot;&quot;&gt;
 
 &lt;h1 id=&quot;什么是NoSQL？&quot;&gt;&lt;a href=&quot;#什么是NoSQL？&quot; class=&quot;headerlink&quot; title=&quot;什么是NoSQL？&quot;&gt;&lt;/a&gt;什么是NoSQL？&lt;/h1&gt;&lt;p&gt;NoSQL（最初表示Non-SQL，后来有人转解为Not only SQL），是对不同于传统的关系数据库（RDBMS）的统称。允许部分资料使用SQL系统存储，而其他资料允许使用NOSQL系统存储。其数据存储可以不需要固定的表格模式以及元数据（metadata），也经常会避免使用SQL的JOIN操作，一般有水平可扩展性的特征。&lt;/p&gt;
     
@@ -267,11 +265,11 @@
     <link href="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/"/>
     <id>http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/</id>
     <published>2026-07-08T04:39:39.000Z</published>
-    <updated>2026-07-08T07:46:34.018Z</updated>
+    <updated>2026-07-10T02:51:06.641Z</updated>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp&quot; class=&quot;&quot;&gt;
+      &lt;img src=&quot;/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb.webp&quot; class=&quot;&quot;&gt;
 
 &lt;p&gt;说到现代 Web 应用程序开发，不得不提到 MongoDB。如果你是一名全栈程序员，每天都会跟 MERN 打交道，其中 M 指的就是 MongoDB。MongoDB 开源社区版为大量的 Web 应用程序提供支持。从 2007 年开始，MongoDB 走过了漫长的道路。它是 MongoDB 公司的主要产品，这家公司市值已经超过 100 亿美元。与很多产品一样，在线广告是推动 MongoDB 愿景和发展的关键催化剂。MongoDB 的故事很有趣，在本文中，我将带你一起探索 MongoDB 的发展之旅。&lt;/p&gt;
 &lt;h1 id=&quot;开端：大型数据库想法的萌芽&quot;&gt;&lt;a href=&quot;#开端：大型数据库想法的萌芽&quot; class=&quot;headerlink&quot; title=&quot;开端：大型数据库想法的萌芽&quot;&gt;&lt;/a&gt;开端：大型数据库想法的萌芽&lt;/h1&gt;&lt;p&gt;MongoDB 的故事开始于 2007 年。1995 年，Dwight Merriman 和 Kevin O’Connor 创办了著名的在线广告公司 DoubleClick。不久后，Kevin Ryan 也加入了这个团队 (Dwight 和 Kevin 后来共同创办了 5 家公司——Gilt、10gen、Panther Express、ShopWiki 和 Business Insider)。DoubleClick 很&lt;br&gt;快就大获成功，几年之内，它的广告流量达到了每秒 40 万条。当时的关系型数据库技术还没有预料到会有如此大规模的流量。配备如此规模的关系数据库需要大量的资金和硬件资源。因此，Dwight(他是当时的 CTO) 和他的团队开发了自定义数据库实现来扩展 DoubleClick，以应对流量的激增。&lt;/p&gt;
@@ -303,11 +301,11 @@
     <link href="http://www.jinnotes.cn/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/"/>
     <id>http://www.jinnotes.cn/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/</id>
     <published>2026-07-08T02:42:59.000Z</published>
-    <updated>2026-07-08T08:06:03.934Z</updated>
+    <updated>2026-07-10T02:04:23.634Z</updated>
     
     <summary type="html">
     
-      &lt;img src=&quot;/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/640.webp&quot; class=&quot;&quot;&gt;
+      &lt;img src=&quot;/2026/07/08/%E4%B8%80%E6%96%87%E6%90%9E%E6%87%82Oracle-JDK%E4%B8%8EOpenJDK/vs.png&quot; class=&quot;&quot;&gt;
 
 &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;在本文中，我们将探讨Oracle Java Development Kit和OpenJDK之间的差异并进行比较。&lt;/p&gt;
 &lt;h1 id=&quot;Oracle-JDK&quot;&gt;&lt;a href=&quot;#Oracle-JDK&quot; class=&quot;headerlink&quot; title=&quot;Oracle JDK&quot;&gt;&lt;/a&gt;Oracle JDK&lt;/h1&gt;&lt;p&gt;Oracle JDK由Oracle公司开发，该公司是Sun许可证，基于Java标准版规范实现。它以二进制产品的形式发布。它支持多种操作系统，如Windows，Linux，Solaris，MacOS等。它支持不同的平台，如Intel 32位和64位架构，ARM架构和SPARC。它完全基于Java编程语言。之后，该许可证宣布将根据GPL（通用公共许可证）许可证发布。Oracle JDK包含许多组件作为库形式的编程工具集合。&lt;/p&gt;

@@ -27,23 +27,23 @@
 <meta property="og:site_name" content="AI观察与大数据">
 <meta property="og:description" content="说到现代 Web 应用程序开发，不得不提到 MongoDB。如果你是一名全栈程序员，每天都会跟 MERN 打交道，其中 M 指的就是 MongoDB。MongoDB 开源社区版为大量的 Web 应用程序提供支持。从 2007 年开始，MongoDB 走过了漫长的道路。它是 MongoDB 公司的主要产品，这家公司市值已经超过 100 亿美元。与很多产品一样，在线广告是推动 MongoDB 愿景">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/founder.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/arch.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/fault.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/sharding.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/timeline.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/publish.webp">
-<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/roadmap.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb.webp">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-people.jpg">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-architecture.jpg">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-deployment1.jpg">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-deployment2.jpg">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-timeline1.jpg">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-timeline2.jpg">
+<meta property="og:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-site-changes.jpg">
 <meta property="article:published_time" content="2026-07-08T04:39:39.000Z">
-<meta property="article:modified_time" content="2026-07-08T07:46:34.018Z">
+<meta property="article:modified_time" content="2026-07-10T02:51:06.641Z">
 <meta property="article:author" content="山野@成都">
 <meta property="article:tag" content="MongoDB">
 <meta property="article:tag" content="NoSQL">
 <meta property="article:tag" content="大数据">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp">
+<meta name="twitter:image" content="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb.webp">
 
 
 <link rel="canonical" href="http://www.jinnotes.cn/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/">
@@ -55,6 +55,8 @@
 <title>MongoDB简史 | AI观察与大数据</title>
   
 
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?e186f6838f79162c71ee2c9b62980a24"></script>
 
 
 
@@ -258,9 +260,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2026-07-08 12:39:39 / 修改时间：15:46:34" itemprop="dateCreated datePublished" datetime="2026-07-08T12:39:39+08:00">2026-07-08</time>
+      <time title="创建时间：2026-07-08 12:39:39" itemprop="dateCreated datePublished" datetime="2026-07-08T12:39:39+08:00">2026-07-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2026-07-10 10:51:06" itemprop="dateModified" datetime="2026-07-10T10:51:06+08:00">2026-07-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -308,12 +316,12 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/logo.webp" class="">
+    <div class="post-body" itemprop="articleBody"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb.webp" class="">
 
 <p>说到现代 Web 应用程序开发，不得不提到 MongoDB。如果你是一名全栈程序员，每天都会跟 MERN 打交道，其中 M 指的就是 MongoDB。MongoDB 开源社区版为大量的 Web 应用程序提供支持。从 2007 年开始，MongoDB 走过了漫长的道路。它是 MongoDB 公司的主要产品，这家公司市值已经超过 100 亿美元。与很多产品一样，在线广告是推动 MongoDB 愿景和发展的关键催化剂。MongoDB 的故事很有趣，在本文中，我将带你一起探索 MongoDB 的发展之旅。</p>
 <h1 id="开端：大型数据库想法的萌芽"><a href="#开端：大型数据库想法的萌芽" class="headerlink" title="开端：大型数据库想法的萌芽"></a>开端：大型数据库想法的萌芽</h1><p>MongoDB 的故事开始于 2007 年。1995 年，Dwight Merriman 和 Kevin O’Connor 创办了著名的在线广告公司 DoubleClick。不久后，Kevin Ryan 也加入了这个团队 (Dwight 和 Kevin 后来共同创办了 5 家公司——Gilt、10gen、Panther Express、ShopWiki 和 Business Insider)。DoubleClick 很<br>快就大获成功，几年之内，它的广告流量达到了每秒 40 万条。当时的关系型数据库技术还没有预料到会有如此大规模的流量。配备如此规模的关系数据库需要大量的资金和硬件资源。因此，Dwight(他是当时的 CTO) 和他的团队开发了自定义数据库实现来扩展 DoubleClick，以应对流量的激增。</p>
 <span id="more"></span>
-<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/founder.webp" class="">
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-people.jpg" class="">
 
 <p>2003 年，Eliot Horowitz 在大学毕业之后加入 DoubleClick 的研发部门，成为一名软件工程师。两年后，他离开了 DoubleClick，和 Dwight 一起创办了 ShopWiki。他们都意识到，他们在一次又一次地解决同样的水平伸缩性问题。因此，2007 年，Dwight、Eliot 和 Kevin Ryan 一起创办了一家叫作 10gen 的新公司。10gen 专注于提供一个带有自有应用程序和数据库栈的 PaaS 托管解决方案。10gen 很快引起了风险投资人 Albert Wenger(Union Square Ventures) 的注意，他向 10gen 投资了 150 万美元。以下是 Albert Wenger 在 2008 年写的有关 10gen 投资的文字：</p>
 <blockquote><p>今天，我们很高兴地宣布，我们将为一支特立独行的团队提供支持，也就是 10gen 的一班天才们。他们汇聚了构建互联网规模系统的经验，比如 DART、Panther Express CDN，广泛参与了开源活动，包括 Apache 软件基金会。他们正在为云计算构建一个开源技术栈，包括一个应用服务器和一个数据库，它们都是基于现代硬件能力和构建 Web 站点或服务的经验从头开始开发的。应用服务器最初支持服务器端 JavaScript 和 Ruby(实验性的)。数据库采用了一种有趣的设计来存储对象，这种设计在快速随机访问和高效的集合扫描之间做出了平衡。</p>
@@ -339,7 +347,7 @@
 <p>MongoDB 是一个基于文档的 NoSQL 数据库。它可以在所有主流平台上运行 (Windows、Linux、Mac)，并且可以免费下载它的开源版本。MongoDB 将数据实体存储在集合中，存储的每一个数据块都是 JSON 格式。例如，如果一个用户提交了一个在线订单，该订单的全部细节 (订单号、订单项、收获地址等) 将保存在一个 JSON 文档中，然后将其保存到“customer_order”集合中。</p>
 <p>MongoDB 还附带了一个控制台客户端，这是一个功能齐全的 JavaScript 环境，你可以用它添加、删除、编辑或查询数据库中的文档数据。</p>
 <h1 id="MongoDB-架构"><a href="#MongoDB-架构" class="headerlink" title="MongoDB 架构"></a>MongoDB 架构</h1><p>下面是 MongoDB 服务器主要组件的架构视图。</p>
-<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/arch.webp" class="">
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-architecture.jpg" class="">
 <p>MongoDB 目前为 13 种编程语言提供了驱动程序，包括 Java、Node.JS、Python、PHP 和 Swift。存储引擎 MMAPv1 从 4.2 版本开始就被移除了。加密存储引擎只在商业版中提供。<br>MongoDB 的美妙之处在于它的开源免费社区版为你提供了这些能力：</p>
 <ul>
 <li>一个简单的单机实例就可以满足大多数小型应用程序的需求。</li>
@@ -348,10 +356,10 @@
 </ul>
 <p>下面的这些图表演示了各种运行 MongoDB 实例的方式。</p>
 <h1 id="单服务器-容错设置"><a href="#单服务器-容错设置" class="headerlink" title="单服务器 &#x2F; 容错设置"></a>单服务器 &#x2F; 容错设置</h1><p>对于小型应用程序，单台服务器就足以满足频繁的数据备份需求了。如果需要容错，可以使用副本集。在容错配置中，通常有 3 个或更多的 MongoDB 实例。这些实例当中只有一个作为主实例，如果它发生故障，其他两个辅助实例中的一个将成为主实例。这些实例中的数据都是一样的。</p>
-<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/fault.webp" class="">
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-deployment1.jpg" class="">
 
 <h1 id="具有水平伸缩能力的分片集群"><a href="#具有水平伸缩能力的分片集群" class="headerlink" title="具有水平伸缩能力的分片集群"></a>具有水平伸缩能力的分片集群</h1><p>对于同时要求具备水平伸缩能力和容错能力的大型数据库，需要使用 MongoDB 分片集群。从下图可以看出，一个容错分片集群推荐的最小机器数量是 14 台！每一个容错副本集只处理数据的一个子集，数据分区是由 MongoDB 引擎自动完成的。</p>
-<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/sharding.webp" class="">
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-deployment2.jpg" class="">
 
 <p>在下载最新版本的 MongoDB(4.4) 并解压缩之后，你会发现它只包含以下三个主要文件：</p>
 <ul>
@@ -361,14 +369,14 @@
 </ul>
 <p>在 Mac 上，这 3 个可执行文件的总大小约为 150MB。对于任意类型的 MongoDB 部署，都只需要这几个组件！在一个软件膨胀的世界里，这是一种很受欢迎的变革！这种简单和优雅让 MongoDB 变得强大而可靠。</p>
 <h1 id="MongoDB-的演化史-2009-年——2020-年"><a href="#MongoDB-的演化史-2009-年——2020-年" class="headerlink" title="MongoDB 的演化史 (2009 年——2020 年)"></a>MongoDB 的演化史 (2009 年——2020 年)</h1><p>MongoDB 1.0 是在 2009 年 2 月发布的，提供了大部分基本的查询功能。MongoDB 1.2 是在 2009 年 12 月发布的，引入了 map-reduce，支持大规模数据处理。在看到 MongoDB 的巨大潜力之后，10gen 公司迅速壮大了团队。MongoDB 1.4(2010 年 3 月) 引入了后台索引创建，MongoDB 1.6(2010 年 8 月) 引入了一些主要特性，比如用于水平伸缩的分片、具备自动故障转移能力的副本集以及对 IPv6 的支持。</p>
-<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/timeline.webp" class="">
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-timeline1.jpg" class="">
 
 <p>到了 2012 年，10gen 有 100 名员工，公司开始提供 24&#x2F;7 服务。MongoDB 2.2 版本 (2012 年 8 月) 引入了聚合管道，可以将多个数据处理步骤组合成一个操作链。到了 2013 年，10gen 拥有 250 多名员工和 1000 多名客户。为了挖掘商业潜力，10gen 更名为 MongoDB 公司，专注于数据库产品。MongoDB 2.4 版本 (2013 年 3 月) 在 Mongo Shell 中引入了文本搜索和谷歌的 V8 JS 引擎等增强功能。除了 2.4 之外，还发布了 MongoDB 企业版，提供了监控和安全集成等附加功能。</p>
 <p>MongoDB 早期版本的一个主要问题是它用来保存和管理磁盘数据的存储引擎相对较弱。于是，MongoDB 公司进行了第一笔收购，收购了 WiredTiger 公司。这家公司有超级稳定的存储引擎产品 WiredTiger。MongoDB 拿下了这家公司的开发团队和产品，以及首席架构师 Michael Cahill(也是 Berkeley DB 的架构师之一)，让他担任存储工程总监一职。WiredTiger 是一个高效的存储引擎，使用了各种编程技术，如风险指针（hazard pointer）、无锁算法、快速锁存（fast latch）和消息传递，与其他引擎相比，WiredTiger 可以在每个 CPU 内核上执行更多的任务。为了最小化磁盘开销和 I&#x2F;O，WiredTiger 使用了紧凑的文件格式和压缩（可选）。</p>
 <p>MongoDB 的下一个主要版本是 3.0(2015 年 3 月)，其中包含了新的 WiredTiger 存储引擎、可插拔存储引擎 API、增加了 50 个副本集限制和安全改进。同年，Glassdoor 将 MongoDB 公司列为最佳的雇主之一。同年晚些时候又发布了 3.2 版本，支持文档验证、部分索引和一些主要的聚合增强。</p>
 <p>2017 年，微软发布了多模型 NoSQL 数据库服务 CosmosDB，作为微软 Azure 云平台的一部分。它提供了与 MongoDB 3.2 的协议兼容性，针对 MongoDB 3.2 的查询也可以在 CosmosDB 上运行，这加快了开发人员采用 CosmosDB 的速度。</p>
 <p>截止 2016 年，MongoDB 公司拥有 500 多名员工，数据库的下载量超过 2000 万次。2017 年 10 月，MongoDB 公司上市，市值超过 10 亿美元。MongoDB 3.6 在一个月后 (2017 年 11 月) 发布，为多集合连接查询、变更流和使用 JSON 模式进行文档验证提供了更好的支持。MongoDB 3.6 是微软 Azure CosmosDB 截至 2020 年 8 月能够支持的最新版本。</p>
-<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/publish.webp" class="">
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-timeline2.jpg" class="">
 
 <p>2018 年，MongoDB 公司斥资 6800 万美元收购了 mLab，这是 MongoDB 公司的第二笔收购。当时，mLab 在云端提供 MongoDB 服务 (DBaaS)，并拥有大量的客户。云计算是未来，MongoDB 公司迅速收购并集成了 mLab，将其作为 MongoDB Atlas 云平台的一部分。然后，他们通过改变开源版本的许可条款来限制更多的 DBaaS 竞争者出现！</p>
 <p>MongoDB 开源社区版和高级企业版都使用了相同的底层引擎。这意味着任何人都可以使用社区版，然后基于社区版提供付费的云服务。对于 MongoDB 公司来说，它们的云产品 MongoDB Atlas 就多了很多直接竞争者。因此，在 2018 年 10 月，MongoDB 公司将社区版的许可从 GNU AGPLv3 (AGPL) 更改为服务器端公共许可 (SSPL)。许可中有一个条款用来防止未来 SaaS 竞争对手使用 MongoDB 并提供他们自己的 SaaS 版本：</p>
@@ -401,7 +409,7 @@
 <li>MongoDB Connectors——为其他平台 &#x2F; 工具提供的用于连接 MongoDB 的驱动程序。</li>
 </ul>
 <h1 id="前方的道路"><a href="#前方的道路" class="headerlink" title="前方的道路"></a>前方的道路</h1><p>由于在 SSPL 许可方面存在争议，开发者社区中有一些人对 MongoDB 生态系统持谨慎态度。投资者还面临着围绕生态系统创收的压力。如果你把 2008 年版和 2020 年版的 MongoDB 主页放在一起看，这一点就显而易见 (见下图)。MongoDB 社区版下载页面实际上也列出了企业版中才有的特性！</p>
-<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/roadmap.webp" class="">
+<img src="/2026/07/08/MongoDB%E7%AE%80%E5%8F%B2/mongodb-site-changes.jpg" class="">
 
 <p>另外，MongoDB 公司还面临来自云供应商的激烈竞争。MongoDB 公司面临的主要问题是数据存储只是企业应用程序的一部分，如果没有一个令人信服的全栈云服务，在未来可能很难与云供应商竞争。</p>
 <p>Eliot Horowitz (MongoDB 的关键人物) 于 2020 年 7 月离开了公司。尽管他还在担任顾问的角色，但 MongoDB 的产品仍存在一些风险，比如焦点被弱化、减少对免费社区版的支持或进一步修改许可条款。</p>
